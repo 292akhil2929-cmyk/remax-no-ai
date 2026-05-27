@@ -72,10 +72,10 @@ export default function JoinUs() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-4">
-                  <Input placeholder="Full Name *" required value={form.full_name} onChange={e => setForm({...form, full_name: e.target.value})} className="bg-secondary border-border/50" />
-                  <Input placeholder="Email *" type="email" required value={form.email} onChange={e => setForm({...form, email: e.target.value})} className="bg-secondary border-border/50" />
-                  <Input placeholder="Phone" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className="bg-secondary border-border/50" />
-                  <Textarea placeholder="Tell us about your experience..." value={form.notes} onChange={e => setForm({...form, notes: e.target.value})} className="bg-secondary border-border/50" rows={4} />
+                  <Input placeholder="Full Name *" required value={form.full_name} onChange={e => setForm({...form, full_name: e.target.value})} className="bg-white border-border" />
+                  <Input placeholder="Email *" type="email" required value={form.email} onChange={e => setForm({...form, email: e.target.value})} className="bg-white border-border" />
+                  <Input placeholder="Phone" value={form.phone} onChange={e => setForm({...form, phone: e.target.value})} className="bg-white border-border" />
+                  <Textarea placeholder="Tell us about your experience..." value={form.notes} onChange={e => setForm({...form, notes: e.target.value})} className="bg-white border-border" rows={4} />
                   <Button type="submit" className="w-full font-heading" disabled={createLead.isPending}>
                     {createLead.isPending ? 'Submitting...' : 'Submit Application'} <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>

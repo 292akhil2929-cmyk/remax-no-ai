@@ -32,10 +32,10 @@ export default function Properties() {
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input placeholder="Search by name or location..." value={search} onChange={e => setSearch(e.target.value)} className="pl-10 bg-secondary border-border/50" />
+              <Input placeholder="Search by name or location..." value={search} onChange={e => setSearch(e.target.value)} className="pl-10 bg-white border-border" />
             </div>
             <Select value={category} onValueChange={setCategory}>
-              <SelectTrigger className="w-40 bg-secondary border-border/50"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="w-40 bg-white border-border"><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Categories</SelectItem>
                 <SelectItem value="Off-Plan">Off-Plan</SelectItem>
@@ -44,7 +44,7 @@ export default function Properties() {
               </SelectContent>
             </Select>
             <Select value={type} onValueChange={setType}>
-              <SelectTrigger className="w-40 bg-secondary border-border/50"><SelectValue /></SelectTrigger>
+              <SelectTrigger className="w-40 bg-white border-border"><SelectValue /></SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">All Types</SelectItem>
                 <SelectItem value="Apartment">Apartment</SelectItem>
