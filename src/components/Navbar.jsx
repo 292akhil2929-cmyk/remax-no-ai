@@ -20,12 +20,11 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link to="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-sm flex items-center justify-center">
-              <TrendingUp className="w-5 h-5 text-primary-foreground" />
-            </div>
-            <div className="font-heading font-bold text-lg tracking-tight text-foreground">
-              REMAX <span className="text-primary">ZAM</span>
-            </div>
+            <img
+              src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/196267c79_RemaxZamLogo.jpg"
+              alt="REMAX ZAM"
+              className="h-10 w-auto object-contain"
+            />
           </Link>
 
           <div className="hidden lg:flex items-center gap-8">

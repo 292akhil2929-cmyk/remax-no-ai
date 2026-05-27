@@ -1,58 +1,51 @@
-import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Shield, BarChart3, Globe } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 export default function HeroSection({ heroImage }) {
   return (
-    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[88vh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
-        <img src={heroImage} alt="Dubai skyline at twilight" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary/95 via-secondary/80 to-secondary/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-transparent" />
+        <img src={heroImage} alt="Dubai skyline" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <div className="max-w-2xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 mb-8">
-            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs font-body text-primary tracking-wide">DUBAI REAL ESTATE INVESTMENT</span>
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <div className="max-w-xl">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 mb-6">
+            <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
+            <span className="text-xs font-body text-white/80 tracking-widest uppercase">Dubai Real Estate Investment</span>
           </div>
 
-          <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-bold italic text-foreground leading-[1.1] mb-6">
+          <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-5">
             Invest in Property That{' '}
-            <span className="text-primary">Grows Your Wealth</span>
+            <span className="text-red-500">Grows Your Wealth</span>
           </h1>
 
-          <p className="text-lg text-muted-foreground font-body leading-relaxed mb-10 max-w-lg">
-            Strategic real estate investments in Dubai — built on ROI, data analysis, and long-term value. Not hype.
+          <p className="text-base text-white/75 font-body leading-relaxed mb-8 max-w-md">
+            Strategic real estate investments across the UAE and global markets — built on ROI, data analysis, and long-term value. Not hype.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 mb-16">
-            <Button size="lg" className="font-heading font-semibold tracking-wide" asChild>
+          <div className="flex flex-col sm:flex-row gap-3 mb-12">
+            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-heading font-bold tracking-wide border-0" asChild>
               <Link to="/contact">
                 Start Investing <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-border/50 text-foreground hover:bg-secondary" asChild>
+            <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10 font-heading" asChild>
               <Link to="/properties">Browse Properties</Link>
             </Button>
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
+          <div className="flex flex-wrap gap-6">
             {[
-              { icon: Shield, label: 'RERA Licensed', sub: 'Regulated & Trusted' },
-              { icon: BarChart3, label: 'Data-Driven', sub: 'Market Intelligence' },
-              { icon: Globe, label: 'Global Reach', sub: '40+ Countries Served' },
-            ].map(({ icon: Icon, label, sub }) => (
-              <div key={label} className="flex items-start gap-3">
-                <div className="w-10 h-10 rounded-lg bg-secondary flex items-center justify-center shrink-0">
-                  <Icon className="w-5 h-5 text-primary" />
-                </div>
-                <div>
-                  <p className="text-sm font-heading font-semibold text-foreground">{label}</p>
-                  <p className="text-xs text-muted-foreground font-body">{sub}</p>
-                </div>
+              { icon: Shield, label: 'RERA Licensed' },
+              { icon: BarChart3, label: 'Data-Driven' },
+              { icon: Globe, label: '40+ Countries Served' },
+            ].map(({ icon: Icon, label }) => (
+              <div key={label} className="flex items-center gap-2">
+                <Icon className="w-4 h-4 text-red-400" />
+                <span className="text-sm text-white/80 font-body">{label}</span>
               </div>
             ))}
           </div>

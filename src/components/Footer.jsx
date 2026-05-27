@@ -8,10 +8,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-primary rounded-sm flex items-center justify-center">
-                <TrendingUp className="w-5 h-5 text-primary-foreground" />
-              </div>
-              <span className="font-heading font-bold text-lg text-foreground">REMAX <span className="text-primary">ZAM</span></span>
+              <img
+                src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/196267c79_RemaxZamLogo.jpg"
+                alt="REMAX ZAM"
+                className="h-10 w-auto object-contain"
+              />
             </div>
             <p className="text-sm text-muted-foreground font-body leading-relaxed">
               Data-driven real estate investment consultancy in Dubai. We build wealth through strategic property acquisition.
