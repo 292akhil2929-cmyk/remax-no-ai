@@ -1,0 +1,97 @@
+{
+  "name": "Property",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "title": "Title"
+    },
+    "location": {
+      "type": "string",
+      "title": "Location"
+    },
+    "community": {
+      "type": "string",
+      "title": "Community"
+    },
+    "property_type": {
+      "type": "string",
+      "enum": [
+        "Apartment",
+        "Villa",
+        "Penthouse",
+        "Townhouse",
+        "Office"
+      ],
+      "title": "Property Type"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "Off-Plan",
+        "Ready",
+        "Resale"
+      ],
+      "title": "Category"
+    },
+    "bedrooms": {
+      "type": "number",
+      "title": "Bedrooms"
+    },
+    "bathrooms": {
+      "type": "number",
+      "title": "Bathrooms"
+    },
+    "area_sqft": {
+      "type": "number",
+      "title": "Area (sqft)"
+    },
+    "price_aed": {
+      "type": "number",
+      "title": "Price (AED)"
+    },
+    "expected_roi": {
+      "type": "number",
+      "title": "Expected ROI (%)"
+    },
+    "rental_yield": {
+      "type": "number",
+      "title": "Rental Yield (%)"
+    },
+    "developer": {
+      "type": "string",
+      "title": "Developer"
+    },
+    "completion_date": {
+      "type": "string",
+      "title": "Completion Date"
+    },
+    "description": {
+      "type": "string",
+      "title": "Description"
+    },
+    "image_url": {
+      "type": "string",
+      "title": "Image URL"
+    },
+    "featured": {
+      "type": "boolean",
+      "title": "Featured"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Available",
+        "Reserved",
+        "Sold"
+      ],
+      "title": "Status"
+    }
+  },
+  "required": [
+    "title",
+    "location",
+    "property_type",
+    "price_aed"
+  ]
+}
