@@ -15,13 +15,23 @@ export default function PropertyCard({ property }) {
             </div>
           )}
           <div className="absolute top-3 left-3 flex gap-2">
-            <Badge variant="secondary" className="bg-background/80 backdrop-blur-sm text-xs">{property.category}</Badge>
-            {property.featured && <Badge className="bg-primary text-primary-foreground text-xs">Featured</Badge>}
+            {property.category === 'Off-Plan' && (
+              <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-blue-600 text-white shadow">Off-Plan</span>
+            )}
+            {property.category === 'Ready' && (
+              <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-emerald-600 text-white shadow">Ready</span>
+            )}
+            {property.category === 'Resale' && (
+              <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-amber-600 text-white shadow">Resale</span>
+            )}
+            {property.featured && (
+              <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-primary text-white shadow">Featured</span>
+            )}
           </div>
           {property.expected_roi && (
-            <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-background/80 backdrop-blur-sm rounded-md px-2 py-1">
-              <TrendingUp className="w-3 h-3 text-accent" />
-              <span className="text-xs font-heading font-semibold text-accent">{property.expected_roi}% ROI</span>
+            <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-amber-500 rounded-md px-2 py-1 shadow">
+              <TrendingUp className="w-3 h-3 text-white" />
+              <span className="text-xs font-heading font-bold text-white">{property.expected_roi}% ROI</span>
             </div>
           )}
         </div>

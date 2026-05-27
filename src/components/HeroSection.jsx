@@ -27,12 +27,12 @@ export default function HeroSection({ heroImage }) {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-3 mb-12">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-heading font-bold tracking-wide border-0" asChild>
+            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-heading font-bold tracking-wide border-0" asChild>
               <Link to="/contact">
                 Start Investing <ArrowRight className="w-4 h-4 ml-2" />
               </Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-white/40 text-white hover:bg-white/10 font-heading" asChild>
+            <Button size="lg" variant="outline" className="border-white/60 text-white hover:bg-white/15 font-heading" asChild>
               <Link to="/properties">Browse Properties</Link>
             </Button>
           </div>
