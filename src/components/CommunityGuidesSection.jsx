@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TrendingUp, ArrowRight, MapPin, Home, Users, Zap } from 'lucide-react';
+import { TrendingUp, ArrowRight, MapPin, Home, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -157,14 +157,16 @@ export default function CommunityGuidesSection() {
   const area = communities.find(c => c.id === selected);
 
   return (
-    <section className="py-12 bg-white">
+    <section className="py-24 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
           <div>
-            <p className="text-[#B87333] font-heading font-semibold text-xs tracking-widest uppercase mb-2">Location Intelligence</p>
-             <h2 className="text-2xl lg:text-4xl font-display font-black text-black leading-tight">
+            <div className="inline-block px-4 py-2 mb-4 rounded-full bg-[#B87333]/20 border border-[#B87333]/50">
+              <p className="text-[#B87333] font-heading font-bold text-xs tracking-widest uppercase">Location Intelligence</p>
+            </div>
+             <h2 className="text-5xl lg:text-6xl font-display font-black text-black leading-tight">
               Dubai's Top Investment<br className="hidden sm:block" /> Communities
             </h2>
             <p className="text-gray-600 font-body text-sm mt-2">Click any community to explore investment metrics</p>
@@ -198,7 +200,7 @@ export default function CommunityGuidesSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25 }}
-            className="mt-3 bg-gray-50 border border-gray-200 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center"
+            className="mt-6 bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-300 rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-center"
           >
             {/* Community Info */}
             <div className="md:col-span-2">

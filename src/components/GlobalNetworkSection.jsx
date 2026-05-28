@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Globe, Users, Award, TrendingUp } from 'lucide-react';
+import { ArrowRight, Globe, Users, Award, TrendingUp, Sparkles } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion';
 
 const stats = [
   { icon: Users, value: '145,000+', label: 'Agents Worldwide', color: 'text-[#B87333]' },
@@ -22,33 +23,60 @@ const sourceCountries = [
 
 export default function GlobalNetworkSection() {
   return (
-    <section className="bg-gradient-to-b from-slate-900 to-slate-800 py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <section className="bg-gradient-to-b from-black via-slate-950 to-black py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute -top-40 left-1/4 w-80 h-80 bg-[#B87333]/20 rounded-full blur-3xl opacity-40" />
+      <div className="absolute -bottom-40 right-1/3 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl opacity-30" />
+
+      <div className="relative max-w-7xl mx-auto">
 
         {/* Header */}
-        <div className="text-center mb-12">
-          <p className="text-[#B87333] font-heading font-semibold text-sm tracking-widest uppercase mb-3">
-            Global Advantage
-          </p>
-          <h2 className="text-3xl lg:text-5xl font-display font-black text-white leading-tight mb-4">
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <div className="flex justify-center mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#B87333]/20 border border-[#B87333]/50">
+              <Sparkles className="w-4 h-4 text-[#B87333]" />
+              <p className="text-[#B87333] font-heading font-bold text-xs tracking-widest uppercase">
+                Global Advantage
+              </p>
+            </div>
+          </div>
+          <h2 className="text-5xl lg:text-6xl font-display font-black text-white leading-tight mb-6">
             Dubai's Gateway to the<br />
-            <span className="text-[#B87333]">World's Most Trusted</span> Real Estate Network
+            <span className="bg-gradient-to-r from-[#B87333] to-orange-400 bg-clip-text text-transparent">World's Most Trusted</span> Real Estate Network
           </h2>
-          <p className="text-gray-300 font-body text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-300 font-body text-lg max-w-2xl mx-auto leading-relaxed">
             Backed by RE/MAX — the world's largest real estate brand. Investors from London to Mumbai already know and trust us.
           </p>
-        </div>
+        </motion.div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-          {stats.map(({ icon: Icon, value, label, color }) => (
-            <div key={label} className="bg-white/5 border border-white/10 rounded-xl p-6 text-center hover:bg-white/10 transition-all duration-300">
-              <Icon className={`w-6 h-6 mx-auto mb-3 ${color}`} />
-              <p className="text-2xl lg:text-3xl font-display font-black text-white mb-2">{value}</p>
-              <p className="text-gray-400 font-body text-xs uppercase tracking-wide">{label}</p>
-            </div>
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-14"
+        >
+          {stats.map(({ icon: Icon, value, label, color }, idx) => (
+            <motion.div
+              key={label}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              whileHover={{ y: -6 }}
+              className="bg-gradient-to-br from-white/8 to-white/[0.02] border border-white/10 rounded-xl p-6 text-center hover:border-[#B87333]/50 transition-all duration-300"
+            >
+              <Icon className={`w-8 h-8 mx-auto mb-4 ${color}`} />
+              <p className="text-3xl lg:text-4xl font-display font-black text-white mb-2">{value}</p>
+              <p className="text-gray-400 font-body text-xs uppercase tracking-widest font-bold">{label}</p>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Two Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
