@@ -4,6 +4,7 @@ import StatsBar from '../components/StatsBar';
 import FeaturedProperties from '../components/FeaturedProperties';
 import WhyInvestSection from '../components/WhyInvestSection';
 import GlobalNetworkSection from '../components/GlobalNetworkSection';
+import CommunityGuidesSection from '../components/CommunityGuidesSection';
 import CTASection from '../components/CTASection';
 import YouTubeSection from '../components/YouTubeSection';
 import TestimonialsSection from '../components/TestimonialsSection';
@@ -19,6 +20,7 @@ export default function Home() {
       <StatsBar />
       <FeaturedProperties />
       <WhyInvestSection />
+      <CommunityGuidesSection />
       <GlobalNetworkSection />
       <YouTubeSection />
       <TestimonialsSection />
