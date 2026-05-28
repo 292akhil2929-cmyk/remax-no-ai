@@ -60,7 +60,7 @@ function DropdownMenu({ group, location }) {
       <button
         onClick={() => setOpen(o => !o)}
         className={`flex items-center gap-1 text-sm font-body font-medium transition-colors duration-200 ${
-          isActive ? 'text-[#D4944F]' : 'text-gray-700 hover:text-gray-900'
+          isActive ? 'text-[#D4944F]' : 'text-blue-900 hover:text-blue-600'
         }`}
       >
         {group.label}
@@ -115,7 +115,7 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={`text-sm font-body font-medium transition-colors duration-200 ${
-                  location.pathname === link.path ? 'text-[#D4944F]' : 'text-gray-700 hover:text-gray-900'
+                  location.pathname === link.path ? 'text-[#D4944F]' : 'text-blue-900 hover:text-blue-600'
                 }`}
               >
                 {link.label}
@@ -151,8 +151,8 @@ export default function Navbar() {
                     key={item.path}
                     to={item.path}
                     onClick={() => setOpen(false)}
-                    className={`block py-2 px-2 text-sm font-body rounded ${
-                      location.pathname === item.path ? 'text-[#D4944F]' : 'text-gray-700'
+                    className={`block py-2 px-2 text-sm font-body rounded transition-colors duration-200 ${
+                      location.pathname === item.path ? 'text-[#D4944F]' : 'text-blue-900 hover:text-blue-600'
                     }`}
                   >
                     {item.label}
@@ -166,8 +166,8 @@ export default function Navbar() {
                   key={link.path}
                   to={link.path}
                   onClick={() => setOpen(false)}
-                  className={`block py-2 px-2 text-sm font-body ${
-                    location.pathname === link.path ? 'text-[#D4944F]' : 'text-gray-700'
+                  className={`block py-2 px-2 text-sm font-body rounded transition-colors duration-200 ${
+                    location.pathname === link.path ? 'text-[#D4944F]' : 'text-blue-900 hover:text-blue-600'
                   }`}
                 >
                   {link.label}
