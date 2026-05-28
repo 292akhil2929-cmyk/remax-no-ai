@@ -141,6 +141,58 @@ export default function ThemePreview() {
                     <button className="px-4 py-2 rounded-md text-sm font-semibold" style={{ backgroundColor: theme.secondary, color: theme.foreground }}>Secondary</button>
                   </div>
                 </div>
+
+                {/* Stats Section */}
+                <div>
+                  <p className="text-xs font-semibold text-gray-500 uppercase mb-3">Stats Bar</p>
+                  <div className="rounded-lg p-6 shadow-md flex justify-around" style={{ backgroundColor: theme.primary }}>
+                    {['2,450+', '15 Years', '98%', '500+'].map((stat, i) => (
+                      <div key={i} className="text-center">
+                        <p className="text-xl font-bold text-white">{stat}</p>
+                        <p className="text-xs text-white/70 mt-1">Properties</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Featured Badge & Tags */}
+                <div>
+                  <p className="text-xs font-semibold text-gray-500 uppercase mb-3">Badges & Tags</p>
+                  <div className="flex flex-wrap gap-2">
+                    <span className="text-xs font-semibold px-3 py-1 rounded-full text-white" style={{ backgroundColor: theme.accent }}>Featured</span>
+                    <span className="text-xs font-semibold px-3 py-1 rounded-full text-white" style={{ backgroundColor: theme.primary }}>Premium</span>
+                    <span className="text-xs font-semibold px-3 py-1 rounded border" style={{ color: theme.primary, borderColor: theme.primary }}>Off-Plan</span>
+                    <span className="text-xs font-semibold px-3 py-1 rounded" style={{ backgroundColor: theme.secondary, color: theme.foreground }}>New</span>
+                  </div>
+                </div>
+
+                {/* Footer Preview */}
+                <div>
+                  <p className="text-xs font-semibold text-gray-500 uppercase mb-3">Footer</p>
+                  <div className="rounded-lg p-6 shadow-md" style={{ backgroundColor: theme.foreground }}>
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                      <div>
+                        <p className="text-sm font-bold text-white mb-2">Properties</p>
+                        <p className="text-xs text-white/70">All Properties</p>
+                        <p className="text-xs text-white/70 mt-1">Off-Plan</p>
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-white mb-2">Services</p>
+                        <p className="text-xs text-white/70">Golden Visa</p>
+                        <p className="text-xs text-white/70 mt-1">For Landlords</p>
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold text-white mb-2">Resources</p>
+                        <p className="text-xs text-white/70">Blog</p>
+                        <p className="text-xs text-white/70 mt-1">Insights</p>
+                      </div>
+                      <div>
+                        <p className="text-sm font-bold" style={{ color: theme.accent }}>Contact Us</p>
+                        <p className="text-xs text-white/70 mt-2">+971 4 XXX XXXX</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ))}
