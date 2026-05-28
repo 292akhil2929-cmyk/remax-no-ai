@@ -23,6 +23,7 @@ import BlogDetail from './pages/BlogDetail';
 import Landlords from './pages/Landlords';
 import Dashboard from './pages/Dashboard';
 import AdminContent from './pages/AdminContent';
+import ThemePreview from './pages/ThemePreview';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -68,6 +69,7 @@ const AuthenticatedApp = () => {
         <Route path="/landlords" element={<Landlords />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/admin/content" element={<AdminContent />} />
+        <Route path="/theme-preview" element={<ThemePreview />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
