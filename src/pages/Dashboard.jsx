@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { Heart, Clock, Trash2, Search, ArrowRight, Home, TrendingUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import PropertyRecommender from '@/components/PropertyRecommender';
 
 export default function Dashboard() {
   const queryClient = useQueryClient();
@@ -79,6 +80,11 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* AI Recommender */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <PropertyRecommender />
       </section>
 
       {/* Tabs */}
