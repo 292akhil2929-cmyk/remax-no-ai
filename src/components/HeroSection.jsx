@@ -1,56 +1,65 @@
 import { Link } from 'react-router-dom';
 import PropertySearchFilter from './PropertySearchFilter';
-import { ArrowRight, Shield, BarChart3, Globe } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+
+const PROPERTY_IMAGE = 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/176ded5ae_generated_image.png';
 
 export default function HeroSection({ heroImage }) {
   return (
-    <section className="relative min-h-[88vh] flex items-end overflow-hidden pb-12 sm:pb-16">
-      <div className="absolute inset-0">
-        <img src={heroImage} alt="Dubai skyline" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-transparent" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-0 w-full">
-        <div className="max-w-xl mb-10">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 mb-6">
-            <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
-            <span className="text-xs font-body text-white/80 tracking-widest uppercase">Dubai Real Estate Investment</span>
-          </div>
-
-          <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-5">
-            Invest in Property That{' '}
-            <span className="text-red-500">Grows Your Wealth</span>
-          </h1>
-
-          <p className="text-base text-white/75 font-body leading-relaxed mb-8 max-w-md">
-            Strategic real estate investments across the UAE and global markets — built on ROI, data analysis, and long-term value. Not hype.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-3 mb-8">
-            <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-heading font-bold tracking-wide border-0" asChild>
-              <Link to="/contact">
-                Start Investing <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-white/60 text-white hover:bg-white/15 font-heading" asChild>
-              <Link to="/properties">Browse Properties</Link>
-            </Button>
-          </div>
-
-          <div className="flex flex-wrap gap-6">
-            {[
-              { icon: Shield, label: 'RERA Licensed' },
-              { icon: BarChart3, label: 'Data-Driven' },
-              { icon: Globe, label: '40+ Countries Served' },
-            ].map(({ icon: Icon, label }) => (
-              <div key={label} className="flex items-center gap-2">
-                <Icon className="w-4 h-4 text-red-400" />
-                <span className="text-sm text-white/80 font-body">{label}</span>
+    <section className="bg-[#0d1b3e] py-12 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Main split card */}
+        <div className="rounded-2xl bg-[#0d1b3e] border border-white/10 px-8 py-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center mb-6">
+          {/* Left: Content */}
+          <div>
+            <p className="text-[#c9a84c] font-heading font-semibold text-base mb-3">Dubai Real Estate Investment</p>
+            <h1 className="font-heading text-4xl sm:text-5xl font-black text-white leading-tight mb-5">
+              Invest in Property That{' '}
+              <span className="text-[#c9a84c]">Grows Your Wealth</span>
+            </h1>
+            <p className="text-white/70 font-body text-base leading-relaxed mb-8 max-w-md">
+              Strategic real estate investments across the UAE and global markets — built on ROI, data analysis, and long-term value. Not hype.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-3 mb-8">
+              <Button size="lg" className="bg-[#c9a84c] hover:bg-[#b8943f] text-[#0d1b3e] font-heading font-bold rounded-lg border-0" asChild>
+                <Link to="/contact">Start Investing <ArrowRight className="w-4 h-4 ml-1" /></Link>
+              </Button>
+              <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 font-heading font-bold rounded-lg" asChild>
+                <Link to="/properties">Browse Properties</Link>
+              </Button>
+            </div>
+            <div>
+              <p className="text-white/50 text-xs font-body mb-2">Trust indicators:</p>
+              <div className="flex flex-wrap gap-2">
+                {['RERA Licensed', 'Data-Driven', '40+ Countries Served'].map(label => (
+                  <span key={label} className="px-3 py-1.5 rounded-full border border-white/30 text-white/80 text-xs font-body">{label}</span>
+                ))}
               </div>
-            ))}
+            </div>
+          </div>
+
+          {/* Right: Property image with floating stats */}
+          <div className="relative">
+            <div className="rounded-2xl overflow-hidden">
+              <img src={PROPERTY_IMAGE} alt="Luxury Dubai Property" className="w-full h-72 lg:h-80 object-cover" />
+            </div>
+            {/* Floating stats card */}
+            <div className="absolute bottom-4 left-4 bg-white rounded-xl shadow-xl px-5 py-3 flex gap-6">
+              <div>
+                <p className="text-xs text-gray-500 font-body">Avg. ROI:</p>
+                <p className="text-2xl font-heading font-black text-[#0d1b3e]">8.5%</p>
+              </div>
+              <div className="w-px bg-gray-200" />
+              <div>
+                <p className="text-xs text-gray-500 font-body">Properties:</p>
+                <p className="text-2xl font-heading font-black text-[#0d1b3e]">250+</p>
+              </div>
+            </div>
           </div>
         </div>
+
+        {/* Search filter below */}
         <PropertySearchFilter />
       </div>
     </section>
