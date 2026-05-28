@@ -63,27 +63,21 @@ export default function AudienceSelector() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen"
+      className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen"
     >
-      {/* Animated gradient background */}
-      <style>{`
-        @keyframes gradientShift {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
-        }
-        .gradient-animate {
-          background: linear-gradient(-45deg, #1e293b, #0f172a, #1e1b4b, #0f172a);
-          background-size: 400% 400%;
-          animation: gradientShift 8s ease infinite;
-        }
-      `}</style>
-      <div className="absolute inset-0 gradient-animate opacity-40" />
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="https://commondatastorage.googleapis.com/gtv-videos-library/sample/BigBuckBunny.mp4" type="video/mp4" />
+      </video>
       
-      {/* Floating elements for visual interest */}
-      <div className="absolute top-10 left-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
-      <div className="absolute -bottom-8 right-10 w-80 h-80 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse" style={{ animationDelay: '2s' }} />
-      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: '4s' }} />
+      {/* Dark overlay for text readability */}
+      <div className="absolute inset-0 bg-black/50" />
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
@@ -92,10 +86,10 @@ export default function AudienceSelector() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-foreground mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-white mb-4">
             What Brings You Here?
           </h2>
-          <p className="text-base text-muted-foreground font-body max-w-2xl mx-auto">
+          <p className="text-base text-gray-300 font-body max-w-2xl mx-auto">
             We'll show you exactly what you need to succeed.
           </p>
         </motion.div>
@@ -112,7 +106,7 @@ export default function AudienceSelector() {
                 transition={{ delay: idx * 0.1 }}
                 whileHover={{ y: -4 }}
                 onClick={() => selectAudience(opt.id)}
-                className="relative group text-left p-8 rounded-lg border border-border bg-white hover:border-accent hover:shadow-lg transition-all duration-300 overflow-hidden"
+                className="relative group text-left p-8 rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm hover:border-accent/50 hover:bg-white/20 transition-all duration-300 overflow-hidden"
               >
                 <div className="relative z-10">
                   {/* Icon */}
@@ -121,10 +115,10 @@ export default function AudienceSelector() {
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-display font-black text-foreground mb-2 group-hover:text-accent transition-colors">
+                  <h3 className="text-xl font-display font-black text-white mb-2 group-hover:text-accent transition-colors">
                     {opt.label}
                   </h3>
-                  <p className="text-sm text-muted-foreground font-body leading-relaxed mb-4">
+                  <p className="text-sm text-gray-300 font-body leading-relaxed mb-4">
                     {opt.description}
                   </p>
 
@@ -143,7 +137,7 @@ export default function AudienceSelector() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-center text-xs text-muted-foreground font-body"
+          className="text-center text-xs text-gray-300 font-body"
         >
           You can change this anytime. We're here to support all three paths.
         </motion.p>
