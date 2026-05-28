@@ -5,13 +5,25 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Search, SlidersHorizontal } from 'lucide-react';
 
-const TABS = [
-  { key: 'off-plan',            label: 'Off-Plan Sales',          filter: p => p.listing_status === 'Off-Plan' },
-  { key: 'ready-residential',   label: 'Ready — Residential Sale', filter: p => (p.listing_status === 'Ready' || p.listing_status === 'Resale') && p.transaction_type === 'Residential Sale' },
-  { key: 'ready-commercial',    label: 'Ready — Commercial Sale',  filter: p => (p.listing_status === 'Ready' || p.listing_status === 'Resale') && p.transaction_type === 'Commercial Sale' },
-  { key: 'rental-residential',  label: 'Residential Rentals',      filter: p => p.transaction_type === 'Residential Rental' },
-  { key: 'rental-commercial',   label: 'Commercial Leasing',       filter: p => p.transaction_type === 'Commercial Lease' },
+const GROUPS = [
+  {
+    label: 'Sales',
+    tabs: [
+      { key: 'off-plan',          label: 'Off-Plan',          sub: 'New developments',    filter: p => p.listing_status === 'Off-Plan' },
+      { key: 'ready-residential', label: 'Residential',       sub: 'Ready & resale homes', filter: p => (p.listing_status === 'Ready' || p.listing_status === 'Resale') && p.transaction_type === 'Residential Sale' },
+      { key: 'ready-commercial',  label: 'Commercial',        sub: 'Offices & retail',    filter: p => (p.listing_status === 'Ready' || p.listing_status === 'Resale') && p.transaction_type === 'Commercial Sale' },
+    ],
+  },
+  {
+    label: 'Rentals',
+    tabs: [
+      { key: 'rental-residential', label: 'Residential',     sub: 'Apartments & villas', filter: p => p.transaction_type === 'Residential Rental' },
+      { key: 'rental-commercial',  label: 'Commercial',      sub: 'Offices & retail',    filter: p => p.transaction_type === 'Commercial Lease' },
+    ],
+  },
 ];
+
+const TABS = GROUPS.flatMap(g => g.tabs);
 
 const BEDROOM_OPTIONS = ['Any', 'Studio', '1', '2', '3', '4', '5+'];
 
@@ -66,22 +78,39 @@ export default function Properties() {
         </div>
       </div>
 
-      {/* Tabs */}
-      <div className="bg-white border-b border-border sticky top-16 lg:top-20 z-30 shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 overflow-x-auto">
-          <div className="flex gap-0 min-w-max">
-            {TABS.map(t => (
-              <button
-                key={t.key}
-                onClick={() => { setActiveTab(t.key); setBedrooms('Any'); setSearch(''); }}
-                className={`px-5 py-4 text-sm font-medium font-body whitespace-nowrap border-b-2 transition-colors ${
-                  activeTab === t.key
-                    ? 'border-[#C9A84C] text-[#141E30] font-semibold'
-                    : 'border-transparent text-muted-foreground hover:text-foreground'
-                }`}
-              >
-                {t.label}
-              </button>
+      {/* Category Navigation */}
+      <div className="bg-white border-b border-border shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 py-5">
+          <div className="flex flex-col sm:flex-row gap-6">
+            {GROUPS.map(group => (
+              <div key={group.label} className="flex-1">
+                <p className="text-[10px] font-heading font-bold tracking-[0.15em] uppercase text-muted-foreground mb-3 pl-1">
+                  {group.label}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {group.tabs.map(t => {
+                    const isActive = activeTab === t.key;
+                    return (
+                      <button
+                        key={t.key}
+                        onClick={() => { setActiveTab(t.key); setBedrooms('Any'); setSearch(''); }}
+                        className={`flex flex-col items-start px-4 py-3 rounded-xl border-2 text-left transition-all duration-200 min-w-[130px] ${
+                          isActive
+                            ? 'border-[#141E30] bg-[#141E30] text-white shadow-md'
+                            : 'border-border bg-slate-50 text-foreground hover:border-[#141E30]/40 hover:bg-slate-100'
+                        }`}
+                      >
+                        <span className={`text-sm font-heading font-semibold leading-tight ${isActive ? 'text-white' : 'text-foreground'}`}>
+                          {t.label}
+                        </span>
+                        <span className={`text-[11px] font-body mt-0.5 ${isActive ? 'text-white/70' : 'text-muted-foreground'}`}>
+                          {t.sub}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
             ))}
           </div>
         </div>
