@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { useAudience } from '@/lib/AudienceContext';
 
 const dropdownGroups = [
   {
@@ -91,12 +92,13 @@ function DropdownMenu({ group, location }) {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  const { clearAudience } = useAudience();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <Link to="/" className="flex items-center shrink-0">
+          <Link to="/" onClick={clearAudience} className="flex items-center shrink-0">
             <img
               src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/202b99f88_RemaxZamLogo.webp"
               alt="REMAX ZAM"
@@ -114,6 +116,7 @@ export default function Navbar() {
               <Link
                 key={link.path}
                 to={link.path}
+                onClick={link.label === 'Home' ? clearAudience : undefined}
                 className={`text-sm font-body font-medium transition-colors duration-200 ${
                   location.pathname === link.path ? 'text-[#B87333]' : 'text-gray-700 hover:text-black'
                 }`}
@@ -165,7 +168,10 @@ export default function Navbar() {
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={() => setOpen(false)}
+                  onClick={() => {
+                    setOpen(false);
+                    if (link.label === 'Home') clearAudience();
+                  }}
                   className={`block py-2 px-2 text-sm font-body rounded transition-colors duration-200 ${
                     location.pathname === link.path ? 'text-[#B87333]' : 'text-gray-700 hover:text-black'
                   }`}
