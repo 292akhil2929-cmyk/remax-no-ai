@@ -60,7 +60,7 @@ function DropdownMenu({ group, location }) {
       <button
         onClick={() => setOpen(o => !o)}
         className={`flex items-center gap-1 text-sm font-body font-medium transition-colors duration-200 ${
-          isActive ? 'text-[#D4944F]' : 'text-blue-900 hover:text-blue-600'
+          isActive ? 'text-[#B87333]' : 'text-gray-700 hover:text-black'
         }`}
       >
         {group.label}
@@ -115,7 +115,7 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={`text-sm font-body font-medium transition-colors duration-200 ${
-                  location.pathname === link.path ? 'text-[#D4944F]' : 'text-blue-900 hover:text-blue-600'
+                  location.pathname === link.path ? 'text-[#B87333]' : 'text-gray-700 hover:text-black'
                 }`}
               >
                 {link.label}
@@ -125,7 +125,7 @@ export default function Navbar() {
 
           <div className="hidden lg:flex items-center">
             <Button
-              className="bg-[#D4944F] hover:bg-[#C47E3A] text-white font-semibold rounded-lg border-0"
+              className="bg-[#B87333] hover:bg-[#A86228] text-white font-semibold rounded-lg border-0"
               size="sm"
               asChild
             >
@@ -133,7 +133,7 @@ export default function Navbar() {
             </Button>
           </div>
 
-          <button className="lg:hidden text-white" onClick={() => setOpen(!open)}>
+          <button className="lg:hidden text-black" onClick={() => setOpen(!open)}>
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
@@ -167,14 +167,14 @@ export default function Navbar() {
                   to={link.path}
                   onClick={() => setOpen(false)}
                   className={`block py-2 px-2 text-sm font-body rounded transition-colors duration-200 ${
-                    location.pathname === link.path ? 'text-[#D4944F]' : 'text-blue-900 hover:text-blue-600'
+                    location.pathname === link.path ? 'text-[#B87333]' : 'text-gray-700 hover:text-black'
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
-            <Button className="w-full mt-3 bg-[#D4944F] hover:bg-[#C47E3A] text-white font-semibold border-0" size="sm" asChild>
+            <Button className="w-full mt-3 bg-[#B87333] hover:bg-[#A86228] text-white font-semibold border-0" size="sm" asChild>
               <Link to="/contact" onClick={() => setOpen(false)}>Get Investment Advice</Link>
             </Button>
           </div>
