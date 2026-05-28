@@ -4,20 +4,35 @@ import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 const PROPERTY_IMAGE = 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/176ded5ae_generated_image.png';
+const DUBAI_VIDEO = 'https://cdn.pixabay.com/vimeo/358317471/Dubai%20-%2033926.mp4';
 
 export default function HeroSection({ heroImage }) {
   return (
-    <section 
-      className="relative h-[600px] sm:h-[700px] overflow-hidden"
-      style={{
-        backgroundImage: `linear-gradient(135deg, rgba(13, 27, 62, 0.85) 0%, rgba(13, 27, 62, 0.7) 100%), url('${heroImage}')`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed'
-      }}
-    >
-      {/* Animated gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
+    <section className="relative h-[600px] sm:h-[700px] overflow-hidden">
+      {/* Video Background */}
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src={DUBAI_VIDEO} type="video/mp4" />
+      </video>
+
+      {/* Fallback image for video support */}
+      <div 
+        className="absolute inset-0 hidden sm:block"
+        style={{
+          backgroundImage: `url('${heroImage}')`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center'
+        }}
+      />
+
+      {/* Premium overlay gradients */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
       
       {/* Content */}
       <div className="relative h-full flex items-center px-4 sm:px-6 lg:px-8">
@@ -45,18 +60,19 @@ export default function HeroSection({ heroImage }) {
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
               <Button 
                 size="lg" 
-                className="bg-[#d4a574] hover:bg-[#c9a84c] text-[#0d1b3e] font-heading font-bold rounded-lg border-0 transition-all duration-300 shadow-lg hover:shadow-xl" 
+                className="bg-gradient-to-r from-[#d4a574] to-[#c9a84c] hover:from-[#c9a84c] hover:to-[#b8943f] text-[#0d1b3e] font-heading font-bold rounded-xl border-0 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105" 
                 asChild
               >
-                <Link to="/contact">Start Investing <ArrowRight className="w-4 h-4 ml-1" /></Link>
+                <Link to="/contact" className="flex items-center gap-2">
+                  Start Your Investment <ArrowRight className="w-5 h-5" />
+                </Link>
               </Button>
               <Button 
                 size="lg" 
-                variant="outline" 
-                className="border-2 border-white text-white hover:bg-white/20 font-heading font-bold rounded-lg transition-all duration-300 backdrop-blur-sm" 
+                className="border-2 border-white text-white hover:bg-white/25 font-heading font-bold rounded-xl transition-all duration-300 backdrop-blur-md bg-white/10 hover:border-[#d4a574]" 
                 asChild
               >
-                <Link to="/properties">Browse 250+ Properties</Link>
+                <Link to="/properties">Explore Luxury Properties</Link>
               </Button>
             </div>
             
