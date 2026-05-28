@@ -3,6 +3,7 @@ import HeroSection from '../components/HeroSection';
 import StatsBar from '../components/StatsBar';
 import FeaturedProperties from '../components/FeaturedProperties';
 import WhyInvestSection from '../components/WhyInvestSection';
+import GlobalNetworkSection from '../components/GlobalNetworkSection';
 import CTASection from '../components/CTASection';
 import YouTubeSection from '../components/YouTubeSection';
 import TestimonialsSection from '../components/TestimonialsSection';
@@ -18,6 +19,7 @@ export default function Home() {
       <StatsBar />
       <FeaturedProperties />
       <WhyInvestSection />
+      <GlobalNetworkSection />
       <YouTubeSection />
       <TestimonialsSection />
       <CTASection image={INTERIOR_IMAGE} />
