@@ -6,17 +6,16 @@ import { motion } from 'framer-motion';
 export default function SellerHero() {
   return (
     <section className="relative min-h-screen lg:h-[600px] flex items-center overflow-hidden bg-white">
-      {/* Dubai background image */}
-      <div 
-        className="absolute inset-0 opacity-35"
-        style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1518684029980-cf91eb28ed90?w=1200&h=600&fit=crop)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
+      {/* Dubai video background */}
+      <video
+        autoPlay
+        muted
+        loop
+        className="absolute inset-0 w-full h-full object-cover opacity-40"
+        src="https://videos.unsplash.com/video-static-convert/cf3f7ba130355b5624ffe0cecc97cac4-hd_720_1280_30fps.mp4"
       />
-      {/* Minimal gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/85 via-white/82 to-gray-100/85" />
+      {/* Gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/78 to-gray-100/80" />
 
       <div className="relative w-full z-10 px-4 sm:px-6 lg:px-8 py-20 lg:py-0">
         <div className="max-w-6xl mx-auto">
