@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import PropertySearchFilter from './PropertySearchFilter';
 import { ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { motion } from 'framer-motion';
 
 const DUBAI_VIDEO = 'https://cdn.pixabay.com/vimeo/358317471/Dubai%20-%2033926.mp4';
 
@@ -9,7 +10,7 @@ export default function HeroSection({ heroImage }) {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[600px] sm:h-[650px] overflow-hidden">
+      <section className="relative min-h-screen lg:h-[700px] flex items-center overflow-hidden">
         {/* Video Background */}
         <video
           autoPlay
@@ -21,90 +22,119 @@ export default function HeroSection({ heroImage }) {
           <source src={DUBAI_VIDEO} type="video/mp4" />
         </video>
 
-        {/* Fallback image for video support */}
-        <div 
-          className="absolute inset-0 hidden sm:block"
-          style={{
-            backgroundImage: `url('${heroImage}')`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center'
-          }}
-        />
+        {/* Overlay */}
+        <div className="absolute inset-0 bg-black/60" />
 
-        {/* Premium overlay gradients */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
-        
         {/* Content */}
-        <div className="relative h-full flex items-center px-4 sm:px-6 lg:px-8">
-          <div className="max-w-7xl mx-auto w-full">
-            <div className="max-w-2xl">
+        <div className="relative w-full z-10 px-4 sm:px-6 lg:px-8 py-12 lg:py-0">
+          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-8 lg:gap-16">
+            {/* Left: Text */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.7 }}
+              className="flex-1 text-center lg:text-left"
+            >
               {/* Tagline */}
-              <p className="text-[#B87333] font-heading font-semibold text-sm sm:text-base mb-4 tracking-wide uppercase">
-                ✦ Premium Dubai Real Estate Investment
-              </p>
-              
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+                className="text-[#B87333] font-heading font-semibold text-xs sm:text-sm mb-4 tracking-widest uppercase"
+              >
+                ✦ Premium Real Estate Investment
+              </motion.p>
+
               {/* Main headline */}
-              <h1 className="font-heading text-5xl sm:text-6xl lg:text-7xl font-black text-white leading-tight mb-6">
-                Invest in Property That{' '}
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.7 }}
+                className="font-heading text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-tight mb-4 lg:mb-6"
+              >
+                Invest in Property<br className="hidden sm:block" /> That Grows Your<br className="hidden sm:block" />
                 <span className="bg-gradient-to-r from-[#B87333] to-[#A86228] bg-clip-text text-transparent">
-                  Grows Your Wealth
+                  Wealth
                 </span>
-              </h1>
-              
+              </motion.h1>
+
               {/* Subheading */}
-              <p className="text-white/80 font-body text-lg sm:text-xl leading-relaxed mb-10 max-w-xl">
-                Strategic real estate investments across the UAE and global markets — built on ROI, data analysis, and long-term value. Not hype.
-              </p>
-              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.7 }}
+                className="text-gray-200 font-body text-base sm:text-lg leading-relaxed mb-6 lg:mb-8 max-w-xl mx-auto lg:mx-0"
+              >
+                Strategic real estate investments across Dubai — built on ROI, data analysis, and long-term value.
+              </motion.p>
+
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  size="lg" 
-                  className="bg-gradient-to-r from-[#B87333] to-[#A86228] hover:from-[#A86228] hover:to-[#96521f] text-white font-heading font-bold rounded-xl border-0 transition-all duration-300 shadow-xl hover:shadow-2xl transform hover:scale-105" 
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5, duration: 0.7 }}
+                className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start"
+              >
+                <Button
+                  size="lg"
+                  className="bg-gradient-to-r from-[#B87333] to-[#A86228] hover:from-[#A86228] hover:to-[#96521f] text-white font-heading font-bold rounded-lg border-0 transition-all duration-300 shadow-xl hover:shadow-2xl"
                   asChild
                 >
-                  <Link to="/contact" className="flex items-center gap-2">
-                    Start Your Investment <ArrowRight className="w-5 h-5" />
+                  <Link to="/contact" className="flex items-center justify-center gap-2">
+                    Start Investing <ArrowRight className="w-5 h-5" />
                   </Link>
                 </Button>
-                <Button 
-                  size="lg" 
-                  className="border-2 border-white text-white hover:bg-white/25 font-heading font-bold rounded-xl transition-all duration-300 backdrop-blur-md bg-white/10 hover:border-[#d4a574]" 
+                <Button
+                  size="lg"
+                  className="border-2 border-white text-white hover:bg-white hover:text-black font-heading font-bold rounded-lg transition-all duration-300"
                   asChild
                 >
-                  <Link to="/properties">Explore Luxury Properties</Link>
+                  <Link to="/properties">Explore Properties</Link>
                 </Button>
-              </div>
-            </div>
-          </div>
-        </div>
+              </motion.div>
 
-        {/* Trust indicators - positioned at bottom */}
-        <div className="absolute bottom-4 left-4 sm:left-6 lg:left-8 flex flex-wrap gap-3">
-          {['✓ RERA Licensed', '✓ Data-Driven Analysis', '✓ 40+ Countries Served'].map(label => (
-            <span key={label} className="px-4 py-2 rounded-full border border-white/40 text-white/90 text-sm font-body backdrop-blur-sm bg-white/5">
-              {label}
-            </span>
-          ))}
-        </div>
+              {/* Trust badges */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.6, duration: 0.7 }}
+                className="flex flex-wrap gap-2 justify-center lg:justify-start mt-8 text-xs text-gray-300 font-body"
+              >
+                {['✓ RERA Licensed', '✓ Data-Driven', '✓ 1,200+ Investors'].map(label => (
+                  <span key={label} className="px-3 py-1.5 rounded-full border border-white/20 bg-white/5 backdrop-blur-sm">
+                    {label}
+                  </span>
+                ))}
+              </motion.div>
+            </motion.div>
 
-        {/* Floating stats - positioned at bottom right */}
-        <div className="absolute bottom-4 right-4 sm:right-6 lg:right-8 bg-white/95 backdrop-blur-md rounded-2xl shadow-2xl px-8 py-6 flex gap-12 w-fit">
-          <div>
-            <p className="text-xs text-gray-600 font-body uppercase tracking-wide">Avg. ROI</p>
-            <p className="text-3xl font-heading font-black text-black mt-1">8.5%</p>
-          </div>
-          <div className="w-px bg-gray-300" />
-          <div>
-            <p className="text-xs text-gray-600 font-body uppercase tracking-wide">Properties</p>
-            <p className="text-3xl font-heading font-black text-black mt-1">250+</p>
+            {/* Right: Stats Cards */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+              className="hidden lg:flex flex-col gap-4 w-full lg:w-auto"
+            >
+              {[
+                { label: 'Avg ROI', value: '8.5%' },
+                { label: 'Properties', value: '250+' },
+                { label: 'Countries', value: '40+' },
+              ].map(stat => (
+                <div
+                  key={stat.label}
+                  className="bg-white/95 backdrop-blur-md rounded-xl shadow-xl px-6 py-5 w-56 hover:shadow-2xl transition-all duration-300"
+                >
+                  <p className="text-xs text-gray-600 font-body uppercase tracking-wide">{stat.label}</p>
+                  <p className="text-3xl font-heading font-black text-black mt-1">{stat.value}</p>
+                </div>
+              ))}
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Search Filter - Below Hero */}
-      <div className="bg-white px-4 sm:px-6 lg:px-8 py-12">
+      {/* Search Filter - Compact */}
+      <div className="bg-white px-4 sm:px-6 lg:px-8 py-8 lg:py-12 border-t border-gray-200">
         <div className="max-w-7xl mx-auto">
           <PropertySearchFilter />
         </div>

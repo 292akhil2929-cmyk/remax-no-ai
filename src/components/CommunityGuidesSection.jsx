@@ -5,147 +5,24 @@ import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const communities = [
-  {
-    id: 'dubai-marina',
-    name: 'Dubai Marina',
-    tagline: "Investor's Favourite",
-    image: 'https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&q=80',
-    tags: ['🌊 Waterfront', '📈 High Yield', '🏖️ Beach Access'],
-    yield: '6–8%',
-    entry: 'AED 700K',
-    avgPsf: 'AED 1,650',
-    occupancy: '88%+',
-    highlight: 'Highest transaction volume of any Dubai community with a robust short-term rental market.',
-    col: 'col-span-2 row-span-2',
-  },
-  {
-    id: 'downtown-dubai',
-    name: 'Downtown Dubai',
-    tagline: 'Proven Capital Growth',
-    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
-    tags: ['🏙️ Iconic Address', '📊 Capital Growth', '🚇 Metro'],
-    yield: '5–7%',
-    entry: 'AED 1.2M',
-    avgPsf: 'AED 2,200',
-    occupancy: '90%+',
-    highlight: "Burj Khalifa views — 40% price appreciation since 2020.",
-    col: 'col-span-1 row-span-1',
-  },
-  {
-    id: 'palm-jumeirah',
-    name: 'Palm Jumeirah',
-    tagline: 'Trophy Asset',
-    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
-    tags: ['🌴 Island Living', '💎 Ultra-Premium', '🏨 5-Star Hotels'],
-    yield: '5–7%',
-    entry: 'AED 1.5M',
-    avgPsf: 'AED 2,800',
-    occupancy: '85%+',
-    highlight: 'Limited supply island — 10–15% annual appreciation since 2020.',
-    col: 'col-span-1 row-span-1',
-  },
-  {
-    id: 'business-bay',
-    name: 'Business Bay',
-    tagline: 'Best Value Entry',
-    image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80',
-    tags: ['🏢 Canal Views', '💰 Value Play', '📍 Central'],
-    yield: '6–8%',
-    entry: 'AED 600K',
-    avgPsf: 'AED 1,480',
-    occupancy: '87%+',
-    highlight: '20–30% discount vs Downtown — best capital upside right now.',
-    col: 'col-span-1 row-span-1',
-  },
-  {
-    id: 'dubai-hills-estate',
-    name: 'Dubai Hills',
-    tagline: 'Premium Family Living',
-    image: 'https://images.unsplash.com/photo-1480074568708-e7b720bb3f3f?w=800&q=80',
-    tags: ['🏡 Villas', '🌳 Green Community', '🏫 Top Schools'],
-    yield: '5–6%',
-    entry: 'AED 1.5M',
-    avgPsf: 'AED 1,750',
-    occupancy: '92%+',
-    highlight: 'EMAAR flagship — 60–80% villa appreciation since 2020.',
-    col: 'col-span-1 row-span-1',
-  },
-  {
-    id: 'jumeirah-village-circle',
-    name: 'JVC',
-    tagline: "Dubai's Highest Yields",
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
-    tags: ['💹 8–10% Yield', '🏠 Affordable', '🔑 Portfolio Pick'],
-    yield: '8–10%',
-    entry: 'AED 350K',
-    avgPsf: 'AED 950',
-    occupancy: '89%+',
-    highlight: "Dubai's most transacted community — perfect for portfolio building.",
-    col: 'col-span-2 row-span-1',
-  },
+  { id: 'dubai-marina', name: 'Dubai Marina', image: 'https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&q=80', yield: '6–8%', entry: 'AED 700K', avgPsf: 'AED 1,650' },
+  { id: 'downtown-dubai', name: 'Downtown', image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80', yield: '5–7%', entry: 'AED 1.2M', avgPsf: 'AED 2,200' },
+  { id: 'palm-jumeirah', name: 'Palm Jumeirah', image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80', yield: '5–7%', entry: 'AED 1.5M', avgPsf: 'AED 2,800' },
+  { id: 'business-bay', name: 'Business Bay', image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80', yield: '6–8%', entry: 'AED 600K', avgPsf: 'AED 1,480' },
 ];
 
 function CommunityCard({ area, isSelected, onClick }) {
   return (
     <motion.div
-      layout
       onClick={onClick}
-      className={`relative overflow-hidden rounded-2xl cursor-pointer group border-2 transition-all duration-300 ${
-        isSelected ? 'border-[#B87333]' : 'border-transparent'
-      } ${area.col}`}
-      whileHover={{ scale: 1.01 }}
-      transition={{ duration: 0.2 }}
+      className={`relative overflow-hidden rounded-lg cursor-pointer group border-2 transition-all ${isSelected ? 'border-[#B87333]' : 'border-transparent'}`}
+      whileHover={{ scale: 1.02 }}
     >
-      {/* Background Image */}
-      <img
-        src={area.image}
-        alt={area.name}
-        className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-      />
-
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
-
-      {/* Selected Glow */}
-      {isSelected && (
-        <div className="absolute inset-0 ring-2 ring-[#B87333] ring-inset rounded-2xl pointer-events-none" />
-      )}
-
-      {/* Avg PSF Badge */}
-      <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm border border-white/20 rounded-lg px-2.5 py-1.5 text-center">
-         <p className="text-[10px] text-white/50 font-body leading-none mb-0.5">Avg / sqft</p>
-         <p className="text-xs font-heading font-bold text-[#B87333] leading-none">{area.avgPsf}</p>
-       </div>
-
-      {/* Content */}
-      <div className="absolute bottom-0 left-0 right-0 p-4">
-        {/* Tags */}
-        <div className="flex flex-wrap gap-1.5 mb-2">
-          {area.tags.slice(0, 2).map(t => (
-            <span
-              key={t}
-              className="px-2 py-0.5 bg-white/10 backdrop-blur-sm border border-white/15 rounded-full text-[10px] text-white/80 font-body"
-            >
-              {t}
-            </span>
-          ))}
-        </div>
-
-        <h3 className="text-white font-display font-black text-lg leading-tight">{area.name}</h3>
-         <p className="text-[#B87333] font-body text-xs mt-0.5 mb-3">{area.tagline}</p>
-
-        {/* Key Stats Row */}
-        <div className="flex items-center gap-3">
-          <div className="flex items-center gap-1">
-             <TrendingUp className="w-3 h-3 text-[#B87333]" />
-             <span className="text-xs font-heading font-bold text-[#B87333]">{area.yield}</span>
-            <span className="text-[10px] text-white/40 font-body">yield</span>
-          </div>
-          <div className="w-px h-3 bg-white/20" />
-          <div className="flex items-center gap-1">
-            <MapPin className="w-3 h-3 text-white/50" />
-            <span className="text-xs text-white/70 font-body">from {area.entry}</span>
-          </div>
+      <img src={area.image} alt={area.name} className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
+        <div>
+          <h3 className="text-white font-display font-black text-base">{area.name}</h3>
+          <p className="text-[#B87333] font-heading font-bold text-xs mt-0.5">{area.yield} yield</p>
         </div>
       </div>
     </motion.div>
@@ -157,87 +34,40 @@ export default function CommunityGuidesSection() {
   const area = communities.find(c => c.id === selected);
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
+    <section className="py-12 lg:py-16 bg-white relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-12">
-          <div>
-            <div className="inline-block px-4 py-2 mb-4 rounded-full bg-[#B87333]/20 border border-[#B87333]/50">
-              <p className="text-[#B87333] font-heading font-bold text-xs tracking-widest uppercase">Location Intelligence</p>
-            </div>
-             <h2 className="text-5xl lg:text-6xl font-display font-black text-black leading-tight">
-              Dubai's Top Investment<br className="hidden sm:block" /> Communities
-            </h2>
-            <p className="text-gray-600 font-body text-sm mt-2">Click any community to explore investment metrics</p>
-          </div>
-          <Button
-            variant="outline"
-            className="border-white/30 text-white hover:bg-white/10 font-heading shrink-0"
-            asChild
-          >
-            <Link to="/area-guides">All Area Guides <ArrowRight className="w-4 h-4 ml-1" /></Link>
-          </Button>
-        </div>
+        <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-8">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-black mb-2">Top Communities</h2>
+          <p className="text-sm text-gray-600 font-body">Click to explore investment metrics</p>
+        </motion.div>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-3 auto-rows-[160px]">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
           {communities.map(c => (
-            <CommunityCard
-              key={c.id}
-              area={c}
-              isSelected={selected === c.id}
-              onClick={() => setSelected(c.id)}
-            />
+            <CommunityCard key={c.id} area={c} isSelected={selected === c.id} onClick={() => setSelected(c.id)} />
           ))}
         </div>
 
         {/* Detail Panel */}
         <AnimatePresence mode="wait">
-          <motion.div
-            key={selected}
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.25 }}
-            className="mt-6 bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-300 rounded-2xl p-8 grid grid-cols-1 md:grid-cols-3 gap-8 items-center"
-          >
-            {/* Community Info */}
-            <div className="md:col-span-2">
-              <div className="flex flex-wrap gap-2 mb-3">
-                {area.tags.map(t => (
-                  <span key={t} className="px-3 py-1 bg-white/8 border border-white/15 rounded-full text-xs text-white/80 font-body">{t}</span>
-                ))}
-              </div>
-              <div className="border-l-2 border-[#B87333] pl-4">
-                <p className="text-sm text-gray-700 font-body leading-relaxed">{area.highlight}</p>
-              </div>
+          <motion.div key={selected} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-300 rounded-lg p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+            {/* Stats */}
+            <div className="sm:col-span-2">
+              <p className="text-sm text-gray-700 font-body leading-relaxed">{area.name} combines premium ROI potential with proven infrastructure and strong rental demand.</p>
             </div>
-
-            {/* Stats Grid */}
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-3 gap-3">
               {[
-                { icon: TrendingUp, label: 'Rental Yield', value: area.yield, color: 'text-[#B87333]' },
-                { icon: MapPin, label: 'Entry From', value: area.entry, color: 'text-white' },
-                { icon: Home, label: 'Avg Price/sqft', value: area.avgPsf, color: 'text-white' },
-                { icon: Users, label: 'Occupancy', value: area.occupancy, color: 'text-emerald-400' },
-              ].map(({ icon: Icon, label, value, color }) => (
-                <div key={label} className="bg-white/5 rounded-xl p-3 text-center">
-                  <Icon className="w-4 h-4 text-gray-400 mx-auto mb-1" />
-                   <p className="text-[10px] text-gray-500 font-body mb-0.5">{label}</p>
-                  <p className={`text-sm font-heading font-bold ${color}`}>{value}</p>
+                { label: 'Yield', value: area.yield, icon: TrendingUp },
+                { label: 'From', value: area.entry, icon: MapPin },
+                { label: '/sqft', value: area.avgPsf, icon: Home },
+              ].map(({ label, value, icon: Icon }) => (
+                <div key={label} className="text-center">
+                  <Icon className="w-3.5 h-3.5 text-gray-400 mx-auto mb-1" />
+                  <p className="text-xs text-gray-600 font-body mb-0.5">{label}</p>
+                  <p className="text-xs font-heading font-bold text-black">{value}</p>
                 </div>
               ))}
-            </div>
-
-            {/* CTA */}
-            <div className="md:col-span-3 flex flex-col sm:flex-row gap-2 pt-2 border-t border-gray-200">
-              <Button className="bg-[#B87333] hover:bg-[#A86228] text-white font-heading font-bold border-0" asChild>
-                <Link to="/properties">View {area.name} Properties <ArrowRight className="w-4 h-4 ml-1" /></Link>
-              </Button>
-              <Button variant="ghost" className="text-white/60 hover:text-white hover:bg-white/10 font-heading text-sm" asChild>
-                <Link to="/area-guides">Full Area Guide</Link>
-              </Button>
             </div>
           </motion.div>
         </AnimatePresence>
