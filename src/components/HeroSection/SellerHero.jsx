@@ -6,7 +6,17 @@ import { motion } from 'framer-motion';
 export default function SellerHero() {
   return (
     <section className="relative min-h-screen lg:h-[600px] flex items-center overflow-hidden bg-white">
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-white to-gray-100" />
+      {/* Dubai background image */}
+      <div 
+        className="absolute inset-0 opacity-15"
+        style={{
+          backgroundImage: 'url(https://images.unsplash.com/photo-1512453935925-ab7e1c76b59f?w=1200&h=600&fit=crop)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+        }}
+      />
+      {/* Minimal gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/92 to-gray-100/95" />
 
       <div className="relative w-full z-10 px-4 sm:px-6 lg:px-8 py-20 lg:py-0">
         <div className="max-w-6xl mx-auto">
@@ -29,10 +39,10 @@ export default function SellerHero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black text-foreground leading-tight mb-6"
+              className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-tight mb-6"
             >
-              Sell at the Best<br className="hidden sm:block" />
-              <span className="text-accent">Price</span>
+              Sell at the<br className="hidden sm:block" />
+              <span className="text-accent">Best Price</span>
             </motion.h1>
 
             <motion.p
