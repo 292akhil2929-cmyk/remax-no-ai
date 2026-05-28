@@ -47,6 +47,17 @@ const themes = [
   },
   {
     id: 5,
+    name: 'Dark Blue & Copper',
+    subtitle: 'Elegant Warmth & Trust',
+    primary: '#1B3A5C',
+    accent: '#B87333',
+    background: '#FFFFFF',
+    foreground: '#1B3A5C',
+    secondary: '#F8F9FA',
+    description: 'Deep blue-navy with warm copper bronze. Combines trust and sophistication with contemporary warmth. Distinctive premium appeal.',
+  },
+  {
+    id: 6,
     name: 'Deep Teal & Gold',
     subtitle: 'Sophisticated Stability',
     primary: '#003D4D',
