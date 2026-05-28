@@ -8,6 +8,7 @@ import LeadCaptureForm from '../components/LeadCaptureForm';
 import CurrencyConverter from '../components/CurrencyConverter';
 import MortgageCalculator from '../components/MortgageCalculator';
 import ROICalculator from '../components/ROICalculator';
+import PropertyInsightsPanel from '../components/PropertyInsightsPanel';
 
 export default function PropertyDetail() {
   const { propertyId } = useParams();
@@ -84,6 +85,13 @@ export default function PropertyDetail() {
                 <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /><span className="text-sm font-body"><span className="text-muted-foreground">Completion:</span> <span className="text-foreground">{property.completion_date}</span></span></div>
               )}
             </div>
+
+            {/* Investment Intelligence */}
+            <PropertyInsightsPanel
+              location={property.location}
+              developer={property.developer}
+              community={property.community}
+            />
 
             {/* Calculators */}
             <div className="space-y-6 pt-2">
