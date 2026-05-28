@@ -63,11 +63,8 @@ export default function AudienceSelector() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
+      className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen bg-white"
     >
-      {/* Accent glow for depth */}
-      <div className="absolute -top-40 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-20" />
-      <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-20" />
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
@@ -76,10 +73,10 @@ export default function AudienceSelector() {
           animate={{ opacity: 1, y: 0 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-white mb-4">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-gray-900 mb-4">
             What Brings You Here?
           </h2>
-          <p className="text-base text-gray-300 font-body max-w-2xl mx-auto">
+          <p className="text-base text-gray-600 font-body max-w-2xl mx-auto">
             We'll show you exactly what you need to succeed.
           </p>
         </motion.div>
@@ -96,24 +93,24 @@ export default function AudienceSelector() {
                 transition={{ delay: idx * 0.1 }}
                 whileHover={{ y: -4 }}
                 onClick={() => selectAudience(opt.id)}
-                className="relative group text-left p-8 rounded-lg border border-slate-700 bg-slate-800/60 backdrop-blur-md hover:border-accent/60 hover:bg-slate-700/80 transition-all duration-300 overflow-hidden"
+                className="relative group text-left p-8 rounded-lg border-2 border-blue-500 bg-blue-50 hover:border-blue-600 hover:bg-blue-100 transition-all duration-300 overflow-hidden"
               >
                 <div className="relative z-10">
                   {/* Icon */}
-                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors mb-5">
-                    <Icon className="w-7 h-7 text-accent" />
+                  <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-blue-200 group-hover:bg-blue-300 transition-colors mb-5">
+                    <Icon className="w-7 h-7 text-blue-600" />
                   </div>
 
                   {/* Content */}
-                  <h3 className="text-xl font-display font-black text-white mb-2 group-hover:text-accent transition-colors">
+                  <h3 className="text-xl font-display font-black text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
                     {opt.label}
                   </h3>
-                  <p className="text-sm text-gray-300 font-body leading-relaxed mb-4">
+                  <p className="text-sm text-gray-700 font-body leading-relaxed mb-4">
                     {opt.description}
                   </p>
 
                   {/* CTA indicator */}
-                  <div className="flex items-center gap-2 text-sm text-accent font-heading font-bold">
+                  <div className="flex items-center gap-2 text-sm text-blue-600 font-heading font-bold">
                     Get Started <span>→</span>
                   </div>
                 </div>
@@ -127,7 +124,7 @@ export default function AudienceSelector() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-center text-xs text-gray-300 font-body"
+          className="text-center text-xs text-gray-600 font-body"
         >
           You can change this anytime. We're here to support all three paths.
         </motion.p>
