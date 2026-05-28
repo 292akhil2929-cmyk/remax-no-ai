@@ -1,0 +1,230 @@
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { TrendingUp, Calendar, CheckCircle2, ArrowRight, MapPin } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+
+const projects = [
+  {
+    id: 1,
+    name: 'EMAAR The Heights',
+    developer: 'EMAAR Properties',
+    community: 'Dubai Hills Estate',
+    type: 'Apartments & Townhouses',
+    priceFrom: 'AED 1.3M',
+    handover: 'Q4 2027',
+    paymentPlan: '80/20 Post-Handover',
+    expectedROI: '7–9%',
+    status: 'Launching Soon',
+    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700',
+    highlights: ['Direct golf course views', 'EMAAR payment plan', '10 minutes to Downtown'],
+    tag: 'Hot Launch',
+  },
+  {
+    id: 2,
+    name: 'Sobha Seahaven Tower B',
+    developer: 'Sobha Realty',
+    community: 'Dubai Harbour',
+    type: 'Ultra-Luxury Apartments',
+    priceFrom: 'AED 2.8M',
+    handover: 'Q2 2026',
+    paymentPlan: '60/40',
+    expectedROI: '6–8%',
+    status: 'Available',
+    image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=700',
+    highlights: ['Palm & Marina sea views', 'Private beach access', 'Ultra-luxury finish'],
+    tag: 'Sea View',
+  },
+  {
+    id: 3,
+    name: 'DAMAC Lagoons — Morocco',
+    developer: 'DAMAC Properties',
+    community: 'DAMAC Lagoons',
+    type: 'Townhouses & Villas',
+    priceFrom: 'AED 1.1M',
+    handover: 'Q3 2027',
+    paymentPlan: '70/30',
+    expectedROI: '8–10%',
+    status: 'Available',
+    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=700',
+    highlights: ['Crystal lagoon community', 'Private beach on your doorstep', 'Flexible 70/30 plan'],
+    tag: 'Best Value',
+  },
+  {
+    id: 4,
+    name: 'Nakheel Rixos Dubai Islands',
+    developer: 'Nakheel & Rixos',
+    community: 'Dubai Islands',
+    type: 'Branded Residences',
+    priceFrom: 'AED 3.5M',
+    handover: 'Q1 2027',
+    paymentPlan: '50/50',
+    expectedROI: '7–9%',
+    status: 'Limited Units',
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=700',
+    highlights: ['Rixos hotel management', 'Guaranteed rental programme', 'Dubai Islands beachfront'],
+    tag: 'Branded',
+  },
+  {
+    id: 5,
+    name: 'Ellington The Highbury',
+    developer: 'Ellington Properties',
+    community: 'Mohammed Bin Rashid City',
+    type: 'Boutique Apartments',
+    priceFrom: 'AED 900K',
+    handover: 'Q2 2026',
+    paymentPlan: '60/40',
+    expectedROI: '7–9%',
+    status: 'Available',
+    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700',
+    highlights: ['Design-led boutique project', 'MBR City park views', 'Strong resale market'],
+    tag: 'Boutique',
+  },
+  {
+    id: 6,
+    name: 'Aldar Athlon',
+    developer: 'Aldar Properties',
+    community: 'Dubailand',
+    type: 'Villas & Townhouses',
+    priceFrom: 'AED 1.7M',
+    handover: 'Q4 2027',
+    paymentPlan: '75/25 Post-Handover',
+    expectedROI: '6–8%',
+    status: 'Available',
+    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=700',
+    highlights: ['Aldar quality in Dubai', 'Sports & wellness focus', 'Family community'],
+    tag: 'Family Living',
+  },
+];
+
+const statusColors = {
+  'Available': 'bg-emerald-50 text-emerald-700 border-emerald-200',
+  'Limited Units': 'bg-amber-50 text-amber-700 border-amber-200',
+  'Launching Soon': 'bg-blue-50 text-blue-700 border-blue-200',
+};
+
+export default function OffPlan() {
+  const [filter, setFilter] = useState('all');
+  const filtered = filter === 'all' ? projects : projects.filter(p => p.status === filter);
+
+  return (
+    <div className="min-h-screen">
+      {/* Hero */}
+      <section className="py-16 bg-card/50 border-b border-border/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">New Launches</p>
+          <h1 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-4">Off-Plan Projects in Dubai</h1>
+          <p className="text-base text-muted-foreground font-body max-w-2xl leading-relaxed mb-8">
+            First-access to Dubai's most sought-after off-plan launches — handpicked by REMAX ZAM analysts for developer credibility, location fundamentals, and projected returns. Prices start from AED 900K with flexible payment plans.
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {['all', 'Available', 'Limited Units', 'Launching Soon'].map(f => (
+              <button
+                key={f}
+                onClick={() => setFilter(f)}
+                className={`px-4 py-2 rounded-full text-sm font-heading font-medium transition-colors ${
+                  filter === f ? 'bg-primary text-white' : 'bg-card border border-border text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {f === 'all' ? 'All Projects' : f}
+              </button>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Projects Grid */}
+      <section className="py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map(p => (
+              <div key={p.id} className="bg-card border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-colors group">
+                <div className="relative aspect-video overflow-hidden">
+                  <img src={p.image} alt={p.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <div className="absolute top-3 left-3">
+                    <span className="text-[10px] font-heading font-bold px-2 py-1 rounded bg-accent text-white">{p.tag}</span>
+                  </div>
+                  <div className="absolute top-3 right-3">
+                    <span className={`text-[10px] font-heading font-bold px-2 py-1 rounded border ${statusColors[p.status]}`}>{p.status}</span>
+                  </div>
+                </div>
+
+                <div className="p-5">
+                  <h3 className="font-heading font-bold text-foreground mb-0.5">{p.name}</h3>
+                  <p className="text-xs text-muted-foreground font-body mb-3 flex items-center gap-1">
+                    <MapPin className="w-3 h-3" /> {p.community}
+                  </p>
+
+                  <div className="grid grid-cols-2 gap-3 mb-4 text-xs font-body">
+                    <div>
+                      <p className="text-muted-foreground mb-0.5">From</p>
+                      <p className="font-heading font-bold text-primary">{p.priceFrom}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground mb-0.5">Handover</p>
+                      <p className="font-heading font-semibold text-foreground flex items-center gap-1"><Calendar className="w-3 h-3" />{p.handover}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground mb-0.5">Payment Plan</p>
+                      <p className="font-heading font-semibold text-foreground">{p.paymentPlan}</p>
+                    </div>
+                    <div>
+                      <p className="text-muted-foreground mb-0.5">Expected ROI</p>
+                      <p className="font-heading font-semibold text-emerald-600 flex items-center gap-1"><TrendingUp className="w-3 h-3" />{p.expectedROI}</p>
+                    </div>
+                  </div>
+
+                  <ul className="space-y-1 mb-4">
+                    {p.highlights.map(h => (
+                      <li key={h} className="flex items-center gap-1.5 text-xs text-muted-foreground font-body">
+                        <CheckCircle2 className="w-3 h-3 text-emerald-500 flex-shrink-0" /> {h}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <Button size="sm" className="w-full font-heading font-bold" asChild>
+                    <Link to="/contact">Request Brochure</Link>
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Off-Plan */}
+      <section className="py-16 bg-muted/30 border-t border-border/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-10">
+            <h2 className="text-2xl font-display font-bold text-foreground mb-3">Why Invest in Dubai Off-Plan Property?</h2>
+            <p className="text-sm text-muted-foreground font-body max-w-xl mx-auto">Off-plan properties offer the highest potential returns in the Dubai market — here is why investors worldwide prefer buying before completion.</p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {[
+              { title: 'Lower Entry Price', desc: 'Buy at launch prices typically 15–30% below post-handover market value — maximising capital appreciation from day one.' },
+              { title: 'Flexible Payment Plans', desc: 'Pay in installments over 2–5 years, often with 0% interest. Post-handover plans let you move in while continuing to pay.' },
+              { title: 'First Mover Advantage', desc: 'Early investors in master-planned communities consistently see the strongest price growth as infrastructure and amenities develop.' },
+              { title: 'Developer Guarantees', desc: "Dubai's RERA escrow laws require developers to hold buyer funds in regulated accounts — protecting your investment throughout construction." },
+            ].map(item => (
+              <div key={item.title} className="bg-background border border-border/50 rounded-lg p-5">
+                <h4 className="font-heading font-semibold text-foreground mb-2">{item.title}</h4>
+                <p className="text-xs text-muted-foreground font-body leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="py-14 bg-primary text-white text-center">
+        <div className="max-w-2xl mx-auto px-4">
+          <h2 className="text-2xl lg:text-3xl font-display font-bold mb-3">Get First Access to New Launches</h2>
+          <p className="text-white/75 font-body mb-7 text-sm">Register with REMAX ZAM to receive off-plan launch alerts, exclusive pre-launch pricing, and developer EOI invitations before they hit the public market.</p>
+          <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
+            <Link to="/contact">Register for Launch Alerts <ArrowRight className="w-4 h-4 ml-1" /></Link>
+          </Button>
+        </div>
+      </section>
+    </div>
+  );
+}

@@ -7,7 +7,7 @@ export default function HeroSection({ heroImage }) {
     <section className="relative min-h-[88vh] flex items-center overflow-hidden">
       <div className="absolute inset-0">
         <img src={heroImage} alt="Dubai skyline" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/60 to-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-transparent" />
       </div>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">

@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/button";
 const navLinks = [
   { label: 'Home', path: '/' },
   { label: 'Properties', path: '/properties' },
-  { label: 'Insights', path: '/insights' },
+  { label: 'Off-Plan', path: '/off-plan' },
+  { label: 'Golden Visa', path: '/golden-visa' },
   { label: 'Area Guides', path: '/area-guides' },
-  { label: 'Join Us', path: '/join' },
+  { label: 'About Us', path: '/about' },
   { label: 'Contact', path: '/contact' },
 ];
 

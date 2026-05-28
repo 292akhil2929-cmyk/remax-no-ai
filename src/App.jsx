@@ -12,6 +12,10 @@ import JoinUs from './pages/JoinUs';
 import Insights from './pages/Insights';
 import Contact from './pages/Contact';
 import Layout from './components/Layout';
+import AboutUs from './pages/AboutUs';
+import GoldenVisa from './pages/GoldenVisa';
+import Services from './pages/Services';
+import OffPlan from './pages/OffPlan';
 import AreaGuides from './pages/AreaGuides';
 
 const AuthenticatedApp = () => {
@@ -48,6 +52,10 @@ const AuthenticatedApp = () => {
         <Route path="/insights" element={<Insights />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/area-guides" element={<AreaGuides />} />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/golden-visa" element={<GoldenVisa />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/off-plan" element={<OffPlan />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
