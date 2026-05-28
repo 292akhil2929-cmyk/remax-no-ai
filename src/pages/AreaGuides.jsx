@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { MapPin, TrendingUp, Users, Landmark, Star, ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import CommunityMap from '../components/CommunityMap';
 
 const areas = [
   {
@@ -28,6 +29,19 @@ The Palm offers a unique combination of beachfront living, world-class amenities
     bestFor: 'Investors seeking a globally recognised trophy asset with premium rental income from high-net-worth tenants, tourists, and corporate relocations.',
     propertyTypes: ['Signature Villas', 'Beachfront Apartments', 'Sky-high Penthouses', 'Garden Homes'],
     seoNote: "Properties on Palm Jumeirah represent the top 5% of Dubai's luxury market. Historically, well-positioned frond villas and Atlantis-facing apartments have delivered 12–18% total return over 3-year hold periods.",
+    mapCenter: [25.1124, 55.1390],
+    radiusM: 1400,
+    propertyPins: [
+      { coords: [25.1124, 55.1390], label: 'Palm Jumeirah Frond Villas', note: 'Private beach access, AED 10M+' },
+      { coords: [25.1214, 55.1185], label: 'Atlantis The Royal Residences', note: 'Ultra-luxury, AED 25M+' },
+      { coords: [25.1034, 55.1560], label: 'Nakheel Signature Apartments', note: 'Waterfront, AED 2M+' },
+    ],
+    landmarks: [
+      { coords: [25.1302, 55.1172], label: 'Atlantis The Palm', note: '5-star resort & waterpark' },
+      { coords: [25.0895, 55.1551], label: 'Palm Monorail Station', note: 'Links to Dubai Metro' },
+      { coords: [25.1203, 55.1845], label: 'Nakheel Mall', note: 'Retail & dining hub' },
+      { coords: [25.0970, 55.1698], label: 'The Pointe', note: 'Waterfront dining & leisure' },
+    ],
   },
   {
     id: 'downtown-dubai',
@@ -52,6 +66,20 @@ For international investors, Downtown offers the security of buying within a mas
     bestFor: 'First-time international investors seeking a recognised address, reliable rental income from corporate and tourist tenants, and strong liquidity on exit.',
     propertyTypes: ['High-Rise Apartments', 'Serviced Residences', 'Duplex Penthouses', 'Podium Townhouses'],
     seoNote: "Downtown Dubai has delivered consistent capital appreciation, with prices rising approximately 40% between 2020 and 2024. EMAAR's brand premium provides strong resale liquidity for investors looking to exit within 3–5 years.",
+    mapCenter: [25.1972, 55.2744],
+    radiusM: 900,
+    propertyPins: [
+      { coords: [25.1972, 55.2744], label: 'Burj Khalifa Residences', note: 'Iconic address, AED 3M+' },
+      { coords: [25.1940, 55.2820], label: 'Address Boulevard', note: 'Serviced residences, AED 2M+' },
+      { coords: [25.2010, 55.2670], label: 'Opera District Apartments', note: 'EMAAR, AED 1.5M+' },
+    ],
+    landmarks: [
+      { coords: [25.1972, 55.2796], label: 'Burj Khalifa', note: "World's tallest building" },
+      { coords: [25.1985, 55.2796], label: 'Dubai Mall', note: "World's most visited mall" },
+      { coords: [25.1954, 55.2760], label: 'Dubai Fountain', note: 'World-record fountain show' },
+      { coords: [25.2025, 55.2640], label: 'Dubai Opera', note: 'Arts & culture landmark' },
+      { coords: [25.2040, 55.2730], label: 'Dubai Metro — Burj Khalifa Station', note: 'Red Line' },
+    ],
   },
   {
     id: 'dubai-marina',
@@ -76,6 +104,19 @@ For yield-focused investors, Dubai Marina is arguably the most reliable sub-mark
     bestFor: 'Yield-first investors targeting consistent rental income from a large, established tenant pool. Ideal for holiday home operators and corporate rental strategies.',
     propertyTypes: ['Marina-View Apartments', 'Waterfront Penthouses', 'JBR Beachfront Residences', 'Studio & 1BHK Units'],
     seoNote: 'Dubai Marina studios and one-bedroom apartments consistently achieve occupancy rates above 88%, with short-term rentals via platforms like Airbnb generating up to 30% premium over long-term leases.',
+    mapCenter: [25.0800, 55.1404],
+    radiusM: 900,
+    propertyPins: [
+      { coords: [25.0800, 55.1404], label: 'Marina Walk Apartments', note: 'Waterfront views, AED 800K+' },
+      { coords: [25.0860, 55.1480], label: 'Princess Tower', note: 'High-rise, AED 900K+' },
+      { coords: [25.0740, 55.1330], label: 'JBR Beachfront Residences', note: 'Beach access, AED 1.5M+' },
+    ],
+    landmarks: [
+      { coords: [25.0758, 55.1305], label: 'JBR Beach', note: 'Dubai\'s most popular public beach' },
+      { coords: [25.0830, 55.1473], label: 'Dubai Marina Mall', note: 'Retail & cinema' },
+      { coords: [25.0712, 55.1270], label: 'The Walk at JBR', note: 'Promenade dining & retail' },
+      { coords: [25.0868, 55.1501], label: 'Dubai Marina Metro Station', note: 'Red Line + Tram' },
+    ],
   },
   {
     id: 'business-bay',
@@ -100,6 +141,19 @@ For investors, Business Bay offers a compelling value proposition — near-Downt
     bestFor: 'Value investors seeking near-Downtown yields at a price discount, or investors building a portfolio of 2–3 units across different price points.',
     propertyTypes: ['Canal-View Apartments', 'Studio & 1BHK Investments', 'Hotel Apartments', 'Penthouse Units'],
     seoNote: 'Business Bay has outperformed the broader Dubai market on price growth since 2022, supported by the completion of the Dubai Canal, new hotel openings, and growing demand from young professionals priced out of Downtown.',
+    mapCenter: [25.1865, 55.2607],
+    radiusM: 850,
+    propertyPins: [
+      { coords: [25.1865, 55.2607], label: 'Canal-View Apartments', note: 'AED 700K+' },
+      { coords: [25.1920, 55.2650], label: 'Damac Towers by Paramount', note: 'Branded residences, AED 1M+' },
+      { coords: [25.1820, 55.2570], label: 'Ellington Properties — Business Bay', note: 'Boutique, AED 1.2M+' },
+    ],
+    landmarks: [
+      { coords: [25.1895, 55.2556], label: 'Dubai Canal Promenade', note: '3km waterfront walkway' },
+      { coords: [25.1850, 55.2690], label: 'Business Bay Metro Station', note: 'Red Line' },
+      { coords: [25.1760, 55.2600], label: 'SLS Dubai Hotel', note: 'Luxury hotel & residences' },
+      { coords: [25.1950, 55.2720], label: 'Bay Square', note: 'Dining & retail plaza' },
+    ],
   },
   {
     id: 'dubai-hills-estate',
@@ -124,6 +178,19 @@ The community's long-term appeal is underpinned by scarcity of land in central D
     bestFor: 'Families relocating to Dubai seeking a long-term home purchase, or investors targeting the premium family villa rental market from multinational corporate tenants.',
     propertyTypes: ['Golf-View Villas', 'Park-Facing Townhouses', 'Luxury Apartments', 'Estate Mansions'],
     seoNote: 'Dubai Hills Estate villas are among the most sought-after assets for families relocating under the UAE Golden Visa programme, with 3–4 bedroom units commanding AED 180,000–300,000 per annum in rental income.',
+    mapCenter: [25.1130, 55.2390],
+    radiusM: 1600,
+    propertyPins: [
+      { coords: [25.1130, 55.2390], label: 'Golf Course Villas', note: 'EMAAR, AED 4M+' },
+      { coords: [25.1070, 55.2470], label: 'Dubai Hills Apartments', note: 'Park-view, AED 1.2M+' },
+      { coords: [25.1200, 55.2310], label: 'Sidra Villas', note: 'Family villas, AED 3.5M+' },
+    ],
+    landmarks: [
+      { coords: [25.1150, 55.2480], label: 'Dubai Hills Mall', note: "EMAAR's flagship retail" },
+      { coords: [25.1085, 55.2360], label: 'Dubai Hills Golf Club', note: '18-hole championship course' },
+      { coords: [25.1020, 55.2280], label: 'GEMS World Academy', note: 'International school' },
+      { coords: [25.1240, 55.2440], label: 'Dubai Hills Park', note: '180-acre community park' },
+    ],
   },
   {
     id: 'jumeirah-village-circle',
@@ -148,6 +215,19 @@ Developed by Nakheel, JVC benefits from a central location between Sheikh Mohamm
     bestFor: 'Investors seeking maximum rental yield, entry-level price points, and the ability to build a diversified portfolio of 2–5 units within a single community.',
     propertyTypes: ['Studio Apartments', '1 & 2 BHK Apartments', 'Townhouses', 'Off-Plan Units'],
     seoNote: 'JVC is the single most transacted community in Dubai by volume, making it the most liquid investment option for buy-and-hold investors who want the flexibility to exit within a 3–5 year window at strong returns.',
+    mapCenter: [25.0590, 55.2070],
+    radiusM: 1200,
+    propertyPins: [
+      { coords: [25.0590, 55.2070], label: 'Neva Residences', note: 'JVC District 16, AED 800K+' },
+      { coords: [25.0640, 55.2010], label: 'Binghatti Venus', note: 'Studio & 1BHK, AED 450K+' },
+      { coords: [25.0530, 55.2140], label: 'Sobha Realty JVC', note: '1-2 bed, AED 900K+' },
+    ],
+    landmarks: [
+      { coords: [25.0660, 55.2160], label: 'Circle Mall JVC', note: 'Community retail hub' },
+      { coords: [25.0500, 55.1980], label: 'JSS International School', note: 'CBSE curriculum' },
+      { coords: [25.0710, 55.2060], label: 'Al Khail Road', note: 'Major highway access' },
+      { coords: [25.0580, 55.2260], label: 'Dubai Sports City', note: '5 min drive' },
+    ],
   },
 ];
 
@@ -228,6 +308,9 @@ export default function AreaGuides() {
                   <p key={i} className="text-sm text-muted-foreground font-body leading-relaxed mb-3">{para}</p>
                 ))}
               </div>
+
+              {/* Map */}
+              <CommunityMap area={area} />
 
               {/* Highlights */}
               <div className="mb-8">
