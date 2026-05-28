@@ -8,20 +8,29 @@ export default function InvestorHero() {
   return (
     <>
       <section className="relative min-h-screen lg:h-[600px] flex items-center overflow-hidden bg-white">
-        {/* Luxury Dubai lifestyle video background */}
+        {/* Background with fallback image and video overlay */}
+        <div 
+          className="absolute inset-0 w-full h-full"
+          style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1518684029980-cf91eb28ed90?w=1400&h=800&fit=crop)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+          }}
+        />
+        {/* Video overlay */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          preload="auto"
+          preload="none"
           className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.55 }}
+          style={{ opacity: 0.65 }}
         >
-          <source src="https://cdn.pixabay.com/video/2023/09/13/180483-862649993_tiny.mp4" type="video/mp4" />
+          <source src="https://videos.pexels.com/video-files/3196880/3196880-hd_1920_1080_30fps.mp4" type="video/mp4" />
         </video>
         {/* Dark gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/35 via-black/30 to-black/35" />
+        <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/35 to-black/40" />
 
         <div className="relative w-full z-10 px-4 sm:px-6 lg:px-8 py-20 lg:py-0">
           <div className="max-w-6xl mx-auto">

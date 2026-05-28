@@ -63,9 +63,17 @@ export default function AudienceSelector() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="bg-white px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden"
+      className="bg-white px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen"
+      style={{
+        backgroundImage: 'url(https://images.unsplash.com/photo-1518684029980-cf91eb28ed90?w=1400&h=900&fit=crop)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundAttachment: 'fixed',
+      }}
     >
-      {/* Subtle background elements */}
+      {/* Beautiful gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-white/70 to-white/80" />
+      {/* Subtle accent elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl opacity-30" />
 
       <div className="relative max-w-7xl mx-auto">
