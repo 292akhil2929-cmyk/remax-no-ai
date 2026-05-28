@@ -32,20 +32,15 @@ export default function Home() {
 
   return (
     <div>
-      {!audience && <AudienceSelector />}
-      {audience && (
-        <>
-          <MarketTicker />
-          {getHeroComponent()}
-          <FeaturedProperties />
-          <WhyInvestSection />
-          <CommunityGuidesSection />
-          <GlobalNetworkSection />
-          <YouTubeSection />
-          <TestimonialsSection />
-          <CTASection image={INTERIOR_IMAGE} />
-        </>
-      )}
+      <MarketTicker />
+      {getHeroComponent()}
+      <FeaturedProperties />
+      <WhyInvestSection />
+      <CommunityGuidesSection />
+      <GlobalNetworkSection />
+      <YouTubeSection />
+      <TestimonialsSection />
+      <CTASection image={INTERIOR_IMAGE} />
     </div>
   );
 }
