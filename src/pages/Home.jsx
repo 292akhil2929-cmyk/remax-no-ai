@@ -17,6 +17,7 @@ export default function Home() {
     <div>
       <MarketTicker />
       <HeroSection heroImage={HERO_IMAGE} />
+      <div className="pt-20" />
       <StatsBar />
       <FeaturedProperties />
       <WhyInvestSection />
