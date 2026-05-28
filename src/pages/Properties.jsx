@@ -11,16 +11,38 @@ export default function Properties() {
   const [category, setCategory] = useState('all');
   const [type, setType] = useState('all');
   const [search, setSearch] = useState('');
+  const [priceRange, setPriceRange] = useState('all');
+  const [bedrooms, setBedrooms] = useState('all');
+  const [community, setCommunity] = useState('all');
 
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ['properties'],
     queryFn: () => base44.entities.Property.list('-created_date', 50),
   });
 
+  const communities = [...new Set(properties.map(p => p.community).filter(Boolean))].sort();
+
+  const priceRanges = {
+    'under-1m': [0, 1_000_000],
+    '1m-3m': [1_000_000, 3_000_000],
+    '3m-5m': [3_000_000, 5_000_000],
+    '5m-10m': [5_000_000, 10_000_000],
+    'above-10m': [10_000_000, Infinity],
+  };
+
   const filtered = properties.filter(p => {
     if (category !== 'all' && p.category !== category) return false;
     if (type !== 'all' && p.property_type !== type) return false;
     if (search && !p.title?.toLowerCase().includes(search.toLowerCase()) && !p.location?.toLowerCase().includes(search.toLowerCase())) return false;
+    if (priceRange !== 'all') {
+      const [min, max] = priceRanges[priceRange];
+      if (!p.price_aed || p.price_aed < min || p.price_aed > max) return false;
+    }
+    if (bedrooms !== 'all') {
+      if (bedrooms === '4+') { if (!p.bedrooms || p.bedrooms < 4) return false; }
+      else if (String(p.bedrooms) !== bedrooms) return false;
+    }
+    if (community !== 'all' && p.community !== community) return false;
     return true;
   });
 
@@ -31,32 +53,65 @@ export default function Properties() {
           <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">Dubai Real Estate Investment</p>
           <h1 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-3">Properties for Sale in Dubai</h1>
           <p className="text-base text-muted-foreground font-body max-w-2xl mb-8 leading-relaxed">
-            Browse exclusive off-plan launches, ready properties, and resale opportunities across Dubai's most sought-after communities. Handpicked by REMAX ZAM's expert advisors for maximum ROI and long-term capital growth.
+            Browse exclusive off-plan launches, ready properties, and resale opportunities across Dubai&apos;s most sought-after communities. Handpicked by REMAX ZAM&apos;s expert advisors for maximum ROI and long-term capital growth.
           </p>
-          <div className="flex flex-col sm:flex-row gap-3">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <Input placeholder="Search by name or location..." value={search} onChange={e => setSearch(e.target.value)} className="pl-10 bg-white border-border" />
+          <div className="flex flex-col gap-3">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input placeholder="Search by name or location..." value={search} onChange={e => setSearch(e.target.value)} className="pl-10 bg-white border-border" />
+              </div>
+              <Select value={category} onValueChange={setCategory}>
+                <SelectTrigger className="w-40 bg-white border-border"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Categories</SelectItem>
+                  <SelectItem value="Off-Plan">Off-Plan</SelectItem>
+                  <SelectItem value="Ready">Ready</SelectItem>
+                  <SelectItem value="Resale">Resale</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={type} onValueChange={setType}>
+                <SelectTrigger className="w-40 bg-white border-border"><SelectValue /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Types</SelectItem>
+                  <SelectItem value="Apartment">Apartment</SelectItem>
+                  <SelectItem value="Villa">Villa</SelectItem>
+                  <SelectItem value="Penthouse">Penthouse</SelectItem>
+                  <SelectItem value="Townhouse">Townhouse</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
-            <Select value={category} onValueChange={setCategory}>
-              <SelectTrigger className="w-40 bg-white border-border"><SelectValue /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Categories</SelectItem>
-                <SelectItem value="Off-Plan">Off-Plan</SelectItem>
-                <SelectItem value="Ready">Ready</SelectItem>
-                <SelectItem value="Resale">Resale</SelectItem>
-              </SelectContent>
-            </Select>
-            <Select value={type} onValueChange={setType}>
-              <SelectTrigger className="w-40 bg-white border-border"><SelectValue /></SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All Types</SelectItem>
-                <SelectItem value="Apartment">Apartment</SelectItem>
-                <SelectItem value="Villa">Villa</SelectItem>
-                <SelectItem value="Penthouse">Penthouse</SelectItem>
-                <SelectItem value="Townhouse">Townhouse</SelectItem>
-              </SelectContent>
-            </Select>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <Select value={priceRange} onValueChange={setPriceRange}>
+                <SelectTrigger className="w-full sm:w-48 bg-white border-border"><SelectValue placeholder="Price Range" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Any Price</SelectItem>
+                  <SelectItem value="under-1m">Under AED 1M</SelectItem>
+                  <SelectItem value="1m-3m">AED 1M – 3M</SelectItem>
+                  <SelectItem value="3m-5m">AED 3M – 5M</SelectItem>
+                  <SelectItem value="5m-10m">AED 5M – 10M</SelectItem>
+                  <SelectItem value="above-10m">Above AED 10M</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={bedrooms} onValueChange={setBedrooms}>
+                <SelectTrigger className="w-full sm:w-44 bg-white border-border"><SelectValue placeholder="Bedrooms" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">Any Bedrooms</SelectItem>
+                  <SelectItem value="0">Studio</SelectItem>
+                  <SelectItem value="1">1 Bedroom</SelectItem>
+                  <SelectItem value="2">2 Bedrooms</SelectItem>
+                  <SelectItem value="3">3 Bedrooms</SelectItem>
+                  <SelectItem value="4+">4+ Bedrooms</SelectItem>
+                </SelectContent>
+              </Select>
+              <Select value={community} onValueChange={setCommunity}>
+                <SelectTrigger className="w-full sm:flex-1 bg-white border-border"><SelectValue placeholder="Community" /></SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Communities</SelectItem>
+                  {communities.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
+                </SelectContent>
+              </Select>
+            </div>
           </div>
         </div>
       </section>
