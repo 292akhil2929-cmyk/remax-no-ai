@@ -15,7 +15,7 @@ const markets = [
 
 export default function MarketTicker() {
   return (
-    <div className="bg-white border-b border-border px-4 sm:px-6 lg:px-8 py-6 overflow-hidden">
+    <div className="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-accent/20 px-4 sm:px-6 lg:px-8 py-6 overflow-hidden">
       <div className="max-w-7xl mx-auto">
         {/* Label */}
         <motion.div
@@ -26,7 +26,7 @@ export default function MarketTicker() {
         >
           <div className="w-3 h-3 rounded-full bg-accent animate-pulse" />
           <span className="text-accent font-heading font-bold text-xs uppercase tracking-widest">Market Pulse</span>
-          <span className="text-muted-foreground font-body text-xs">Real-time pricing from RERA Dubai</span>
+          <span className="text-gray-400 font-body text-xs">Real-time pricing from RERA Dubai</span>
         </motion.div>
 
         {/* Scrolling ticker */}
@@ -39,17 +39,17 @@ export default function MarketTicker() {
             {[...markets, ...markets, ...markets].map((m, i) => (
               <motion.div
                 key={i}
-                className="flex items-center gap-4 px-6 py-4 rounded-lg border border-border bg-gradient-to-br from-white to-secondary hover:border-accent transition-all duration-300 min-w-max group"
+                className="flex items-center gap-4 px-6 py-4 rounded-lg border border-slate-700 bg-gradient-to-br from-slate-800 to-slate-900 hover:border-accent transition-all duration-300 min-w-max group"
                 whileHover={{ borderColor: 'hsl(var(--accent))' }}
               >
                 {/* Area and price */}
                 <div>
-                  <p className="text-foreground font-heading font-semibold text-sm">{m.area}</p>
-                  <p className="text-muted-foreground font-body text-xs mt-1">{m.price}</p>
+                  <p className="text-white font-heading font-semibold text-sm">{m.area}</p>
+                  <p className="text-gray-400 font-body text-xs mt-1">{m.price}</p>
                 </div>
 
                 {/* Divider */}
-                <div className="w-px h-12 bg-border" />
+                <div className="w-px h-12 bg-slate-700" />
 
                 {/* Trend */}
                 <div className="flex items-center gap-2">
@@ -67,8 +67,8 @@ export default function MarketTicker() {
           </motion.div>
 
           {/* Gradient overlays for fade effect */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-slate-900 to-transparent pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-slate-900 to-transparent pointer-events-none" />
         </div>
 
         {/* Data source note */}
@@ -76,7 +76,7 @@ export default function MarketTicker() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.6 }}
-          className="text-xs text-muted-foreground font-body mt-4 text-center"
+          className="text-xs text-gray-400 font-body mt-4 text-center"
         >
           Data sourced from RERA Dubai transaction reports • Updated weekly
         </motion.p>

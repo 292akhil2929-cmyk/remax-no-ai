@@ -14,7 +14,7 @@ export default function FeaturedProperties() {
 
   if (isLoading) {
     return (
-      <section className="py-12 bg-white">
+      <section className="py-12 bg-slate-900">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {[1,2,3].map(i => (
@@ -27,7 +27,7 @@ export default function FeaturedProperties() {
   }
 
   return (
-    <section className="py-12 lg:py-16 bg-white">
+    <section className="py-12 lg:py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -41,9 +41,9 @@ export default function FeaturedProperties() {
               <Sparkles className="w-4 h-4 text-[#B87333]" />
               <span className="text-xs font-heading font-bold text-[#B87333] tracking-widest uppercase">Featured</span>
             </div>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-black">Premium Listings</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-white">Premium Listings</h2>
           </div>
-          <Button variant="ghost" className="text-black hover:text-[#B87333] font-heading font-bold text-sm shrink-0" asChild>
+          <Button variant="ghost" className="text-white hover:text-[#B87333] font-heading font-bold text-sm shrink-0" asChild>
             <Link to="/properties">View All <ArrowRight className="w-4 h-4 ml-1" /></Link>
           </Button>
         </motion.div>
@@ -70,7 +70,7 @@ export default function FeaturedProperties() {
           </motion.div>
         ) : (
           <div className="text-center py-8">
-            <p className="text-gray-600 font-body text-sm mb-3">Premium properties coming soon.</p>
+            <p className="text-gray-300 font-body text-sm mb-3">Premium properties coming soon.</p>
             <Button className="bg-[#B87333] hover:bg-[#A86228] text-white font-heading font-bold text-sm" asChild>
               <Link to="/contact">Get Early Access</Link>
             </Button>

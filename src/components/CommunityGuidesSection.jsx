@@ -34,13 +34,13 @@ export default function CommunityGuidesSection() {
   const area = communities.find(c => c.id === selected);
 
   return (
-    <section className="py-16 lg:py-20 bg-secondary">
+    <section className="py-16 lg:py-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-foreground mb-2">Top Communities</h2>
-          <p className="text-base text-muted-foreground font-body">Click to explore investment metrics</p>
-        </motion.div>
+         <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-white mb-2">Top Communities</h2>
+          <p className="text-base text-gray-300 font-body">Click to explore investment metrics</p>
+         </motion.div>
 
         {/* Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-6">
@@ -51,10 +51,10 @@ export default function CommunityGuidesSection() {
 
         {/* Detail Panel */}
         <AnimatePresence mode="wait">
-          <motion.div key={selected} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-white border border-border rounded-lg p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
+          <motion.div key={selected} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-slate-800 border border-slate-700 rounded-lg p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
             {/* Stats */}
             <div className="sm:col-span-2">
-              <p className="text-sm text-muted-foreground font-body leading-relaxed">{area.name} combines premium ROI potential with proven infrastructure and strong rental demand.</p>
+              <p className="text-sm text-gray-300 font-body leading-relaxed">{area.name} combines premium ROI potential with proven infrastructure and strong rental demand.</p>
             </div>
             <div className="grid grid-cols-3 gap-3">
               {[
@@ -64,8 +64,8 @@ export default function CommunityGuidesSection() {
               ].map(({ label, value, icon: Icon }) => (
                 <div key={label} className="text-center">
                   <Icon className="w-4 h-4 text-accent mx-auto mb-2" />
-                  <p className="text-xs text-muted-foreground font-body mb-1">{label}</p>
-                  <p className="text-base font-heading font-black text-foreground">{value}</p>
+                  <p className="text-xs text-gray-400 font-body mb-1">{label}</p>
+                  <p className="text-base font-heading font-black text-white">{value}</p>
                 </div>
               ))}
             </div>

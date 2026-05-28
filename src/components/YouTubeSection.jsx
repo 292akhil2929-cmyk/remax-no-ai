@@ -41,7 +41,7 @@ function VideoCard({ video, index }) {
 
 export default function YouTubeSection() {
   return (
-    <section className="py-12 lg:py-16 bg-slate-950">
+    <section className="py-12 lg:py-16 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-8">

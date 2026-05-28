@@ -12,7 +12,7 @@ const reasons = [
 
 export default function WhyInvestSection() {
   return (
-    <section className="py-16 lg:py-20 bg-white">
+    <section className="py-16 lg:py-20 bg-slate-900">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -21,10 +21,10 @@ export default function WhyInvestSection() {
           viewport={{ once: true }}
           className="text-center mb-12"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-foreground leading-tight mb-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-white leading-tight mb-4">
             Why Dubai Real Estate?
           </h2>
-          <p className="text-base text-muted-foreground font-body max-w-2xl mx-auto">
+          <p className="text-base text-gray-300 font-body max-w-2xl mx-auto">
             Six compelling reasons to invest in Dubai properties.
           </p>
         </motion.div>
@@ -44,13 +44,13 @@ export default function WhyInvestSection() {
               viewport={{ once: true }}
               transition={{ delay: idx * 0.08 }}
               whileHover={{ y: -4 }}
-              className="group p-7 rounded-lg border border-border bg-white hover:border-accent hover:shadow-lg transition-all duration-300"
+              className="group p-7 rounded-lg border border-slate-700 bg-slate-800/50 hover:border-accent hover:shadow-lg hover:shadow-accent/20 transition-all duration-300"
             >
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors mb-4">
                 <Icon className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-lg font-display font-black text-foreground mb-2">{title}</h3>
-              <p className="text-sm text-muted-foreground font-body leading-relaxed">{desc}</p>
+              <h3 className="text-lg font-display font-black text-white mb-2">{title}</h3>
+              <p className="text-sm text-gray-400 font-body leading-relaxed">{desc}</p>
             </motion.div>
           ))}
         </motion.div>
