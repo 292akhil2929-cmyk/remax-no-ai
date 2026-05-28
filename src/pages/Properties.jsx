@@ -5,6 +5,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Input } from "@/components/ui/input";
 import { Search } from 'lucide-react';
 import PropertyCard from '../components/PropertyCard';
+import PropertySEOContent from '../components/PropertySEOContent';
 
 export default function Properties() {
   const [category, setCategory] = useState('all');
@@ -27,8 +28,11 @@ export default function Properties() {
     <div className="min-h-screen">
       <section className="py-16 bg-card/50 border-b border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-2">INVESTMENT OPPORTUNITIES</p>
-          <h1 className="text-3xl lg:text-5xl font-display font-bold italic text-foreground mb-8">Dubai Properties</h1>
+          <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">Dubai Real Estate Investment</p>
+          <h1 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-3">Properties for Sale in Dubai</h1>
+          <p className="text-base text-muted-foreground font-body max-w-2xl mb-8 leading-relaxed">
+            Browse exclusive off-plan launches, ready properties, and resale opportunities across Dubai's most sought-after communities. Handpicked by REMAX ZAM's expert advisors for maximum ROI and long-term capital growth.
+          </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -74,6 +78,7 @@ export default function Properties() {
           )}
         </div>
       </section>
+      <PropertySEOContent />
     </div>
   );
 }
