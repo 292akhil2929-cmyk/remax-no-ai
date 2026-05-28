@@ -15,14 +15,14 @@ function CommunityCard({ area, isSelected, onClick }) {
   return (
     <motion.div
       onClick={onClick}
-      className={`relative overflow-hidden rounded-lg cursor-pointer group border-2 transition-all ${isSelected ? 'border-[#B87333]' : 'border-transparent'}`}
+      className={`relative overflow-hidden rounded-lg cursor-pointer group border-2 transition-all ${isSelected ? 'border-accent' : 'border-border'}`}
       whileHover={{ scale: 1.02 }}
     >
       <img src={area.image} alt={area.name} className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent flex items-end p-3">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-3">
         <div>
           <h3 className="text-white font-display font-black text-base">{area.name}</h3>
-          <p className="text-[#B87333] font-heading font-bold text-xs mt-0.5">{area.yield} yield</p>
+          <p className="text-accent font-heading font-bold text-xs mt-0.5">{area.yield} yield</p>
         </div>
       </div>
     </motion.div>
@@ -34,12 +34,12 @@ export default function CommunityGuidesSection() {
   const area = communities.find(c => c.id === selected);
 
   return (
-    <section className="py-12 lg:py-16 bg-white relative overflow-hidden">
+    <section className="py-16 lg:py-20 bg-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-8">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-black mb-2">Top Communities</h2>
-          <p className="text-sm text-gray-600 font-body">Click to explore investment metrics</p>
+        <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-foreground mb-2">Top Communities</h2>
+          <p className="text-base text-muted-foreground font-body">Click to explore investment metrics</p>
         </motion.div>
 
         {/* Grid */}
@@ -51,10 +51,10 @@ export default function CommunityGuidesSection() {
 
         {/* Detail Panel */}
         <AnimatePresence mode="wait">
-          <motion.div key={selected} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-gradient-to-br from-gray-50 to-gray-100 border border-gray-300 rounded-lg p-4 sm:p-6 grid grid-cols-1 sm:grid-cols-3 gap-4 items-center">
+          <motion.div key={selected} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -8 }} className="bg-white border border-border rounded-lg p-6 sm:p-8 grid grid-cols-1 sm:grid-cols-3 gap-6 items-center">
             {/* Stats */}
             <div className="sm:col-span-2">
-              <p className="text-sm text-gray-700 font-body leading-relaxed">{area.name} combines premium ROI potential with proven infrastructure and strong rental demand.</p>
+              <p className="text-sm text-muted-foreground font-body leading-relaxed">{area.name} combines premium ROI potential with proven infrastructure and strong rental demand.</p>
             </div>
             <div className="grid grid-cols-3 gap-3">
               {[
@@ -63,9 +63,9 @@ export default function CommunityGuidesSection() {
                 { label: '/sqft', value: area.avgPsf, icon: Home },
               ].map(({ label, value, icon: Icon }) => (
                 <div key={label} className="text-center">
-                  <Icon className="w-3.5 h-3.5 text-gray-400 mx-auto mb-1" />
-                  <p className="text-xs text-gray-600 font-body mb-0.5">{label}</p>
-                  <p className="text-xs font-heading font-bold text-black">{value}</p>
+                  <Icon className="w-4 h-4 text-accent mx-auto mb-2" />
+                  <p className="text-xs text-muted-foreground font-body mb-1">{label}</p>
+                  <p className="text-base font-heading font-black text-foreground">{value}</p>
                 </div>
               ))}
             </div>

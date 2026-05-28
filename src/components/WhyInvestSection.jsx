@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { PiggyBank, Landmark, Building2, Sun, Plane, FileCheck, Sparkles } from 'lucide-react';
+import { PiggyBank, Landmark, Building2, Sun, Plane, FileCheck } from 'lucide-react';
 
 const reasons = [
   { icon: PiggyBank, title: '0% Tax', desc: 'Tax-free capital gains and rental income.' },
@@ -12,29 +12,20 @@ const reasons = [
 
 export default function WhyInvestSection() {
   return (
-    <section className="py-12 lg:py-16 bg-gradient-to-b from-black via-slate-950 to-black relative overflow-hidden">
-      {/* Animated background orbs */}
-      <div className="absolute -top-40 -left-40 w-80 h-80 bg-[#B87333]/30 rounded-full blur-3xl opacity-20" />
-      <div className="absolute -bottom-40 -right-40 w-96 h-96 bg-[#B87333]/20 rounded-full blur-3xl opacity-15" />
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-16 lg:py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-10"
+          className="text-center mb-12"
         >
-          <div className="flex justify-center mb-3">
-            <span className="inline-block px-3 py-1.5 rounded-full bg-[#B87333]/20 border border-[#B87333]/50 text-[#B87333] text-xs font-heading font-bold tracking-widest uppercase">
-              Why Dubai
-            </span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-white leading-tight mb-4">
-            Six Reasons to Invest Here
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-foreground leading-tight mb-4">
+            Why Dubai Real Estate?
           </h2>
-          <p className="text-sm sm:text-base text-gray-300 font-body max-w-2xl mx-auto">
-            Dubai combines premium returns with unmatched lifestyle and security.
+          <p className="text-base text-muted-foreground font-body max-w-2xl mx-auto">
+            Six compelling reasons to invest in Dubai properties.
           </p>
         </motion.div>
 
@@ -43,7 +34,7 @@ export default function WhyInvestSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
         >
           {reasons.map(({ icon: Icon, title, desc }, idx) => (
             <motion.div
@@ -52,14 +43,14 @@ export default function WhyInvestSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.08 }}
-              whileHover={{ y: -6 }}
-              className="group p-5 rounded-xl border border-white/10 bg-gradient-to-br from-white/5 to-white/[0.02] hover:border-[#B87333]/50 transition-all duration-300"
+              whileHover={{ y: -4 }}
+              className="group p-7 rounded-lg border border-border bg-white hover:border-accent hover:shadow-lg transition-all duration-300"
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gradient-to-br from-[#B87333]/30 to-[#B87333]/10 group-hover:from-[#B87333]/50 mb-3">
-                <Icon className="w-6 h-6 text-[#B87333]" />
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-accent/10 group-hover:bg-accent/20 transition-colors mb-4">
+                <Icon className="w-6 h-6 text-accent" />
               </div>
-              <h3 className="text-lg font-display font-black text-white mb-2">{title}</h3>
-              <p className="text-sm text-gray-300 font-body leading-relaxed">{desc}</p>
+              <h3 className="text-lg font-display font-black text-foreground mb-2">{title}</h3>
+              <p className="text-sm text-muted-foreground font-body leading-relaxed">{desc}</p>
             </motion.div>
           ))}
         </motion.div>
