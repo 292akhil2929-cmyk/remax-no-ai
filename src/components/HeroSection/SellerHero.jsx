@@ -29,10 +29,10 @@ export default function SellerHero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="font-heading text-5xl sm:text-6xl lg:text-7xl font-black text-foreground leading-tight mb-6"
+              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black text-foreground leading-tight mb-6"
             >
-              Sell at the<br className="hidden sm:block" />
-              <span className="text-accent">Best Price</span>
+              Sell at the Best<br className="hidden sm:block" />
+              <span className="text-accent">Price</span>
             </motion.h1>
 
             <motion.p

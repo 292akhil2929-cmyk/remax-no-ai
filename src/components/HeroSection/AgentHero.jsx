@@ -29,10 +29,10 @@ export default function AgentHero() {
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
-              className="font-heading text-5xl sm:text-6xl lg:text-7xl font-black text-foreground leading-tight mb-6"
+              className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black text-foreground leading-tight mb-6"
             >
-              Grow with<br className="hidden sm:block" />
-              <span className="text-accent">RE/MAX</span>
+              Grow Your<br className="hidden sm:block" /> Business<br className="hidden sm:block" />
+              with <span className="text-accent">RE/MAX</span>
             </motion.h1>
 
             <motion.p

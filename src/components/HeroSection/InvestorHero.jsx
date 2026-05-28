@@ -32,9 +32,9 @@ export default function InvestorHero() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3, duration: 0.8 }}
-                className="font-heading text-5xl sm:text-6xl lg:text-7xl font-black text-foreground leading-tight mb-6"
+                className="font-heading text-4xl sm:text-5xl lg:text-6xl font-black text-foreground leading-tight mb-6"
               >
-                Smart Real Estate<br className="hidden sm:block" />
+                Smart Real<br className="hidden sm:block" /> Estate<br className="hidden sm:block" />
                 <span className="text-accent">Investments</span>
               </motion.h1>
 
