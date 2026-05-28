@@ -1,7 +1,6 @@
 import MarketTicker from '../components/MarketTicker';
 import HeroSection from '../components/HeroSection';
 import StatsBar from '../components/StatsBar';
-import MarketTrendsSection from '../components/MarketTrendsSection';
 import FeaturedProperties from '../components/FeaturedProperties';
 import WhyInvestSection from '../components/WhyInvestSection';
 import GlobalNetworkSection from '../components/GlobalNetworkSection';
@@ -20,7 +19,6 @@ export default function Home() {
       <HeroSection heroImage={HERO_IMAGE} />
       <div className="pt-20" />
       <StatsBar />
-      <MarketTrendsSection />
       <FeaturedProperties />
       <WhyInvestSection />
       <CommunityGuidesSection />
