@@ -37,15 +37,15 @@ export default function PropertySearchFilter() {
 
   return (
     <div className="w-full max-w-4xl mx-auto">
-      <div className="bg-white rounded-2xl shadow-2xl border border-border/30 p-4 sm:p-6">
-        <p className="text-xs font-heading font-semibold text-primary tracking-widest uppercase mb-4">Find Your Ideal Property</p>
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
-          <div>
-            <label className="block text-xs font-medium text-muted-foreground mb-1.5">Community</label>
-            <Select value={community} onValueChange={setCommunity}>
-              <SelectTrigger className="w-full bg-muted/40 border-border">
-                <SelectValue placeholder="Any Community" />
-              </SelectTrigger>
+      <div className="bg-slate-800 rounded-2xl shadow-2xl border border-slate-700 p-4 sm:p-6">
+         <p className="text-xs font-heading font-semibold text-accent tracking-widest uppercase mb-4">Find Your Ideal Property</p>
+         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-4">
+           <div>
+             <label className="block text-xs font-medium text-gray-300 mb-1.5">Community</label>
+             <Select value={community} onValueChange={setCommunity}>
+               <SelectTrigger className="w-full bg-slate-700 border-slate-600 text-white">
+                 <SelectValue placeholder="Any Community" />
+               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">Any Community</SelectItem>
                 {communities.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
@@ -53,9 +53,9 @@ export default function PropertySearchFilter() {
             </Select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-muted-foreground mb-1.5">Budget</label>
+            <label className="block text-xs font-medium text-gray-300 mb-1.5">Budget</label>
             <Select value={budget} onValueChange={setBudget}>
-              <SelectTrigger className="w-full bg-muted/40 border-border">
+              <SelectTrigger className="w-full bg-slate-700 border-slate-600 text-white">
                 <SelectValue placeholder="Any Budget" />
               </SelectTrigger>
               <SelectContent>
@@ -65,9 +65,9 @@ export default function PropertySearchFilter() {
             </Select>
           </div>
           <div>
-            <label className="block text-xs font-medium text-muted-foreground mb-1.5">Property Type</label>
+            <label className="block text-xs font-medium text-gray-300 mb-1.5">Property Type</label>
             <Select value={propertyType} onValueChange={setPropertyType}>
-              <SelectTrigger className="w-full bg-muted/40 border-border">
+              <SelectTrigger className="w-full bg-slate-700 border-slate-600 text-white">
                 <SelectValue placeholder="Any Type" />
               </SelectTrigger>
               <SelectContent>
@@ -77,7 +77,7 @@ export default function PropertySearchFilter() {
             </Select>
           </div>
         </div>
-        <Button onClick={handleSearch} className="w-full h-11 text-sm font-semibold gap-2 bg-primary hover:bg-primary/90">
+        <Button onClick={handleSearch} className="w-full h-11 text-sm font-semibold gap-2 bg-accent hover:bg-accent/90">
           <Search className="w-4 h-4" />
           Search Properties
         </Button>
