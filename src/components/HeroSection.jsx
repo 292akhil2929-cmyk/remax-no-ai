@@ -9,7 +9,7 @@ export default function HeroSection({ heroImage }) {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative h-[480px] sm:h-[520px] overflow-hidden">
+      <section className="relative h-[600px] sm:h-[650px] overflow-hidden">
         {/* Video Background */}
         <video
           autoPlay
