@@ -1,0 +1,33 @@
+{
+  "name": "SavedProperty",
+  "type": "object",
+  "properties": {
+    "property_id": {
+      "type": "string",
+      "title": "Property ID"
+    },
+    "property_title": {
+      "type": "string",
+      "title": "Property Title"
+    },
+    "property_image": {
+      "type": "string",
+      "title": "Property Image"
+    },
+    "property_price": {
+      "type": "number",
+      "title": "Property Price"
+    },
+    "property_location": {
+      "type": "string",
+      "title": "Property Location"
+    },
+    "property_type": {
+      "type": "string",
+      "title": "Property Type"
+    }
+  },
+  "required": [
+    "property_id"
+  ]
+}

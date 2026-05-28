@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -20,6 +20,26 @@ export default function Properties() {
     queryKey: ['properties'],
     queryFn: () => base44.entities.Property.list('-created_date', 50),
   });
+
+  const searchSaved = useRef(false);
+  useEffect(() => {
+    if (isLoading || searchSaved.current) return;
+    const timer = setTimeout(() => {
+      const hasFilter = community !== 'all' || priceRange !== 'all' || type !== 'all' || bedrooms !== 'all' || search;
+      if (hasFilter) {
+        searchSaved.current = true;
+        base44.entities.SearchHistory.create({
+          community: community !== 'all' ? community : undefined,
+          price_range: priceRange !== 'all' ? priceRange : undefined,
+          property_type: type !== 'all' ? type : undefined,
+          bedrooms: bedrooms !== 'all' ? bedrooms : undefined,
+          search_text: search || undefined,
+          results_count: filtered.length,
+        });
+      }
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [community, priceRange, type, bedrooms, search, isLoading]);
 
   const communities = [...new Set(properties.map(p => p.community).filter(Boolean))].sort();
 

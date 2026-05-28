@@ -21,6 +21,7 @@ import AreaGuides from './pages/AreaGuides';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import Landlords from './pages/Landlords';
+import Dashboard from './pages/Dashboard';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -64,6 +65,7 @@ const AuthenticatedApp = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:postId" element={<BlogDetail />} />
         <Route path="/landlords" element={<Landlords />} />
+        <Route path="/dashboard" element={<Dashboard />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

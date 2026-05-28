@@ -11,6 +11,7 @@ const navLinks = [
   { label: 'Area Guides', path: '/area-guides' },
   { label: 'Blog', path: '/blog' },
   { label: 'For Landlords', path: '/landlords' },
+  { label: 'My Dashboard', path: '/dashboard' },
   { label: 'About Us', path: '/about' },
   { label: 'Contact', path: '/contact' },
 ];

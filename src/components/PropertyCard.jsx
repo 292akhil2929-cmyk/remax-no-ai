@@ -1,8 +1,43 @@
 import { Link } from 'react-router-dom';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { base44 } from '@/api/base44Client';
+import { Heart } from 'lucide-react';
 import { Bed, Bath, Maximize, TrendingUp } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 
 export default function PropertyCard({ property }) {
+  const queryClient = useQueryClient();
+
+  const { data: saved = [] } = useQuery({
+    queryKey: ['savedProperties'],
+    queryFn: () => base44.entities.SavedProperty.list(),
+  });
+
+  const isSaved = saved.some(s => s.property_id === property.id);
+  const savedRecord = saved.find(s => s.property_id === property.id);
+
+  const saveMutation = useMutation({
+    mutationFn: () => base44.entities.SavedProperty.create({
+      property_id: property.id,
+      property_title: property.title,
+      property_image: property.image_url,
+      property_price: property.price_aed,
+      property_location: property.community || property.location,
+      property_type: property.property_type,
+    }),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['savedProperties'] }),
+  });
+
+  const unsaveMutation = useMutation({
+    mutationFn: () => base44.entities.SavedProperty.delete(savedRecord.id),
+    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['savedProperties'] }),
+  });
+
+  const toggleSave = (e) => {
+    e.preventDefault();
+    if (isSaved) unsaveMutation.mutate();
+    else saveMutation.mutate();
+  };
   return (
     <Link to={`/properties/${property.id}`} className="group block">
       <div className="bg-card border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300">
@@ -14,6 +49,14 @@ export default function PropertyCard({ property }) {
               <span className="text-muted-foreground text-sm">No Image</span>
             </div>
           )}
+          <button
+            onClick={toggleSave}
+            className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center shadow transition-all ${
+              isSaved ? 'bg-red-500 text-white' : 'bg-white/90 text-muted-foreground hover:text-red-500'
+            }`}
+          >
+            <Heart className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
+          </button>
           <div className="absolute top-3 left-3 flex gap-2">
             {property.category === 'Off-Plan' && (
               <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-blue-600 text-white shadow">Off-Plan</span>

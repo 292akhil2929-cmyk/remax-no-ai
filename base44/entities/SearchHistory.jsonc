@@ -1,0 +1,31 @@
+{
+  "name": "SearchHistory",
+  "type": "object",
+  "properties": {
+    "community": {
+      "type": "string",
+      "title": "Community"
+    },
+    "price_range": {
+      "type": "string",
+      "title": "Price Range"
+    },
+    "property_type": {
+      "type": "string",
+      "title": "Property Type"
+    },
+    "bedrooms": {
+      "type": "string",
+      "title": "Bedrooms"
+    },
+    "search_text": {
+      "type": "string",
+      "title": "Search Text"
+    },
+    "results_count": {
+      "type": "number",
+      "title": "Results Count"
+    }
+  },
+  "required": []
+}
