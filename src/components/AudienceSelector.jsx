@@ -65,19 +65,14 @@ export default function AudienceSelector() {
       exit={{ opacity: 0 }}
       className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen"
     >
-      {/* Video Background */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover"
-      >
-        <source src="https://commondatastorage.googleapis.com/gtv-videos-library/sample/BigBuckBunny.mp4" type="video/mp4" />
-      </video>
-      
-      {/* Dark overlay for text readability */}
-      <div className="absolute inset-0 bg-black/50" />
+      {/* Background with gradient overlay */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{
+          backgroundImage: 'linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8)), url(https://images.unsplash.com/photo-1518684029980-cf91eb28ed90?w=1400&h=900&fit=crop)',
+          backgroundAttachment: 'fixed',
+        }}
+      />
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
