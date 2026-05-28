@@ -63,18 +63,11 @@ export default function AudienceSelector() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen"
+      className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"
     >
-      {/* Dubai Skyline Background */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center"
-        style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1512453109454-430f63602d4b?w=1600&h=900&fit=crop)',
-          backgroundAttachment: 'fixed',
-        }}
-      />
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/75" />
+      {/* Accent glow for depth */}
+      <div className="absolute -top-40 right-0 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-20" />
+      <div className="absolute -bottom-40 left-1/3 w-96 h-96 bg-accent/10 rounded-full blur-3xl opacity-20" />
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
