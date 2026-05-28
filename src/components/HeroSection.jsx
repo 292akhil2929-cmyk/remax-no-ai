@@ -8,7 +8,7 @@ const DUBAI_VIDEO = 'https://cdn.pixabay.com/vimeo/358317471/Dubai%20-%2033926.m
 
 export default function HeroSection({ heroImage }) {
   return (
-    <section className="relative h-[600px] sm:h-[700px] overflow-hidden">
+    <section className="relative h-[600px] sm:h-[750px] lg:h-[800px] overflow-hidden pb-32">
       {/* Video Background */}
       <video
         autoPlay
@@ -101,12 +101,12 @@ export default function HeroSection({ heroImage }) {
         </div>
       </div>
 
-      {/* Search filter - positioned at bottom */}
-      <div className="absolute bottom-0 left-0 right-0 translate-y-1/2 px-4 sm:px-6 lg:px-8 z-10">
-        <div className="max-w-7xl mx-auto">
-          <PropertySearchFilter />
-        </div>
-      </div>
+      {/* Search filter - positioned at bottom with proper spacing */}
+       <div className="absolute bottom-0 left-0 right-0 translate-y-[calc(100%-2rem)] px-4 sm:px-6 lg:px-8 z-10">
+         <div className="max-w-7xl mx-auto">
+           <PropertySearchFilter />
+         </div>
+       </div>
     </section>
   );
 }
