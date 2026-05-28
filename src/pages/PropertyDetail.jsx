@@ -5,6 +5,7 @@ import { Bed, Bath, Maximize, TrendingUp, MapPin, Calendar, Building2, ArrowLeft
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import LeadCaptureForm from '../components/LeadCaptureForm';
+import CurrencyConverter from '../components/CurrencyConverter';
 import MortgageCalculator from '../components/MortgageCalculator';
 import ROICalculator from '../components/ROICalculator';
 
@@ -95,11 +96,14 @@ export default function PropertyDetail() {
             </div>
           </div>
 
-          {/* Right: Lead form */}
+          {/* Right: Lead form + Currency Converter */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 bg-card border border-border/50 rounded-lg p-6">
-              <h3 className="font-heading font-semibold text-foreground mb-4">Interested in this Property?</h3>
-              <LeadCaptureForm compact source="Property Detail" leadType="Investor" />
+            <div className="sticky top-24 space-y-4">
+              <div className="bg-card border border-border/50 rounded-lg p-6">
+                <h3 className="font-heading font-semibold text-foreground mb-4">Interested in this Property?</h3>
+                <LeadCaptureForm compact source="Property Detail" leadType="Investor" />
+              </div>
+              <CurrencyConverter priceAED={property.price_aed} />
             </div>
           </div>
         </div>
