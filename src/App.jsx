@@ -18,6 +18,8 @@ import Services from './pages/Services';
 import OffPlan from './pages/OffPlan';
 import Team from './pages/Team';
 import AreaGuides from './pages/AreaGuides';
+import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -58,6 +60,8 @@ const AuthenticatedApp = () => {
         <Route path="/services" element={<Services />} />
         <Route path="/off-plan" element={<OffPlan />} />
         <Route path="/team" element={<Team />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:postId" element={<BlogDetail />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
