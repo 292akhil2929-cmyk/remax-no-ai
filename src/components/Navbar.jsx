@@ -60,7 +60,7 @@ function DropdownMenu({ group, location }) {
       <button
         onClick={() => setOpen(o => !o)}
         className={`flex items-center gap-1 text-sm font-body font-medium transition-colors duration-200 ${
-          isActive ? 'text-[#C9A84C]' : 'text-white/80 hover:text-white'
+          isActive ? 'text-[#D4944F]' : 'text-gray-700 hover:text-gray-900'
         }`}
       >
         {group.label}
@@ -93,11 +93,11 @@ export default function Navbar() {
   const location = useLocation();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#141E30] border-b border-white/10 shadow-md">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           <Link to="/" className="flex items-center gap-2 shrink-0">
-            <div className="bg-white rounded-lg px-3 py-1.5">
+            <div className="bg-[#1A1F2E] rounded-lg px-3 py-1.5">
               <img
                 src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/855779b12_RemaxZamLogo.webp"
                 alt="REMAX ZAM"
@@ -117,7 +117,7 @@ export default function Navbar() {
                 key={link.path}
                 to={link.path}
                 className={`text-sm font-body font-medium transition-colors duration-200 ${
-                  location.pathname === link.path ? 'text-[#C9A84C]' : 'text-white/80 hover:text-white'
+                  location.pathname === link.path ? 'text-[#D4944F]' : 'text-gray-700 hover:text-gray-900'
                 }`}
               >
                 {link.label}
@@ -127,7 +127,7 @@ export default function Navbar() {
 
           <div className="hidden lg:flex items-center">
             <Button
-              className="bg-[#C9A84C] hover:bg-[#b8953e] text-[#141E30] font-semibold rounded-lg border-0"
+              className="bg-[#D4944F] hover:bg-[#C47E3A] text-white font-semibold rounded-lg border-0"
               size="sm"
               asChild
             >
@@ -143,18 +143,18 @@ export default function Navbar() {
 
       {/* Mobile */}
       {open && (
-        <div className="lg:hidden bg-[#1a2540] border-t border-white/10">
+        <div className="lg:hidden bg-white border-t border-gray-200">
           <div className="px-4 py-4 space-y-1">
             {dropdownGroups.map(group => (
               <div key={group.label}>
-                <p className="text-xs font-semibold text-white/40 uppercase tracking-wider px-2 pt-3 pb-1">{group.label}</p>
+                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2 pt-3 pb-1">{group.label}</p>
                 {group.items.map(item => (
                   <Link
                     key={item.path}
                     to={item.path}
                     onClick={() => setOpen(false)}
                     className={`block py-2 px-2 text-sm font-body rounded ${
-                      location.pathname === item.path ? 'text-[#C9A84C]' : 'text-white/70'
+                      location.pathname === item.path ? 'text-[#D4944F]' : 'text-gray-700'
                     }`}
                   >
                     {item.label}
@@ -169,14 +169,14 @@ export default function Navbar() {
                   to={link.path}
                   onClick={() => setOpen(false)}
                   className={`block py-2 px-2 text-sm font-body ${
-                    location.pathname === link.path ? 'text-[#C9A84C]' : 'text-white/70'
+                    location.pathname === link.path ? 'text-[#D4944F]' : 'text-gray-700'
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
-            <Button className="w-full mt-3 bg-[#C9A84C] hover:bg-[#b8953e] text-[#141E30] font-semibold border-0" size="sm" asChild>
+            <Button className="w-full mt-3 bg-[#D4944F] hover:bg-[#C47E3A] text-white font-semibold border-0" size="sm" asChild>
               <Link to="/contact" onClick={() => setOpen(false)}>Get Investment Advice</Link>
             </Button>
           </div>
