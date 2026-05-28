@@ -10,7 +10,7 @@ export default function InvestorHero() {
       <section className="relative min-h-screen lg:h-[600px] flex items-center overflow-hidden bg-white">
         {/* Dubai background image */}
         <div 
-          className="absolute inset-0 opacity-15"
+          className="absolute inset-0 opacity-25"
           style={{
             backgroundImage: 'url(https://images.unsplash.com/photo-1512453935925-ab7e1c76b59f?w=1200&h=600&fit=crop)',
             backgroundSize: 'cover',
@@ -18,7 +18,7 @@ export default function InvestorHero() {
           }}
         />
         {/* Minimal gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/95 via-white/92 to-gray-100/95" />
+        <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/88 to-gray-100/90" />
 
         <div className="relative w-full z-10 px-4 sm:px-6 lg:px-8 py-20 lg:py-0">
           <div className="max-w-6xl mx-auto">
@@ -43,7 +43,8 @@ export default function InvestorHero() {
                 transition={{ delay: 0.3, duration: 0.8 }}
                 className="font-heading text-3xl sm:text-4xl lg:text-5xl font-black text-foreground leading-tight mb-6"
               >
-                Smart Real Estate<br className="hidden sm:block" />
+                Smart<br />
+                Real Estate<br className="hidden sm:block" />
                 <span className="text-accent">Investments</span>
               </motion.h1>
 
