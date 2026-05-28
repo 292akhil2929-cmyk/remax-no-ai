@@ -41,17 +41,24 @@ ${text}
 
 Source URL: ${url}
 
+Determine transaction_type based on context:
+- "Residential Sale" = apartments, villas, townhouses, penthouses for SALE
+- "Residential Rental" = apartments, villas, townhouses for RENT/LEASE
+- "Commercial Sale" = offices, retail, land, warehouses for SALE
+- "Commercial Lease" = offices, retail, warehouses for RENT/LEASE
+
 Return JSON with these exact fields (use null for missing values):
 {
   "title": "property title/headline",
   "location": "area/district in Dubai",
   "community": "specific community/building name",
-  "property_type": one of ["Apartment","Villa","Penthouse","Townhouse","Office"],
-  "category": one of ["Off-Plan","Ready","Resale"],
+  "transaction_type": one of ["Residential Sale","Residential Rental","Commercial Sale","Commercial Lease"],
+  "property_type": one of ["Apartment","Villa","Penthouse","Townhouse","Land","Office","Retail","Warehouse","Shop"],
+  "listing_status": one of ["Off-Plan","Ready","Resale"] or null (null for rentals),
   "bedrooms": number or null (0 for studio),
   "bathrooms": number or null,
   "area_sqft": number or null,
-  "price_aed": number or null,
+  "price_aed": number or null (annual rent in AED for rentals, sale price for sales),
   "developer": "developer name or null",
   "completion_date": "completion date string or null",
   "description": "full property description text",
@@ -65,8 +72,9 @@ Return JSON with these exact fields (use null for missing values):
           title: { type: 'string' },
           location: { type: 'string' },
           community: { type: 'string' },
+          transaction_type: { type: 'string' },
           property_type: { type: 'string' },
-          category: { type: 'string' },
+          listing_status: { type: 'string' },
           bedrooms: { type: 'number' },
           bathrooms: { type: 'number' },
           area_sqft: { type: 'number' },
@@ -87,10 +95,12 @@ Return JSON with these exact fields (use null for missing values):
     }
 
     // Enforce enum values
-    const validTypes = ['Apartment', 'Villa', 'Penthouse', 'Townhouse', 'Office'];
-    const validCategories = ['Off-Plan', 'Ready', 'Resale'];
+    const validTypes = ['Apartment', 'Villa', 'Penthouse', 'Townhouse', 'Land', 'Office', 'Retail', 'Warehouse', 'Shop'];
+    const validTransactions = ['Residential Sale', 'Residential Rental', 'Commercial Sale', 'Commercial Lease'];
+    const validStatuses = ['Off-Plan', 'Ready', 'Resale'];
     if (!validTypes.includes(extracted.property_type)) extracted.property_type = 'Apartment';
-    if (!validCategories.includes(extracted.category)) extracted.category = 'Ready';
+    if (!validTransactions.includes(extracted.transaction_type)) extracted.transaction_type = 'Residential Sale';
+    if (!validStatuses.includes(extracted.listing_status)) extracted.listing_status = null;
 
     // Create the property record
     const property = await base44.asServiceRole.entities.Property.create(extracted);

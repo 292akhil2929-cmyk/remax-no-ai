@@ -12,7 +12,18 @@
     },
     "community": {
       "type": "string",
-      "title": "Community"
+      "title": "Community / Building"
+    },
+    "transaction_type": {
+      "type": "string",
+      "enum": [
+        "Residential Sale",
+        "Residential Rental",
+        "Commercial Sale",
+        "Commercial Lease"
+      ],
+      "title": "Transaction Type",
+      "description": "The primary transaction category for this listing"
     },
     "property_type": {
       "type": "string",
@@ -21,18 +32,23 @@
         "Villa",
         "Penthouse",
         "Townhouse",
-        "Office"
+        "Land",
+        "Office",
+        "Retail",
+        "Warehouse",
+        "Shop"
       ],
       "title": "Property Type"
     },
-    "category": {
+    "listing_status": {
       "type": "string",
       "enum": [
         "Off-Plan",
         "Ready",
         "Resale"
       ],
-      "title": "Category"
+      "title": "Listing Status",
+      "description": "Off-Plan (not built yet), Ready (new handover), Resale (secondary market)"
     },
     "bedrooms": {
       "type": "number",
@@ -48,7 +64,12 @@
     },
     "price_aed": {
       "type": "number",
-      "title": "Price (AED)"
+      "title": "Price / Annual Rent (AED)"
+    },
+    "price_label": {
+      "type": "string",
+      "title": "Price Label Override",
+      "description": "e.g. 'AED 85,000 / year' or 'AED 1.2M' \u2014 shown on card if set"
     },
     "expected_roi": {
       "type": "number",
@@ -83,15 +104,18 @@
       "enum": [
         "Available",
         "Reserved",
-        "Sold"
+        "Sold",
+        "Leased"
       ],
-      "title": "Status"
+      "title": "Status",
+      "default": "Available"
     }
   },
   "required": [
     "title",
     "location",
     "property_type",
-    "price_aed"
+    "price_aed",
+    "transaction_type"
   ]
 }

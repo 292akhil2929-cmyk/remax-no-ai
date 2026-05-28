@@ -57,15 +57,21 @@ export default function PropertyCard({ property }) {
           >
             <Heart className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
           </button>
-          <div className="absolute top-3 left-3 flex gap-2">
-            {property.category === 'Off-Plan' && (
+          <div className="absolute top-3 left-3 flex gap-2 flex-wrap max-w-[70%]">
+            {property.listing_status === 'Off-Plan' && (
               <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-blue-600 text-white shadow">Off-Plan</span>
             )}
-            {property.category === 'Ready' && (
+            {property.listing_status === 'Ready' && (
               <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-emerald-600 text-white shadow">Ready</span>
             )}
-            {property.category === 'Resale' && (
+            {property.listing_status === 'Resale' && (
               <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-amber-600 text-white shadow">Resale</span>
+            )}
+            {(property.transaction_type === 'Residential Rental' || property.transaction_type === 'Commercial Lease') && (
+              <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-purple-600 text-white shadow">For Rent</span>
+            )}
+            {(property.transaction_type === 'Commercial Sale' || property.transaction_type === 'Commercial Lease') && (
+              <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-slate-700 text-white shadow">Commercial</span>
             )}
             {property.featured && (
               <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-primary text-white shadow">Featured</span>
@@ -82,7 +88,12 @@ export default function PropertyCard({ property }) {
           <p className="text-xs text-primary font-heading font-medium tracking-wide mb-1">{property.community || property.location}</p>
           <h3 className="font-heading font-semibold text-foreground text-sm mb-2 line-clamp-1">{property.title}</h3>
           <p className="text-lg font-heading font-bold text-foreground mb-3">
-            AED {(property.price_aed || 0).toLocaleString()}
+            {property.price_label
+              ? property.price_label
+              : property.transaction_type === 'Residential Rental' || property.transaction_type === 'Commercial Lease'
+                ? `AED ${(property.price_aed || 0).toLocaleString()}/yr`
+                : `AED ${(property.price_aed || 0).toLocaleString()}`
+            }
           </p>
           <div className="flex items-center gap-4 text-xs text-muted-foreground font-body">
             {property.bedrooms != null && (
