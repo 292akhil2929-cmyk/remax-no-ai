@@ -8,18 +8,20 @@ export default function InvestorHero() {
   return (
     <>
       <section className="relative min-h-screen lg:h-[600px] flex items-center overflow-hidden bg-white">
-        {/* Dubai video background */}
+        {/* Luxury Dubai lifestyle video background */}
         <video
           autoPlay
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-60"
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ opacity: 0.55 }}
         >
-          <source src="https://media.istockphoto.com/id/1425464015/video/dubai-skyline-at-night-the-burj-khalifa-and-other-skyscrapers-illuminated-in-4k-aerial.mp4?s=mp4-640x640-is" type="video/mp4" />
+          <source src="https://cdn.pixabay.com/video/2023/09/13/180483-862649993_tiny.mp4" type="video/mp4" />
         </video>
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/45 to-gray-100/50" />
+        {/* Dark gradient overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/35 via-black/30 to-black/35" />
 
         <div className="relative w-full z-10 px-4 sm:px-6 lg:px-8 py-20 lg:py-0">
           <div className="max-w-6xl mx-auto">
