@@ -5,6 +5,8 @@ import { Bed, Bath, Maximize, TrendingUp, MapPin, Calendar, Building2, ArrowLeft
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import LeadCaptureForm from '../components/LeadCaptureForm';
+import MortgageCalculator from '../components/MortgageCalculator';
+import ROICalculator from '../components/ROICalculator';
 
 export default function PropertyDetail() {
   const { propertyId } = useParams();
@@ -29,6 +31,7 @@ export default function PropertyDetail() {
         </Link>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* Left: Property Details + Calculators */}
           <div className="lg:col-span-2 space-y-6">
             <div className="aspect-video rounded-lg overflow-hidden bg-card border border-border/50">
               {property.image_url ? (
@@ -80,8 +83,19 @@ export default function PropertyDetail() {
                 <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /><span className="text-sm font-body"><span className="text-muted-foreground">Completion:</span> <span className="text-foreground">{property.completion_date}</span></span></div>
               )}
             </div>
+
+            {/* Calculators */}
+            <div className="space-y-6 pt-2">
+              <ROICalculator
+                propertyPrice={property.price_aed}
+                rentalYield={property.rental_yield}
+                expectedRoi={property.expected_roi}
+              />
+              <MortgageCalculator propertyPrice={property.price_aed} />
+            </div>
           </div>
 
+          {/* Right: Lead form */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 bg-card border border-border/50 rounded-lg p-6">
               <h3 className="font-heading font-semibold text-foreground mb-4">Interested in this Property?</h3>
