@@ -74,7 +74,7 @@ export default function AudienceSelector() {
         }}
       />
       {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/60" />
+      <div className="absolute inset-0 bg-black/75" />
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
@@ -103,7 +103,7 @@ export default function AudienceSelector() {
                 transition={{ delay: idx * 0.1 }}
                 whileHover={{ y: -4 }}
                 onClick={() => selectAudience(opt.id)}
-                className="relative group text-left p-8 rounded-lg border border-white/20 bg-white/10 backdrop-blur-sm hover:border-accent/50 hover:bg-white/20 transition-all duration-300 overflow-hidden"
+                className="relative group text-left p-8 rounded-lg border border-slate-700 bg-slate-800/60 backdrop-blur-md hover:border-accent/60 hover:bg-slate-700/80 transition-all duration-300 overflow-hidden"
               >
                 <div className="relative z-10">
                   {/* Icon */}
