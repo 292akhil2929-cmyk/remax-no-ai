@@ -3,47 +3,69 @@ import { ArrowRight } from 'lucide-react';
 const themes = [
   {
     id: 1,
-    name: 'Modern Minimalist',
-    subtitle: 'Recommended - Clean & Professional',
-    primary: '#3B5B8F',
-    accent: '#E5B857',
+    name: 'RE/MAX Brand Bold',
+    subtitle: 'Your Brand - Navy & Red',
+    primary: '#001a4d',
+    accent: '#FF0000',
     background: '#FFFFFF',
-    foreground: '#1A2333',
-    secondary: '#F0F3F8',
-    description: 'Deep teal-blue primary with vibrant gold. White navbar with transparent logo. Perfect for premium positioning.',
+    foreground: '#000000',
+    secondary: '#F5F5F5',
+    description: 'Bold navy blue primary with vibrant red accents. Matches your RE/MAX ZAM brand identity perfectly. Professional and commanding.',
   },
   {
     id: 2,
-    name: 'Premium Dark',
-    subtitle: 'Modern SaaS Style',
-    primary: '#1A1F2E',
-    accent: '#D4944F',
-    background: '#F2F2F2',
-    foreground: '#0F1219',
-    secondary: '#EBEBEB',
-    description: 'Nearly black navbar with warm copper accents. Elegant and sophisticated.',
+    name: 'RE/MAX Premium Dark',
+    subtitle: 'Your Brand - Navy & Red on Dark',
+    primary: '#001a4d',
+    accent: '#FF0000',
+    background: '#F8F8F8',
+    foreground: '#000000',
+    secondary: '#EFEFEF',
+    description: 'Navy and red on light gray background. High contrast for readability with luxury positioning.',
   },
   {
     id: 3,
-    name: 'Emerald & Gold',
-    subtitle: 'Luxury Real Estate',
-    primary: '#2D6B57',
-    accent: '#E5C94D',
-    background: '#FCFCFC',
-    foreground: '#1F3B34',
-    secondary: '#E8F4F0',
-    description: 'Rich emerald green symbolizing trust and wealth. Bright gold accents. Premium luxury feel.',
+    name: 'RE/MAX Clean White',
+    subtitle: 'Your Brand - Minimalist',
+    primary: '#0d3b70',
+    accent: '#E63946',
+    background: '#FFFFFF',
+    foreground: '#1A1A1A',
+    secondary: '#F9F9F9',
+    description: 'Softer navy with deeper red. Extremely clean and modern. Perfect for investment-focused positioning.',
   },
   {
     id: 4,
-    name: 'Ocean & Sunset',
-    subtitle: 'Dubai Inspired',
-    primary: '#2B7DD4',
-    accent: '#FF7A3D',
+    name: 'RE/MAX Sophisticated',
+    subtitle: 'Your Brand - Deep Navy Focus',
+    primary: '#001a4d',
+    accent: '#CC0000',
+    background: '#FAFAFA',
+    foreground: '#0A0A0A',
+    secondary: '#F2F2F2',
+    description: 'Deep navy primary with burgundy red. Sophisticated and premium. Strong trust signals.',
+  },
+  {
+    id: 5,
+    name: 'RE/MAX Dynamic',
+    subtitle: 'Your Brand - Bold & Energetic',
+    primary: '#002d5e',
+    accent: '#FF1a1a',
     background: '#FFFFFF',
-    foreground: '#0E2849',
-    secondary: '#E8F1F8',
-    description: 'Ocean blue with sunset orange. Unique Dubai identity reflecting sea + desert.',
+    foreground: '#000000',
+    secondary: '#F0F0F0',
+    description: 'Slightly lighter navy with bright red. High energy and modern. Strong call-to-action presence.',
+  },
+  {
+    id: 6,
+    name: 'RE/MAX Luxury',
+    subtitle: 'Your Brand - Premium Feel',
+    primary: '#0a1e3f',
+    accent: '#D71C1C',
+    background: '#FCFCFC',
+    foreground: '#0D0D0D',
+    secondary: '#F7F7F7',
+    description: 'Very dark navy with refined red. Luxurious feel. Premium real estate positioning.',
   },
 ];
 
@@ -200,14 +222,17 @@ export default function ThemePreview() {
 
         {/* Selection Instructions */}
         <div className="mt-12 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg">
-          <h3 className="font-bold text-blue-900 mb-2">How to Choose</h3>
+          <h3 className="font-bold text-blue-900 mb-2">RE/MAX Brand Themes</h3>
+          <p className="text-sm text-blue-800 mb-3">All themes below are based on your RE/MAX ZAM brand colors (Navy Blue & Red):</p>
           <ul className="text-sm text-blue-800 space-y-1">
-            <li>✓ <strong>Modern Minimalist</strong> - Best for professional, clean aesthetic with white navbar</li>
-            <li>✓ <strong>Premium Dark</strong> - Modern SaaS feel, sophisticated appearance</li>
-            <li>✓ <strong>Emerald & Gold</strong> - Luxury real estate positioning with trust signals</li>
-            <li>✓ <strong>Ocean & Sunset</strong> - Unique Dubai identity, warm + cool balance</li>
+            <li>✓ <strong>RE/MAX Brand Bold</strong> - Direct brand match. Bold and commanding. Recommended.</li>
+            <li>✓ <strong>RE/MAX Premium Dark</strong> - Gray background option for softer luxury feel</li>
+            <li>✓ <strong>RE/MAX Clean White</strong> - Minimalist approach, maximum clarity</li>
+            <li>✓ <strong>RE/MAX Sophisticated</strong> - Deep navy with burgundy. Premium positioning.</li>
+            <li>✓ <strong>RE/MAX Dynamic</strong> - Bright red, energetic and modern</li>
+            <li>✓ <strong>RE/MAX Luxury</strong> - Darkest navy, most premium feel</li>
           </ul>
-          <p className="text-sm text-blue-800 mt-4">Let me know which theme you prefer, and I'll apply it to your website!</p>
+          <p className="text-sm text-blue-800 mt-4">All options maintain your brand identity while offering different visual approaches. Let me know which resonates most!</p>
         </div>
       </div>
     </div>
