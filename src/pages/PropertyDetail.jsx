@@ -4,7 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { Bed, Bath, Maximize, TrendingUp, MapPin, Calendar, Building2, ArrowLeft } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import LeadCaptureForm from '../components/LeadCaptureForm';
+import PropertyViewingForm from '../components/PropertyViewingForm';
 import CurrencyConverter from '../components/CurrencyConverter';
 import MortgageCalculator from '../components/MortgageCalculator';
 import ROICalculator from '../components/ROICalculator';
@@ -104,12 +104,14 @@ export default function PropertyDetail() {
             </div>
           </div>
 
-          {/* Right: Lead form + Currency Converter */}
+          {/* Right: Viewing form + Currency Converter */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-4">
               <div className="bg-card border border-border/50 rounded-lg p-6">
-                <h3 className="font-heading font-semibold text-foreground mb-4">Interested in this Property?</h3>
-                <LeadCaptureForm compact source="Property Detail" leadType="Investor" />
+                <h3 className="font-heading font-semibold text-foreground mb-4 flex items-center gap-2">
+                  <Calendar className="w-4 h-4 text-primary" /> Book a Viewing
+                </h3>
+                <PropertyViewingForm property={property} />
               </div>
               <CurrencyConverter priceAED={property.price_aed} />
             </div>
