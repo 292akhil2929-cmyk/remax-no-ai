@@ -22,7 +22,7 @@ const sourceCountries = [
 
 export default function GlobalNetworkSection() {
   return (
-    <section className="bg-black py-20 px-4 sm:px-6 lg:px-8">
+    <section className="bg-white py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
@@ -34,7 +34,7 @@ export default function GlobalNetworkSection() {
             Dubai's Gateway to the<br />
             <span className="text-[#B87333]">World's Most Trusted</span> Real Estate Network
           </h2>
-          <p className="text-white/65 font-body text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="text-gray-700 font-body text-base max-w-2xl mx-auto leading-relaxed">
             In a city with thousands of brokerages, REMAX ZAM stands apart — backed by the world's largest real estate brand. 
             Investors from London to Mumbai already know and trust RE/MAX before they ever call us.
           </p>
@@ -43,9 +43,9 @@ export default function GlobalNetworkSection() {
         {/* Stats Row */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {stats.map(({ value, label }) => (
-            <div key={label} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
+            <div key={label} className="bg-gray-50 border border-gray-200 rounded-2xl p-6 text-center">
               <p className="text-3xl lg:text-4xl font-display font-black text-[#B87333] mb-2">{value}</p>
-              <p className="text-white/60 font-body text-sm">{label}</p>
+              <p className="text-gray-700 font-body text-sm">{label}</p>
             </div>
           ))}
         </div>
@@ -55,7 +55,7 @@ export default function GlobalNetworkSection() {
 
           {/* Left: Why global matters */}
           <div className="space-y-5">
-            <h3 className="text-xl font-heading font-bold text-white mb-4">Why the Global Brand Wins in Dubai</h3>
+            <h3 className="text-xl font-heading font-bold text-black mb-4">Why the Global Brand Wins in Dubai</h3>
             {[
               {
                 title: 'Instant Credibility with International Investors',
@@ -77,36 +77,36 @@ export default function GlobalNetworkSection() {
               <div key={title} className="flex gap-4">
                 <div className="w-2 h-2 rounded-full bg-[#B87333] mt-2 shrink-0" />
                 <div>
-                  <p className="font-heading font-semibold text-white text-sm mb-1">{title}</p>
-                  <p className="text-white/55 font-body text-sm leading-relaxed">{desc}</p>
+                  <p className="font-heading font-semibold text-black text-sm mb-1">{title}</p>
+                  <p className="text-gray-700 font-body text-sm leading-relaxed">{desc}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Right: Investor origins */}
-          <div className="bg-white/5 border border-white/10 rounded-2xl p-8">
-            <h3 className="text-xl font-heading font-bold text-white mb-2">Our Investors Come From</h3>
-            <p className="text-white/50 font-body text-sm mb-6">Many already know RE/MAX from home — making Dubai's first call easy.</p>
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8">
+            <h3 className="text-xl font-heading font-bold text-black mb-2">Our Investors Come From</h3>
+            <p className="text-gray-700 font-body text-sm mb-6">Many already know RE/MAX from home — making Dubai's first call easy.</p>
             <div className="grid grid-cols-2 gap-3 mb-8">
               {sourceCountries.map(({ flag, country }) => (
-                <div key={country} className="flex items-center gap-3 bg-white/5 rounded-lg px-3 py-2.5">
+                <div key={country} className="flex items-center gap-3 bg-white rounded-lg px-3 py-2.5 border border-gray-200">
                   <span className="text-2xl">{flag}</span>
-                  <span className="text-white/80 font-body text-sm">{country}</span>
+                  <span className="text-gray-800 font-body text-sm">{country}</span>
                 </div>
               ))}
             </div>
-            <p className="text-white/35 font-body text-xs">
+            <p className="text-gray-500 font-body text-xs">
               * RE/MAX voted Most Trusted Real Estate Brand — independent survey. Network stats as of 2025.
             </p>
           </div>
         </div>
 
         {/* CTA Strip */}
-        <div className="bg-[#B87333]/10 border border-[#B87333]/30 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <div>
-            <p className="font-heading font-bold text-white text-lg mb-1">Ready to invest with a global name?</p>
-            <p className="text-white/60 font-body text-sm">Get personalised investment advice from REMAX ZAM's certified advisors.</p>
+        <div className="bg-[#B87333]/5 border border-[#B87333]/30 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+           <div>
+             <p className="font-heading font-bold text-black text-lg mb-1">Ready to invest with a global name?</p>
+             <p className="text-gray-700 font-body text-sm">Get personalised investment advice from REMAX ZAM's certified advisors.</p>
           </div>
           <div className="flex gap-3 shrink-0">
             <Button className="bg-[#B87333] hover:bg-[#A86228] text-white font-heading font-bold border-0" asChild>

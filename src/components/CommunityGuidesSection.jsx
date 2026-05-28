@@ -104,7 +104,7 @@ function CommunityCard({ area, isSelected, onClick }) {
       />
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
 
       {/* Selected Glow */}
       {isSelected && (
@@ -157,17 +157,17 @@ export default function CommunityGuidesSection() {
   const area = communities.find(c => c.id === selected);
 
   return (
-    <section className="py-20 bg-black">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
             <p className="text-[#B87333] font-heading font-semibold text-xs tracking-widest uppercase mb-2">Location Intelligence</p>
-            <h2 className="text-2xl lg:text-4xl font-display font-black text-white leading-tight">
+             <h2 className="text-2xl lg:text-4xl font-display font-black text-black leading-tight">
               Dubai's Top Investment<br className="hidden sm:block" /> Communities
             </h2>
-            <p className="text-white/50 font-body text-sm mt-2">Click any community to explore investment metrics</p>
+            <p className="text-gray-600 font-body text-sm mt-2">Click any community to explore investment metrics</p>
           </div>
           <Button
             variant="outline"
@@ -198,7 +198,7 @@ export default function CommunityGuidesSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25 }}
-            className="mt-4 bg-gray-900 border border-white/10 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center"
+            className="mt-4 bg-gray-50 border border-gray-200 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center"
           >
             {/* Community Info */}
             <div className="md:col-span-2">
@@ -208,7 +208,7 @@ export default function CommunityGuidesSection() {
                 ))}
               </div>
               <div className="border-l-2 border-[#B87333] pl-4">
-                <p className="text-sm text-white/70 font-body leading-relaxed">{area.highlight}</p>
+                <p className="text-sm text-gray-700 font-body leading-relaxed">{area.highlight}</p>
               </div>
             </div>
 
@@ -221,15 +221,15 @@ export default function CommunityGuidesSection() {
                 { icon: Users, label: 'Occupancy', value: area.occupancy, color: 'text-emerald-400' },
               ].map(({ icon: Icon, label, value, color }) => (
                 <div key={label} className="bg-white/5 rounded-xl p-3 text-center">
-                  <Icon className="w-4 h-4 text-white/30 mx-auto mb-1" />
-                  <p className="text-[10px] text-white/40 font-body mb-0.5">{label}</p>
+                  <Icon className="w-4 h-4 text-gray-400 mx-auto mb-1" />
+                   <p className="text-[10px] text-gray-500 font-body mb-0.5">{label}</p>
                   <p className={`text-sm font-heading font-bold ${color}`}>{value}</p>
                 </div>
               ))}
             </div>
 
             {/* CTA */}
-            <div className="md:col-span-3 flex flex-col sm:flex-row gap-2 pt-2 border-t border-white/10">
+            <div className="md:col-span-3 flex flex-col sm:flex-row gap-2 pt-2 border-t border-gray-200">
               <Button className="bg-[#B87333] hover:bg-[#A86228] text-white font-heading font-bold border-0" asChild>
                 <Link to="/properties">View {area.name} Properties <ArrowRight className="w-4 h-4 ml-1" /></Link>
               </Button>
