@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -8,12 +8,13 @@ import PropertyCard from '../components/PropertyCard';
 import PropertySEOContent from '../components/PropertySEOContent';
 
 export default function Properties() {
+  const urlParams = new URLSearchParams(window.location.search);
   const [category, setCategory] = useState('all');
-  const [type, setType] = useState('all');
+  const [type, setType] = useState(urlParams.get('type') || 'all');
   const [search, setSearch] = useState('');
-  const [priceRange, setPriceRange] = useState('all');
+  const [priceRange, setPriceRange] = useState(urlParams.get('priceRange') || 'all');
   const [bedrooms, setBedrooms] = useState('all');
-  const [community, setCommunity] = useState('all');
+  const [community, setCommunity] = useState(urlParams.get('community') || 'all');
 
   const { data: properties = [], isLoading } = useQuery({
     queryKey: ['properties'],

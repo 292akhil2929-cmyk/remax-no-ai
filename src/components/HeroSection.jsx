@@ -1,17 +1,18 @@
 import { Link } from 'react-router-dom';
+import PropertySearchFilter from './PropertySearchFilter';
 import { ArrowRight, Shield, BarChart3, Globe } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
 export default function HeroSection({ heroImage }) {
   return (
-    <section className="relative min-h-[88vh] flex items-center overflow-hidden">
+    <section className="relative min-h-[88vh] flex items-end overflow-hidden pb-12 sm:pb-16">
       <div className="absolute inset-0">
         <img src={heroImage} alt="Dubai skyline" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/45 to-transparent" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
-        <div className="max-w-xl">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-0 w-full">
+        <div className="max-w-xl mb-10">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/20 mb-6">
             <div className="w-1.5 h-1.5 rounded-full bg-red-500 animate-pulse" />
             <span className="text-xs font-body text-white/80 tracking-widest uppercase">Dubai Real Estate Investment</span>
@@ -26,7 +27,7 @@ export default function HeroSection({ heroImage }) {
             Strategic real estate investments across the UAE and global markets — built on ROI, data analysis, and long-term value. Not hype.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 mb-12">
+          <div className="flex flex-col sm:flex-row gap-3 mb-8">
             <Button size="lg" className="bg-amber-500 hover:bg-amber-600 text-white font-heading font-bold tracking-wide border-0" asChild>
               <Link to="/contact">
                 Start Investing <ArrowRight className="w-4 h-4 ml-2" />
@@ -50,6 +51,7 @@ export default function HeroSection({ heroImage }) {
             ))}
           </div>
         </div>
+        <PropertySearchFilter />
       </div>
     </section>
   );
