@@ -6,7 +6,7 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import Home from './pages/Home';
-import Properties from './pages/Properties';
+import Properties from './pages/Properties.jsx';
 import PropertyDetail from './pages/PropertyDetail';
 import JoinUs from './pages/JoinUs';
 import Insights from './pages/Insights';

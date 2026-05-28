@@ -23,7 +23,7 @@
         "Commercial Lease"
       ],
       "title": "Transaction Type",
-      "description": "The primary transaction category for this listing"
+      "description": "Residential Sale | Residential Rental | Commercial Sale | Commercial Lease"
     },
     "property_type": {
       "type": "string",
@@ -48,7 +48,7 @@
         "Resale"
       ],
       "title": "Listing Status",
-      "description": "Off-Plan (not built yet), Ready (new handover), Resale (secondary market)"
+      "description": "Off-Plan (not built yet), Ready (new handover), Resale (secondary market). Leave blank for rentals."
     },
     "bedrooms": {
       "type": "number",
@@ -69,7 +69,7 @@
     "price_label": {
       "type": "string",
       "title": "Price Label Override",
-      "description": "e.g. 'AED 85,000 / year' or 'AED 1.2M' \u2014 shown on card if set"
+      "description": "e.g. 'AED 85,000 / year' \u2014 shown on card if set"
     },
     "expected_roi": {
       "type": "number",
