@@ -65,14 +65,16 @@ export default function AudienceSelector() {
       exit={{ opacity: 0 }}
       className="px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen"
     >
-      {/* Background with gradient overlay */}
+      {/* Dubai Skyline Background */}
       <div 
         className="absolute inset-0 bg-cover bg-center"
         style={{
-          backgroundImage: 'linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(30, 41, 59, 0.8)), url(https://images.unsplash.com/photo-1518684029980-cf91eb28ed90?w=1400&h=900&fit=crop)',
+          backgroundImage: 'url(https://images.unsplash.com/photo-1512453109454-430f63602d4b?w=1600&h=900&fit=crop)',
           backgroundAttachment: 'fixed',
         }}
       />
+      {/* Dark Overlay */}
+      <div className="absolute inset-0 bg-black/60" />
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
