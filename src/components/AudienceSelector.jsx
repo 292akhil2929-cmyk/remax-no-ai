@@ -63,18 +63,27 @@ export default function AudienceSelector() {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="bg-white px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen"
-      style={{
-        backgroundImage: 'url(https://images.unsplash.com/photo-1518684029980-cf91eb28ed90?w=1400&h=900&fit=crop)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundAttachment: 'fixed',
-      }}
+      className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 px-4 sm:px-6 lg:px-8 py-16 sm:py-20 relative overflow-hidden min-h-screen"
     >
-      {/* Beautiful gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white/75 via-white/70 to-white/80" />
-      {/* Subtle accent elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl opacity-30" />
+      {/* Animated gradient background */}
+      <style>{`
+        @keyframes gradientShift {
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+        .gradient-animate {
+          background: linear-gradient(-45deg, #1e293b, #0f172a, #1e1b4b, #0f172a);
+          background-size: 400% 400%;
+          animation: gradientShift 8s ease infinite;
+        }
+      `}</style>
+      <div className="absolute inset-0 gradient-animate opacity-40" />
+      
+      {/* Floating elements for visual interest */}
+      <div className="absolute top-10 left-10 w-72 h-72 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse" />
+      <div className="absolute -bottom-8 right-10 w-80 h-80 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse" style={{ animationDelay: '2s' }} />
+      <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-accent rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-pulse" style={{ animationDelay: '4s' }} />
 
       <div className="relative max-w-7xl mx-auto">
         {/* Header */}
