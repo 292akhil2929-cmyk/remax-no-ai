@@ -12,6 +12,7 @@ import JoinUs from './pages/JoinUs';
 import Insights from './pages/Insights';
 import Contact from './pages/Contact';
 import Layout from './components/Layout';
+import AreaGuides from './pages/AreaGuides';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -46,6 +47,7 @@ const AuthenticatedApp = () => {
         <Route path="/join" element={<JoinUs />} />
         <Route path="/insights" element={<Insights />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/area-guides" element={<AreaGuides />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
