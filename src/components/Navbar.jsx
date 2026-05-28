@@ -40,6 +40,7 @@ const dropdownGroups = [
 const standaloneLinks = [
   { label: 'Home', path: '/' },
   { label: 'My Dashboard', path: '/dashboard' },
+  { label: 'Content Hub', path: '/admin/content' },
   { label: 'Contact', path: '/contact' },
 ];
 
