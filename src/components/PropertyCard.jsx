@@ -59,7 +59,7 @@ export default function PropertyCard({ property }) {
           </button>
           <div className="absolute top-3 left-3 flex gap-2 flex-wrap max-w-[70%]">
             {property.listing_status === 'Off-Plan' && (
-              <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-blue-600 text-white shadow">Off-Plan</span>
+              <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-[#B87333] text-white shadow">Off-Plan</span>
             )}
             {property.listing_status === 'Ready' && (
               <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-emerald-600 text-white shadow">Ready</span>

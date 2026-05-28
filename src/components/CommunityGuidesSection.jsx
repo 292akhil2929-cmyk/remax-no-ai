@@ -91,7 +91,7 @@ function CommunityCard({ area, isSelected, onClick }) {
       layout
       onClick={onClick}
       className={`relative overflow-hidden rounded-2xl cursor-pointer group border-2 transition-all duration-300 ${
-        isSelected ? 'border-[#c9a84c]' : 'border-transparent'
+        isSelected ? 'border-[#B87333]' : 'border-transparent'
       } ${area.col}`}
       whileHover={{ scale: 1.01 }}
       transition={{ duration: 0.2 }}
@@ -104,18 +104,18 @@ function CommunityCard({ area, isSelected, onClick }) {
       />
 
       {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-t from-[#0d1b3e]/95 via-[#0d1b3e]/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent" />
 
       {/* Selected Glow */}
       {isSelected && (
-        <div className="absolute inset-0 ring-2 ring-[#c9a84c] ring-inset rounded-2xl pointer-events-none" />
+        <div className="absolute inset-0 ring-2 ring-[#B87333] ring-inset rounded-2xl pointer-events-none" />
       )}
 
       {/* Avg PSF Badge */}
-      <div className="absolute top-3 right-3 bg-[#0d1b3e]/80 backdrop-blur-sm border border-white/20 rounded-lg px-2.5 py-1.5 text-center">
-        <p className="text-[10px] text-white/50 font-body leading-none mb-0.5">Avg / sqft</p>
-        <p className="text-xs font-heading font-bold text-[#c9a84c] leading-none">{area.avgPsf}</p>
-      </div>
+      <div className="absolute top-3 right-3 bg-black/80 backdrop-blur-sm border border-white/20 rounded-lg px-2.5 py-1.5 text-center">
+         <p className="text-[10px] text-white/50 font-body leading-none mb-0.5">Avg / sqft</p>
+         <p className="text-xs font-heading font-bold text-[#B87333] leading-none">{area.avgPsf}</p>
+       </div>
 
       {/* Content */}
       <div className="absolute bottom-0 left-0 right-0 p-4">
@@ -132,13 +132,13 @@ function CommunityCard({ area, isSelected, onClick }) {
         </div>
 
         <h3 className="text-white font-display font-black text-lg leading-tight">{area.name}</h3>
-        <p className="text-[#c9a84c] font-body text-xs mt-0.5 mb-3">{area.tagline}</p>
+         <p className="text-[#B87333] font-body text-xs mt-0.5 mb-3">{area.tagline}</p>
 
         {/* Key Stats Row */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-1">
-            <TrendingUp className="w-3 h-3 text-[#c9a84c]" />
-            <span className="text-xs font-heading font-bold text-[#c9a84c]">{area.yield}</span>
+             <TrendingUp className="w-3 h-3 text-[#B87333]" />
+             <span className="text-xs font-heading font-bold text-[#B87333]">{area.yield}</span>
             <span className="text-[10px] text-white/40 font-body">yield</span>
           </div>
           <div className="w-px h-3 bg-white/20" />
@@ -157,13 +157,13 @@ export default function CommunityGuidesSection() {
   const area = communities.find(c => c.id === selected);
 
   return (
-    <section className="py-20 bg-[#0d1b3e]">
+    <section className="py-20 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
           <div>
-            <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-2">Location Intelligence</p>
+            <p className="text-[#B87333] font-heading font-semibold text-xs tracking-widest uppercase mb-2">Location Intelligence</p>
             <h2 className="text-2xl lg:text-4xl font-display font-black text-white leading-tight">
               Dubai's Top Investment<br className="hidden sm:block" /> Communities
             </h2>
@@ -198,7 +198,7 @@ export default function CommunityGuidesSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25 }}
-            className="mt-4 bg-[#111c38] border border-white/10 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center"
+            className="mt-4 bg-gray-900 border border-white/10 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center"
           >
             {/* Community Info */}
             <div className="md:col-span-2">
@@ -207,7 +207,7 @@ export default function CommunityGuidesSection() {
                   <span key={t} className="px-3 py-1 bg-white/8 border border-white/15 rounded-full text-xs text-white/80 font-body">{t}</span>
                 ))}
               </div>
-              <div className="border-l-2 border-[#c9a84c] pl-4">
+              <div className="border-l-2 border-[#B87333] pl-4">
                 <p className="text-sm text-white/70 font-body leading-relaxed">{area.highlight}</p>
               </div>
             </div>
@@ -215,7 +215,7 @@ export default function CommunityGuidesSection() {
             {/* Stats Grid */}
             <div className="grid grid-cols-2 gap-3">
               {[
-                { icon: TrendingUp, label: 'Rental Yield', value: area.yield, color: 'text-[#c9a84c]' },
+                { icon: TrendingUp, label: 'Rental Yield', value: area.yield, color: 'text-[#B87333]' },
                 { icon: MapPin, label: 'Entry From', value: area.entry, color: 'text-white' },
                 { icon: Home, label: 'Avg Price/sqft', value: area.avgPsf, color: 'text-white' },
                 { icon: Users, label: 'Occupancy', value: area.occupancy, color: 'text-emerald-400' },
@@ -230,7 +230,7 @@ export default function CommunityGuidesSection() {
 
             {/* CTA */}
             <div className="md:col-span-3 flex flex-col sm:flex-row gap-2 pt-2 border-t border-white/10">
-              <Button className="bg-[#c9a84c] hover:bg-[#b8943f] text-[#0d1b3e] font-heading font-bold border-0" asChild>
+              <Button className="bg-[#B87333] hover:bg-[#A86228] text-white font-heading font-bold border-0" asChild>
                 <Link to="/properties">View {area.name} Properties <ArrowRight className="w-4 h-4 ml-1" /></Link>
               </Button>
               <Button variant="ghost" className="text-white/60 hover:text-white hover:bg-white/10 font-heading text-sm" asChild>

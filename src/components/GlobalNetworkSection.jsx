@@ -22,17 +22,17 @@ const sourceCountries = [
 
 export default function GlobalNetworkSection() {
   return (
-    <section className="bg-[#0d1b3e] py-20 px-4 sm:px-6 lg:px-8">
+    <section className="bg-black py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
 
         {/* Header */}
         <div className="text-center mb-14">
-          <p className="text-[#c9a84c] font-heading font-semibold text-sm tracking-widest uppercase mb-3">
+          <p className="text-[#B87333] font-heading font-semibold text-sm tracking-widest uppercase mb-3">
             The RE/MAX Global Advantage
           </p>
           <h2 className="text-3xl lg:text-5xl font-display font-black text-white leading-tight mb-5">
             Dubai's Gateway to the<br />
-            <span className="text-[#c9a84c]">World's Most Trusted</span> Real Estate Network
+            <span className="text-[#B87333]">World's Most Trusted</span> Real Estate Network
           </h2>
           <p className="text-white/65 font-body text-base max-w-2xl mx-auto leading-relaxed">
             In a city with thousands of brokerages, REMAX ZAM stands apart — backed by the world's largest real estate brand. 
@@ -44,7 +44,7 @@ export default function GlobalNetworkSection() {
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-16">
           {stats.map(({ value, label }) => (
             <div key={label} className="bg-white/5 border border-white/10 rounded-2xl p-6 text-center">
-              <p className="text-3xl lg:text-4xl font-display font-black text-[#c9a84c] mb-2">{value}</p>
+              <p className="text-3xl lg:text-4xl font-display font-black text-[#B87333] mb-2">{value}</p>
               <p className="text-white/60 font-body text-sm">{label}</p>
             </div>
           ))}
@@ -75,7 +75,7 @@ export default function GlobalNetworkSection() {
               },
             ].map(({ title, desc }) => (
               <div key={title} className="flex gap-4">
-                <div className="w-2 h-2 rounded-full bg-[#c9a84c] mt-2 shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-[#B87333] mt-2 shrink-0" />
                 <div>
                   <p className="font-heading font-semibold text-white text-sm mb-1">{title}</p>
                   <p className="text-white/55 font-body text-sm leading-relaxed">{desc}</p>
@@ -103,13 +103,13 @@ export default function GlobalNetworkSection() {
         </div>
 
         {/* CTA Strip */}
-        <div className="bg-[#c9a84c]/10 border border-[#c9a84c]/30 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+        <div className="bg-[#B87333]/10 border border-[#B87333]/30 rounded-2xl p-8 flex flex-col sm:flex-row items-center justify-between gap-6">
           <div>
             <p className="font-heading font-bold text-white text-lg mb-1">Ready to invest with a global name?</p>
             <p className="text-white/60 font-body text-sm">Get personalised investment advice from REMAX ZAM's certified advisors.</p>
           </div>
           <div className="flex gap-3 shrink-0">
-            <Button className="bg-[#c9a84c] hover:bg-[#b8943f] text-[#0d1b3e] font-heading font-bold border-0" asChild>
+            <Button className="bg-[#B87333] hover:bg-[#A86228] text-white font-heading font-bold border-0" asChild>
               <Link to="/contact">Get Advice <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
             <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 font-heading" asChild>
