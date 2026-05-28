@@ -9,7 +9,7 @@ const communities = [
     id: 'dubai-marina',
     name: 'Dubai Marina',
     tagline: "Investor's Favourite",
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1570129477492-45a003537e1f?w=800&q=80',
     tags: ['🌊 Waterfront', '📈 High Yield', '🏖️ Beach Access'],
     yield: '6–8%',
     entry: 'AED 700K',
@@ -22,7 +22,7 @@ const communities = [
     id: 'downtown-dubai',
     name: 'Downtown Dubai',
     tagline: 'Proven Capital Growth',
-    image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80',
     tags: ['🏙️ Iconic Address', '📊 Capital Growth', '🚇 Metro'],
     yield: '5–7%',
     entry: 'AED 1.2M',
@@ -35,7 +35,7 @@ const communities = [
     id: 'palm-jumeirah',
     name: 'Palm Jumeirah',
     tagline: 'Trophy Asset',
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80',
     tags: ['🌴 Island Living', '💎 Ultra-Premium', '🏨 5-Star Hotels'],
     yield: '5–7%',
     entry: 'AED 1.5M',
@@ -48,7 +48,7 @@ const communities = [
     id: 'business-bay',
     name: 'Business Bay',
     tagline: 'Best Value Entry',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80',
     tags: ['🏢 Canal Views', '💰 Value Play', '📍 Central'],
     yield: '6–8%',
     entry: 'AED 600K',
@@ -61,7 +61,7 @@ const communities = [
     id: 'dubai-hills-estate',
     name: 'Dubai Hills',
     tagline: 'Premium Family Living',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1480074568708-e7b720bb3f3f?w=800&q=80',
     tags: ['🏡 Villas', '🌳 Green Community', '🏫 Top Schools'],
     yield: '5–6%',
     entry: 'AED 1.5M',
@@ -74,7 +74,7 @@ const communities = [
     id: 'jumeirah-village-circle',
     name: 'JVC',
     tagline: "Dubai's Highest Yields",
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
     tags: ['💹 8–10% Yield', '🏠 Affordable', '🔑 Portfolio Pick'],
     yield: '8–10%',
     entry: 'AED 350K',
@@ -157,11 +157,11 @@ export default function CommunityGuidesSection() {
   const area = communities.find(c => c.id === selected);
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-6">
           <div>
             <p className="text-[#B87333] font-heading font-semibold text-xs tracking-widest uppercase mb-2">Location Intelligence</p>
              <h2 className="text-2xl lg:text-4xl font-display font-black text-black leading-tight">
@@ -198,7 +198,7 @@ export default function CommunityGuidesSection() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.25 }}
-            className="mt-4 bg-gray-50 border border-gray-200 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center"
+            className="mt-3 bg-gray-50 border border-gray-200 rounded-2xl p-6 grid grid-cols-1 md:grid-cols-3 gap-6 items-center"
           >
             {/* Community Info */}
             <div className="md:col-span-2">

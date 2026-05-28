@@ -13,7 +13,7 @@ export default function FeaturedProperties() {
 
   if (isLoading) {
     return (
-      <section className="py-20">
+      <section className="py-12 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1,2,3].map(i => (
@@ -26,9 +26,9 @@ export default function FeaturedProperties() {
   }
 
   return (
-    <section className="py-20">
+    <section className="py-12 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between mb-10">
+        <div className="flex items-end justify-between mb-8">
           <div>
             <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-2">CURATED ASSETS</p>
             <h2 className="text-3xl lg:text-4xl font-display font-bold italic text-foreground">Featured Investments</h2>
