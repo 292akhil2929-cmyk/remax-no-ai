@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle, TrendingUp, Users, Shield, Globe, Award, DollarSign, Clock, BarChart3, Building2, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import LeadCaptureForm from '../components/LeadCaptureForm';
+import SellerLeadForm from '../components/SellerLeadForm';
 
 const reasons = [
   {
@@ -220,7 +220,7 @@ export default function Landlords() {
           <div className="bg-background rounded-2xl p-6 shadow-2xl">
             <h3 className="font-heading font-bold text-foreground text-xl mb-1">Get Your Free Valuation</h3>
             <p className="text-muted-foreground text-sm mb-4">Fill in your details and we&apos;ll be in touch within 24 hours.</p>
-            <LeadCaptureForm source="Landlords Page" />
+            <SellerLeadForm source="Landlords Page" />
           </div>
         </div>
       </section>
