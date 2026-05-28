@@ -10,6 +10,7 @@ const navLinks = [
   { label: 'Golden Visa', path: '/golden-visa' },
   { label: 'Area Guides', path: '/area-guides' },
   { label: 'Blog', path: '/blog' },
+  { label: 'For Landlords', path: '/landlords' },
   { label: 'About Us', path: '/about' },
   { label: 'Contact', path: '/contact' },
 ];

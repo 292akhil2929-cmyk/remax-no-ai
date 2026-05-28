@@ -20,6 +20,7 @@ import Team from './pages/Team';
 import AreaGuides from './pages/AreaGuides';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
+import Landlords from './pages/Landlords';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -62,6 +63,7 @@ const AuthenticatedApp = () => {
         <Route path="/team" element={<Team />} />
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:postId" element={<BlogDetail />} />
+        <Route path="/landlords" element={<Landlords />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
