@@ -8,15 +8,15 @@ export default function SellerHero() {
     <section className="relative min-h-screen lg:h-[600px] flex items-center overflow-hidden bg-white">
       {/* Dubai background image */}
       <div 
-        className="absolute inset-0 opacity-25"
+        className="absolute inset-0 opacity-35"
         style={{
-          backgroundImage: 'url(https://images.unsplash.com/photo-1512453935925-ab7e1c76b59f?w=1200&h=600&fit=crop)',
+          backgroundImage: 'url(https://images.unsplash.com/photo-1518684029980-cf91eb28ed90?w=1200&h=600&fit=crop)',
           backgroundSize: 'cover',
           backgroundPosition: 'center',
         }}
       />
       {/* Minimal gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/90 via-white/88 to-gray-100/90" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/85 via-white/82 to-gray-100/85" />
 
       <div className="relative w-full z-10 px-4 sm:px-6 lg:px-8 py-20 lg:py-0">
         <div className="max-w-6xl mx-auto">
