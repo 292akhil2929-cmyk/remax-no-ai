@@ -38,7 +38,7 @@ export default function Footer() {
           <div>
             <h4 className="font-heading font-semibold text-foreground mb-4">Quick Links</h4>
             <div className="space-y-2">
-              {[['Properties', '/properties'], ['Off-Plan', '/off-plan'], ['Golden Visa', '/golden-visa'], ['Area Guides', '/area-guides'], ['About Us', '/about'], ['Services', '/services'], ['Insights', '/insights'], ['Contact', '/contact']].map(([label, path]) => (
+              {[['Properties', '/properties'], ['Off-Plan', '/off-plan'], ['Golden Visa', '/golden-visa'], ['Area Guides', '/area-guides'], ['About Us', '/about'], ['Our Team', '/team'], ['Services', '/services'], ['Insights', '/insights'], ['Contact', '/contact']].map(([label, path]) => (
                 <Link key={path} to={path} className="block text-sm text-muted-foreground hover:text-primary transition-colors font-body">{label}</Link>
               ))}
             </div>

@@ -16,6 +16,7 @@ import AboutUs from './pages/AboutUs';
 import GoldenVisa from './pages/GoldenVisa';
 import Services from './pages/Services';
 import OffPlan from './pages/OffPlan';
+import Team from './pages/Team';
 import AreaGuides from './pages/AreaGuides';
 
 const AuthenticatedApp = () => {
@@ -56,6 +57,7 @@ const AuthenticatedApp = () => {
         <Route path="/golden-visa" element={<GoldenVisa />} />
         <Route path="/services" element={<Services />} />
         <Route path="/off-plan" element={<OffPlan />} />
+        <Route path="/team" element={<Team />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
