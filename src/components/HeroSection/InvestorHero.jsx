@@ -14,9 +14,10 @@ export default function InvestorHero() {
           muted
           loop
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-70"
-          src="https://videos.unsplash.com/video-static-convert/cf3f7ba130355b5624ffe0cecc97cac4-hd_720_1280_30fps.mp4"
-        />
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
+        >
+          <source src="https://media.istockphoto.com/id/1425464015/video/dubai-skyline-at-night-the-burj-khalifa-and-other-skyscrapers-illuminated-in-4k-aerial.mp4?s=mp4-640x640-is" type="video/mp4" />
+        </video>
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/45 to-gray-100/50" />
 
