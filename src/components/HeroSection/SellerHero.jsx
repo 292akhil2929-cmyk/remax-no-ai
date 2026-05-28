@@ -11,11 +11,12 @@ export default function SellerHero() {
         autoPlay
         muted
         loop
-        className="absolute inset-0 w-full h-full object-cover opacity-40"
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-70"
         src="https://videos.unsplash.com/video-static-convert/cf3f7ba130355b5624ffe0cecc97cac4-hd_720_1280_30fps.mp4"
       />
       {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white/80 via-white/78 to-gray-100/80" />
+      <div className="absolute inset-0 bg-gradient-to-br from-white/50 via-white/45 to-gray-100/50" />
 
       <div className="relative w-full z-10 px-4 sm:px-6 lg:px-8 py-20 lg:py-0">
         <div className="max-w-6xl mx-auto">
