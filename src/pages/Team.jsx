@@ -1,152 +1,92 @@
 import { Link } from 'react-router-dom';
 import { Phone, Mail, MessageCircle, Star, ArrowRight, Users, Award, TrendingUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 
-const agents = [
+const TEAM = [
   {
-    name: 'Khaled Al Mansoori',
-    role: 'Managing Director & Senior Advisor',
-    photo: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500',
-    languages: ['English', 'Arabic'],
-    specializations: ['Ultra-Luxury Villas', 'Off-Plan Investments', 'Portfolio Strategy'],
-    communities: ['Palm Jumeirah', 'Emirates Hills', 'DIFC'],
-    deals: '400+',
-    experience: '15 years',
-    phone: '+971 50 XXX 0001',
-    whatsapp: '+971 50 XXX 0001',
-    email: 'khaled@remaxzam.ae',
-    rera: 'RERA #12345',
-    bio: 'Dubai\'s go-to advisor for ultra-high-net-worth investors. Khaled has closed over AED 800M in transactions and specialises in bespoke portfolio strategies for family offices and private investors.',
-    badge: 'Director',
-    badgeColor: 'bg-amber-500',
+    name: 'Faisal Contractor',
+    role: 'CEO & Founder',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg',
+    bio: 'Faisal Contractor is an accomplished serial entrepreneur and growth architect. As the founder and CEO of Embark Growth Marketing and the visionary behind REMAX ZAM, Faisal has earned a reputation for transforming how investors engage with the UAE\'s real estate market. Focused on enabling smart, confident decisions, he is committed to innovation, strategic growth, and fostering meaningful industry relationships.',
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
+    badge: 'Founder & CEO',
+    badgeColor: 'bg-[#B87333]',
   },
   {
-    name: 'Sarah Thompson',
-    role: 'Head of International Sales',
-    photo: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500',
-    languages: ['English', 'French', 'Arabic'],
-    specializations: ['International Buyers', 'Off-Plan Projects', 'Golden Visa Packages'],
-    communities: ['Downtown Dubai', 'Business Bay', 'Dubai Marina'],
-    deals: '280+',
-    experience: '12 years',
-    phone: '+971 50 XXX 0002',
-    whatsapp: '+971 50 XXX 0002',
-    email: 'sarah@remaxzam.ae',
-    rera: 'RERA #23456',
-    bio: 'Sarah is the first point of contact for buyers from the UK, Europe, and the Americas. She has placed over 120 international clients into Dubai\'s top-performing communities with an average ROI of 8.2%.',
-    badge: 'Top Producer',
-    badgeColor: 'bg-primary',
+    name: 'Justice',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Justice-chukwudi.png',
+    bio: 'I use the market insights I learned at REMAX ZAM to provide unmatched support to my clients. The management\'s guidance gives me confidence to close deals and progress my career in ways I never imagined.',
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
+    badge: 'Consultant',
+    badgeColor: 'bg-slate-700',
   },
   {
-    name: 'Ravi Sharma',
-    role: 'Investment Strategy Director',
-    photo: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500',
-    languages: ['English', 'Hindi', 'Gujarati'],
-    specializations: ['Investment Analysis', 'ROI Modelling', 'Off-Plan Launches'],
-    communities: ['Dubai Hills Estate', 'MBR City', 'Sobha Hartland'],
-    deals: '220+',
-    experience: '10 years',
-    phone: '+971 50 XXX 0003',
-    whatsapp: '+971 50 XXX 0003',
-    email: 'ravi@remaxzam.ae',
-    rera: 'RERA #34567',
-    bio: 'With a background in investment banking, Ravi builds data-driven property portfolios for Indian and South Asian investors. He is the team\'s specialist for Sobha, EMAAR, and MBR City launches.',
-    badge: 'Analyst',
-    badgeColor: 'bg-emerald-600',
+    name: 'Imran',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Mohoammad-Imran.png',
+    bio: 'The training and teamwork at REMAX ZAM helped me understand the industry faster and helps me keep track of latest updates within the industry.',
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
+    badge: 'Consultant',
+    badgeColor: 'bg-slate-700',
   },
   {
-    name: 'Elena Kozlova',
-    role: 'Senior Property Consultant',
-    photo: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500',
-    languages: ['English', 'Russian', 'Ukrainian'],
-    specializations: ['CIS Investors', 'Off-Plan Acquisitions', 'Golden Visa'],
-    communities: ['Dubai Marina', 'JBR', 'Palm Jumeirah'],
-    deals: '190+',
-    experience: '8 years',
-    phone: '+971 50 XXX 0004',
-    whatsapp: '+971 50 XXX 0004',
-    email: 'elena@remaxzam.ae',
-    rera: 'RERA #45678',
-    bio: 'Elena is the preferred advisor for Russian and CIS investors relocating to Dubai. She manages the full process from property acquisition through to Golden Visa issuance and school placement.',
-    badge: 'CIS Specialist',
-    badgeColor: 'bg-violet-600',
+    name: 'Abu Bakkar',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Abu-bakkar-al-shams.png',
+    bio: 'I am honored to be a part of REMAX and REMAX ZAM. REMAX is a global brand and REMAX ZAM has shown me why, it\'s an absolute pleasure for me to be part of this brand.',
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
+    badge: 'Consultant',
+    badgeColor: 'bg-slate-700',
   },
   {
-    name: 'Mohammed Al Rashid',
-    role: 'Property Consultant — GCC Markets',
-    photo: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500',
-    languages: ['Arabic', 'English'],
-    specializations: ['Luxury Villas', 'GCC Investors', 'Developer Relations'],
-    communities: ['Palm Jumeirah', 'Dubai Hills Estate', 'Al Barari'],
-    deals: '160+',
-    experience: '7 years',
-    phone: '+971 50 XXX 0005',
-    whatsapp: '+971 50 XXX 0005',
-    email: 'mohammed@remaxzam.ae',
-    rera: 'RERA #56789',
-    bio: 'Mohammed manages REMAX ZAM\'s relationships with GCC-based investors and HNWIs seeking luxury villa communities. He has exclusive access to off-market villa listings across Palm and Emirates Hills.',
-    badge: 'GCC Expert',
-    badgeColor: 'bg-primary',
+    name: 'Khaldoun',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Ellipse-104.png',
+    bio: 'I recently closed my biggest deal, and I couldn\'t have done it without the hands on training I received at REMAX ZAM. The support from the team and the market insights gave me the confidence to succeed.',
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
+    badge: 'Consultant',
+    badgeColor: 'bg-slate-700',
   },
   {
-    name: 'Priya Nair',
-    role: 'Client Relations & Golden Visa Specialist',
-    photo: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=500',
-    languages: ['English', 'Hindi', 'Malayalam'],
-    specializations: ['Golden Visa Advisory', 'Relocation Support', 'Ready Properties'],
-    communities: ['JVC', 'Arjan', 'Dubai South'],
-    deals: '140+',
-    experience: '7 years',
-    phone: '+971 50 XXX 0006',
-    whatsapp: '+971 50 XXX 0006',
-    email: 'priya@remaxzam.ae',
-    rera: 'RERA #67890',
-    bio: 'Priya guides families through the complete Dubai relocation journey — from value-focused property acquisition in JVC and Dubai South to Emirates ID issuance and school registration support.',
-    badge: 'Visa Specialist',
-    badgeColor: 'bg-rose-600',
+    name: 'Nour',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Ellipse-105.png',
+    bio: 'I\'ve been able to build my personal brand and attract clients with the training and marketing resources at REMAX ZAM. The support from the team has helped me gain leads and grow consistently.',
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
+    badge: 'Consultant',
+    badgeColor: 'bg-slate-700',
   },
   {
-    name: 'Lucas Ferreira',
-    role: 'Property Consultant — European Markets',
-    photo: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500',
-    languages: ['English', 'Portuguese', 'Spanish'],
-    specializations: ['European Buyers', 'Branded Residences', 'Luxury Apartments'],
-    communities: ['Downtown Dubai', 'DIFC', 'Dubai Harbour'],
-    deals: '110+',
-    experience: '5 years',
-    phone: '+971 50 XXX 0007',
-    whatsapp: '+971 50 XXX 0007',
-    email: 'lucas@remaxzam.ae',
-    rera: 'RERA #78901',
-    bio: 'Lucas serves Portuguese, Brazilian, and Spanish-speaking investors seeking Dubai as a tax-efficient investment destination. He specialises in branded residences and high-end apartment acquisitions.',
-    badge: 'Rising Star',
-    badgeColor: 'bg-emerald-600',
-  },
-  {
-    name: 'Aisha Hassan',
-    role: 'Property Consultant — Affordable Investments',
-    photo: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=500',
-    languages: ['English', 'Arabic', 'Swahili'],
-    specializations: ['First-Time Investors', 'JVC & Arjan', 'Studio & 1BHK'],
-    communities: ['JVC', 'Arjan', 'Dubai Sports City'],
-    deals: '95+',
-    experience: '4 years',
-    phone: '+971 50 XXX 0008',
-    whatsapp: '+971 50 XXX 0008',
-    email: 'aisha@remaxzam.ae',
-    rera: 'RERA #89012',
-    bio: 'Aisha specialises in entry-level investments in Dubai\'s highest-yield communities. She helps first-time buyers from Africa and the Middle East build their first Dubai property portfolio.',
-    badge: 'Rising Star',
-    badgeColor: 'bg-emerald-600',
+    name: 'Manish',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Manish-Kapur.png',
+    bio: 'I closed multiple high ticket deals back to back thanks to the mentorship and guidance provided by REMAX ZAM. Having access to a strong network made navigating the market so much easier.',
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
+    badge: 'Consultant',
+    badgeColor: 'bg-slate-700',
   },
 ];
 
 const perks = [
-  { icon: TrendingUp, title: 'Uncapped Commission', desc: 'Industry-leading commission splits starting at 60% and scaling to 80% for top performers. No desk fees for your first 6 months.' },
-  { icon: Users, title: 'Ready-Made Lead Pipeline', desc: 'Access to REMAX ZAM\'s international marketing funnel, CRM database of 10,000+ qualified leads, and developer co-marketing budgets.' },
-  { icon: Award, title: 'RERA Licensing Support', desc: 'We cover your RERA exam fees, provide full training, and mentor you through your first 10 transactions — regardless of your background.' },
-  { icon: Star, title: 'RE/MAX Global Network', desc: 'Join the world\'s most recognised real estate brand with access to 140,000 agents across 110 countries and a globally trusted reputation.' },
+  { icon: TrendingUp, title: 'Uncapped Commission', desc: 'You pick your commission — 50, 65, or 80 percent — your business, your way. No desk fees for your first months.' },
+  { icon: Users, title: 'Ready-Made Lead Pipeline', desc: 'Access to REMAX ZAM\'s international marketing funnel, CRM database of qualified leads, and developer co-marketing budgets.' },
+  { icon: Award, title: 'RERA & Training Support', desc: 'We cover your training, provide hands-on mentorship, and guide you through your first transactions — regardless of your background.' },
+  { icon: Star, title: 'RE/MAX Global Network', desc: 'Join the world\'s most recognised real estate brand with access to 146,000+ agents across 110+ countries and 8,700+ offices globally.' },
 ];
 
 export default function Team() {
@@ -163,10 +103,10 @@ export default function Team() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-heading font-semibold text-white/70 tracking-widest mb-3 uppercase">Our People</p>
           <h1 className="text-3xl lg:text-5xl font-display font-bold text-white mb-4 max-w-2xl">
-            Meet the REMAX ZAM Sales Team
+            Meet the REMAX ZAM Team
           </h1>
           <p className="text-base text-white/80 font-body max-w-xl leading-relaxed mb-8">
-            A multilingual team of 8 specialist advisors across 12 languages and 40+ countries. Each agent brings deep community expertise, developer relationships, and a client-first approach to every transaction.
+            A team of specialist advisors built on a consultant-first growth model. We combine global REMAX expertise with deep Dubai market knowledge to deliver results for investors and buyers alike.
           </p>
           <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
             <Link to="/join">Join Our Team <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -177,76 +117,68 @@ export default function Team() {
       {/* Team Grid */}
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* CEO Feature Card */}
+          <div className="mb-12">
+            <div className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all flex flex-col md:flex-row">
+              <div className="relative md:w-80 shrink-0">
+                <img
+                  src={TEAM[0].photo}
+                  alt={TEAM[0].name}
+                  className="w-full h-72 md:h-full object-cover object-top"
+                  onError={(e) => { e.target.src = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg'; }}
+                />
+                <span className={`absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-white ${TEAM[0].badgeColor}`}>
+                  {TEAM[0].badge}
+                </span>
+              </div>
+              <div className="p-8 flex flex-col justify-center">
+                <h3 className="font-heading font-bold text-foreground text-2xl mb-1">{TEAM[0].name}</h3>
+                <p className="text-sm font-heading font-semibold text-accent mb-4">{TEAM[0].role}</p>
+                <p className="text-sm text-muted-foreground font-body leading-relaxed mb-6 max-w-xl">{TEAM[0].bio}</p>
+                <div className="flex gap-3">
+                  <a href={`tel:${TEAM[0].phone}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
+                    <Phone className="w-4 h-4" /> Call
+                  </a>
+                  <a href={`https://wa.me/${TEAM[0].whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors text-sm font-body text-muted-foreground hover:text-emerald-600">
+                    <MessageCircle className="w-4 h-4" /> WhatsApp
+                  </a>
+                  <a href={`mailto:${TEAM[0].email}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
+                    <Mail className="w-4 h-4" /> Email
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Consultants Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {agents.map(agent => (
+            {TEAM.slice(1).map(agent => (
               <div key={agent.name} className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all">
-                {/* Photo + Badge */}
                 <div className="relative">
-                  <img src={agent.photo} alt={agent.name} className="w-full h-64 object-cover object-top" />
+                  <img
+                    src={agent.photo}
+                    alt={agent.name}
+                    className="w-full h-64 object-cover object-top"
+                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'; }}
+                  />
                   <span className={`absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-white ${agent.badgeColor}`}>
                     {agent.badge}
                   </span>
-                  <div className="absolute bottom-3 right-3 bg-black/60 backdrop-blur-sm rounded-lg px-2.5 py-1.5 text-center">
-                    <p className="text-white font-heading font-bold text-sm">{agent.deals}</p>
-                    <p className="text-white/70 font-body text-[10px]">deals closed</p>
-                  </div>
                 </div>
-
-                {/* Info */}
                 <div className="p-5">
                   <h3 className="font-heading font-bold text-foreground text-lg mb-0.5">{agent.name}</h3>
-                  <p className="text-xs font-heading font-semibold text-accent mb-1">{agent.role}</p>
-                  <p className="text-[11px] text-muted-foreground font-body mb-3">{agent.rera} · {agent.experience} experience</p>
-                  <p className="text-xs text-muted-foreground font-body leading-relaxed mb-4">{agent.bio}</p>
-
-                  {/* Languages */}
-                  <div className="mb-3">
-                    <p className="text-[10px] font-heading font-semibold text-muted-foreground uppercase tracking-widest mb-1.5">Languages</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {agent.languages.map(l => (
-                        <span key={l} className="text-[10px] px-2 py-0.5 rounded-full bg-primary/8 text-primary border border-primary/20 font-heading font-medium">{l}</span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Specializations */}
-                  <div className="mb-3">
-                    <p className="text-[10px] font-heading font-semibold text-muted-foreground uppercase tracking-widest mb-1.5">Specializations</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {agent.specializations.map(s => (
-                        <Badge key={s} variant="secondary" className="text-[10px] font-body">{s}</Badge>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Communities */}
-                  <div className="mb-4">
-                    <p className="text-[10px] font-heading font-semibold text-muted-foreground uppercase tracking-widest mb-1.5">Key Communities</p>
-                    <p className="text-xs text-muted-foreground font-body">{agent.communities.join(' · ')}</p>
-                  </div>
-
-                  {/* Contact */}
+                  <p className="text-xs font-heading font-semibold text-accent mb-3">{agent.role}</p>
+                  <p className="text-xs text-muted-foreground font-body leading-relaxed mb-5">{agent.bio}</p>
                   <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border/50">
-                    <a
-                      href={`tel:${agent.phone}`}
-                      className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group"
-                    >
+                    <a href={`tel:${agent.phone}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
                       <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
                       <span className="text-[9px] font-body text-muted-foreground">Call</span>
                     </a>
-                    <a
-                      href={`https://wa.me/${agent.whatsapp.replace(/\s+/g, '').replace('+', '')}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group"
-                    >
+                    <a href={`https://wa.me/${agent.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
                       <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
                       <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
                     </a>
-                    <a
-                      href={`mailto:${agent.email}`}
-                      className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group"
-                    >
+                    <a href={`mailto:${agent.email}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
                       <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
                       <span className="text-[9px] font-body text-muted-foreground">Email</span>
                     </a>
@@ -265,7 +197,7 @@ export default function Team() {
             <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">Join the Team</p>
             <h2 className="text-3xl font-display font-bold text-foreground mb-3">Why Top Agents Choose REMAX ZAM</h2>
             <p className="text-sm text-muted-foreground font-body max-w-xl mx-auto">
-              We are actively recruiting experienced and ambitious real estate professionals. Here is what makes REMAX ZAM different from every other brokerage in Dubai.
+              We are actively recruiting experienced and ambitious real estate professionals. Build your business with the world's #1 real estate brand.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
