@@ -17,10 +17,10 @@ export default function ImageUploadSection({ propertyId, onImageUploaded }) {
     setUploadedImage(null);
 
     try {
-      const uploadRes = await base44.integrations.Core.UploadFile({ file });
+      const uploadRes = await base44.integrations.Core.UploadFile(file);
       const imageUrl = uploadRes.file_url;
 
-      await base44.asServiceRole.entities.Property.update(propertyId, { image_url: imageUrl });
+      await base44.entities.Property.update(propertyId, { image_url: imageUrl });
       setUploadedImage({ url: imageUrl, name: file.name });
 
       setTimeout(() => {
