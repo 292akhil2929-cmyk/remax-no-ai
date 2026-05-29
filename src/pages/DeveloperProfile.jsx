@@ -162,6 +162,7 @@ export default function DeveloperProfile() {
                 {developer.tier} — {developer.tierLabel}
               </div>
               <h1 className="text-4xl sm:text-5xl font-display font-black mb-3 text-foreground">{developer.name}</h1>
+              <Link to="/developers" className="inline-block mb-4 text-sm text-primary hover:underline font-body">← Back to All Developers</Link>
               <p className="text-lg text-muted-foreground font-body mb-6">{developer.tagline}</p>
               <div className="flex flex-wrap gap-6">
                 <div><p className="text-xs font-heading text-muted-foreground uppercase tracking-wider">Founded</p><p className="text-2xl font-display font-bold text-foreground">{developer.founded}</p></div>
@@ -294,6 +295,46 @@ export default function DeveloperProfile() {
                 </div>
               </motion.div>
             ))}
+          </div>
+        </section>
+
+        {/* Browse Other Developers */}
+        <section>
+          <h2 className="text-3xl font-display font-bold mb-8 text-foreground">Explore Other Top Developers</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {DEVELOPERS.filter(d => d.slug !== developerSlug).slice(0, 6).map(dev => (
+              <motion.div
+                key={dev.slug}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="group"
+              >
+                <Link
+                  to={`/developers/${dev.slug}`}
+                  className="block bg-card border border-border rounded-xl overflow-hidden hover:border-primary hover:shadow-md transition-all h-full"
+                >
+                  <div className="aspect-video overflow-hidden bg-secondary">
+                    <img src={dev.image} alt={dev.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform" />
+                  </div>
+                  <div className="p-4">
+                    <div className="inline-block mb-2 px-2 py-1 bg-emerald-50 text-emerald-700 rounded text-xs font-heading font-semibold">
+                      {dev.tier}
+                    </div>
+                    <h3 className="font-heading font-bold text-foreground mb-1 group-hover:text-primary transition-colors">{dev.name}</h3>
+                    <p className="text-sm text-muted-foreground font-body line-clamp-2 mb-3">{dev.tagline}</p>
+                    <div className="flex items-center gap-1 text-primary font-heading font-semibold text-xs">
+                      View Profile <ArrowRight className="w-3 h-3" />
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link to="/developers" className="inline-flex items-center gap-2 border border-primary text-primary hover:bg-primary hover:text-primary-foreground font-heading font-semibold px-8 py-3 rounded-xl transition-colors">
+              View All Developers <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </section>
 
