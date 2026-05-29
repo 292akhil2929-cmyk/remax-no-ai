@@ -25,7 +25,7 @@ const PROJECTS = [
     roi: '10% Guaranteed',
     area: '719 to 1,400 sqft',
     tag: '10 on 10 Plan',
-    image: 'https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=900&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/43ae51b62_generated_image.png',
     highlights: [
       '10% net ROI guaranteed for 10 years by contract',
       'Zero service charges for the full 10 year period',
@@ -46,7 +46,7 @@ const PROJECTS = [
     roi: '10% Guaranteed',
     area: 'From 450 sqft',
     tag: 'Low Entry Price',
-    image: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=900&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/31f67884a_generated_image.png',
     highlights: [
       'Most affordable entry point in the Dugasta portfolio',
       '10% guaranteed annual return for the first 5 years',
@@ -67,7 +67,7 @@ const PROJECTS = [
     roi: '9 to 10%',
     area: 'From 500 sqft',
     tag: 'Near Handover',
-    image: 'https://images.unsplash.com/photo-1597423498219-04418210827d?w=900&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/4859121f7_generated_image.png',
     highlights: [
       'Very close to handover, so you can start earning quickly',
       'International City consistently has the highest rental demand in Dubai',
@@ -88,7 +88,7 @@ const PROJECTS = [
     roi: '8 to 10%',
     area: 'From 700 sqft',
     tag: 'Exclusive via RE/MAX ZAM',
-    image: 'https://images.unsplash.com/photo-1546412414-8035e1776c9a?w=900&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/889d50666_generated_image.png',
     highlights: [
       'Available exclusively through RE/MAX ZAM before public launch',
       'Just 1% per month makes this one of the most accessible plans in Dubai',
