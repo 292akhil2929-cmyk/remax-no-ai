@@ -10,6 +10,7 @@ import {
   PlusCircle, ExternalLink, Calendar
 } from 'lucide-react';
 import moment from 'moment';
+import ImageUploadSection from '@/components/PropertyImageUpload';
 
 /* ── Import Listing from URL ─────────────────────────── */
 function ImportListingPanel() {
@@ -104,7 +105,8 @@ function ImportListingPanel() {
             <div><p className="text-xs text-emerald-600 font-body">Location</p><p className="font-heading font-medium text-foreground">{result.location}</p></div>
             <div><p className="text-xs text-emerald-600 font-body">Type</p><p className="font-heading font-medium text-foreground">{result.property_type}</p></div>
           </div>
-          <div className="flex gap-2">
+          <ImageUploadSection propertyId={result.id} onImageUploaded={() => { setUrl(''); setResult(null); }} />
+          <div className="flex gap-2 mt-3">
             <Button size="sm" variant="outline" className="text-xs" onClick={() => { setUrl(''); setResult(null); }}>
               Import Another
             </Button>
