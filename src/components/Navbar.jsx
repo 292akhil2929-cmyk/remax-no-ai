@@ -7,43 +7,43 @@ const NAV_GROUPS = [
   {
     label: 'Properties',
     items: [
-      { label: 'Buy a Property', path: '/properties', desc: 'Browse all available listings' },
-      { label: 'Off-Plan', path: '/off-plan', desc: 'New launches & pre-completion deals' },
-      { label: 'Sell Your Property', path: '/landlords', desc: 'Get a free valuation & list today' },
-      { label: 'Area Guides', path: '/area-guides', desc: 'Find the right community to invest in' },
+      { label: 'Browse Listings', path: '/properties', desc: 'Apartments, villas and commercial across Dubai' },
+      { label: 'Off-Plan', path: '/off-plan', desc: 'Buy before completion at launch pricing' },
+      { label: 'Sell With Us', path: '/landlords', desc: 'Free valuation and a clear plan to sell' },
+      { label: 'Area Guides', path: '/area-guides', desc: 'Which communities actually perform best' },
     ],
   },
   {
     label: 'Invest',
     items: [
-      { label: 'High ROI Properties', path: '/high-roi', desc: '7–11% yields — passive income opportunities' },
-      { label: 'Dugasta — Exclusive', path: '/dugasta', desc: '9–11% yields | 1% monthly plans | RE/MAX ZAM exclusive' },
-      { label: 'Golden Visa', path: '/golden-visa', desc: 'AED 2M+ — residency through property' },
-      { label: 'Off-Plan Projects', path: '/off-plan', desc: 'Buy before completion — launch pricing' },
+      { label: 'High Yield Properties', path: '/high-roi', desc: 'The communities and projects generating 7 to 11% returns' },
+      { label: 'Dugasta — Our Exclusive', path: '/dugasta', desc: '10% guaranteed for 10 years. No service charges. Full buyback.' },
+      { label: 'Golden Visa', path: '/golden-visa', desc: 'Invest AED 2M in property and get UAE residency for the family' },
+      { label: 'Off-Plan Projects', path: '/off-plan', desc: 'Get in early and lock in launch pricing before handover' },
     ],
   },
   {
     label: 'Insights',
     items: [
-      { label: 'Market Insights', path: '/insights', desc: 'Data, trends & analysis' },
-      { label: 'Developer Profiles', path: '/developers', desc: 'Track records, yields & payment plans' },
-      { label: 'Community Trends', path: '/area-guides', desc: 'Neighbourhood ROI & growth data' },
-      { label: 'Blog & Guides', path: '/blog', desc: 'Investment guides & market news' },
+      { label: 'Market Insights', path: '/insights', desc: 'What the data is saying about the Dubai market right now' },
+      { label: 'Developer Profiles', path: '/developers', desc: 'Who to trust, who to avoid, and what each one actually delivers' },
+      { label: 'Community Guides', path: '/area-guides', desc: 'Yield, growth and lifestyle by neighbourhood' },
+      { label: 'Blog', path: '/blog', desc: 'Plain-English guides for Dubai property investors' },
     ],
   },
   {
     label: 'Resources',
     items: [
-      { label: 'Our Services', path: '/services', desc: 'What we handle for you end-to-end' },
-      { label: 'Join as an Agent', path: '/join', desc: 'Partner with RE/MAX ZAM Dubai' },
+      { label: 'What We Do', path: '/services', desc: 'Everything we handle so you do not have to' },
+      { label: 'Join as an Agent', path: '/join', desc: 'Work with one of the most active teams in Dubai' },
     ],
   },
   {
     label: 'Company',
     items: [
-      { label: 'About RE/MAX ZAM', path: '/about', desc: 'Our story, mission & values' },
-      { label: 'Our Team', path: '/team', desc: 'Meet the advisors behind the brand' },
-      { label: 'Contact Us', path: '/contact', desc: 'Get in touch with our team' },
+      { label: 'About Us', path: '/about', desc: 'Who we are and why we do things differently' },
+      { label: 'The Team', path: '/team', desc: 'The advisors you will actually be working with' },
+      { label: 'Contact', path: '/contact', desc: 'Call, message or come in. We are easy to reach.' },
     ],
   },
 ];
