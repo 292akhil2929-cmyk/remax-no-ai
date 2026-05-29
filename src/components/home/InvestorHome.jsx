@@ -181,14 +181,14 @@ export default function InvestorHome() {
                 Build Your<br />Dubai Portfolio
               </h2>
               <p className="text-gray-400 font-body text-sm leading-relaxed mb-8">
-                Our senior advisors analyze your goals, risk appetite and timeline — then match you with properties that deliver real, measurable returns.
+                Our senior advisors will sit down with you, understand what you are trying to achieve, and show you exactly which properties match your budget and goals. No jargon, no pressure.
               </p>
               <ul className="space-y-4">
                 {[
-                  'Personalized ROI analysis for your exact budget',
-                  'Off-plan vs ready: honest comparison',
-                  'Golden Visa pathway & tax-free income structuring',
-                  'No obligation — free 30-minute strategy session',
+                  'ROI analysis based on your actual budget and timeline',
+                  'An honest comparison of off-plan versus ready property',
+                  'Golden Visa pathway and tax-free income structuring',
+                  'Free 30-minute strategy session with no obligation',
                 ].map(item => (
                   <li key={item} className="flex items-start gap-3 text-sm text-gray-300 font-body">
                     <span className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-white text-xs shrink-0 mt-0.5">✓</span>

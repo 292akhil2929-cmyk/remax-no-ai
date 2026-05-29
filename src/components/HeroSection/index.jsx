@@ -106,7 +106,7 @@ export default function HeroSection() {
               </h1>
 
               {/* Subheading */}
-              <p className="text-white/60 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-md">
+              <p className="text-white/60 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-md leading-relaxed">
                 {content.sub}
               </p>
 

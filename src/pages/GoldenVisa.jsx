@@ -6,16 +6,16 @@ const steps = [
   { step: '01', title: 'Choose a Qualifying Property', desc: 'Purchase a residential property worth AED 2 million or more from an approved developer or on the secondary market. Off-plan properties from DLD-registered developers also qualify.' },
   { step: '02', title: 'Register with Dubai Land Department', desc: 'Complete the property transfer and receive your official Title Deed from the Dubai Land Department (DLD). Your agent handles all paperwork and DLD fees (4% of property value).' },
   { step: '03', title: 'Apply for UAE Residence Visa', desc: 'Submit your Golden Visa application through the UAE Federal Authority for Identity and Citizenship (ICA) or the General Directorate of Residency and Foreigners Affairs (GDRFA). Our team handles the entire application on your behalf.' },
-  { step: '04', title: 'Medical & Emirates ID', desc: 'Complete a medical fitness test at an approved UAE health centre and provide biometric data for your Emirates ID — the official UAE national identity card.' },
+  { step: '04', title: 'Medical Check and Emirates ID', desc: 'You will complete a straightforward medical fitness test at an approved UAE health centre and provide biometric data for your Emirates ID, which is the national identity card for UAE residents.' },
   { step: '05', title: 'Receive Your 10-Year Visa', desc: 'Your UAE 10-year Golden Visa is issued. You can now sponsor your spouse, children under 25, and household staff. The visa is renewable as long as you maintain the qualifying investment.' },
 ];
 
 const faqs = [
   { q: 'Who is eligible for the UAE Golden Visa through real estate?', a: 'Any foreign national who purchases a completed or off-plan residential property in Dubai (or the wider UAE) with a minimum value of AED 2 million is eligible to apply. The property can be purchased with a mortgage, provided the investor has already paid at least AED 2 million towards the purchase price.' },
   { q: 'Can I sponsor my family on the Golden Visa?', a: 'Yes. The UAE Golden Visa allows you to sponsor your spouse, children (up to 25 years old, or any age if disabled), and domestic helpers regardless of nationality. There is no minimum salary requirement for Golden Visa holders to sponsor family members.' },
-  { q: 'Do I need to live in Dubai to maintain the Golden Visa?', a: 'No. Unlike standard UAE residence visas which lapse after 180 days outside the UAE, the Golden Visa has no such restriction. You can live outside the UAE indefinitely while maintaining your visa status, provided you renew on schedule.' },
+  { q: 'Do I need to actually live in Dubai to keep the Golden Visa?', a: 'No. Regular UAE residence visas lapse after 180 days outside the country, but the Golden Visa is different. You can live anywhere in the world and your visa remains valid, as long as you renew it on time.' },
   { q: 'Can I buy multiple properties to reach the AED 2M threshold?', a: 'Yes. Multiple properties can be combined to reach the AED 2 million minimum, provided they are all completed and title deeds are issued. Off-plan units under construction require a letter from the developer confirming the purchase value.' },
-  { q: 'What are the total costs of getting a Golden Visa through real estate?', a: 'Beyond the property price, expect to pay: 4% DLD transfer fee, AED 580 title deed issuance fee, and approximately AED 5,000 to 10,000 in visa processing fees. REMAX ZAM advisory service includes full visa facilitation support at no additional cost when you purchase through us.' },
+  { q: 'What are the total costs involved beyond the property price?', a: 'You should budget for a 4% DLD transfer fee, an AED 580 title deed issuance fee, and roughly AED 5,000 to 10,000 in visa processing fees. When you purchase through RE/MAX ZAM, we handle the full visa application as part of our service at no extra cost.' },
   { q: 'Does the Golden Visa allow me to work in the UAE?', a: 'Yes. The UAE 10-year Golden Visa grants full residency rights including the right to work in the UAE without requiring a separate work permit or local employer sponsorship. You can also open a UAE bank account, register a business, and access UAE government services.' },
 ];
 
@@ -39,7 +39,7 @@ export default function GoldenVisa() {
             UAE 10-Year Golden Visa Through Real Estate Investment
           </h1>
           <p className="text-base text-white/80 font-body max-w-xl leading-relaxed mb-8">
-            Invest AED 2 million or more in Dubai property and secure long-term UAE residency for you and your family — with zero income tax, full property ownership, and no sponsor required.
+            Invest AED 2 million or more in Dubai property and you and your whole family can call the UAE home. No income tax. No sponsor. Full property ownership. A 10-year visa that renews as long as you hold the investment.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
             <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
@@ -84,7 +84,7 @@ export default function GoldenVisa() {
           <div className="text-center mb-12">
             <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">The Process</p>
             <h2 className="text-3xl font-display font-bold text-foreground mb-3">How to Get Your UAE Golden Visa — Step by Step</h2>
-            <p className="text-sm text-muted-foreground font-body">REMAX ZAM manages every step of the process on your behalf. Average processing time: 4–8 weeks from property purchase.</p>
+            <p className="text-sm text-muted-foreground font-body">RE/MAX ZAM manages every step of this process on your behalf. From start to finish it typically takes 4 to 8 weeks after your property purchase completes.</p>
           </div>
           <div className="space-y-6">
             {steps.map(s => (
@@ -105,7 +105,7 @@ export default function GoldenVisa() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-display font-bold mb-3">Properties That Qualify for the Golden Visa</h2>
           <p className="text-white/75 font-body text-sm max-w-2xl mx-auto mb-6">
-            Any completed or off-plan Dubai property worth AED 2M+ from a DLD-registered developer qualifies. Browse our curated selection of Golden Visa-eligible properties.
+            Any completed or off-plan Dubai property worth AED 2 million or more from a DLD-registered developer qualifies. Take a look at what we currently have available.
           </p>
           <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
             <Link to="/properties">Browse Qualifying Properties <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -135,7 +135,7 @@ export default function GoldenVisa() {
       <section className="py-14 bg-primary text-white text-center">
         <div className="max-w-2xl mx-auto px-4">
           <h2 className="text-2xl lg:text-3xl font-display font-bold mb-3">Ready to Secure Your UAE Golden Visa?</h2>
-          <p className="text-white/75 font-body mb-7 text-sm">Our Golden Visa specialists will guide you from property selection to visa issuance — at no additional cost.</p>
+          <p className="text-white/75 font-body mb-7 text-sm">Our Golden Visa team handles everything from finding the right property through to your visa being issued. There is no extra charge for this service.</p>
           <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
             <Link to="/contact">Speak to a Golden Visa Specialist</Link>
           </Button>

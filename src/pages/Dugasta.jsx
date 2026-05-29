@@ -19,28 +19,28 @@ const PROJECTS = [
     community: 'Dubailand Residence Complex',
     type: 'Apartments',
     priceFrom: 'AED 634,000',
-    bedrooms: '1–3 BR',
+    bedrooms: '1 to 3 BR',
     handover: 'Q2 2027',
     paymentPlan: '5-Year Post-Handover Plan',
     roi: '10% Guaranteed',
-    area: '719–1,400 sqft',
+    area: '719 to 1,400 sqft',
     tag: '10 on 10 Plan',
     image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&q=80',
     highlights: [
-      '10% net ROI guaranteed for 10 years',
-      'Zero service charges for 10 years',
+      '10% net ROI guaranteed for 10 years by contract',
+      'Zero service charges for the full 10 year period',
       '100% buyback option after 10 years',
-      '22 mins to Burj Khalifa, 23 mins to Dubai Airport',
-      '12 floors | 430,000+ sqft total area | 400+ parking spaces',
+      '22 minutes to Burj Khalifa, 23 minutes to Dubai Airport',
+      '12 floors with over 400 parking spaces on site',
     ],
-    description: 'Terra Tower is Dugasta\'s flagship investment product in Dubailand Residence Complex — a premium off-plan project with 12 floors, world-class amenities, and the full "10 on 10" guarantee package.',
+    description: 'Terra Tower is the flagship Dugasta project in Dubailand Residence Complex. It comes with the full 10 on 10 package including 12 floors, resort-style amenities and a payment plan that runs 5 years post-handover.',
   },
   {
     name: 'Al Haseen Residences',
-    community: 'Dubai South — Industrial City',
+    community: 'Dubai South, Industrial City',
     type: 'Apartments',
     priceFrom: 'AED 477,000',
-    bedrooms: 'Studio–2 BR',
+    bedrooms: 'Studio to 2 BR',
     handover: 'Q3 2027',
     paymentPlan: 'Flexible Payment Plan',
     roi: '10% Guaranteed',
@@ -48,82 +48,82 @@ const PROJECTS = [
     tag: 'Low Entry Price',
     image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
     highlights: [
-      'Lowest entry point in the Dugasta portfolio',
-      '10% guaranteed annual ROI for 5 years',
-      'Zero service charges + 100% buyback option',
-      'Dubai South — Expo City & Al Maktoum Airport corridor',
-      'Strong rental demand from industrial & airport workers',
+      'Most affordable entry point in the Dugasta portfolio',
+      '10% guaranteed annual return for the first 5 years',
+      'No service charges and 100% buyback included',
+      'Positioned in the heart of the Dubai South growth corridor near Expo City',
+      'Strong ongoing demand from airport and industrial zone workers',
     ],
-    description: 'Al Haseen Residences targets the rapidly growing Dubai South corridor — home to Expo City and the new Al Maktoum International Airport, one of Dubai\'s biggest infrastructure bets.',
+    description: 'Al Haseen Residences is located in Dubai South, right in the middle of one of the city\'s biggest growth stories. With the new Al Maktoum International Airport nearby, this corridor is only going to get busier.',
   },
   {
     name: 'Moonsa Residences 2',
     community: 'International City (Warsan Fourth)',
     type: 'Apartments',
     priceFrom: 'AED 540,000',
-    bedrooms: 'Studio–1 BR',
+    bedrooms: 'Studio to 1 BR',
     handover: 'Q4 2026',
     paymentPlan: 'Post-Handover Plan',
-    roi: '9–10%',
+    roi: '9 to 10%',
     area: 'From 500 sqft',
     tag: 'Near Handover',
     image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80',
     highlights: [
-      'Near handover — strong immediate resale opportunity',
-      'International City — consistently highest rental demand in Dubai',
-      'Average occupancy rate 95%+ in the community',
-      'Ideal for buy-to-rent investors seeking immediate income',
-      'RERA-regulated escrow, DLD-registered project',
+      'Very close to handover, so you can start earning quickly',
+      'International City consistently has the highest rental demand in Dubai',
+      'Average occupancy sits above 95% in this community',
+      'Perfect for investors who want rental income without a long wait',
+      'Fully registered with RERA and DLD escrow protected',
     ],
-    description: "Moonsa Residences 2 sits in International City — Dubai's highest-occupancy residential community. Near-handover status means investors can start earning rental income within months.",
+    description: "Moonsa Residences 2 is in International City, which has one of the highest occupancy rates in all of Dubai. Because it's so close to handover, investors can realistically start earning rental income within a few months.",
   },
   {
     name: 'Weybridge Gardens 3',
     community: 'Dubailand',
     type: 'Apartments',
     priceFrom: 'AED 650,000',
-    bedrooms: '1–2 BR',
+    bedrooms: '1 to 2 BR',
     handover: 'Q2 2027',
     paymentPlan: '1% Monthly Post-Handover',
-    roi: '8–10%',
+    roi: '8 to 10%',
     area: 'From 700 sqft',
-    tag: 'Exclusive — RE/MAX ZAM',
+    tag: 'Exclusive via RE/MAX ZAM',
     image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80',
     highlights: [
-      'RE/MAX ZAM exclusive sales access — pre-launch pricing',
-      '1% monthly payment plan — most accessible in Dubai',
-      'Smart home features & modern finish throughout',
-      'Proven community demand in Dubailand catchment',
-      'Strong capital appreciation expected at handover',
+      'Available exclusively through RE/MAX ZAM before public launch',
+      'Just 1% per month makes this one of the most accessible plans in Dubai',
+      'Smart home features and high quality finish throughout',
+      'Dubailand is seeing strong and consistent rental demand',
+      'Good capital appreciation expected by the time of handover',
     ],
-    description: 'Weybridge Gardens 3 is available exclusively through RE/MAX ZAM before public launch. The 1% monthly payment plan makes it one of the most accessible entry points for first-time Dubai investors.',
+    description: 'Weybridge Gardens 3 is only available through RE/MAX ZAM right now. The 1% monthly payment plan is genuinely one of the most accessible structures in the market, making it a great starting point for first-time Dubai investors.',
   },
 ];
 
 const FAQS = [
   {
-    q: 'What is the Dugasta "10 on 10" plan exactly?',
-    a: 'The "10 on 10" plan guarantees investors 10% net ROI per year for 10 consecutive years — contractually, not a projection. On top of that, Dugasta waives all service charges for 10 years, and offers a 100% buyback option after the 10-year period, giving investors a clear exit strategy.',
+    q: 'What exactly is the 10 on 10 plan?',
+    a: 'It means Dugasta contractually guarantees you 10% net return on your investment every year for 10 years. This is not a projection or an estimate. It is written into your Sales Purchase Agreement. They also waive all service charges for the same 10 year period, and at the end they give you the option to sell the unit back to them at your original purchase price.',
   },
   {
-    q: 'How is 10% guaranteed when market yields average 7–8%?',
-    a: "Dugasta achieves this through City Towers Real Estate, their parent company which has managed Dubai property since the 1990s. By managing the rentals in-house and absorbing the cost difference, Dugasta backs the guarantee contractually. The developer — not the investor — carries the risk of vacancy or shortfall. This is the core of the investor-first model.",
+    q: 'How can they guarantee 10% when most Dubai apartments yield 7 to 8%?',
+    a: "Good question. Dugasta's parent company is City Towers Real Estate, which has been managing residential properties in Dubai since 1991. Because they manage all the rentals themselves in-house, they absorb any shortfall between what the market generates and what they've promised you. The risk sits with the developer, not with you.",
   },
   {
-    q: 'What happens after 10 years?',
-    a: 'After the 10-year period, investors have three options: (1) continue to hold and earn market-rate rents, (2) sell on the secondary market — by which point the capital appreciation is typically significant, or (3) exercise the 100% buyback option where Dugasta repurchases the unit at the original purchase price.',
+    q: 'What happens at the end of the 10 years?',
+    a: "You have three choices. You can keep the property and continue earning rental income at whatever the market rate is at that time. You can sell it on the open market, where prices are typically much higher after a decade of Dubai growth. Or you can take Dugasta up on the 100% buyback option and have them repurchase it at your original purchase price. That buyback option is your safety net.",
   },
   {
-    q: 'Are service charges really zero?',
-    a: 'Yes. Dugasta absorbs all service charges — typically 1–1.5% of property value per year — for the full 10-year period. This adds effectively 1.5% to your net annual return on top of the guaranteed 10%, making the total value proposition closer to 11–11.5% annually.',
+    q: 'Are the zero service charges really free?',
+    a: "Yes. Dugasta covers all service charges for the full 10 years. Service charges in Dubai typically run at around 1.5% of property value per year, so this is a real saving that adds meaningful value on top of your guaranteed return. When you factor it in, your effective annual return is closer to 11 or 11.5%.",
   },
   {
-    q: 'Is this RERA-regulated and legally binding?',
-    a: 'All Dugasta projects are registered with the Real Estate Regulatory Agency (RERA) and buyer funds are held in DLD-regulated escrow accounts. The ROI guarantee and zero service charge commitment are embedded in the Sales Purchase Agreement (SPA) — they are legally binding contracts under UAE law.',
+    q: 'Is this legal and regulated?',
+    a: "Every Dugasta project is registered with RERA and your purchase funds are held in a DLD-regulated escrow account, as required by UAE law. The ROI guarantee and the service charge waiver are both included in your Sales Purchase Agreement. It is a legally binding contract, not a verbal promise.",
   },
   {
-    q: 'Who manages the rental after handover?',
-    a: "Dugasta's parent entity, City Towers Real Estate, manages the rental on the investor's behalf through their in-house property management division. This means zero management hassle for the investor — you own the asset and receive your guaranteed income.",
+    q: 'Who handles the tenants and the property after I buy?',
+    a: "City Towers Real Estate manages everything for you. They find the tenants, handle the rent collection, deal with maintenance, and make sure you receive your guaranteed income. You own the asset and watch the returns come in. You do not need to be in Dubai or manage anything yourself.",
   },
 ];
 
@@ -237,7 +237,7 @@ export default function Dugasta() {
               </h1>
 
               <p className="text-white/55 font-body text-base leading-relaxed mb-8 max-w-xl">
-                Dugasta Properties is the only Dubai developer offering a <strong className="text-white/80">contractually guaranteed 10% net ROI for 10 years</strong>, backed by City Towers Real Estate — Dubai's property management authority since 1991. Zero service charges. 100% buyback option. Zero investor stress.
+                Dugasta is the only developer in Dubai offering a <strong className="text-white/80">contractually guaranteed 10% return every year for 10 years.</strong> Behind this is City Towers Real Estate, a company that has been managing Dubai properties since 1991. No service charges. A 100% buyback at the end. You just collect the income.
               </p>
 
               {/* 3 pillars */}
@@ -270,7 +270,7 @@ export default function Dugasta() {
             <motion.div className="lg:col-span-2" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.2 }}>
               <div className="bg-white/[0.06] border border-white/10 rounded-2xl p-7 backdrop-blur-sm">
                 <h2 className="font-display font-black text-white text-2xl mb-1">Get the Full Brochure</h2>
-                <p className="text-white/35 font-body text-xs mb-6">Project details, ROI contracts & floor plans — sent directly.</p>
+                <p className="text-white/35 font-body text-xs mb-6">Drop your details and we'll send you the project brochure, ROI contract and floor plans.</p>
                 <DugastaLeadForm dark={true} />
               </div>
             </motion.div>
@@ -289,10 +289,10 @@ export default function Dugasta() {
                 Dugasta is Built on<br />35 Years of City Towers
               </h2>
               <p className="text-gray-500 font-body text-sm leading-relaxed mb-6">
-                Dugasta Properties is part of the <strong className="text-gray-800">City Towers Real Estate</strong> group — a Dubai property management and development company founded in 1991 by Tauseef Khan. For over three decades, City Towers has managed thousands of residential units across Dubai, giving Dugasta an unmatched understanding of rental markets, tenant demand, and asset management.
+                Dugasta is part of the <strong className="text-gray-800">City Towers Real Estate</strong> group, which was founded in Dubai in 1991 by Tauseef Khan. For over 30 years, City Towers has managed thousands of residential units across the city. That experience is exactly what makes the 10 on 10 guarantee possible.
               </p>
               <p className="text-gray-500 font-body text-sm leading-relaxed mb-8">
-                This is <em>why</em> the 10% ROI guarantee is possible: City Towers manages the rentals in-house. The developer absorbs any market shortfall — <strong className="text-gray-800">the investor receives their guaranteed income regardless of vacancy or market conditions</strong>.
+                Because City Towers manages all the rentals in-house, they control the income. If the market delivers less than 10%, they cover the difference. <strong className="text-gray-800">As the investor, you receive your guaranteed return no matter what the market does.</strong>
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -358,7 +358,7 @@ export default function Dugasta() {
               How the "10 on 10" Plan Works
             </h2>
             <p className="text-gray-500 font-body text-sm max-w-2xl mx-auto leading-relaxed">
-              This isn't a projection or a marketing estimate. It's a contractually binding guarantee embedded in the Sales Purchase Agreement under UAE law.
+              This is not a marketing projection. It is written into your Sales Purchase Agreement and is fully binding under UAE law.
             </p>
           </motion.div>
 
@@ -399,10 +399,10 @@ export default function Dugasta() {
           {/* 4 pillars */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { num: '01', title: '10% Net ROI / Year', desc: 'Contractually guaranteed in the SPA. Paid annually to the investor regardless of market conditions, vacancy, or rental rates.' },
-              { num: '02', title: 'Zero Service Charges', desc: "Dugasta absorbs all service charges for 10 years. At ~1.5% p.a., this adds effectively an extra 1.5% to your real annual return — making it closer to 11.5% total.", },
-              { num: '03', title: 'City Towers Manages It', desc: "Dugasta's parent company City Towers Real Estate (est. 1991) manages all rentals in-house. You own the asset, they handle everything — zero landlord stress.", },
-              { num: '04', title: '100% Buyback Option', desc: 'After 10 years, Dugasta will repurchase your unit at the original purchase price — guaranteed. This creates a risk-free floor under your investment.' },
+              { num: '01', title: '10% Return Every Year', desc: 'This is written into your contract. You get 10% of your purchase price paid out annually, regardless of what the rental market does.' },
+              { num: '02', title: 'No Service Charges', desc: "Dugasta covers all service charges for the full 10 years. That typically saves you another 1.5% a year on top, bringing your real effective return closer to 11.5%." },
+              { num: '03', title: 'Fully Managed for You', desc: "City Towers Real Estate, which has been operating in Dubai since 1991, handles all tenants and maintenance. You own it, they run it." },
+              { num: '04', title: 'Buy It Back at the End', desc: "After 10 years, Dugasta will buy the unit back from you at the price you paid. You have a guaranteed exit whenever you want it." },
             ].map((p, i) => (
               <motion.div key={p.num} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
@@ -500,16 +500,16 @@ export default function Dugasta() {
                 Exclusive Access.<br />No Extra Cost.
               </h2>
               <p className="text-gray-600 font-body text-sm leading-relaxed mb-6">
-                RE/MAX ZAM is Dugasta's exclusive sales partner in Dubai. This means you get first access to new unit releases, pre-launch pricing, and a dedicated advisor who knows every project inside out — at no additional cost to you.
+                RE/MAX ZAM is the exclusive sales partner for Dugasta in Dubai. That means you can access units before they go on the open market, at launch pricing, with a dedicated advisor who knows these projects inside and out. And it costs you nothing extra.
               </p>
               <ul className="space-y-3">
                 {[
-                  'Pre-launch inventory before public release',
-                  'Full ROI contract review with no surprises',
-                  'Zero agency commission on Dugasta direct purchases',
-                  'End-to-end process: from unit selection to DLD registration',
-                  'Post-handover property management support via City Towers',
-                ].map(item => (
+                   'See available units before they go public',
+                   'Full ROI contract walkthrough so you know exactly what you are signing',
+                   'No agency commission on Dugasta purchases',
+                   'We handle everything from unit selection through to DLD registration',
+                   'Post-handover management handled by City Towers',
+                 ].map(item => (
                   <li key={item} className="flex items-center gap-3 text-sm text-gray-700 font-body">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" /> {item}
                   </li>
@@ -550,7 +550,7 @@ export default function Dugasta() {
               Talk to Our Dugasta<br />Investment Specialist Today
             </h2>
             <p className="text-gray-400 font-body text-sm mb-10 max-w-xl mx-auto leading-relaxed">
-              Our team has deep knowledge of every Dugasta project, payment structure, and ROI contract. Let us walk you through the full investment opportunity — at zero cost.
+              Our team knows every Dugasta project inside out. We can walk you through the numbers, the contracts and the payment options. No pressure, no cost.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://wa.me/971508794494?text=Hi, I want to learn more about Dugasta 10 on 10 plan" target="_blank" rel="noopener noreferrer"

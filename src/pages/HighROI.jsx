@@ -4,18 +4,18 @@ import { TrendingUp, PiggyBank, Shield, ArrowRight, CheckCircle2, MapPin, Star }
 import LeadCaptureForm from '@/components/LeadCaptureForm';
 
 const TOP_AREAS = [
-  { area: 'JVC', avgYield: '8.2%', avgPrice: 'AED 950/sqft', type: 'Apartments', why: 'Strong rental demand from young professionals and proximity to major highways.' },
-  { area: 'Business Bay', avgYield: '7.8%', avgPrice: 'AED 1,480/sqft', type: 'Apartments & Offices', why: "Dubai's prime CBD — perpetual corporate rental demand and strong short-term rental yields." },
-  { area: 'Dubai Marina', avgYield: '7.4%', avgPrice: 'AED 1,650/sqft', type: 'Apartments', why: 'Waterfront lifestyle and tourist appeal drive strong Airbnb and annual rental performance.' },
-  { area: 'Al Warsan / Dubailand', avgYield: '9–11%', avgPrice: 'AED 650/sqft', type: 'Apartments', why: 'Low entry price + high rental demand from an underserved catchment = highest yields in Dubai.' },
-  { area: 'International City', avgYield: '9.5%', avgPrice: 'AED 480/sqft', type: 'Apartments', why: 'Lowest entry price in Dubai with consistently high occupancy rates — ideal for yield-first investors.' },
-  { area: 'Arjan / Motor City', avgYield: '8.0%', avgPrice: 'AED 850/sqft', type: 'Apartments', why: 'Growing infrastructure and strong school catchment drive family-focused rental demand year-round.' },
+  { area: 'JVC', avgYield: '8.2%', avgPrice: 'AED 950/sqft', type: 'Apartments', why: 'Young professionals keep JVC consistently tenanted. Affordable entry, strong demand and easy highway access make this one of the most popular yield plays in Dubai.' },
+  { area: 'Business Bay', avgYield: '7.8%', avgPrice: 'AED 1,480/sqft', type: 'Apartments and Offices', why: "Business Bay never sleeps. Corporate tenants, short-term rentals and proximity to Downtown mean demand here is practically permanent." },
+  { area: 'Dubai Marina', avgYield: '7.4%', avgPrice: 'AED 1,650/sqft', type: 'Apartments', why: 'Tourists, expats and short-term rental guests all want to be in the Marina. Airbnb performs exceptionally well here and long-term tenants rarely leave.' },
+  { area: 'Al Warsan and Dubailand', avgYield: '9 to 11%', avgPrice: 'AED 650/sqft', type: 'Apartments', why: 'Lower purchase prices combined with a growing population of working professionals create some of the best yields in the entire city.' },
+  { area: 'International City', avgYield: '9.5%', avgPrice: 'AED 480/sqft', type: 'Apartments', why: "The most affordable area in Dubai with one of the highest occupancy rates. It's not glamorous but the numbers are hard to argue with." },
+  { area: 'Arjan and Motor City', avgYield: '8.0%', avgPrice: 'AED 850/sqft', type: 'Apartments', why: 'Families love this area for the schools and greenery. Rental demand is stable, consistent and growing as infrastructure continues to improve.' },
 ];
 
 const ROI_TYPES = [
-  { icon: PiggyBank, title: 'Rental Yield', desc: 'Earn 7–11% annually from long-term tenants. Dubai has zero rental income tax — every dirham you earn, you keep.' },
-  { icon: TrendingUp, title: 'Capital Appreciation', desc: 'Dubai property values rose 20%+ in 2023–2024. Off-plan investors in high-growth areas can capture 30–40% appreciation by handover.' },
-  { icon: Star, title: 'Short-Term Rentals', desc: 'Platforms like Airbnb generate 15–25% gross yields in Marina, JBR, and Downtown. Fully legal with a DTCM holiday home permit.' },
+  { icon: PiggyBank, title: 'Rental Yield', desc: 'Collect 7 to 11% annually from long-term tenants. Dubai charges zero income tax on rent, so every dirham of income is yours to keep.' },
+  { icon: TrendingUp, title: 'Capital Appreciation', desc: 'Dubai property values grew by over 20% in 2023 and 2024. Investors who bought off-plan in the right areas are seeing 30 to 40% gains by handover.' },
+  { icon: Star, title: 'Short-Term Rentals', desc: 'Airbnb and holiday homes generate 15 to 25% gross yields in areas like Marina, JBR and Downtown. All you need is a DTCM holiday home permit, which is straightforward to get.' },
 ];
 
 export default function HighROI() {
@@ -41,7 +41,7 @@ export default function HighROI() {
               <span className="block text-3xl sm:text-4xl text-amber-400 font-light italic mt-2">7–11% Returns. Zero Tax.</span>
             </h1>
             <p className="text-white/60 font-body text-base leading-relaxed mb-10 max-w-xl">
-              Dubai is the world's top-performing major real estate market. Zero income tax on rents. Exceptional infrastructure. A city that never stops attracting global talent, tourists, and business — all driving your rental income.
+              Dubai keeps outperforming every other major property market in the world. No tax on rental income. World-class infrastructure. A city that genuinely never stops growing. Every year more businesses, tourists and residents arrive, and they all need somewhere to live.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-black font-heading font-bold text-sm px-8 py-4 rounded-xl hover:bg-gray-100 transition-all">
@@ -63,7 +63,7 @@ export default function HighROI() {
               { value: '0%', label: 'Income Tax on Rental Returns', source: 'UAE Gov' },
               { value: '7–11%', label: 'Average Net Rental Yield', source: 'RERA/DLD' },
               { value: '20%+', label: 'Capital Growth (2023–24)', source: 'DLD' },
-              { value: '3.5M+', label: 'Dubai Population — Growing', source: 'DSC' },
+              { value: '3.5M+', label: 'Dubai Population and Growing Fast', source: 'DSC' },
             ].map(s => (
               <div key={s.label} className="shrink-0">
                 <p className="text-black font-display font-black text-2xl">{s.value}</p>
@@ -81,7 +81,7 @@ export default function HighROI() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
             <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Your Return Strategy</p>
             <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight max-w-xl">
-              Three Ways Dubai<br />Property Makes You Money
+              Three Ways Your<br />Money Works in Dubai
             </h2>
           </motion.div>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-8">
@@ -155,10 +155,10 @@ export default function HighROI() {
                 Dugasta Projects:<br />9–11% Yields
               </h2>
               <p className="text-gray-400 font-body text-sm leading-relaxed mb-6">
-                RE/MAX ZAM is the exclusive sales partner for Dugasta Properties — one of Dubai's fastest-growing off-plan developers. Dugasta's 1% monthly payment plans and Dubailand locations consistently deliver the highest rental yields in our portfolio.
+                RE/MAX ZAM is the exclusive sales partner for Dugasta in Dubai. Their 1% monthly payment plan and Dubailand locations consistently produce the highest rental yields we see across our entire portfolio.
               </p>
               <ul className="space-y-3 mb-8">
-                {['Access pre-launch inventory before public release', '1% monthly payment plans — lowest in the market', 'Yields of 9–11% verified by independent analysis', 'No agency fees on Dugasta direct purchases'].map(item => (
+                {['Get access to units before they go public', '1% per month is genuinely the most accessible plan in Dubai', 'Yields of 9 to 11% backed by a legally binding contract', 'No agency fees when you buy Dugasta through us'].map(item => (
                   <li key={item} className="flex items-center gap-3 text-sm text-gray-300 font-body">
                     <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" /> {item}
                   </li>
@@ -185,10 +185,10 @@ export default function HighROI() {
                 Get a Personalised<br />ROI Breakdown
               </h2>
               <p className="text-gray-500 font-body text-sm leading-relaxed mb-8">
-                Tell us your budget and goals. Our investment analysts will map out the exact communities, projects, and structures to maximise your return — at zero cost.
+                Share your budget and what you are hoping to achieve. Our team will put together a clear picture of exactly what is possible for you, with real numbers. No cost, no obligation.
               </p>
               <ul className="space-y-3">
-                {['Personalised yield projections for your budget', 'Off-plan vs ready — honest comparison', 'Best communities matched to your investment goal', 'Golden Visa eligibility check included'].map(item => (
+                {['Yield projections tailored to your actual budget', 'An honest comparison of off-plan versus ready property', 'Community recommendations matched to your goals', 'Golden Visa eligibility check included'].map(item => (
                   <li key={item} className="flex items-center gap-3 text-sm text-gray-600 font-body">
                     <span className="w-5 h-5 rounded-full border border-gray-200 flex items-center justify-center text-gray-800 text-xs shrink-0">✓</span>
                     {item}
