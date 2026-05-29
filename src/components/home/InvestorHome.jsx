@@ -55,18 +55,18 @@ export default function InvestorHome() {
       <MarketTicker />
 
       {/* ── FEATURED PROPERTIES ── */}
-      <section className="py-20 bg-[#0a0a0a]">
+      <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-end justify-between mb-12">
             <div>
-              <p className="text-white/30 font-body text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
+              <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
                 <Sparkles className="w-3 h-3 text-amber-500" /> Handpicked Listings
               </p>
-              <h2 className="text-4xl sm:text-5xl font-display font-black text-white leading-tight">
-                Premium<br />Properties
+              <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
+                Dubai's Most Attractive<br />Investment Opportunities
               </h2>
             </div>
-            <Link to="/properties" className="hidden sm:flex items-center gap-2 text-white/50 hover:text-white text-sm font-body transition-colors group">
+            <Link to="/properties" className="hidden sm:flex items-center gap-2 text-gray-400 hover:text-gray-900 text-sm font-body transition-colors group">
               View all listings <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -82,13 +82,13 @@ export default function InvestorHome() {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
               {[1, 2, 3].map(i => (
-                <div key={i} className="aspect-[4/3] bg-white/5 rounded-2xl animate-pulse" />
+                <div key={i} className="aspect-[4/3] bg-gray-100 rounded-2xl animate-pulse" />
               ))}
             </div>
           )}
 
           <div className="text-center mt-8 sm:hidden">
-            <Link to="/properties" className="inline-flex items-center gap-2 text-white/50 hover:text-white text-sm font-body">
+            <Link to="/properties" className="inline-flex items-center gap-2 text-gray-400 hover:text-gray-900 text-sm font-body">
               View all listings <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
