@@ -26,7 +26,7 @@ export default function HighROI() {
       <section className="relative py-28 overflow-hidden bg-[#0a0a0a]">
         <div
           className="absolute inset-0 bg-center bg-cover opacity-25"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1600&q=80)' }}
+          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80)' }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
         <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
@@ -169,7 +169,7 @@ export default function HighROI() {
               </Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <img src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=700&q=80" alt="Dugasta" className="w-full rounded-2xl object-cover aspect-[4/3]" />
+              <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=700&q=80" alt="Dubai investment property" className="w-full rounded-2xl object-cover aspect-[4/3]" />
             </motion.div>
           </div>
         </div>

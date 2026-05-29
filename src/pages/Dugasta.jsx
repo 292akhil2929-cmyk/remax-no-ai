@@ -25,7 +25,7 @@ const PROJECTS = [
     roi: '10% Guaranteed',
     area: '719 to 1,400 sqft',
     tag: '10 on 10 Plan',
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=900&q=80',
     highlights: [
       '10% net ROI guaranteed for 10 years by contract',
       'Zero service charges for the full 10 year period',
@@ -46,7 +46,7 @@ const PROJECTS = [
     roi: '10% Guaranteed',
     area: 'From 450 sqft',
     tag: 'Low Entry Price',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=900&q=80',
     highlights: [
       'Most affordable entry point in the Dugasta portfolio',
       '10% guaranteed annual return for the first 5 years',
@@ -67,7 +67,7 @@ const PROJECTS = [
     roi: '9 to 10%',
     area: 'From 500 sqft',
     tag: 'Near Handover',
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1597423498219-04418210827d?w=900&q=80',
     highlights: [
       'Very close to handover, so you can start earning quickly',
       'International City consistently has the highest rental demand in Dubai',
@@ -88,7 +88,7 @@ const PROJECTS = [
     roi: '8 to 10%',
     area: 'From 700 sqft',
     tag: 'Exclusive via RE/MAX ZAM',
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=900&q=80',
+    image: 'https://images.unsplash.com/photo-1546412414-8035e1776c9a?w=900&q=80',
     highlights: [
       'Available exclusively through RE/MAX ZAM before public launch',
       'Just 1% per month makes this one of the most accessible plans in Dubai',
@@ -218,7 +218,7 @@ export default function Dugasta() {
 
       {/* ── HERO ── */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-[#080808]">
-        <div className="absolute inset-0 bg-center bg-cover opacity-20" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=80)' }} />
+        <div className="absolute inset-0 bg-center bg-cover opacity-20" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=1920&q=80)' }} />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/30" />
         {/* Amber glow */}
         <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.12),transparent_60%)]" />

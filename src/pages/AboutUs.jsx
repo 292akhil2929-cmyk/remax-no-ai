@@ -7,42 +7,42 @@ const team = [
     name: 'Khaled Al Mansoori',
     role: 'Managing Director & Founder',
     bio: '15+ years in Dubai real estate. Former CBRE and JLL senior advisor. Specialist in off-plan and ultra-luxury investment portfolios for HNWI clients across Europe, Asia, and the Middle East.',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400',
+    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
     linkedin: '#',
   },
   {
     name: 'Sarah Thompson',
     role: 'Head of International Sales',
     bio: "12 years of experience placing international investors into Dubai's top-performing communities. Fluent in English, French, and Arabic. Previously with Knight Frank Dubai.",
-    image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=400',
+    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400',
     linkedin: '#',
   },
   {
     name: 'Ravi Sharma',
     role: 'Investment Strategy Director',
     bio: 'Former investment banker with 10 years in UAE real estate. Oversees portfolio analysis, ROI modelling, and asset management strategies for institutional and private clients.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400',
+    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400',
     linkedin: '#',
   },
   {
     name: 'Elena Kozlova',
     role: 'Senior Property Consultant',
     bio: 'Russian-speaking specialist with 8 years advising CIS investors on Dubai real estate. Expert in off-plan acquisitions, payment plans, and Golden Visa facilitation.',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400',
+    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400',
     linkedin: '#',
   },
   {
     name: 'Mohammed Al Rashid',
     role: 'Property Consultant — GCC Markets',
     bio: 'Specialist in GCC investor relations and luxury villa market. Manages relationships with leading developers including EMAAR, Nakheel, and DAMAC for exclusive early access opportunities.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
+    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400',
     linkedin: '#',
   },
   {
     name: 'Priya Nair',
     role: 'Client Relations & Golden Visa Specialist',
     bio: '7 years in UAE real estate and immigration advisory. Guides investors through the complete Golden Visa process from property selection to Emirates ID issuance.',
-    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=400',
+    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400',
     linkedin: '#',
   },
 ];
@@ -62,7 +62,7 @@ export default function AboutUs() {
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1400"
+          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400"
           alt="Dubai skyline"
           className="absolute inset-0 w-full h-full object-cover"
         />

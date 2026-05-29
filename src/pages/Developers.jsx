@@ -15,7 +15,7 @@ const DEVELOPERS = [
     tagline: 'They built Burj Khalifa, Downtown Dubai and Dubai Hills. The benchmark every other developer is measured against.',
     description: 'Emaar is the most trusted name in Dubai real estate. 25+ years of consistent delivery, a public listing on the DFM, and communities that consistently outperform on resale. If you want certainty, start here.',
     highlights: ['Listed on Dubai Financial Market (DFM)', '25+ years of on-time delivery', 'Best-in-class resale values'],
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80',
     currentProjects: [
       { name: 'The Oasis by Emaar', status: 'Selling', path: '/properties?developer=Emaar&community=The+Oasis' },
       { name: 'Emaar Beachfront', status: 'Selling', path: '/properties?developer=Emaar&community=Emaar+Beachfront' },
@@ -97,7 +97,7 @@ const DEVELOPERS = [
     tagline: 'The developer behind Bluewaters Island, City Walk and La Mer. Lifestyle destinations that command premium pricing.',
     description: 'Meraas is the lifestyle developer for Dubai. They create destinations first and residences second — which is why City Walk, Bluewaters and La Mer attract consistent premium pricing. Owning here means owning in a place people actually want to be.',
     highlights: ['Government-backed lifestyle destinations', 'Consistently above-market resale premiums', 'Unmatched retail, F&B and entertainment integration'],
-    image: 'https://images.unsplash.com/photo-1534240177524-30dc7a82f773?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
     currentProjects: [
       { name: 'Bluewaters Residences', status: 'Selling', path: '/properties?developer=Meraas&community=Bluewaters+Island' },
       { name: 'City Walk Residences', status: 'Selling', path: '/properties?developer=Meraas&community=City+Walk' },
@@ -117,7 +117,7 @@ const DEVELOPERS = [
     tagline: 'Abu Dhabi\'s largest developer, now building actively in Dubai. RERA-backed with a DFM listing.',
     description: "Aldar is the most prominent developer moving into Dubai from Abu Dhabi, bringing institutional credibility and a strong track record. Their Dubai launches — particularly in Yas Island expansions and new Dubai masterplans — have sold out quickly.",
     highlights: ['Listed on Abu Dhabi Securities Exchange', 'Strong government and institutional backing', 'Expanding aggressively into Dubai market'],
-    image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800&q=80',
     currentProjects: [
       { name: 'Aldar in Dubai Hills', status: 'Selling', path: '/properties?developer=Aldar&community=Dubai+Hills' },
       { name: 'Aldar Verdes', status: 'Selling', path: '/properties?developer=Aldar' },
@@ -156,7 +156,7 @@ const DEVELOPERS = [
     tagline: 'Known for striking architecture and high yields. Binghatti Bugatti is the most expensive apartment in Dubai history.',
     description: "Binghatti has built a name with distinctive architecture and strong yield performance. Their properties in Business Bay and Dubai Silicon Oasis attract investors looking for above-average returns. The Bugatti Residences placed them firmly on the global luxury map.",
     highlights: ['Above-market yields in key investment corridors', 'Distinctive architecture with strong brand recognition', 'Bugatti, Mercedes-Benz branded residences'],
-    image: 'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1546412414-8035e1776c9a?w=800&q=80',
     currentProjects: [
       { name: 'Binghatti Nova', status: 'Selling', path: '/properties?developer=Binghatti&community=JVC' },
       { name: 'Binghatti Skyrise', status: 'Selling', path: '/properties?developer=Binghatti&community=Business+Bay' },
@@ -176,7 +176,7 @@ const DEVELOPERS = [
     tagline: 'The best payment plans in the market. 1% per month makes entry accessible for first-time investors.',
     description: "Danube is one of the most investor-friendly developers in Dubai. Their 1% monthly payment plan has made Dubai property accessible to a much wider pool of buyers, and they consistently deliver on time. Strong yields across JVC, Arjan and Al Furjan.",
     highlights: ['Market-leading 1% monthly payment plans', 'Consistent on-time delivery track record', 'Ideal for first-time Dubai investors'],
-    image: 'https://images.unsplash.com/photo-1460317442991-0ec209397118?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=800&q=80',
     currentProjects: [
       { name: 'Fashionz by Danube', status: 'Selling', path: '/properties?developer=Danube&community=JVC' },
       { name: 'Pearlz by Danube', status: 'Selling', path: '/properties?developer=Danube&community=Al+Furjan' },
@@ -196,7 +196,7 @@ const DEVELOPERS = [
     tagline: 'One of Dubai Marina\'s most prolific developers. Six Senses Residences is their crown jewel.',
     description: "Select Group has defined large parts of Dubai Marina's skyline. They are responsible for some of the most desirable mid-to-luxury residential buildings along the waterfront. Their Six Senses Residences on Palm Jumeirah is one of the most anticipated launches in recent memory.",
     highlights: ['Strong track record in Dubai Marina and waterfront', 'Six Senses wellness residences — a market first', 'Consistent delivery with premium tenant demand'],
-    image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1587551123673-5005e9bd2e62?w=800&q=80',
     currentProjects: [
       { name: 'Six Senses Residences Palm', status: 'Selling', path: '/properties?developer=Select+Group&community=Palm+Jumeirah' },
       { name: 'The Edge', status: 'Selling', path: '/properties?developer=Select+Group&community=Business+Bay' },

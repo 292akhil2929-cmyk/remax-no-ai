@@ -25,7 +25,7 @@ export default function GoldenVisa() {
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1400"
+          src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1400"
           alt="UAE Golden Visa"
           className="absolute inset-0 w-full h-full object-cover"
         />

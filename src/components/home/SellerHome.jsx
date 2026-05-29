@@ -8,14 +8,14 @@ const STEPS = [
     step: '01',
     title: 'Free Property Valuation',
     desc: "We assess your property's market value using live DLD transaction data and comparable sales. No cost, no obligation.",
-    img: 'https://images.unsplash.com/photo-1560472355-536de3962603?w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80',
   },
   {
     icon: ClipboardList,
     step: '02',
     title: 'Professional Marketing',
     desc: 'HD photography, staging advice, and your property live across 40+ portals with targeted social campaigns.',
-    img: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+    img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80',
   },
   {
     icon: Search,
