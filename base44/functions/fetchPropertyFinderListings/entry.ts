@@ -47,6 +47,17 @@ Deno.serve(async (req) => {
       const locationMatch = block.match(/([^,]+),\s*([^,]+),\s*Dubai/);
       const location = locationMatch ? locationMatch[2].trim() : 'Dubai';
 
+      // Extract all images from the block
+      const imgRegex = /src=["']([^"']*\.(?:jpg|jpeg|png|webp)[^"']*)/gi;
+      const images = [];
+      let imgMatch;
+      while ((imgMatch = imgRegex.exec(block)) !== null) {
+        const imgUrl = imgMatch[1];
+        if (imgUrl && !images.includes(imgUrl)) {
+          images.push(imgUrl);
+        }
+      }
+
       listings.push({
         title: `${bedrooms > 0 ? bedrooms + ' BR' : 'Studio'} - ${title}`,
         price_aed: price,
@@ -58,6 +69,8 @@ Deno.serve(async (req) => {
         property_type: 'Apartment',
         source: 'PropertyFinder',
         featured: false,
+        image_url: images[0] || null,
+        gallery_images: images.slice(0, 20), // Store up to 20 images
       });
 
       if (listings.length >= 20) break;

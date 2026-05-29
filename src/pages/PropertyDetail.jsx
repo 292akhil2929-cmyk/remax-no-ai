@@ -9,6 +9,7 @@ import CurrencyConverter from '../components/CurrencyConverter';
 import MortgageCalculator from '../components/MortgageCalculator';
 import ROICalculator from '../components/ROICalculator';
 import PropertyInsightsPanel from '../components/PropertyInsightsPanel';
+import PropertyImageGallery from '../components/PropertyImageGallery';
 
 export default function PropertyDetail() {
   const { propertyId } = useParams();
@@ -35,13 +36,10 @@ export default function PropertyDetail() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Left: Property Details + Calculators */}
           <div className="lg:col-span-2 space-y-6">
-            <div className="aspect-video rounded-lg overflow-hidden bg-card border border-border/50">
-              {property.image_url ? (
-                <img src={property.image_url} alt={property.title} className="w-full h-full object-cover" />
-              ) : (
-                <div className="w-full h-full flex items-center justify-center text-muted-foreground">No Image</div>
-              )}
-            </div>
+            <PropertyImageGallery
+              images={property.gallery_images || (property.image_url ? [property.image_url] : [])}
+              title={property.title}
+            />
 
             <div>
               <div className="flex items-center gap-2 mb-2">
