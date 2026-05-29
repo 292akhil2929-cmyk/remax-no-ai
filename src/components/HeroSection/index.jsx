@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
 import { useAudience } from '@/lib/AudienceContext';
 
-const DUBAI_BG = 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=1920&q=95&auto=format&fit=crop';
+const DUBAI_BG = 'https://images.unsplash.com/photo-1518684945215-90f3d6c2e2d0?w=1920&q=95&auto=format&fit=crop';
 
 const communities = [
   'Downtown Dubai', 'Dubai Marina', 'Palm Jumeirah', 'Business Bay', 'Dubai Hills Estate',
