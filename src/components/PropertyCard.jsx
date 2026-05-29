@@ -5,6 +5,36 @@ import { Heart } from 'lucide-react';
 import { Bed, Bath, Maximize, TrendingUp } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 
+const LOCATION_IMAGES = {
+  'dubai marina': 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80',
+  'downtown dubai': 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=600&q=80',
+  'palm jumeirah': 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=600&q=80',
+  'business bay': 'https://images.unsplash.com/photo-1546412414-8035e1776c9a?w=600&q=80',
+  'jumeirah village circle': 'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=600&q=80',
+  'jvc': 'https://images.unsplash.com/photo-1560448204-603b3fc33ddc?w=600&q=80',
+  'dubai hills': 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=600&q=80',
+  'al furjan': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80',
+  'motor city': 'https://images.unsplash.com/photo-1582407947304-fd86f28f5b38?w=600&q=80',
+  'dubai sports city': 'https://images.unsplash.com/photo-1534240177524-30dc7a82f773?w=600&q=80',
+  'dubai land': 'https://images.unsplash.com/photo-1555636222-cae831e670b3?w=600&q=80',
+  'dubailand': 'https://images.unsplash.com/photo-1555636222-cae831e670b3?w=600&q=80',
+  'mirdif': 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80',
+  'arabian ranches': 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80',
+  'jumeirah': 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600&q=80',
+  'deira': 'https://images.unsplash.com/photo-1512918728675-ed5a9ecdebfd?w=600&q=80',
+  'bur dubai': 'https://images.unsplash.com/photo-1551038247-3d9af20df552?w=600&q=80',
+};
+
+const DEFAULT_FALLBACK = 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=600&q=80';
+
+function getFallbackImage(property) {
+  const loc = (property.location || property.community || '').toLowerCase();
+  for (const [key, url] of Object.entries(LOCATION_IMAGES)) {
+    if (loc.includes(key)) return url;
+  }
+  return DEFAULT_FALLBACK;
+}
+
 export default function PropertyCard({ property }) {
   const queryClient = useQueryClient();
 
@@ -42,13 +72,12 @@ export default function PropertyCard({ property }) {
     <Link to={`/properties/${property.id}`} className="group block">
       <div className="bg-card border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300">
         <div className="relative aspect-[4/3] overflow-hidden">
-          {property.image_url ? (
-            <img src={property.image_url} alt={property.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-          ) : (
-            <div className="w-full h-full bg-secondary flex items-center justify-center">
-              <span className="text-muted-foreground text-sm">No Image</span>
-            </div>
-          )}
+          <img
+            src={property.image_url || getFallbackImage(property)}
+            alt={property.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            onError={(e) => { e.target.src = DEFAULT_FALLBACK; }}
+          />
           <button
             onClick={toggleSave}
             className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center shadow transition-all ${
