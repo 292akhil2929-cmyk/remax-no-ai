@@ -168,11 +168,7 @@ export default function DubaiUnfiltered() {
   const [activeEpisode, setActiveEpisode] = useState(null);
   const featured = EPISODES.find(e => e.featured);
   const rest = EPISODES.filter(e => !e.featured);
-  const introVideo = {
-    title: 'Dubai Real Estate: The Unfiltered Truth (2026 Market Analysis)',
-    youtubeId: 'hum-yWzaMnY',
-    thumbnail: 'https://i.ytimg.com/vi/hum-yWzaMnY/maxresdefault.jpg',
-  };
+  const introVideo = { title: 'Dubai Real Estate: The Unfiltered Truth (2026 Market Analysis)', thumbnail: 'https://i.ytimg.com/vi/hum-yWzaMnY/maxresdefault.jpg' };
 
   return (
     <div className="min-h-screen bg-white">
@@ -225,12 +221,14 @@ export default function DubaiUnfiltered() {
           </motion.div>
 
           {/* Right — intro/trailer thumbnail */}
-          <motion.div
+          <motion.a
+            href="https://www.youtube.com/watch?v=hum-yWzaMnY"
+            target="_blank"
+            rel="noopener noreferrer"
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="relative group cursor-pointer"
-            onClick={() => setActiveEpisode(introVideo)}
+            className="relative group block"
           >
             <div className="relative rounded-2xl overflow-hidden aspect-video shadow-2xl ring-1 ring-white/10">
               <img
@@ -251,7 +249,7 @@ export default function DubaiUnfiltered() {
               </div>
             </div>
             <p className="text-white/30 font-body text-[10px] text-center mt-3 uppercase tracking-widest">The video that launched this initiative</p>
-          </motion.div>
+          </motion.a>
         </div>
       </section>
 
