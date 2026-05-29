@@ -28,6 +28,7 @@ const NAV_GROUPS = [
       { label: 'Developer Profiles', path: '/developers', desc: 'Who to trust, who to avoid, and what each one actually delivers' },
       { label: 'Area Guides', path: '/area-guides', desc: 'Yield, growth and lifestyle by neighbourhood' },
       { label: 'Blog', path: '/blog', desc: 'Plain-English guides for Dubai property investors' },
+      { label: 'Dubai Real Estate Unfiltered', path: '/dubai-real-estate-unfiltered', desc: 'Unscripted conversations with Dubai\'s top developers and market insiders' },
     ],
   },
   {
