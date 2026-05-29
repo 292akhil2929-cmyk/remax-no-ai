@@ -6,7 +6,7 @@ import { useAudience } from '@/lib/AudienceContext';
 
 const dropdownGroups = [
   {
-    label: 'Properties',
+    label: 'Buy & Rent',
     items: [
       { label: 'All Properties', path: '/properties' },
       { label: 'Off-Plan', path: '/off-plan' },
@@ -14,17 +14,16 @@ const dropdownGroups = [
     ],
   },
   {
-    label: 'Services',
+    label: 'Sell',
     items: [
-      { label: 'Golden Visa', path: '/golden-visa' },
       { label: 'For Landlords', path: '/landlords' },
       { label: 'Our Services', path: '/services' },
     ],
   },
   {
-    label: 'Resources',
+    label: 'Invest',
     items: [
-      { label: 'Blog', path: '/blog' },
+      { label: 'Golden Visa', path: '/golden-visa' },
       { label: 'Insights', path: '/insights' },
     ],
   },
@@ -33,15 +32,14 @@ const dropdownGroups = [
     items: [
       { label: 'About Us', path: '/about' },
       { label: 'Our Team', path: '/team' },
+      { label: 'Blog', path: '/blog' },
       { label: 'Join Us', path: '/join' },
     ],
   },
 ];
 
 const standaloneLinks = [
-  { label: 'Home', path: '/' },
-  { label: 'My Dashboard', path: '/dashboard' },
-  { label: 'Content Hub', path: '/admin/content' },
+  { label: 'Dashboard', path: '/dashboard' },
   { label: 'Contact', path: '/contact' },
 ];
 
@@ -60,15 +58,15 @@ function DropdownMenu({ group, location }) {
     <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(o => !o)}
-        className={`flex items-center gap-1 text-sm font-body font-medium transition-colors duration-200 ${
-          isActive ? 'text-[#B87333]' : 'text-gray-700 hover:text-black'
+        className={`flex items-center gap-1 text-sm font-body transition-colors duration-200 py-1 ${
+          isActive ? 'text-black font-semibold' : 'text-gray-600 hover:text-black'
         }`}
       >
         {group.label}
         <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
       {open && (
-        <div className="absolute top-full left-0 mt-2 w-44 bg-white rounded-lg shadow-xl border border-border/20 py-1 z-50">
+        <div className="absolute top-full left-0 mt-3 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 py-1.5 z-50">
           {group.items.map(item => (
             <Link
               key={item.path}
@@ -76,8 +74,8 @@ function DropdownMenu({ group, location }) {
               onClick={() => setOpen(false)}
               className={`block px-4 py-2.5 text-sm font-body transition-colors ${
                 location.pathname === item.path
-                  ? 'text-primary font-medium bg-primary/5'
-                  : 'text-foreground hover:bg-muted hover:text-primary'
+                  ? 'text-black font-medium'
+                  : 'text-gray-600 hover:text-black hover:bg-gray-50'
               }`}
             >
               {item.label}
@@ -95,30 +93,30 @@ export default function Navbar() {
   const { clearAudience } = useAudience();
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white border-b border-gray-200 shadow-sm">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-16 lg:h-[68px]">
+
+          {/* Logo */}
           <Link to="/" onClick={clearAudience} className="flex items-center shrink-0">
             <img
               src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/202b99f88_RemaxZamLogo.webp"
               alt="REMAX ZAM"
-              className="h-10 w-auto object-contain"
+              className="h-9 w-auto object-contain"
             />
           </Link>
 
-          {/* Desktop */}
-          <div className="hidden lg:flex items-center gap-6">
+          {/* Desktop Nav */}
+          <div className="hidden lg:flex items-center gap-7">
             {dropdownGroups.map(group => (
               <DropdownMenu key={group.label} group={group} location={location} />
             ))}
-            <div className="w-px h-4 bg-white/20" />
             {standaloneLinks.map(link => (
               <Link
                 key={link.path}
                 to={link.path}
-                onClick={link.label === 'Home' ? clearAudience : undefined}
-                className={`text-sm font-body font-medium transition-colors duration-200 ${
-                  location.pathname === link.path ? 'text-[#B87333]' : 'text-gray-700 hover:text-black'
+                className={`text-sm font-body transition-colors duration-200 ${
+                  location.pathname === link.path ? 'text-black font-semibold' : 'text-gray-600 hover:text-black'
                 }`}
               >
                 {link.label}
@@ -126,36 +124,38 @@ export default function Navbar() {
             ))}
           </div>
 
-          <div className="hidden lg:flex items-center">
+          {/* CTA */}
+          <div className="hidden lg:flex items-center gap-3">
             <Button
-              className="bg-[#B87333] hover:bg-[#A86228] text-white font-semibold rounded-lg border-0"
+              className="bg-black hover:bg-gray-800 text-white font-heading font-semibold rounded-xl border-0 px-5 text-sm"
               size="sm"
               asChild
             >
-              <Link to="/contact">Get Investment Advice</Link>
+              <Link to="/contact">Get Advice</Link>
             </Button>
           </div>
 
-          <button className="lg:hidden text-black" onClick={() => setOpen(!open)}>
+          {/* Mobile Toggle */}
+          <button className="lg:hidden text-black p-1" onClick={() => setOpen(!open)}>
             {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile */}
+      {/* Mobile Menu */}
       {open && (
-        <div className="lg:hidden bg-white border-t border-gray-200">
-          <div className="px-4 py-4 space-y-1">
+        <div className="lg:hidden bg-white border-t border-gray-100">
+          <div className="px-4 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
             {dropdownGroups.map(group => (
               <div key={group.label}>
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider px-2 pt-3 pb-1">{group.label}</p>
+                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2 pt-4 pb-1">{group.label}</p>
                 {group.items.map(item => (
                   <Link
                     key={item.path}
                     to={item.path}
                     onClick={() => setOpen(false)}
-                    className={`block py-2 px-2 text-sm font-body rounded transition-colors duration-200 ${
-                      location.pathname === item.path ? 'text-[#D4944F]' : 'text-blue-900 hover:text-blue-600'
+                    className={`block py-2.5 px-2 text-sm font-body rounded-lg transition-colors ${
+                      location.pathname === item.path ? 'text-black font-medium bg-gray-50' : 'text-gray-600 hover:text-black hover:bg-gray-50'
                     }`}
                   >
                     {item.label}
@@ -163,24 +163,21 @@ export default function Navbar() {
                 ))}
               </div>
             ))}
-            <div className="border-t border-white/10 pt-3 mt-2 space-y-1">
+            <div className="border-t border-gray-100 pt-3 mt-2 space-y-1">
               {standaloneLinks.map(link => (
                 <Link
                   key={link.path}
                   to={link.path}
-                  onClick={() => {
-                    setOpen(false);
-                    if (link.label === 'Home') clearAudience();
-                  }}
-                  className={`block py-2 px-2 text-sm font-body rounded transition-colors duration-200 ${
-                    location.pathname === link.path ? 'text-[#B87333]' : 'text-gray-700 hover:text-black'
+                  onClick={() => setOpen(false)}
+                  className={`block py-2.5 px-2 text-sm font-body rounded-lg transition-colors ${
+                    location.pathname === link.path ? 'text-black font-medium' : 'text-gray-600 hover:text-black hover:bg-gray-50'
                   }`}
                 >
                   {link.label}
                 </Link>
               ))}
             </div>
-            <Button className="w-full mt-3 bg-[#B87333] hover:bg-[#A86228] text-white font-semibold border-0" size="sm" asChild>
+            <Button className="w-full mt-3 bg-black hover:bg-gray-800 text-white font-semibold border-0 rounded-xl" size="sm" asChild>
               <Link to="/contact" onClick={() => setOpen(false)}>Get Investment Advice</Link>
             </Button>
           </div>
