@@ -60,7 +60,7 @@ function NavDropdown({ group, location }) {
   }, []);
 
   return (
-    <div className="relative" ref={ref} onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
+    <div className="relative" ref={ref}>
       <button
         onClick={() => setOpen(o => !o)}
         className={`flex items-center gap-1 text-sm font-body py-1 transition-colors duration-200 ${
@@ -72,10 +72,10 @@ function NavDropdown({ group, location }) {
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-4 w-60 bg-white shadow-xl border border-gray-100 rounded-2xl py-2 z-50 overflow-hidden">
+        <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-xl border border-gray-100 rounded-2xl py-2 z-50 overflow-hidden">
           {group.items.map(item => (
             <Link
-              key={item.path}
+              key={item.path + item.label}
               to={item.path}
               onClick={() => setOpen(false)}
               className={`flex flex-col px-5 py-3 transition-colors hover:bg-gray-50 ${
