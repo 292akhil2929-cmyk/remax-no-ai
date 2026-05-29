@@ -14,7 +14,7 @@ export default function AudienceSelector() {
     <div className="bg-black border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="flex items-center h-12 gap-1">
-          <span className="text-white/25 text-[10px] font-body tracking-[0.2em] uppercase mr-4 hidden sm:block">
+          <span className="text-white/70 text-[10px] font-body tracking-[0.2em] uppercase mr-4 hidden sm:block">
             I want to
           </span>
           {OPTIONS.map(opt => {
