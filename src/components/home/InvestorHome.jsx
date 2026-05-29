@@ -2,19 +2,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
-import { ArrowRight, TrendingUp, PiggyBank, Landmark, FileCheck, Sparkles, Shield, Sun } from 'lucide-react';
+import { ArrowRight, TrendingUp, Sparkles } from 'lucide-react';
 import PropertyCard from '@/components/PropertyCard';
 import LeadCaptureForm from '@/components/LeadCaptureForm';
 import MarketTicker from '@/components/MarketTicker';
-
-const WHY_CARDS = [
-  { icon: PiggyBank, stat: '0%', label: 'Tax on rental income & capital gains' },
-  { icon: Landmark, stat: 'AED 2M+', label: 'Golden Visa through property ownership' },
-  { icon: TrendingUp, stat: '7–9%', label: 'Average net rental yield in prime areas' },
-  { icon: Shield, stat: 'RERA', label: 'Fully regulated, investor-protected market' },
-  { icon: Sun, stat: '300+', label: 'Days of sunshine per year — lifestyle asset' },
-  { icon: FileCheck, stat: '4hrs', label: 'Flight to ⅓ of the world\'s population' },
-];
+import WhyDubaiCarousel from '@/components/WhyDubaiCarousel';
 
 const COMMUNITIES = [
   {
@@ -96,33 +88,7 @@ export default function InvestorHome() {
       </section>
 
       {/* ── WHY DUBAI ── */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">The Investment Case</p>
-            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 max-w-xl leading-tight">
-              Six Reasons Dubai<br />Outperforms
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 gap-px bg-gray-100">
-            {WHY_CARDS.map(({ icon: Icon, stat, label }, idx) => (
-              <motion.div
-                key={stat}
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.06 }}
-                className="bg-white p-8 group hover:bg-black transition-colors duration-300"
-              >
-                <Icon className="w-5 h-5 text-gray-300 group-hover:text-white/40 mb-5 transition-colors" />
-                <p className="text-3xl font-display font-black text-gray-900 group-hover:text-white mb-2 transition-colors">{stat}</p>
-                <p className="text-xs text-gray-500 group-hover:text-gray-400 font-body leading-relaxed transition-colors">{label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <WhyDubaiCarousel />
 
       {/* ── COMMUNITY GUIDE ── */}
       <section className="py-20 bg-gray-50">
