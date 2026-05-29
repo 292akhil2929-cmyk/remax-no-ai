@@ -26,6 +26,9 @@ import Dashboard from './pages/Dashboard';
 import AdminContent from './pages/AdminContent';
 import ThemePreview from './pages/ThemePreview';
 import BannerVideoGallery from './pages/BannerVideoGallery';
+import Dugasta from './pages/Dugasta';
+import HighROI from './pages/HighROI';
+import Developers from './pages/Developers';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -73,6 +76,9 @@ const AuthenticatedApp = () => {
         <Route path="/admin/content" element={<AdminContent />} />
         <Route path="/theme-preview" element={<ThemePreview />} />
         <Route path="/video-gallery" element={<BannerVideoGallery />} />
+        <Route path="/dugasta" element={<Dugasta />} />
+        <Route path="/high-roi" element={<HighROI />} />
+        <Route path="/developers" element={<Developers />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

@@ -14,18 +14,26 @@ const NAV_GROUPS = [
     ],
   },
   {
+    label: 'Invest',
+    items: [
+      { label: 'High ROI Properties', path: '/high-roi', desc: '7–11% yields — passive income opportunities' },
+      { label: 'Dugasta — Exclusive', path: '/dugasta', desc: '9–11% yields | 1% monthly plans | RE/MAX ZAM exclusive' },
+      { label: 'Golden Visa', path: '/golden-visa', desc: 'AED 2M+ — residency through property' },
+      { label: 'Off-Plan Projects', path: '/off-plan', desc: 'Buy before completion — launch pricing' },
+    ],
+  },
+  {
     label: 'Insights',
     items: [
       { label: 'Market Insights', path: '/insights', desc: 'Data, trends & analysis' },
-      { label: 'Community Trends', path: '/area-guides', desc: 'Neighbourhood performance & ROI data' },
-      { label: 'Developer Trends', path: '/off-plan', desc: 'Top developers & delivery track records' },
+      { label: 'Developer Profiles', path: '/developers', desc: 'Track records, yields & payment plans' },
+      { label: 'Community Trends', path: '/area-guides', desc: 'Neighbourhood ROI & growth data' },
       { label: 'Blog & Guides', path: '/blog', desc: 'Investment guides & market news' },
     ],
   },
   {
     label: 'Resources',
     items: [
-      { label: 'Golden Visa', path: '/golden-visa', desc: 'Residency through property ownership' },
       { label: 'Our Services', path: '/services', desc: 'What we handle for you end-to-end' },
       { label: 'Join as an Agent', path: '/join', desc: 'Partner with RE/MAX ZAM Dubai' },
     ],
