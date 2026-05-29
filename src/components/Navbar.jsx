@@ -7,32 +7,35 @@ const NAV_GROUPS = [
   {
     label: 'Properties',
     items: [
-      { label: 'All Listings', path: '/properties', desc: 'Browse the full portfolio' },
-      { label: 'Off-Plan', path: '/off-plan', desc: 'New developments & launches' },
-      { label: 'Area Guides', path: '/area-guides', desc: 'Invest in the right location' },
+      { label: 'Buy a Property', path: '/properties', desc: 'Browse all available listings' },
+      { label: 'Off-Plan', path: '/off-plan', desc: 'New launches & pre-completion deals' },
+      { label: 'Sell Your Property', path: '/landlords', desc: 'Get a free valuation & list today' },
+      { label: 'Area Guides', path: '/area-guides', desc: 'Find the right community to invest in' },
     ],
   },
   {
-    label: 'Sell',
+    label: 'Insights',
     items: [
-      { label: 'Sell Your Property', path: '/landlords', desc: 'List & get the best price' },
-      { label: 'Our Services', path: '/services', desc: 'What we handle for you' },
-    ],
-  },
-  {
-    label: 'Invest',
-    items: [
-      { label: 'Golden Visa', path: '/golden-visa', desc: 'Residency through property' },
       { label: 'Market Insights', path: '/insights', desc: 'Data, trends & analysis' },
-      { label: 'Blog', path: '/blog', desc: 'Guides & market news' },
+      { label: 'Community Trends', path: '/area-guides', desc: 'Neighbourhood performance & ROI data' },
+      { label: 'Developer Trends', path: '/off-plan', desc: 'Top developers & delivery track records' },
+      { label: 'Blog & Guides', path: '/blog', desc: 'Investment guides & market news' },
+    ],
+  },
+  {
+    label: 'Resources',
+    items: [
+      { label: 'Golden Visa', path: '/golden-visa', desc: 'Residency through property ownership' },
+      { label: 'Our Services', path: '/services', desc: 'What we handle for you end-to-end' },
+      { label: 'Join as an Agent', path: '/join', desc: 'Partner with RE/MAX ZAM Dubai' },
     ],
   },
   {
     label: 'Company',
     items: [
-      { label: 'About RE/MAX ZAM', path: '/about', desc: 'Our story & values' },
-      { label: 'Our Team', path: '/team', desc: 'Meet the advisors' },
-      { label: 'Join Us', path: '/join', desc: 'Agent partnership opportunities' },
+      { label: 'About RE/MAX ZAM', path: '/about', desc: 'Our story, mission & values' },
+      { label: 'Our Team', path: '/team', desc: 'Meet the advisors behind the brand' },
+      { label: 'Contact Us', path: '/contact', desc: 'Get in touch with our team' },
     ],
   },
 ];
@@ -116,14 +119,6 @@ export default function Navbar() {
             {NAV_GROUPS.map(group => (
               <NavDropdown key={group.label} group={group} location={location} />
             ))}
-            <Link
-              to="/contact"
-              className={`text-sm font-body transition-colors duration-200 ${
-                location.pathname === '/contact' ? 'text-black font-semibold' : 'text-gray-500 hover:text-black'
-              }`}
-            >
-              Contact
-            </Link>
           </div>
 
           {/* CTA */}
@@ -168,7 +163,6 @@ export default function Navbar() {
               </div>
             ))}
             <div className="pt-5 mt-2 border-t border-gray-100 space-y-2">
-              <Link to="/contact" onClick={() => setOpen(false)} className="block py-2.5 px-2 text-sm font-body text-gray-500 hover:text-black">Contact</Link>
               <Link to="/dashboard" onClick={() => setOpen(false)} className="block py-2.5 px-2 text-sm font-body text-gray-500 hover:text-black">Dashboard</Link>
             </div>
             <Link
