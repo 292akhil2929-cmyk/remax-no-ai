@@ -193,25 +193,25 @@ export default function HeroSection() {
           </div>
 
           {/* Right: Video */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="relative"
-          >
-            <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
-              <iframe
-                width="100%"
-                height="100%"
-                src={FOUNDER_VIDEO_URL}
-                title="REMAX ZAM Founder Message"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
-              />
-            </div>
-          </motion.div>
+           <motion.div
+             initial={{ opacity: 0, x: 30 }}
+             animate={{ opacity: 1, x: 0 }}
+             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+             className="relative hidden lg:block"
+           >
+             <div style={{ paddingBottom: '56.25%' }} className="relative rounded-2xl overflow-hidden shadow-2xl bg-black">
+               <iframe
+                 style={{ position: 'absolute', top: 0, left: 0 }}
+                 width="100%"
+                 height="100%"
+                 src={FOUNDER_VIDEO_URL}
+                 title="REMAX ZAM Founder Message"
+                 frameBorder="0"
+                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                 allowFullScreen
+               />
+             </div>
+           </motion.div>
         </div>
       </div>
 
