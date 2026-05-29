@@ -174,9 +174,6 @@ export default function DubaiUnfiltered() {
     <div>
       <VideoModal episode={activeEpisode} onClose={() => setActiveEpisode(null)} />
 
-      {/* ── NAVBAR BACKDROP ── */}
-      <div className="fixed top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/80 to-transparent z-40 pointer-events-none" />
-
       {/* ── HERO ── */}
       <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-[#0a0a0a] pt-16">
         {/* Background image — Faisal with mic from official site */}
@@ -184,7 +181,9 @@ export default function DubaiUnfiltered() {
           className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{ backgroundImage: 'url(https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/Rectangle-429.jpg)' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0a] via-[#0a0a0a]/80 to-transparent" />
+        {/* Multi-layer gradient overlay — matching home page style */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
         {/* Red accent glow */}
         <div className="absolute bottom-0 left-0 w-2/3 h-1/2 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(220,38,38,0.12),transparent_60%)]" />
 
