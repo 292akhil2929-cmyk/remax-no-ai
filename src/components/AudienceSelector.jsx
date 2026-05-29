@@ -2,9 +2,9 @@ import { useAudience } from '@/lib/AudienceContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const OPTIONS = [
-  { id: 'investor', label: 'I\'m Looking to Buy', sublabel: 'Buy or off-plan' },
-  { id: 'seller', label: 'I\'m Looking to Sell', sublabel: 'Get a valuation' },
-  { id: 'agent', label: 'I\'m an Agent', sublabel: 'Join the network' },
+  { id: 'investor', label: 'Invest', sublabel: 'Buy or off-plan' },
+  { id: 'seller', label: 'Sell', sublabel: 'Get a valuation' },
+  { id: 'agent', label: 'Join as an Agent', sublabel: 'Join the network' },
 ];
 
 export default function AudienceSelector() {
@@ -15,7 +15,7 @@ export default function AudienceSelector() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         <div className="flex items-center h-12 gap-1">
           <span className="text-white/25 text-[10px] font-body tracking-[0.2em] uppercase mr-4 hidden sm:block">
-            I'm here to
+            I want to
           </span>
           {OPTIONS.map(opt => {
             const isActive = audience === opt.id;
