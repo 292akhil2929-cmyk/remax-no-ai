@@ -174,6 +174,9 @@ export default function DubaiUnfiltered() {
     <div>
       <VideoModal episode={activeEpisode} onClose={() => setActiveEpisode(null)} />
 
+      {/* ── NAVBAR BACKDROP ── */}
+      <div className="fixed top-0 left-0 right-0 h-20 bg-gradient-to-b from-black/80 to-transparent z-40 pointer-events-none" />
+
       {/* ── HERO ── */}
       <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-[#0a0a0a] pt-16">
         {/* Background image — Faisal with mic from official site */}
