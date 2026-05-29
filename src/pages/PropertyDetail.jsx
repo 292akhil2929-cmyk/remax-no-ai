@@ -77,7 +77,7 @@ export default function PropertyDetail() {
 
             <div className="grid grid-cols-2 gap-4">
               {property.developer && (
-                <div className="flex items-center gap-2"><Building2 className="w-4 h-4 text-primary" /><span className="text-sm font-body"><span className="text-muted-foreground">Developer:</span> <span className="text-foreground">{property.developer}</span></span></div>
+                <div className="flex items-center gap-2"><Building2 className="w-4 h-4 text-primary" /><span className="text-sm font-body"><span className="text-muted-foreground">Developer:</span> <Link to={`/developers?developer=${encodeURIComponent(property.developer)}`} className="text-foreground hover:text-primary font-medium transition-colors">{property.developer}</Link></span></div>
               )}
               {property.completion_date && (
                 <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /><span className="text-sm font-body"><span className="text-muted-foreground">Completion:</span> <span className="text-foreground">{property.completion_date}</span></span></div>

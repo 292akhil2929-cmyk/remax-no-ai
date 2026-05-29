@@ -1,3 +1,4 @@
+import { useSearchParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ExternalLink, Building2 } from 'lucide-react';
@@ -216,6 +217,9 @@ const statusColors = {
 };
 
 export default function Developers() {
+  const [searchParams] = useSearchParams();
+  const highlightedDeveloper = searchParams.get('developer');
+
   return (
     <div className="min-h-screen bg-gray-50">
 
@@ -249,7 +253,11 @@ export default function Developers() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.04 }}
-              className="bg-white rounded-2xl border border-gray-100 overflow-hidden shadow-sm hover:shadow-md transition-shadow"
+              className={`bg-white rounded-2xl border overflow-hidden shadow-sm hover:shadow-md transition-all ${
+                highlightedDeveloper && dev.name.toLowerCase().includes(highlightedDeveloper.toLowerCase())
+                  ? 'border-emerald-300 shadow-lg ring-2 ring-emerald-100'
+                  : 'border-gray-100'
+              }`}
             >
               <div className="grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-0">
 
