@@ -17,18 +17,31 @@ export default function ImageUploadSection({ propertyId, onImageUploaded }) {
     setUploadedImage(null);
 
     try {
-      const uploadRes = await base44.integrations.Core.UploadFile(file);
-      const imageUrl = uploadRes.file_url;
+      // Read file as base64
+      const reader = new FileReader();
+      reader.onload = async () => {
+        try {
+          const uploadRes = await base44.integrations.Core.UploadFile(reader.result);
+          const imageUrl = uploadRes.file_url;
 
-      await base44.entities.Property.update(propertyId, { image_url: imageUrl });
-      setUploadedImage({ url: imageUrl, name: file.name });
+          await base44.entities.Property.update(propertyId, { image_url: imageUrl });
+          setUploadedImage({ url: imageUrl, name: file.name });
 
-      setTimeout(() => {
-        if (onImageUploaded) onImageUploaded();
-      }, 1500);
+          setTimeout(() => {
+            if (onImageUploaded) onImageUploaded();
+          }, 1500);
+        } catch (err) {
+          setError(err?.response?.data?.error || err.message || 'Upload failed');
+          setUploading(false);
+        }
+      };
+      reader.onerror = () => {
+        setError('Failed to read file');
+        setUploading(false);
+      };
+      reader.readAsDataURL(file);
     } catch (err) {
       setError(err?.response?.data?.error || err.message || 'Upload failed');
-    } finally {
       setUploading(false);
     }
   };
