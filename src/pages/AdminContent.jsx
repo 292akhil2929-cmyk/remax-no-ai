@@ -15,36 +15,36 @@ import ImageUploadSection from '@/components/PropertyImageUpload';
 /* ── Import Listing from URL ─────────────────────────── */
 function ImportListingPanel() {
   const [url, setUrl] = useState('');
+  const [category, setCategory] = useState('');
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [loadingSample, setLoadingSample] = useState(false);
+
+  const categories = [
+    { value: 'off-plan', label: 'Off-Plan Residential', transaction: 'Residential Sale', status: 'Off-Plan' },
+    { value: 'ready-residential', label: 'Ready Residential', transaction: 'Residential Sale', status: 'Ready' },
+    { value: 'ready-commercial', label: 'Ready Commercial', transaction: 'Commercial Sale', status: 'Ready' },
+    { value: 'rental-residential', label: 'Rental Residential', transaction: 'Residential Rental', status: null },
+    { value: 'rental-commercial', label: 'Rental Commercial', transaction: 'Commercial Lease', status: null },
+  ];
 
   const handleImport = async () => {
-    if (!url.trim()) return;
+    if (!url.trim() || !category) return;
     setLoading(true);
     setResult(null);
     setError(null);
     try {
-      const res = await base44.functions.invoke('importListing', { url: url.trim() });
+      const selectedCat = categories.find(c => c.value === category);
+      const res = await base44.functions.invoke('importListing', {
+        url: url.trim(),
+        transaction_type: selectedCat.transaction,
+        listing_status: selectedCat.status,
+      });
       setResult(res.data.property);
     } catch (e) {
       setError(e?.response?.data?.error || e.message || 'Failed to import listing');
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleCreateSampleListings = async () => {
-    setLoadingSample(true);
-    setError(null);
-    try {
-      await base44.functions.invoke('createSampleListings', {});
-      setResult({ title: 'Sample Listings Created', isSampleSuccess: true });
-    } catch (e) {
-      setError(e?.response?.data?.error || e.message || 'Failed to create sample listings');
-    } finally {
-      setLoadingSample(false);
     }
   };
 
@@ -74,31 +74,32 @@ function ImportListingPanel() {
         ))}
       </div>
 
-      <div className="flex gap-2 mt-4">
-        <input
-          type="url"
-          value={url}
-          onChange={e => setUrl(e.target.value)}
-          placeholder="https://www.propertyfinder.ae/en/plp/buy/..."
-          className="flex-1 px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring"
-        />
-        <Button onClick={handleImport} disabled={loading || !url.trim()} className="font-heading shrink-0">
-          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Import'}
-        </Button>
-      </div>
-
-      <div className="mt-4 pt-4 border-t border-border/30">
-        <p className="text-xs text-muted-foreground font-body mb-2">Or create sample listings across all categories:</p>
-        <Button
-          onClick={handleCreateSampleListings}
-          disabled={loadingSample}
-          variant="outline"
-          size="sm"
-          className="text-xs"
-        >
-          {loadingSample ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Plus className="w-3 h-3 mr-1" />}
-          Create 10 Sample Listings
-        </Button>
+      <div className="space-y-3">
+        <div>
+          <label className="text-xs font-heading font-medium text-foreground mb-2 block">Select Listing Category</label>
+          <select
+            value={category}
+            onChange={e => setCategory(e.target.value)}
+            className="w-full px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+          >
+            <option value="">Choose a category...</option>
+            {categories.map(cat => (
+              <option key={cat.value} value={cat.value}>{cat.label}</option>
+            ))}
+          </select>
+        </div>
+        <div className="flex gap-2">
+          <input
+            type="url"
+            value={url}
+            onChange={e => setUrl(e.target.value)}
+            placeholder="https://www.propertyfinder.ae/en/plp/buy/..."
+            className="flex-1 px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+          />
+          <Button onClick={handleImport} disabled={loading || !url.trim() || !category} className="font-heading shrink-0">
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Import'}
+          </Button>
+        </div>
       </div>
 
       {detectedPlatform && !result && !error && (
@@ -125,29 +126,18 @@ function ImportListingPanel() {
         <div className="mt-4 bg-emerald-50 border border-emerald-200 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-            <span className="font-heading font-semibold text-emerald-800">
-              {result.isSampleSuccess ? '10 Sample Listings Created!' : 'Listing imported successfully!'}
-            </span>
+            <span className="font-heading font-semibold text-emerald-800">Listing imported successfully!</span>
           </div>
-          {!result.isSampleSuccess && (
-            <>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-3">
-                <div><p className="text-xs text-emerald-600 font-body">Title</p><p className="font-heading font-medium text-foreground text-xs line-clamp-2">{result.title}</p></div>
-                <div><p className="text-xs text-emerald-600 font-body">Price</p><p className="font-heading font-medium text-foreground">AED {(result.price_aed || 0).toLocaleString()}</p></div>
-                <div><p className="text-xs text-emerald-600 font-body">Location</p><p className="font-heading font-medium text-foreground">{result.location}</p></div>
-                <div><p className="text-xs text-emerald-600 font-body">Type</p><p className="font-heading font-medium text-foreground">{result.property_type}</p></div>
-              </div>
-              <ImageUploadSection propertyId={result.id} onImageUploaded={() => { setUrl(''); setResult(null); }} />
-            </>
-          )}
-          {result.isSampleSuccess && (
-            <p className="text-sm text-emerald-700 font-body mb-3">
-              Created 2 off-plan, 2 ready residential, 2 ready commercial, 2 rental commercial, and 2 rental residential listings. They're now live on the Properties page!
-            </p>
-          )}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-3">
+            <div><p className="text-xs text-emerald-600 font-body">Title</p><p className="font-heading font-medium text-foreground text-xs line-clamp-2">{result.title}</p></div>
+            <div><p className="text-xs text-emerald-600 font-body">Price</p><p className="font-heading font-medium text-foreground">AED {(result.price_aed || 0).toLocaleString()}</p></div>
+            <div><p className="text-xs text-emerald-600 font-body">Location</p><p className="font-heading font-medium text-foreground">{result.location}</p></div>
+            <div><p className="text-xs text-emerald-600 font-body">Type</p><p className="font-heading font-medium text-foreground">{result.property_type}</p></div>
+          </div>
+          <ImageUploadSection propertyId={result.id} onImageUploaded={() => { setUrl(''); setResult(null); setCategory(''); }} />
           <div className="flex gap-2 mt-3">
-            <Button size="sm" variant="outline" className="text-xs" onClick={() => { setUrl(''); setResult(null); }}>
-              {result.isSampleSuccess ? 'Create More' : 'Import Another'}
+            <Button size="sm" variant="outline" className="text-xs" onClick={() => { setUrl(''); setResult(null); setCategory(''); }}>
+              Import Another
             </Button>
             <Button size="sm" className="text-xs" asChild>
               <Link to="/properties">View All Listings <ExternalLink className="w-3 h-3 ml-1" /></Link>

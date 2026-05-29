@@ -12,7 +12,7 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Admin access required' }, { status: 403 });
     }
 
-    const { url } = await req.json();
+    const { url, transaction_type, listing_status } = await req.json();
     if (!url) return Response.json({ error: 'URL is required' }, { status: 400 });
 
     // Fetch the page content
@@ -99,8 +99,19 @@ Return JSON with these exact fields (use null for missing values):
     const validTransactions = ['Residential Sale', 'Residential Rental', 'Commercial Sale', 'Commercial Lease'];
     const validStatuses = ['Off-Plan', 'Ready', 'Resale'];
     if (!validTypes.includes(extracted.property_type)) extracted.property_type = 'Apartment';
-    if (!validTransactions.includes(extracted.transaction_type)) extracted.transaction_type = 'Residential Sale';
-    if (!validStatuses.includes(extracted.listing_status)) extracted.listing_status = null;
+    
+    // Override with category selection if provided
+    if (transaction_type && validTransactions.includes(transaction_type)) {
+      extracted.transaction_type = transaction_type;
+    } else if (!validTransactions.includes(extracted.transaction_type)) {
+      extracted.transaction_type = 'Residential Sale';
+    }
+    
+    if (listing_status && validStatuses.includes(listing_status)) {
+      extracted.listing_status = listing_status;
+    } else if (!validStatuses.includes(extracted.listing_status)) {
+      extracted.listing_status = null;
+    }
 
     // Create the property record
     const property = await base44.asServiceRole.entities.Property.create(extracted);
