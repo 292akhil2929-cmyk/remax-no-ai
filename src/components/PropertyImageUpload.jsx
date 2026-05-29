@@ -18,20 +18,12 @@ export default function ImageUploadSection({ propertyId, onImageUploaded }) {
     try {
       const newImages = [];
       for (const file of files) {
-        const reader = new FileReader();
-        await new Promise((resolve, reject) => {
-          reader.onload = async () => {
-            try {
-              const uploadRes = await base44.integrations.Core.UploadFile({ file: reader.result });
-              newImages.push({ url: uploadRes.file_url, name: file.name });
-              resolve();
-            } catch (err) {
-              reject(err);
-            }
-          };
-          reader.onerror = () => reject(new Error('Failed to read file'));
-          reader.readAsDataURL(file);
-        });
+        try {
+          const uploadRes = await base44.integrations.Core.UploadFile({ file });
+          newImages.push({ url: uploadRes.file_url, name: file.name });
+        } catch (err) {
+          throw err;
+        }
       }
 
       // Set primary image (first upload) if no image exists
