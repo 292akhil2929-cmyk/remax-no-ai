@@ -6,42 +6,46 @@ import { Upload, Loader2, CheckCircle2, AlertCircle, X } from 'lucide-react';
 export default function ImageUploadSection({ propertyId, onImageUploaded }) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(null);
-  const [uploadedImage, setUploadedImage] = useState(null);
+  const [uploadedImages, setUploadedImages] = useState([]);
 
   const handleImageUpload = async (e) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
+    const files = Array.from(e.target.files || []);
+    if (files.length === 0) return;
 
     setUploading(true);
     setError(null);
-    setUploadedImage(null);
 
     try {
-      // Read file as base64
-      const reader = new FileReader();
-      reader.onload = async () => {
-        try {
-          const uploadRes = await base44.integrations.Core.UploadFile(reader.result);
-          const imageUrl = uploadRes.file_url;
+      const newImages = [];
+      for (const file of files) {
+        const reader = new FileReader();
+        await new Promise((resolve, reject) => {
+          reader.onload = async () => {
+            try {
+              const uploadRes = await base44.integrations.Core.UploadFile({ file: reader.result });
+              newImages.push({ url: uploadRes.file_url, name: file.name });
+              resolve();
+            } catch (err) {
+              reject(err);
+            }
+          };
+          reader.onerror = () => reject(new Error('Failed to read file'));
+          reader.readAsDataURL(file);
+        });
+      }
 
-          await base44.entities.Property.update(propertyId, { image_url: imageUrl });
-          setUploadedImage({ url: imageUrl, name: file.name });
+      // Set primary image (first upload) if no image exists
+      if (uploadedImages.length === 0 && newImages.length > 0) {
+        await base44.entities.Property.update(propertyId, { image_url: newImages[0].url });
+      }
 
-          setTimeout(() => {
-            if (onImageUploaded) onImageUploaded();
-          }, 1500);
-        } catch (err) {
-          setError(err?.response?.data?.error || err.message || 'Upload failed');
-          setUploading(false);
-        }
-      };
-      reader.onerror = () => {
-        setError('Failed to read file');
-        setUploading(false);
-      };
-      reader.readAsDataURL(file);
+      setUploadedImages(prev => [...prev, ...newImages]);
+      setTimeout(() => {
+        if (onImageUploaded) onImageUploaded();
+      }, 1500);
     } catch (err) {
       setError(err?.response?.data?.error || err.message || 'Upload failed');
+    } finally {
       setUploading(false);
     }
   };
@@ -50,43 +54,48 @@ export default function ImageUploadSection({ propertyId, onImageUploaded }) {
     <div className="mt-4 p-4 bg-white/50 rounded-lg border border-emerald-100">
       <p className="text-xs font-heading font-semibold text-foreground mb-3">Add Featured Image</p>
       
-      {!uploadedImage ? (
-        <div className="flex gap-2">
-          <label className="flex-1">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={handleImageUpload}
-              disabled={uploading}
-              className="hidden"
-            />
-            <Button
-              asChild
-              disabled={uploading}
-              variant="outline"
-              size="sm"
-              className="w-full text-xs cursor-pointer"
-            >
-              <span>
-                {uploading ? (
-                  <>
-                    <Loader2 className="w-3 h-3 animate-spin mr-1" /> Uploading...
-                  </>
-                ) : (
-                  <>
-                    <Upload className="w-3 h-3 mr-1" /> Choose Image
-                  </>
-                )}
-              </span>
-            </Button>
-          </label>
-        </div>
-      ) : (
-        <div className="flex items-center gap-3 p-3 bg-emerald-50 rounded-lg border border-emerald-200">
-          <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-          <div className="flex-1 min-w-0">
-            <p className="text-xs font-medium text-emerald-800 truncate">{uploadedImage.name}</p>
-          </div>
+      <div className="flex gap-2 mb-3">
+        <label className="flex-1">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageUpload}
+            disabled={uploading}
+            multiple
+            className="hidden"
+          />
+          <Button
+            asChild
+            disabled={uploading}
+            variant="outline"
+            size="sm"
+            className="w-full text-xs cursor-pointer"
+          >
+            <span>
+              {uploading ? (
+                <>
+                  <Loader2 className="w-3 h-3 animate-spin mr-1" /> Uploading...
+                </>
+              ) : (
+                <>
+                  <Upload className="w-3 h-3 mr-1" /> Choose Images
+                </>
+              )}
+            </span>
+          </Button>
+        </label>
+      </div>
+
+      {uploadedImages.length > 0 && (
+        <div className="space-y-2">
+          {uploadedImages.map((img, idx) => (
+            <div key={idx} className="flex items-center gap-3 p-2 bg-emerald-50 rounded-lg border border-emerald-200">
+              <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+              <div className="flex-1 min-w-0">
+                <p className="text-xs font-medium text-emerald-800 truncate">{img.name}</p>
+              </div>
+            </div>
+          ))}
         </div>
       )}
 
