@@ -249,6 +249,26 @@ export default function DubaiUnfiltered() {
         </div>
       </section>
 
+      {/* ── INITIATIVE TRAILER ── */}
+      <section className="py-16 bg-gray-50 border-b border-gray-100">
+        <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
+            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">How It Started</p>
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 mb-3">The Video That Started It All</h2>
+            <p className="text-gray-500 font-body text-sm max-w-xl mx-auto">The short film we created to launch the Unfiltered initiative — and explain exactly why Dubai investors need this conversation.</p>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="rounded-2xl overflow-hidden shadow-xl aspect-video">
+            <iframe
+              src="https://www.youtube.com/embed/hum-yWzaMnY?rel=0"
+              title="Dubai Real Estate: The Unfiltered Truth (2026 Market Analysis)"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              className="w-full h-full"
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* ── WHY THIS INITIATIVE ── */}
       <section className="py-20 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
