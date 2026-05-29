@@ -10,7 +10,6 @@ const NAV_GROUPS = [
       { label: 'Browse Listings', path: '/properties', desc: 'Apartments, villas and commercial across Dubai' },
       { label: 'Off-Plan', path: '/off-plan', desc: 'Buy before completion at launch pricing' },
       { label: 'Sell With Us', path: '/landlords', desc: 'Free valuation and a clear plan to sell' },
-      { label: 'Area Guides', path: '/area-guides', desc: 'Which communities actually perform best' },
     ],
   },
   {
@@ -27,7 +26,7 @@ const NAV_GROUPS = [
     items: [
       { label: 'Market Insights', path: '/insights', desc: 'What the data is saying about the Dubai market right now' },
       { label: 'Developer Profiles', path: '/developers', desc: 'Who to trust, who to avoid, and what each one actually delivers' },
-      { label: 'Community Guides', path: '/area-guides', desc: 'Yield, growth and lifestyle by neighbourhood' },
+      { label: 'Area Guides', path: '/area-guides', desc: 'Yield, growth and lifestyle by neighbourhood' },
       { label: 'Blog', path: '/blog', desc: 'Plain-English guides for Dubai property investors' },
     ],
   },
