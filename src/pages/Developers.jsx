@@ -2,6 +2,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ExternalLink, Building2 } from 'lucide-react';
+import { useEffect } from 'react';
 
 const DEVELOPERS = [
   {
@@ -220,6 +221,17 @@ export default function Developers() {
   const [searchParams] = useSearchParams();
   const highlightedDeveloper = searchParams.get('developer');
 
+  useEffect(() => {
+    if (highlightedDeveloper) {
+      setTimeout(() => {
+        const element = document.getElementById(`developer-${highlightedDeveloper.toLowerCase().replace(/\s+/g, '-')}`);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 100);
+    }
+  }, [highlightedDeveloper]);
+
   return (
     <div className="min-h-screen bg-gray-50">
 
@@ -248,6 +260,7 @@ export default function Developers() {
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 space-y-8">
           {DEVELOPERS.map((dev, i) => (
             <motion.div
+              id={`developer-${dev.name.toLowerCase().replace(/\s+/g, '-')}`}
               key={dev.name}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
