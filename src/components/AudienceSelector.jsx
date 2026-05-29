@@ -24,14 +24,14 @@ export default function AudienceSelector() {
                 key={opt.id}
                 onClick={() => selectAudience(opt.id)}
                 className={`relative h-full px-5 text-xs font-heading font-semibold transition-all duration-200 ${
-                  isActive ? 'text-white' : 'text-white/40 hover:text-white/70'
+                  isActive ? 'text-[#c9a84c]' : 'text-white/40 hover:text-white/70'
                 }`}
               >
                 {opt.label}
                 {isActive && (
                   <motion.div
                     layoutId="audience-indicator"
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#c9a84c]"
                     transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                   />
                 )}

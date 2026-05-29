@@ -7,11 +7,9 @@ export function AudienceProvider({ children }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Load from localStorage on mount
-    const saved = localStorage.getItem('audience_type');
-    if (saved) {
-      setAudience(saved);
-    }
+    // Load from localStorage on mount, default to 'investor'
+    const saved = localStorage.getItem('audience_type') || 'investor';
+    setAudience(saved);
     setIsLoading(false);
   }, []);
 
