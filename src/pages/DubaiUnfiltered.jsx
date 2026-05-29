@@ -219,52 +219,23 @@ export default function DubaiUnfiltered() {
             </div>
           </motion.div>
 
-          {/* Right — featured episode preview */}
+          {/* Right — intro/trailer video embedded */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="relative group cursor-pointer"
-            onClick={() => setActiveEpisode(featured)}
+            className="relative"
           >
             <div className="relative rounded-2xl overflow-hidden aspect-video shadow-2xl ring-1 ring-white/10">
-              <img
-                src={featured.thumbnail}
-                alt={featured.title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                onError={(e) => { e.target.src = `https://i.ytimg.com/vi/${featured.youtubeId}/hqdefault.jpg`; }}
+              <iframe
+                src="https://www.youtube.com/embed/hum-yWzaMnY?rel=0&modestbranding=1"
+                title="Dubai Real Estate Unfiltered — The Initiative"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
               />
-              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
-              <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                  <Play className="w-7 h-7 text-white fill-white ml-1" />
-                </div>
-              </div>
-              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-red-400 font-body text-[10px] uppercase tracking-widest mb-1">{featured.ep} · Now Playing</p>
-                <p className="text-white font-heading font-bold text-sm leading-snug">{featured.title}</p>
-              </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* ── INITIATIVE TRAILER ── */}
-      <section className="py-16 bg-gray-50 border-b border-gray-100">
-        <div className="max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-8">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">How It Started</p>
-            <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 mb-3">The Video That Started It All</h2>
-            <p className="text-gray-500 font-body text-sm max-w-xl mx-auto">The short film we created to launch the Unfiltered initiative — and explain exactly why Dubai investors need this conversation.</p>
-          </motion.div>
-          <motion.div initial={{ opacity: 0, scale: 0.97 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} className="rounded-2xl overflow-hidden shadow-xl aspect-video">
-            <iframe
-              src="https://www.youtube.com/embed/hum-yWzaMnY?rel=0"
-              title="Dubai Real Estate: The Unfiltered Truth (2026 Market Analysis)"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              className="w-full h-full"
-            />
+            <p className="text-white/30 font-body text-[10px] text-center mt-3 uppercase tracking-widest">The video that launched this initiative</p>
           </motion.div>
         </div>
       </section>
