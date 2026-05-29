@@ -15,51 +15,58 @@ Deno.serve(async (req) => {
 
     const listings = [];
     
-    // Extract property listing blocks
-    const listingRegex = /Apartment.*?(\d+(?:,\d+)*)\s*AED.*?(?=Apartment|$)/gs;
-    const matches = html.matchAll(listingRegex);
+    // Extract property listing blocks - look for data between property cards
+    const cardRegex = /data-testid="property-card"[^>]*>[\s\S]*?<\/a>/g;
+    const matches = html.matchAll(cardRegex);
 
     for (const match of matches) {
       const block = match[0];
 
       // Extract price
-      const priceMatch = block.match(/(\d+(?:,\d+)*)\s*AED/);
+      const priceMatch = block.match(/AED\s*([\d,]+)/);
       if (!priceMatch) continue;
       const price = parseInt(priceMatch[1].replace(/,/g, ''));
 
-      // Extract title/location
-      const titleMatch = block.match(/for sale in\s+([^\n<]+)/i);
-      const title = titleMatch ? titleMatch[1].trim().substring(0, 80) : 'Property';
-
-      // Extract bedrooms
-      const bedroomMatch = block.match(/(\d+)\s+(?:Bedroom|bedroom)/i);
-      const bedrooms = bedroomMatch ? parseInt(bedroomMatch[1]) : 0;
+      // Extract bedrooms - look for number followed by BR or Bedroom
+      const bedroomMatch = block.match(/(\d+)\s*BR|(\d+)\s+Bedroom/i);
+      const bedrooms = bedroomMatch ? parseInt(bedroomMatch[1] || bedroomMatch[2]) : 0;
 
       // Extract bathrooms
-      const bathroomMatch = block.match(/(\d+)\s+Bathroom/i);
+      const bathroomMatch = block.match(/(\d+)\s*Bath/i);
       const bathrooms = bathroomMatch ? parseInt(bathroomMatch[1]) : 1;
 
       // Extract area
-      const areaMatch = block.match(/(\d+)\s+sqft/i);
+      const areaMatch = block.match(/(\d+)\s*sqft/i);
       const area = areaMatch ? parseInt(areaMatch[1]) : null;
 
-      // Extract location/community (last part before Dubai)
-      const locationMatch = block.match(/([^,]+),\s*([^,]+),\s*Dubai/);
-      const location = locationMatch ? locationMatch[2].trim() : 'Dubai';
+      // Extract location from title text
+      const titleMatch = block.match(/>([^<]*Dubai[^<]*)</);
+      let location = 'Dubai';
+      let titleText = 'Property';
+      
+      if (titleMatch && titleMatch[1]) {
+        const text = titleMatch[1].trim();
+        titleText = text.replace(/&[a-z]+;/g, '').replace(/\s+/g, ' ').substring(0, 100);
+        const parts = text.split(/[,\-]/);
+        location = parts[parts.length - 1]?.trim() || 'Dubai';
+      }
 
-      // Extract all images from the block
-      const imgRegex = /src=["']([^"']*\.(?:jpg|jpeg|png|webp)[^"']*)/gi;
+      // Extract images
+      const imgRegex = /src=["']([^"']*?(?:propertyfinder|static\.shared\.propertyfinder)[^"']*\.(?:jpg|jpeg|png|webp|webp))/gi;
       const images = [];
       let imgMatch;
+      const seen = new Set();
+      
       while ((imgMatch = imgRegex.exec(block)) !== null) {
         const imgUrl = imgMatch[1];
-        if (imgUrl && !images.includes(imgUrl)) {
+        if (imgUrl && !seen.has(imgUrl)) {
           images.push(imgUrl);
+          seen.add(imgUrl);
         }
       }
 
       listings.push({
-        title: `${bedrooms > 0 ? bedrooms + ' BR' : 'Studio'} - ${title}`,
+        title: `${bedrooms > 0 ? bedrooms + ' BR' : 'Studio'} ${titleText}`.trim(),
         price_aed: price,
         bedrooms: bedrooms > 0 ? bedrooms : 0,
         bathrooms,
@@ -70,7 +77,7 @@ Deno.serve(async (req) => {
         source: 'PropertyFinder',
         featured: false,
         image_url: images[0] || null,
-        gallery_images: images.slice(0, 20), // Store up to 20 images
+        gallery_images: images.slice(0, 20),
       });
 
       if (listings.length >= 20) break;
