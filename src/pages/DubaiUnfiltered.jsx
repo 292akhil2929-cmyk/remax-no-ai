@@ -171,7 +171,7 @@ export default function DubaiUnfiltered() {
   const introVideo = { title: 'Dubai Real Estate: The Unfiltered Truth (2026 Market Analysis)', thumbnail: 'https://i.ytimg.com/vi/hum-yWzaMnY/maxresdefault.jpg' };
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="bg-white">
       <VideoModal episode={activeEpisode} onClose={() => setActiveEpisode(null)} />
 
       {/* ── HERO ── */}
