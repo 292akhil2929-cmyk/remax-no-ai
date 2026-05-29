@@ -15,7 +15,7 @@ const DEVELOPERS = [
     tagline: 'They built Burj Khalifa, Downtown Dubai and Dubai Hills. The benchmark every other developer is measured against.',
     description: 'Emaar is the most trusted name in Dubai real estate. 25+ years of consistent delivery, a public listing on the DFM, and communities that consistently outperform on resale. If you want certainty, start here.',
     highlights: ['Listed on Dubai Financial Market (DFM)', '25+ years of on-time delivery', 'Best-in-class resale values'],
-    image: 'https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=800&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/cc981df5d_generated_image.png',
     currentProjects: [
       { name: 'The Oasis by Emaar', status: 'Selling', path: '/properties?developer=Emaar&community=The+Oasis' },
       { name: 'Emaar Beachfront', status: 'Selling', path: '/properties?developer=Emaar&community=Emaar+Beachfront' },
@@ -36,7 +36,7 @@ const DEVELOPERS = [
     tagline: 'Dubai\'s luxury off-plan leader. Versace, Cavalli, Lamborghini — branded residences with strong resale value.',
     description: "DAMAC dominates the branded luxury segment. Their communities like DAMAC Hills and DAMAC Lagoons consistently attract international investors who want a premium address with genuine yield.",
     highlights: ['Versace, Cavalli, Pagani branded residences', 'Strong secondary market demand', 'Full community infrastructure from day one'],
-    image: 'https://images.unsplash.com/photo-1613490493576-7fde63acd811?w=800&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/eca310001_generated_image.png',
     currentProjects: [
       { name: 'DAMAC Lagoons', status: 'Selling', path: '/properties?developer=DAMAC&community=DAMAC+Lagoons' },
       { name: 'DAMAC Hills 2', status: 'Selling', path: '/properties?developer=DAMAC&community=DAMAC+Hills+2' },
@@ -57,7 +57,7 @@ const DEVELOPERS = [
     tagline: 'The only developer in Dubai that manufactures its own building materials. End-to-end quality control.',
     description: 'Sobha is genuinely different. They control everything — from raw materials to finishing — which means quality is never compromised. Sobha Hartland and SeaHaven are two of the most respected luxury addresses in Dubai.',
     highlights: ['No third-party contractors — complete quality control', 'Ultra-luxury finishes as standard', 'Strong demand from Indian and Asian investors'],
-    image: 'https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/a73fc8e63_generated_image.png',
     currentProjects: [
       { name: 'Sobha Hartland II', status: 'Selling', path: '/properties?developer=Sobha&community=Sobha+Hartland' },
       { name: 'Sobha SeaHaven', status: 'Selling', path: '/properties?developer=Sobha&community=Dubai+Harbour' },
@@ -77,7 +77,7 @@ const DEVELOPERS = [
     tagline: 'They built Palm Jumeirah. The most iconic addresses in Dubai. Value that holds over decades.',
     description: 'Government-backed and globally recognised, Nakheel properties carry implicit credibility. Palm Jumeirah is the most famous piece of real estate in the world. Values here are some of the most resilient in the entire city.',
     highlights: ['Government-backed, institutionally credible', 'Palm Jumeirah — globally recognised address', 'Long-term capital appreciation track record'],
-    image: 'https://images.unsplash.com/photo-1597423498219-04418210827d?w=800&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/aebd9732b_generated_image.png',
     currentProjects: [
       { name: 'Palm Jumeirah Villas', status: 'Selling', path: '/properties?developer=Nakheel&community=Palm+Jumeirah' },
       { name: 'Dubai Islands', status: 'Selling', path: '/properties?developer=Nakheel&community=Dubai+Islands' },
@@ -97,7 +97,7 @@ const DEVELOPERS = [
     tagline: 'The developer behind Bluewaters Island, City Walk and La Mer. Lifestyle destinations that command premium pricing.',
     description: 'Meraas is the lifestyle developer for Dubai. They create destinations first and residences second — which is why City Walk, Bluewaters and La Mer attract consistent premium pricing. Owning here means owning in a place people actually want to be.',
     highlights: ['Government-backed lifestyle destinations', 'Consistently above-market resale premiums', 'Unmatched retail, F&B and entertainment integration'],
-    image: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/1208b92e1_generated_image.png',
     currentProjects: [
       { name: 'Bluewaters Residences', status: 'Selling', path: '/properties?developer=Meraas&community=Bluewaters+Island' },
       { name: 'City Walk Residences', status: 'Selling', path: '/properties?developer=Meraas&community=City+Walk' },
@@ -117,7 +117,7 @@ const DEVELOPERS = [
     tagline: 'Abu Dhabi\'s largest developer, now building actively in Dubai. RERA-backed with a DFM listing.',
     description: "Aldar is the most prominent developer moving into Dubai from Abu Dhabi, bringing institutional credibility and a strong track record. Their Dubai launches — particularly in Yas Island expansions and new Dubai masterplans — have sold out quickly.",
     highlights: ['Listed on Abu Dhabi Securities Exchange', 'Strong government and institutional backing', 'Expanding aggressively into Dubai market'],
-    image: 'https://images.unsplash.com/photo-1590674899484-d5640e854abe?w=800&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/cb0736ef1_generated_image.png',
     currentProjects: [
       { name: 'Aldar in Dubai Hills', status: 'Selling', path: '/properties?developer=Aldar&community=Dubai+Hills' },
       { name: 'Aldar Verdes', status: 'Selling', path: '/properties?developer=Aldar' },
@@ -136,7 +136,7 @@ const DEVELOPERS = [
     tagline: 'Award-winning boutique developer. Beautifully designed buildings with consistent resale premiums.',
     description: 'Ellington makes beautiful buildings. If you are buying in MBR City or JVC and want something that feels designed rather than just built, Ellington is the developer you want. Their resale premiums consistently outperform the wider market.',
     highlights: ['Award-winning architecture in every project', 'Premium finishes at accessible price points', 'Boutique resale premiums in the secondary market'],
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/cca3474ab_generated_image.png',
     currentProjects: [
       { name: 'Crestmark', status: 'Selling', path: '/properties?developer=Ellington&community=Business+Bay' },
       { name: 'The Highbury', status: 'Selling', path: '/properties?developer=Ellington&community=MBR+City' },
@@ -156,7 +156,7 @@ const DEVELOPERS = [
     tagline: 'Known for striking architecture and high yields. Binghatti Bugatti is the most expensive apartment in Dubai history.',
     description: "Binghatti has built a name with distinctive architecture and strong yield performance. Their properties in Business Bay and Dubai Silicon Oasis attract investors looking for above-average returns. The Bugatti Residences placed them firmly on the global luxury map.",
     highlights: ['Above-market yields in key investment corridors', 'Distinctive architecture with strong brand recognition', 'Bugatti, Mercedes-Benz branded residences'],
-    image: 'https://images.unsplash.com/photo-1546412414-8035e1776c9a?w=800&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/d4ab73d21_generated_image.png',
     currentProjects: [
       { name: 'Binghatti Nova', status: 'Selling', path: '/properties?developer=Binghatti&community=JVC' },
       { name: 'Binghatti Skyrise', status: 'Selling', path: '/properties?developer=Binghatti&community=Business+Bay' },
@@ -176,7 +176,7 @@ const DEVELOPERS = [
     tagline: 'The best payment plans in the market. 1% per month makes entry accessible for first-time investors.',
     description: "Danube is one of the most investor-friendly developers in Dubai. Their 1% monthly payment plan has made Dubai property accessible to a much wider pool of buyers, and they consistently deliver on time. Strong yields across JVC, Arjan and Al Furjan.",
     highlights: ['Market-leading 1% monthly payment plans', 'Consistent on-time delivery track record', 'Ideal for first-time Dubai investors'],
-    image: 'https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=800&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/991b34008_generated_image.png',
     currentProjects: [
       { name: 'Fashionz by Danube', status: 'Selling', path: '/properties?developer=Danube&community=JVC' },
       { name: 'Pearlz by Danube', status: 'Selling', path: '/properties?developer=Danube&community=Al+Furjan' },
@@ -196,7 +196,7 @@ const DEVELOPERS = [
     tagline: 'One of Dubai Marina\'s most prolific developers. Six Senses Residences is their crown jewel.',
     description: "Select Group has defined large parts of Dubai Marina's skyline. They are responsible for some of the most desirable mid-to-luxury residential buildings along the waterfront. Their Six Senses Residences on Palm Jumeirah is one of the most anticipated launches in recent memory.",
     highlights: ['Strong track record in Dubai Marina and waterfront', 'Six Senses wellness residences — a market first', 'Consistent delivery with premium tenant demand'],
-    image: 'https://images.unsplash.com/photo-1587551123673-5005e9bd2e62?w=800&q=80',
+    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/791cb31c7_generated_image.png',
     currentProjects: [
       { name: 'Six Senses Residences Palm', status: 'Selling', path: '/properties?developer=Select+Group&community=Palm+Jumeirah' },
       { name: 'The Edge', status: 'Selling', path: '/properties?developer=Select+Group&community=Business+Bay' },
