@@ -36,9 +36,19 @@ export default function Properties() {
   const [sortBy, setSortBy] = useState('newest');
 
   useEffect(() => {
-    base44.entities.Property.list('-created_date', 200).then(data => {
-      setProperties(data);
+    Promise.all([
+      base44.entities.Property.list('-created_date', 200),
+      base44.functions.invoke('fetchPropertyFinderListings', {})
+    ]).then(([dbProperties, pfResponse]) => {
+      const pfListings = pfResponse.data?.listings || [];
+      setProperties([...dbProperties, ...pfListings]);
       setLoading(false);
+    }).catch(() => {
+      // Fallback to database only if fetch fails
+      base44.entities.Property.list('-created_date', 200).then(data => {
+        setProperties(data);
+        setLoading(false);
+      });
     });
   }, []);
 
