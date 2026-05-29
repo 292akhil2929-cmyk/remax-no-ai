@@ -43,10 +43,7 @@ const HERO_CONTENT = {
 
 const DEFAULT = HERO_CONTENT.investor;
 
-// Update this object with your advisor video URL
-const ADVISOR_VIDEO_CONFIG = {
-  founderVideoUrl: '', // Add founder video URL here
-};
+const FOUNDER_VIDEO_URL = 'https://www.youtube.com/embed/xOqgW9LZR44';
 
 export default function HeroSection() {
   const navigate = useNavigate();
@@ -75,43 +72,37 @@ export default function HeroSection() {
 
   return (
     <div>
-    <section className="relative h-screen min-h-[680px] max-h-[960px] flex flex-col justify-center overflow-hidden">
-      {/* Background Image */}
-      <div
-        className="absolute inset-0 w-full h-full scale-105 bg-center bg-cover"
-        style={{ backgroundImage: `url(${DUBAI_BG})` }}
-      />
-
-      {/* Multi-layer gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-b from-slate-950 to-slate-900">
+      {/* Grid Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent)',
+          backgroundSize: '50px 50px'
+        }} />
+      </div>
 
       {/* Content */}
-      <div className="relative z-10 px-6 sm:px-10 lg:px-16 xl:px-24">
-        <div className="max-w-3xl">
+      <div className="relative z-10 px-6 sm:px-10 lg:px-16 xl:px-24 py-12 lg:py-0">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
+          {/* Left: Headline with Red Accent Box */}
+          <div>
           <AnimatePresence mode="wait">
             <motion.div
               key={audience || 'default'}
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 30 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Eyebrow */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-px bg-white/60" />
-                <span className="text-white/70 font-body text-xs tracking-[0.2em] uppercase">{content.eyebrow}</span>
+              {/* Red Accent Box with Headline */}
+              <div className="bg-red-600 rounded-lg p-8 mb-8">
+                <h1 className="font-display font-black text-white leading-tight text-3xl sm:text-4xl lg:text-5xl">
+                  {content.headline[0]}<br />{content.headline[1]} <span className="italic font-light">{content.accent}</span>
+                </h1>
               </div>
 
-              {/* Headline */}
-              <h1 className="font-display font-black leading-[1.0] mb-5">
-                <span className="block text-4xl sm:text-5xl lg:text-[5.5rem] text-white">{content.headline[0]}</span>
-                <span className="block text-4xl sm:text-5xl lg:text-[5.5rem] text-white">{content.headline[1]}</span>
-                <span className="block text-4xl sm:text-5xl lg:text-[5.5rem] text-white/40 italic font-light">{content.accent}</span>
-              </h1>
-
               {/* Subheading */}
-              <p className="text-white/60 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-md leading-relaxed">
+              <p className="text-white/70 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-xl">
                 {content.sub}
               </p>
 
@@ -199,6 +190,28 @@ export default function HeroSection() {
               )}
             </motion.div>
           </AnimatePresence>
+          </div>
+
+          {/* Right: Video */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className="relative"
+          >
+            <div className="aspect-video rounded-2xl overflow-hidden shadow-2xl bg-black">
+              <iframe
+                width="100%"
+                height="100%"
+                src={FOUNDER_VIDEO_URL}
+                title="REMAX ZAM Founder Message"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+          </motion.div>
         </div>
       </div>
 
