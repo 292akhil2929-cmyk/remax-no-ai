@@ -281,7 +281,7 @@ function RecentPropertiesPanel() {
     e.preventDefault();
     if (confirm('Delete this listing?')) {
       try {
-        await base44.asServiceRole.entities.Property.delete(id);
+        await base44.entities.Property.delete(id);
         refetch();
       } catch (err) {
         alert('Failed to delete: ' + (err?.message || 'Unknown error'));
