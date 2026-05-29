@@ -102,28 +102,32 @@ const PROJECTS = [
 
 const FAQS = [
   {
-    q: 'What exactly is the 10 on 10 plan?',
-    a: 'It means Dugasta contractually guarantees you 10% net return on your investment every year for 10 years. This is not a projection or an estimate. It is written into your Sales Purchase Agreement. They also waive all service charges for the same 10 year period, and at the end they give you the option to sell the unit back to them at your original purchase price.',
+    q: 'What is the Dugasta 10 on 10 guaranteed ROI plan?',
+    a: "The 10 on 10 plan means you receive a contractually guaranteed 10% net return on your purchase price every single year for 10 years. It is not a projection, a forecast or a promise made verbally. It is written into your Sales Purchase Agreement and is legally enforceable under UAE law. On top of that, Dugasta waives all service charges for the same 10-year period, and gives you the option to sell the unit back to them at your original price at the end.",
   },
   {
-    q: 'How can they guarantee 10% when most Dubai apartments yield 7 to 8%?',
-    a: "Good question. Dugasta's parent company is City Towers Real Estate, which has been managing residential properties in Dubai since 1991. Because they manage all the rentals themselves in-house, they absorb any shortfall between what the market generates and what they've promised you. The risk sits with the developer, not with you.",
+    q: 'Can I really earn 10% guaranteed when most Dubai landlords get 6 to 8%?',
+    a: "Yes — and here is why it is possible. Dugasta's parent company, City Towers Real Estate, has been managing residential properties in Dubai since 1991. Because they run all the rentals in-house, they control the income. If the market only delivers 7% in a given year, City Towers covers the remaining 3% from their own operations. You still receive your 10%. The risk sits entirely with them, not with you.",
   },
   {
-    q: 'What happens at the end of the 10 years?',
-    a: "You have three choices. You can keep the property and continue earning rental income at whatever the market rate is at that time. You can sell it on the open market, where prices are typically much higher after a decade of Dubai growth. Or you can take Dugasta up on the 100% buyback option and have them repurchase it at your original purchase price. That buyback option is your safety net.",
+    q: 'Is this suitable for overseas investors who cannot manage a property themselves?',
+    a: "This is actually designed for exactly that investor. You buy the property, sign the contracts, and then do nothing. City Towers handles tenants, maintenance, rent collection and all day-to-day management. You do not need to be in Dubai. You do not need to speak to a single tenant. Your guaranteed income arrives annually regardless of where you are in the world.",
   },
   {
-    q: 'Are the zero service charges really free?',
-    a: "Yes. Dugasta covers all service charges for the full 10 years. Service charges in Dubai typically run at around 1.5% of property value per year, so this is a real saving that adds meaningful value on top of your guaranteed return. When you factor it in, your effective annual return is closer to 11 or 11.5%.",
+    q: 'What happens when the 10 years are up?',
+    a: "You have three clean exit options. You can keep the property and continue earning rental income at the market rate, which after a decade of Dubai growth is typically strong. You can sell on the open market — Dubai property values have historically risen significantly over 10-year periods. Or you can exercise the 100% buyback option and have Dugasta repurchase the unit at your original purchase price. That buyback option is your guaranteed floor.",
   },
   {
-    q: 'Is this legal and regulated?',
-    a: "Every Dugasta project is registered with RERA and your purchase funds are held in a DLD-regulated escrow account, as required by UAE law. The ROI guarantee and the service charge waiver are both included in your Sales Purchase Agreement. It is a legally binding contract, not a verbal promise.",
+    q: 'How much do I actually save by having zero service charges?',
+    a: "In Dubai, service charges typically run at around 1.5% of property value per year. On a property worth AED 700,000 that is roughly AED 10,500 a year — or AED 105,000 over the 10-year period. Dugasta covers all of this, which means your effective annual return is closer to 11 to 11.5% once you include the saving.",
   },
   {
-    q: 'Who handles the tenants and the property after I buy?',
-    a: "City Towers Real Estate manages everything for you. They find the tenants, handle the rent collection, deal with maintenance, and make sure you receive your guaranteed income. You own the asset and watch the returns come in. You do not need to be in Dubai or manage anything yourself.",
+    q: 'Is Dugasta regulated and is my money protected?',
+    a: "Every Dugasta project is registered with RERA (the Real Estate Regulatory Authority) and all purchase funds are held in a DLD-regulated escrow account as required by UAE law. The ROI guarantee and service charge waiver are both documented in your Sales Purchase Agreement — a legally binding contract. It is fully regulated, not a side arrangement.",
+  },
+  {
+    q: 'What is the minimum investment to get started?',
+    a: "Entry prices start from AED 477,000 for a studio at Al Haseen Residences in Dubai South. One-bedroom apartments in Terra Tower start from AED 634,000. Payment plans are available across all projects, with some offering just 1% per month — making this accessible to investors at a range of budget levels.",
   },
 ];
 
@@ -231,21 +235,21 @@ export default function Dugasta() {
               </div>
 
               <h1 className="font-display font-black text-white leading-[0.95] mb-6">
-                <span className="block text-5xl sm:text-7xl lg:text-8xl">Dugasta</span>
-                <span className="block text-5xl sm:text-7xl lg:text-8xl text-amber-400">10 on 10</span>
-                <span className="block text-xl sm:text-2xl text-white/35 font-body font-normal mt-4 leading-relaxed">10% Net ROI &nbsp;·&nbsp; 10 Years &nbsp;·&nbsp; Zero Tax &nbsp;·&nbsp; 100% Buyback</span>
+                <span className="block text-5xl sm:text-7xl lg:text-8xl">10% Guaranteed</span>
+                <span className="block text-5xl sm:text-7xl lg:text-8xl text-amber-400">ROI. 10 Years.</span>
+                <span className="block text-xl sm:text-2xl text-white/35 font-body font-normal mt-4 leading-relaxed">No Service Charges &nbsp;·&nbsp; Zero Tax &nbsp;·&nbsp; Fully Managed &nbsp;·&nbsp; 100% Buyback</span>
               </h1>
 
-              <p className="text-white/55 font-body text-base leading-relaxed mb-8 max-w-xl">
-                Dugasta is the only developer in Dubai offering a <strong className="text-white/80">contractually guaranteed 10% return every year for 10 years.</strong> Behind this is City Towers Real Estate, a company that has been managing Dubai properties since 1991. No service charges. A 100% buyback at the end. You just collect the income.
+              <p className="text-white/60 font-body text-base leading-relaxed mb-8 max-w-xl">
+                Most Dubai property investors deal with market uncertainty, unexpected service charges and the stress of managing tenants. The Dugasta 10 on 10 plan removes all of that. <strong className="text-white/85">You invest. They manage everything. You collect 10% every year — contractually guaranteed — for a full decade.</strong>
               </p>
 
               {/* 3 pillars */}
               <div className="grid grid-cols-3 gap-3 mb-10">
                 {[
-                  { value: '10%', label: 'Net ROI / Year', sub: 'Guaranteed by contract' },
-                  { value: '10 Yrs', label: 'Duration', sub: 'Full decade of income' },
-                  { value: '100%', label: 'Buyback Option', sub: 'Guaranteed exit strategy' },
+                  { value: '10%', label: 'Net ROI / Year', sub: 'Written into your contract' },
+                  { value: '0 AED', label: 'Service Charges', sub: 'Waived for 10 years' },
+                  { value: '100%', label: 'Buyback Option', sub: 'Exit at original price' },
                 ].map(s => (
                   <div key={s.label} className="bg-white/[0.05] border border-white/10 rounded-xl p-4 text-center">
                     <p className="text-amber-400 font-display font-black text-2xl">{s.value}</p>
@@ -256,12 +260,12 @@ export default function Dugasta() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <a href="https://wa.me/971508794494?text=Hi, I'd like to know more about Dugasta Properties 10 on 10 plan" target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/971508794494?text=Hi, I'd like to know more about the Dugasta 10 on 10 guaranteed ROI plan" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
                   <Phone className="w-4 h-4" /> WhatsApp a Specialist
                 </a>
                 <a href="#projects" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading font-semibold text-sm px-7 py-3.5 rounded-xl transition-colors">
-                  View Projects <ArrowRight className="w-4 h-4" />
+                  See Available Projects <ArrowRight className="w-4 h-4" />
                 </a>
               </div>
             </motion.div>
@@ -269,8 +273,8 @@ export default function Dugasta() {
             {/* Lead Form — 2 cols */}
             <motion.div className="lg:col-span-2" initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9, delay: 0.2 }}>
               <div className="bg-white/[0.06] border border-white/10 rounded-2xl p-7 backdrop-blur-sm">
-                <h2 className="font-display font-black text-white text-2xl mb-1">Get the Full Brochure</h2>
-                <p className="text-white/35 font-body text-xs mb-6">Drop your details and we'll send you the project brochure, ROI contract and floor plans.</p>
+                <h2 className="font-display font-black text-white text-2xl mb-1">See the Numbers for Yourself</h2>
+                <p className="text-white/40 font-body text-xs mb-6">Get the full ROI contract, project brochure and payment plan breakdown sent directly to you.</p>
                 <DugastaLeadForm dark={true} />
               </div>
             </motion.div>
@@ -284,15 +288,18 @@ export default function Dugasta() {
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">The Company Behind the Guarantee</p>
+              <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Why the Guarantee is Real</p>
               <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight mb-5">
-                Dugasta is Built on<br />35 Years of City Towers
+                The Company That Has<br />Managed Dubai Property Since 1991
               </h2>
-              <p className="text-gray-500 font-body text-sm leading-relaxed mb-6">
-                Dugasta is part of the <strong className="text-gray-800">City Towers Real Estate</strong> group, which was founded in Dubai in 1991 by Tauseef Khan. For over 30 years, City Towers has managed thousands of residential units across the city. That experience is exactly what makes the 10 on 10 guarantee possible.
+              <p className="text-gray-500 font-body text-sm leading-relaxed mb-4">
+                The reason Dugasta can guarantee 10% when the average Dubai landlord earns 6 to 8% is simple: their parent company, <strong className="text-gray-800">City Towers Real Estate</strong>, manages all the properties in-house. They have been doing this in Dubai since 1991.
+              </p>
+              <p className="text-gray-500 font-body text-sm leading-relaxed mb-4">
+                That means they control the entire rental cycle — tenant sourcing, lease agreements, rent collection, maintenance. If the market yields less than 10% in any given year, <strong className="text-gray-800">City Towers absorbs the difference. The shortfall is their problem, not yours.</strong>
               </p>
               <p className="text-gray-500 font-body text-sm leading-relaxed mb-8">
-                Because City Towers manages all the rentals in-house, they control the income. If the market delivers less than 10%, they cover the difference. <strong className="text-gray-800">As the investor, you receive your guaranteed return no matter what the market does.</strong>
+                For investors who want real estate exposure without landlord headaches, this is as clean as it gets. You own a Dubai apartment. They run it. You receive your annual income. That is the entire relationship.
               </p>
               <div className="grid grid-cols-2 gap-4">
                 {[
@@ -353,12 +360,12 @@ export default function Dugasta() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-center mb-14">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">The Investment Model</p>
+            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">What You Actually Get</p>
             <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight mb-4">
-              How the "10 on 10" Plan Works
+              10% Guaranteed ROI in Dubai —<br />Here Is How It Works
             </h2>
             <p className="text-gray-500 font-body text-sm max-w-2xl mx-auto leading-relaxed">
-              This is not a marketing projection. It is written into your Sales Purchase Agreement and is fully binding under UAE law.
+              This is not a projection, an estimate or a marketing promise. Every figure below is written into your Sales Purchase Agreement and is fully enforceable under UAE law.
             </p>
           </motion.div>
 
@@ -399,10 +406,10 @@ export default function Dugasta() {
           {/* 4 pillars */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {[
-              { num: '01', title: '10% Return Every Year', desc: 'This is written into your contract. You get 10% of your purchase price paid out annually, regardless of what the rental market does.' },
-              { num: '02', title: 'No Service Charges', desc: "Dugasta covers all service charges for the full 10 years. That typically saves you another 1.5% a year on top, bringing your real effective return closer to 11.5%." },
-              { num: '03', title: 'Fully Managed for You', desc: "City Towers Real Estate, which has been operating in Dubai since 1991, handles all tenants and maintenance. You own it, they run it." },
-              { num: '04', title: 'Buy It Back at the End', desc: "After 10 years, Dugasta will buy the unit back from you at the price you paid. You have a guaranteed exit whenever you want it." },
+              { num: '01', title: '10% Net ROI Every Year — Guaranteed', desc: 'Your return is contractually fixed at 10% of your purchase price, paid annually. The rental market can go up or down. Your income stays exactly the same.' },
+              { num: '02', title: 'Zero Service Charges for 10 Years', desc: "Service charges on Dubai property typically cost 1.5% per year. Dugasta waives all of them for the full decade — pushing your effective return closer to 11.5% annually." },
+              { num: '03', title: 'Completely Hands-Off Investment', desc: "City Towers manages every aspect of your property — tenants, maintenance, rent collection. You never deal with a single tenant complaint. You just receive your income." },
+              { num: '04', title: 'A Guaranteed Exit After 10 Years', desc: "Most property investors worry about when and how to exit. With Dugasta, you have the option to sell the unit back at your original purchase price — guaranteed in writing." },
             ].map((p, i) => (
               <motion.div key={p.num} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
@@ -419,10 +426,13 @@ export default function Dugasta() {
       <section id="projects" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Current Portfolio</p>
-            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
-              Available Dugasta Projects
+            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Where to Invest</p>
+            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight mb-3">
+              Dubai Properties With 10% Guaranteed Returns
             </h2>
+            <p className="text-gray-500 font-body text-sm max-w-2xl leading-relaxed">
+              Each project below comes with the full 10 on 10 package — guaranteed ROI, zero service charges and the buyback option. Entry prices start from AED 477,000.
+            </p>
           </motion.div>
 
           {/* Project tabs */}
@@ -503,18 +513,21 @@ export default function Dugasta() {
                 <span className="text-white font-heading font-bold text-[10px] tracking-[0.2em] uppercase">Why Buy Through RE/MAX ZAM</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 leading-tight mb-5">
-                Our Team.<br />No Extra Cost to You.
+                How to Buy a Dugasta<br />Property Through RE/MAX ZAM
               </h2>
+              <p className="text-gray-600 font-body text-sm leading-relaxed mb-3">
+                RE/MAX ZAM is an authorised selling agent for Dugasta in Dubai. Our advisors have walked dozens of investors through the 10 on 10 purchase process — from first enquiry all the way to DLD registration and handover.
+              </p>
               <p className="text-gray-600 font-body text-sm leading-relaxed mb-6">
-                RE/MAX ZAM is an authorised selling agent for Dugasta in Dubai. Our team knows these projects in detail — the floor plans, the payment structures, the contracts. We guide you through everything from first enquiry to DLD registration. The developer pays our fee, so there is nothing extra for you to pay.
+                Because the developer pays our commission, <strong className="text-gray-900">there is absolutely no agency fee for you to pay.</strong> You get full professional guidance at zero cost.
               </p>
               <ul className="space-y-3">
                 {[
-                   'See available units before they go public',
-                   'Full ROI contract walkthrough so you know exactly what you are signing',
-                   'No agency commission on Dugasta purchases',
-                   'We handle everything from unit selection through to DLD registration',
-                   'Post-handover management handled by City Towers',
+                   'We show you available units and walk you through every option',
+                   'Full ROI contract review — you understand exactly what you are signing',
+                   'No agency fee. The developer covers our cost.',
+                   'We handle DLD registration, NOC and all paperwork on your behalf',
+                   'City Towers takes over from handover — you never deal with tenants',
                  ].map(item => (
                   <li key={item} className="flex items-center gap-3 text-sm text-gray-700 font-body">
                     <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" /> {item}
@@ -537,8 +550,9 @@ export default function Dugasta() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Investor Questions</p>
-            <h2 className="text-4xl font-display font-black text-gray-900">Everything You Need to Know About the 10 on 10 Plan</h2>
+            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Common Investor Questions</p>
+            <h2 className="text-4xl font-display font-black text-gray-900 mb-3">Guaranteed ROI in Dubai — Questions Answered</h2>
+            <p className="text-gray-500 font-body text-sm leading-relaxed">Everything first-time and experienced investors ask before committing to the 10 on 10 plan.</p>
           </motion.div>
           <div>
             {FAQS.map(faq => <FaqItem key={faq.q} {...faq} />)}
@@ -551,12 +565,12 @@ export default function Dugasta() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(245,158,11,0.08),transparent_70%)]" />
         <div className="relative max-w-3xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <p className="text-amber-400 font-body text-xs tracking-[0.2em] uppercase mb-4">Ready to Invest?</p>
+            <p className="text-amber-400 font-body text-xs tracking-[0.2em] uppercase mb-4">Start Earning 10% Guaranteed</p>
             <h2 className="text-4xl sm:text-5xl font-display font-black text-white leading-tight mb-5">
-              Speak to a Specialist<br />About the 10 on 10 Plan
+              Invest in Dubai Property.<br />Collect 10% Every Year.<br />Do Nothing Else.
             </h2>
             <p className="text-gray-400 font-body text-sm mb-10 max-w-xl mx-auto leading-relaxed">
-              Our team can walk you through the full numbers, the ROI contract and the available payment options. No pressure, no cost to you.
+              If you are looking for guaranteed rental income from Dubai property — with no service charges, no tenant stress and a built-in exit strategy — the 10 on 10 plan is built for you. Talk to our team today. No pressure, no cost.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="https://wa.me/971508794494?text=Hi, I want to learn more about the Dugasta 10 on 10 plan" target="_blank" rel="noopener noreferrer"
