@@ -30,7 +30,7 @@ export default function MarketTicker() {
         <div className="relative flex-1 overflow-hidden">
           <div
             className="flex gap-8 pl-4"
-            style={{ animation: 'scroll 40s linear infinite', whiteSpace: 'nowrap' }}
+            style={{ animation: 'scroll 15s linear infinite', whiteSpace: 'nowrap' }}
           >
             {items.map((m, i) => (
               <div key={i} className="inline-flex items-center gap-3 shrink-0">
