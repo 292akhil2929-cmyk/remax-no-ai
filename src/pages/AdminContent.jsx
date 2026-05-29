@@ -7,10 +7,11 @@ import { Link } from 'react-router-dom';
 import {
   Link as LinkIcon, Sparkles, RefreshCw, CheckCircle2,
   AlertCircle, Loader2, FileText, Home, ArrowRight,
-  PlusCircle, ExternalLink, Calendar, Plus
+  PlusCircle, ExternalLink, Calendar, Plus, Edit2
 } from 'lucide-react';
 import moment from 'moment';
 import ImageUploadSection from '@/components/PropertyImageUpload';
+import PropertyEditor from '@/components/PropertyEditor';
 
 /* ── Import Listing from URL ─────────────────────────── */
 function ImportListingPanel() {
@@ -306,6 +307,8 @@ function RecentPropertiesPanel() {
     queryFn: () => base44.entities.Property.list('-created_date', 6),
   });
 
+  const [editingProperty, setEditingProperty] = useState(null);
+
   const deleteProperty = async (id, e) => {
     e.preventDefault();
     if (confirm('Delete this listing?')) {
@@ -319,46 +322,63 @@ function RecentPropertiesPanel() {
   };
 
   return (
-    <div className="bg-card border border-border/50 rounded-xl p-6">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="font-heading font-bold text-foreground flex items-center gap-2">
-          <Home className="w-4 h-4 text-primary" /> Recent Listings
-        </h3>
-        <Button size="sm" variant="outline" className="text-xs" asChild>
-          <Link to="/properties">View All <ArrowRight className="w-3 h-3 ml-1" /></Link>
-        </Button>
-      </div>
-      {isLoading ? (
-        <div className="space-y-2">{[1,2,3].map(i => <div key={i} className="h-12 bg-muted animate-pulse rounded-lg" />)}</div>
-      ) : properties.length === 0 ? (
-        <p className="text-sm text-muted-foreground font-body text-center py-6">No listings yet. Import from a URL above!</p>
-      ) : (
-        <div className="space-y-2">
-          {properties.map(p => (
-            <div key={p.id} className="flex items-center justify-between p-3 bg-muted/40 rounded-lg group hover:bg-red-50/30 transition-colors">
-              <Link to={`/properties/${p.id}`} className="min-w-0 flex-1">
-                <p className="text-sm font-heading font-medium text-foreground line-clamp-1">{p.title}</p>
-                <div className="flex items-center gap-2 mt-0.5">
-                  <span className="text-xs text-muted-foreground">{p.location}</span>
-                  <span className="text-xs font-medium text-primary">AED {(p.price_aed || 0).toLocaleString()}</span>
-                </div>
-              </Link>
-              <div className="flex items-center gap-2 ml-2 shrink-0">
-                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground transition-colors shrink-0" />
-                <Button
-                  size="sm"
-                  variant="ghost"
-                  className="text-xs text-red-600 hover:text-red-700 hover:bg-red-100/50 h-7 px-2"
-                  onClick={e => deleteProperty(p.id, e)}
-                >
-                  Delete
-                </Button>
-              </div>
-            </div>
-          ))}
+    <>
+      <div className="bg-card border border-border/50 rounded-xl p-6">
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="font-heading font-bold text-foreground flex items-center gap-2">
+            <Home className="w-4 h-4 text-primary" /> Recent Listings
+          </h3>
+          <Button size="sm" variant="outline" className="text-xs" asChild>
+            <Link to="/properties">View All <ArrowRight className="w-3 h-3 ml-1" /></Link>
+          </Button>
         </div>
+        {isLoading ? (
+          <div className="space-y-2">{[1,2,3].map(i => <div key={i} className="h-12 bg-muted animate-pulse rounded-lg" />)}</div>
+        ) : properties.length === 0 ? (
+          <p className="text-sm text-muted-foreground font-body text-center py-6">No listings yet. Import from a URL above!</p>
+        ) : (
+          <div className="space-y-2">
+            {properties.map(p => (
+              <div key={p.id} className="flex items-center justify-between p-3 bg-muted/40 rounded-lg group hover:bg-blue-50/30 transition-colors">
+                <Link to={`/properties/${p.id}`} className="min-w-0 flex-1">
+                  <p className="text-sm font-heading font-medium text-foreground line-clamp-1">{p.title}</p>
+                  <div className="flex items-center gap-2 mt-0.5">
+                    <span className="text-xs text-muted-foreground">{p.location}</span>
+                    <span className="text-xs font-medium text-primary">AED {(p.price_aed || 0).toLocaleString()}</span>
+                  </div>
+                </Link>
+                <div className="flex items-center gap-2 ml-2 shrink-0">
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="text-xs text-primary hover:text-primary hover:bg-primary/10 h-7 px-2"
+                    onClick={() => setEditingProperty(p)}
+                  >
+                    <Edit2 className="w-3.5 h-3.5" />
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant="ghost"
+                    className="text-xs text-red-600 hover:text-red-700 hover:bg-red-100/50 h-7 px-2"
+                    onClick={e => deleteProperty(p.id, e)}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {editingProperty && (
+        <PropertyEditor
+          property={editingProperty}
+          onClose={() => setEditingProperty(null)}
+          onSaved={() => refetch()}
+        />
       )}
-    </div>
+    </>
   );
 }
 
