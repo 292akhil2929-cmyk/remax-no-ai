@@ -272,10 +272,22 @@ function RecentPostsPanel({ refresh }) {
 
 /* ── Recent Properties ───────────────────────────────── */
 function RecentPropertiesPanel() {
-  const { data: properties = [], isLoading } = useQuery({
+  const { data: properties = [], isLoading, refetch } = useQuery({
     queryKey: ['admin-properties'],
     queryFn: () => base44.entities.Property.list('-created_date', 6),
   });
+
+  const deleteProperty = async (id, e) => {
+    e.preventDefault();
+    if (confirm('Delete this listing?')) {
+      try {
+        await base44.asServiceRole.entities.Property.delete(id);
+        refetch();
+      } catch (err) {
+        alert('Failed to delete: ' + (err?.message || 'Unknown error'));
+      }
+    }
+  };
 
   return (
     <div className="bg-card border border-border/50 rounded-xl p-6">
@@ -294,16 +306,26 @@ function RecentPropertiesPanel() {
       ) : (
         <div className="space-y-2">
           {properties.map(p => (
-            <Link key={p.id} to={`/properties/${p.id}`} className="flex items-center justify-between p-3 bg-muted/40 rounded-lg hover:bg-primary/5 transition-colors group">
-              <div className="min-w-0 flex-1">
+            <div key={p.id} className="flex items-center justify-between p-3 bg-muted/40 rounded-lg group hover:bg-red-50/30 transition-colors">
+              <Link to={`/properties/${p.id}`} className="min-w-0 flex-1">
                 <p className="text-sm font-heading font-medium text-foreground line-clamp-1">{p.title}</p>
                 <div className="flex items-center gap-2 mt-0.5">
                   <span className="text-xs text-muted-foreground">{p.location}</span>
                   <span className="text-xs font-medium text-primary">AED {(p.price_aed || 0).toLocaleString()}</span>
                 </div>
+              </Link>
+              <div className="flex items-center gap-2 ml-2 shrink-0">
+                <ArrowRight className="w-3.5 h-3.5 text-muted-foreground transition-colors shrink-0" />
+                <Button
+                  size="sm"
+                  variant="ghost"
+                  className="text-xs text-red-600 hover:text-red-700 hover:bg-red-100/50 h-7 px-2"
+                  onClick={e => deleteProperty(p.id, e)}
+                >
+                  Delete
+                </Button>
               </div>
-              <ArrowRight className="w-3.5 h-3.5 text-muted-foreground group-hover:text-primary transition-colors shrink-0 ml-2" />
-            </Link>
+            </div>
           ))}
         </div>
       )}
