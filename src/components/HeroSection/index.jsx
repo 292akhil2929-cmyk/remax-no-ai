@@ -197,18 +197,19 @@ export default function HeroSection() {
       </div>
 
       {/* Bottom stats strip */}
-      <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-md border-t border-white/10">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-4">
-          <div className="flex items-center gap-8 sm:gap-16 overflow-x-auto scrollbar-none">
+      <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-5">
+          <div className="flex items-center gap-10 sm:gap-16 overflow-x-auto scrollbar-none">
             {[
-              { label: 'Transactions in 2024', value: 'AED 528B' },
-              { label: 'Avg Rental Yield', value: '7–9%' },
-              { label: 'Tax on Gains', value: '0%' },
-              { label: 'RE/MAX Global Agents', value: '145K+' },
+              { label: 'Total Transactions (2024)', value: 'AED 528B', source: 'DLD' },
+              { label: 'Average Rental Yield', value: '7–9%', source: 'RERA' },
+              { label: 'Capital Gains Tax', value: '0%', source: 'UAE Gov' },
+              { label: 'RE/MAX Agents Worldwide', value: '145K+', source: 'RE/MAX' },
             ].map(s => (
               <div key={s.label} className="shrink-0">
-                <p className="text-white font-display font-black text-lg">{s.value}</p>
-                <p className="text-white/40 font-body text-xs">{s.label}</p>
+                <p className="text-black font-display font-black text-xl">{s.value}</p>
+                <p className="text-gray-500 font-body text-xs mt-0.5">{s.label}</p>
+                <p className="text-gray-300 font-body text-[10px] tracking-wider uppercase mt-0.5">Source: {s.source}</p>
               </div>
             ))}
           </div>

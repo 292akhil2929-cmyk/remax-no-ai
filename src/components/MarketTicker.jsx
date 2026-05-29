@@ -15,34 +15,37 @@ export default function MarketTicker() {
   const items = [...markets, ...markets, ...markets];
 
   return (
-    <div className="bg-[#0a0a0a] border-b border-white/5 py-3 overflow-hidden">
+    <div className="bg-white border-b border-gray-100 py-3 overflow-hidden">
       <div className="relative flex items-center overflow-hidden">
-        {/* Live indicator */}
-        <div className="absolute left-0 z-10 flex items-center gap-2 bg-[#0a0a0a] pl-4 pr-6 h-full border-r border-white/10 shrink-0">
-          <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          <span className="text-white/40 font-body text-[10px] tracking-[0.15em] uppercase whitespace-nowrap">Live Market</span>
+        {/* Live indicator + source label */}
+        <div className="absolute left-0 z-10 flex items-center gap-2 bg-white pl-4 pr-6 h-full border-r border-gray-100 shrink-0">
+          <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+          <div>
+            <span className="text-gray-800 font-heading font-bold text-[10px] tracking-[0.15em] uppercase whitespace-nowrap block">Dubai Price Index</span>
+            <span className="text-gray-400 font-body text-[9px] whitespace-nowrap block">Source: RERA / DLD</span>
+          </div>
         </div>
 
         {/* Scrolling content */}
         <div
-          className="flex gap-8 pl-36 animate-none"
+          className="flex gap-8 pl-44"
           style={{ animation: 'scroll 40s linear infinite', whiteSpace: 'nowrap' }}
         >
           {items.map((m, i) => (
             <div key={i} className="inline-flex items-center gap-3 shrink-0">
-              <span className="text-white/60 font-body text-xs">{m.area}</span>
-              <span className="text-white/30 font-body text-xs">·</span>
-              <span className="text-white/40 font-body text-xs">{m.price}</span>
-              <span className="text-emerald-400 font-heading font-bold text-xs flex items-center gap-1">
+              <span className="text-gray-700 font-body font-medium text-xs">{m.area}</span>
+              <span className="text-gray-300 font-body text-xs">·</span>
+              <span className="text-gray-500 font-body text-xs">{m.price}</span>
+              <span className="text-emerald-600 font-heading font-bold text-xs flex items-center gap-1">
                 <TrendingUp className="w-3 h-3" />{m.change}
               </span>
-              <span className="text-white/10 font-body text-xs mx-2">|</span>
+              <span className="text-gray-200 font-body text-xs mx-2">|</span>
             </div>
           ))}
         </div>
 
         {/* Fade right */}
-        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-[#0a0a0a] to-transparent pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-16 bg-gradient-to-l from-white to-transparent pointer-events-none" />
       </div>
     </div>
   );
