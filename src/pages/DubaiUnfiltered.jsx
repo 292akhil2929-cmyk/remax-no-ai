@@ -168,6 +168,11 @@ export default function DubaiUnfiltered() {
   const [activeEpisode, setActiveEpisode] = useState(null);
   const featured = EPISODES.find(e => e.featured);
   const rest = EPISODES.filter(e => !e.featured);
+  const introVideo = {
+    title: 'Dubai Real Estate: The Unfiltered Truth (2026 Market Analysis)',
+    youtubeId: 'hum-yWzaMnY',
+    thumbnail: 'https://i.ytimg.com/vi/hum-yWzaMnY/maxresdefault.jpg',
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -219,21 +224,31 @@ export default function DubaiUnfiltered() {
             </div>
           </motion.div>
 
-          {/* Right — intro/trailer video embedded */}
+          {/* Right — intro/trailer thumbnail */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.9, delay: 0.2 }}
-            className="relative"
+            className="relative group cursor-pointer"
+            onClick={() => setActiveEpisode(introVideo)}
           >
             <div className="relative rounded-2xl overflow-hidden aspect-video shadow-2xl ring-1 ring-white/10">
-              <iframe
-                src="https://www.youtube-nocookie.com/embed/hum-yWzaMnY?rel=0&modestbranding=1&fs=1"
-                title="Dubai Real Estate: The Unfiltered Truth (2026 Market Analysis)"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full"
+              <img
+                src={introVideo.thumbnail}
+                alt={introVideo.title}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                onError={(e) => { e.target.src = 'https://i.ytimg.com/vi/hum-yWzaMnY/hqdefault.jpg'; }}
               />
+              <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <Play className="w-7 h-7 text-white fill-white ml-1" />
+                </div>
+              </div>
+              <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
+                <p className="text-red-400 font-body text-[10px] uppercase tracking-widest mb-1">The Initiative</p>
+                <p className="text-white font-heading font-bold text-sm leading-snug">{introVideo.title}</p>
+              </div>
             </div>
             <p className="text-white/30 font-body text-[10px] text-center mt-3 uppercase tracking-widest">The video that launched this initiative</p>
           </motion.div>
