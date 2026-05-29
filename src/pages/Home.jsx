@@ -1,5 +1,5 @@
 import { useAudience } from '@/lib/AudienceContext';
-import AudienceSelector from '../components/AudienceSelector';
+import AudienceSelector from '../components/AudienceSelector.jsx';
 import HeroSection from '../components/HeroSection/index.jsx';
 import InvestorHome from '../components/home/InvestorHome';
 import SellerHome from '../components/home/SellerHome';

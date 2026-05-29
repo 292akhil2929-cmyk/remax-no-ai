@@ -1,84 +1,80 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
-import { Button } from "@/components/ui/button";
 import { useAudience } from '@/lib/AudienceContext';
 
-const dropdownGroups = [
+const NAV_GROUPS = [
   {
-    label: 'Buy & Rent',
+    label: 'Properties',
     items: [
-      { label: 'All Properties', path: '/properties' },
-      { label: 'Off-Plan', path: '/off-plan' },
-      { label: 'Area Guides', path: '/area-guides' },
+      { label: 'All Listings', path: '/properties', desc: 'Browse the full portfolio' },
+      { label: 'Off-Plan', path: '/off-plan', desc: 'New developments & launches' },
+      { label: 'Area Guides', path: '/area-guides', desc: 'Invest in the right location' },
     ],
   },
   {
     label: 'Sell',
     items: [
-      { label: 'For Landlords', path: '/landlords' },
-      { label: 'Our Services', path: '/services' },
+      { label: 'Sell Your Property', path: '/landlords', desc: 'List & get the best price' },
+      { label: 'Our Services', path: '/services', desc: 'What we handle for you' },
     ],
   },
   {
     label: 'Invest',
     items: [
-      { label: 'Golden Visa', path: '/golden-visa' },
-      { label: 'Insights', path: '/insights' },
+      { label: 'Golden Visa', path: '/golden-visa', desc: 'Residency through property' },
+      { label: 'Market Insights', path: '/insights', desc: 'Data, trends & analysis' },
+      { label: 'Blog', path: '/blog', desc: 'Guides & market news' },
     ],
   },
   {
     label: 'Company',
     items: [
-      { label: 'About Us', path: '/about' },
-      { label: 'Our Team', path: '/team' },
-      { label: 'Blog', path: '/blog' },
-      { label: 'Join Us', path: '/join' },
+      { label: 'About RE/MAX ZAM', path: '/about', desc: 'Our story & values' },
+      { label: 'Our Team', path: '/team', desc: 'Meet the advisors' },
+      { label: 'Join Us', path: '/join', desc: 'Agent partnership opportunities' },
     ],
   },
 ];
 
-const standaloneLinks = [
-  { label: 'Dashboard', path: '/dashboard' },
-  { label: 'Contact', path: '/contact' },
-];
-
-function DropdownMenu({ group, location }) {
+function NavDropdown({ group, location }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const isActive = group.items.some(i => location.pathname === i.path);
 
   useEffect(() => {
-    const handler = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
-    document.addEventListener('mousedown', handler);
-    return () => document.removeEventListener('mousedown', handler);
+    const h = (e) => { if (ref.current && !ref.current.contains(e.target)) setOpen(false); };
+    document.addEventListener('mousedown', h);
+    return () => document.removeEventListener('mousedown', h);
   }, []);
 
   return (
-    <div className="relative" ref={ref}>
+    <div className="relative" ref={ref} onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
       <button
         onClick={() => setOpen(o => !o)}
-        className={`flex items-center gap-1 text-sm font-body transition-colors duration-200 py-1 ${
-          isActive ? 'text-black font-semibold' : 'text-gray-600 hover:text-black'
+        className={`flex items-center gap-1 text-sm font-body py-1 transition-colors duration-200 ${
+          isActive ? 'text-black font-semibold' : 'text-gray-500 hover:text-black'
         }`}
       >
         {group.label}
-        <ChevronDown className={`w-3.5 h-3.5 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-3 h-3 transition-transform duration-200 ${open ? 'rotate-180' : ''}`} />
       </button>
+
       {open && (
-        <div className="absolute top-full left-0 mt-3 w-48 bg-white rounded-xl shadow-2xl border border-gray-100 py-1.5 z-50">
+        <div className="absolute top-full left-0 mt-4 w-60 bg-white shadow-xl border border-gray-100 rounded-2xl py-2 z-50 overflow-hidden">
           {group.items.map(item => (
             <Link
               key={item.path}
               to={item.path}
               onClick={() => setOpen(false)}
-              className={`block px-4 py-2.5 text-sm font-body transition-colors ${
-                location.pathname === item.path
-                  ? 'text-black font-medium'
-                  : 'text-gray-600 hover:text-black hover:bg-gray-50'
+              className={`flex flex-col px-5 py-3 transition-colors hover:bg-gray-50 ${
+                location.pathname === item.path ? 'bg-gray-50' : ''
               }`}
             >
-              {item.label}
+              <span className={`text-sm font-body font-medium ${location.pathname === item.path ? 'text-black' : 'text-gray-700'}`}>
+                {item.label}
+              </span>
+              <span className="text-xs text-gray-400 font-body mt-0.5">{item.desc}</span>
             </Link>
           ))}
         </div>
@@ -89,13 +85,22 @@ function DropdownMenu({ group, location }) {
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { clearAudience } = useAudience();
 
+  useEffect(() => {
+    const h = () => setScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', h);
+    return () => window.removeEventListener('scroll', h);
+  }, []);
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-[68px]">
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      scrolled ? 'bg-white/98 backdrop-blur-md shadow-sm border-b border-gray-100' : 'bg-white/95 backdrop-blur-md border-b border-gray-100'
+    }`}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="flex items-center justify-between h-16 lg:h-[70px]">
 
           {/* Logo */}
           <Link to="/" onClick={clearAudience} className="flex items-center shrink-0">
@@ -107,37 +112,36 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Nav */}
-          <div className="hidden lg:flex items-center gap-7">
-            {dropdownGroups.map(group => (
-              <DropdownMenu key={group.label} group={group} location={location} />
+          <div className="hidden lg:flex items-center gap-8">
+            {NAV_GROUPS.map(group => (
+              <NavDropdown key={group.label} group={group} location={location} />
             ))}
-            {standaloneLinks.map(link => (
-              <Link
-                key={link.path}
-                to={link.path}
-                className={`text-sm font-body transition-colors duration-200 ${
-                  location.pathname === link.path ? 'text-black font-semibold' : 'text-gray-600 hover:text-black'
-                }`}
-              >
-                {link.label}
-              </Link>
-            ))}
+            <Link
+              to="/contact"
+              className={`text-sm font-body transition-colors duration-200 ${
+                location.pathname === '/contact' ? 'text-black font-semibold' : 'text-gray-500 hover:text-black'
+              }`}
+            >
+              Contact
+            </Link>
           </div>
 
           {/* CTA */}
           <div className="hidden lg:flex items-center gap-3">
-            <Button
-              className="bg-black hover:bg-gray-800 text-white font-heading font-semibold rounded-xl border-0 px-5 text-sm"
-              size="sm"
-              asChild
+            <Link to="/dashboard" className="text-sm text-gray-500 hover:text-black font-body transition-colors">
+              Dashboard
+            </Link>
+            <Link
+              to="/contact"
+              className="bg-black hover:bg-gray-800 text-white font-heading font-bold text-xs tracking-wider uppercase px-5 py-2.5 rounded-xl transition-colors"
             >
-              <Link to="/contact">Get Advice</Link>
-            </Button>
+              Get Advice
+            </Link>
           </div>
 
           {/* Mobile Toggle */}
-          <button className="lg:hidden text-black p-1" onClick={() => setOpen(!open)}>
-            {open ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          <button className="lg:hidden text-black p-1.5 -mr-1.5" onClick={() => setOpen(!open)}>
+            {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
@@ -145,17 +149,17 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {open && (
         <div className="lg:hidden bg-white border-t border-gray-100">
-          <div className="px-4 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
-            {dropdownGroups.map(group => (
+          <div className="px-6 py-5 space-y-1 max-h-[80vh] overflow-y-auto">
+            {NAV_GROUPS.map(group => (
               <div key={group.label}>
-                <p className="text-xs font-semibold text-gray-400 uppercase tracking-wider px-2 pt-4 pb-1">{group.label}</p>
+                <p className="text-xs font-heading font-bold text-gray-300 uppercase tracking-wider px-2 pt-5 pb-2">{group.label}</p>
                 {group.items.map(item => (
                   <Link
                     key={item.path}
                     to={item.path}
                     onClick={() => setOpen(false)}
                     className={`block py-2.5 px-2 text-sm font-body rounded-lg transition-colors ${
-                      location.pathname === item.path ? 'text-black font-medium bg-gray-50' : 'text-gray-600 hover:text-black hover:bg-gray-50'
+                      location.pathname === item.path ? 'text-black font-medium' : 'text-gray-500 hover:text-black'
                     }`}
                   >
                     {item.label}
@@ -163,23 +167,17 @@ export default function Navbar() {
                 ))}
               </div>
             ))}
-            <div className="border-t border-gray-100 pt-3 mt-2 space-y-1">
-              {standaloneLinks.map(link => (
-                <Link
-                  key={link.path}
-                  to={link.path}
-                  onClick={() => setOpen(false)}
-                  className={`block py-2.5 px-2 text-sm font-body rounded-lg transition-colors ${
-                    location.pathname === link.path ? 'text-black font-medium' : 'text-gray-600 hover:text-black hover:bg-gray-50'
-                  }`}
-                >
-                  {link.label}
-                </Link>
-              ))}
+            <div className="pt-5 mt-2 border-t border-gray-100 space-y-2">
+              <Link to="/contact" onClick={() => setOpen(false)} className="block py-2.5 px-2 text-sm font-body text-gray-500 hover:text-black">Contact</Link>
+              <Link to="/dashboard" onClick={() => setOpen(false)} className="block py-2.5 px-2 text-sm font-body text-gray-500 hover:text-black">Dashboard</Link>
             </div>
-            <Button className="w-full mt-3 bg-black hover:bg-gray-800 text-white font-semibold border-0 rounded-xl" size="sm" asChild>
-              <Link to="/contact" onClick={() => setOpen(false)}>Get Investment Advice</Link>
-            </Button>
+            <Link
+              to="/contact"
+              onClick={() => setOpen(false)}
+              className="block w-full mt-4 bg-black text-white font-heading font-bold text-xs tracking-wider uppercase text-center py-3.5 rounded-xl"
+            >
+              Get Investment Advice
+            </Link>
           </div>
         </div>
       )}

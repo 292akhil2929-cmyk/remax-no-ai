@@ -1,70 +1,80 @@
-/**
- * AGENT / COLLABORATOR JOURNEY
- * Purpose: Join the RE/MAX ZAM network, understand benefits, apply to partner
- * Sections: Why RE/MAX → What You Get → Commission & Support → Apply Form
- */
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
-import { Globe, BadgeCheck, Users, Zap, BookOpen, Headphones, TrendingUp, Award, CheckCircle, ArrowRight } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Globe, BadgeCheck, Zap, BookOpen, TrendingUp, Headphones, Users, Award, CheckCircle, ArrowRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
-const benefits = [
+const BENEFITS = [
   {
     icon: Globe,
     title: 'Global Referral Network',
-    desc: '145,000+ RE/MAX agents across 110+ countries. International clients refer to you, you refer globally — built-in deal flow.',
+    desc: '145,000+ RE/MAX agents across 110 countries. Inbound international referrals. Outbound global reach. Built-in deal flow from day one.',
   },
   {
     icon: BadgeCheck,
     title: 'RE/MAX Brand Power',
-    desc: 'The most recognized real estate brand on earth. Instant credibility with clients who already trust the name.',
+    desc: "The world's most recognised real estate brand. Your clients already trust the name before you say a word.",
   },
   {
     icon: Zap,
-    title: 'Marketing & Leads',
-    desc: 'Professional listing promotions, portal presence, social campaigns and qualified leads — handled by our in-house team.',
+    title: 'Marketing & Lead Generation',
+    desc: 'Listing campaigns, portal presence, social promotion and qualified leads — managed by our in-house marketing team.',
   },
   {
     icon: BookOpen,
-    title: 'Training & Tools',
-    desc: 'Access to RE/MAX University, market data tools, CRM system, and deal management platform from day one.',
+    title: 'Training & Technology',
+    desc: 'RE/MAX University access, CRM system, market data tools, and deal management platform — available from day one.',
   },
   {
     icon: TrendingUp,
-    title: 'Competitive Commission',
-    desc: 'Industry-leading commission splits. The more you grow, the more you keep. Transparent and structured.',
+    title: 'Competitive Commission Splits',
+    desc: 'Industry-leading structure. The more you grow, the more you keep. Transparent tiers with no hidden fees.',
   },
   {
     icon: Headphones,
     title: 'Full Back-Office Support',
-    desc: 'Legal, contracts, NOC, DLD registration, mortgage coordination — our admin team handles it so you focus on selling.',
+    desc: 'Legal, NOC, DLD registration, mortgage coordination — our admin team handles it so you can focus entirely on closing.',
   },
 ];
 
-const tiers = [
+const TIERS = [
   {
-    title: 'Associate Agent',
-    who: 'New to Dubai or real estate',
-    split: '50 / 50',
-    includes: ['Full training program', 'Brand & marketing support', 'CRM & leads access', 'Mentorship from senior agents'],
+    title: 'Associate',
+    who: 'New to Dubai real estate',
+    split: '50/50',
+    color: 'bg-white border-gray-100',
+    textColor: 'text-gray-900',
+    subColor: 'text-gray-400',
+    includes: ['Full RE/MAX training program', 'Brand & marketing support', 'CRM & leads access', 'Senior agent mentorship'],
   },
   {
     title: 'Senior Agent',
     who: '1+ year experience',
-    split: '70 / 30',
-    includes: ['Priority lead allocation', 'Dedicated marketing budget', 'Direct developer relationships', 'Referral network access'],
+    split: '70/30',
+    color: 'bg-black border-black',
+    textColor: 'text-white',
+    subColor: 'text-gray-400',
     highlight: true,
+    includes: ['Priority lead allocation', 'Dedicated marketing budget', 'Direct developer relationships', 'Global referral network'],
   },
   {
     title: 'Team Leader',
     who: 'Building your own team',
     split: 'Custom',
+    color: 'bg-white border-gray-100',
+    textColor: 'text-gray-900',
+    subColor: 'text-gray-400',
     includes: ['Own office branding', 'Team training & onboarding', 'Override commissions', 'Strategic partnership terms'],
   },
+];
+
+const PROOF = [
+  { value: '110+', label: 'Countries' },
+  { value: '145K+', label: 'Global agents' },
+  { value: '#1', label: 'Global RE brand' },
+  { value: '50+', label: 'Years operating' },
 ];
 
 function AgentApplicationForm() {
@@ -90,24 +100,24 @@ function AgentApplicationForm() {
 
   if (submitted) {
     return (
-      <div className="flex flex-col items-center justify-center py-8 text-center">
-        <div className="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center mb-4">
-          <CheckCircle className="w-6 h-6 text-emerald-400" />
+      <div className="flex flex-col items-center justify-center py-10 text-center">
+        <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center mb-5">
+          <CheckCircle className="w-7 h-7 text-emerald-400" />
         </div>
-        <h3 className="font-heading font-semibold text-white text-lg mb-2">Application Received!</h3>
-        <p className="text-sm text-gray-400 font-body">Our partnership team will contact you within 48 hours.</p>
+        <h3 className="font-display font-black text-white text-xl mb-2">Application Received</h3>
+        <p className="text-sm text-gray-400 font-body">Our partnership team will be in touch within 48 hours.</p>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <Input placeholder="Full Name *" required value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-400" />
-        <Input placeholder="Email *" type="email" required value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-400" />
-        <Input placeholder="Phone / WhatsApp" value={form.phone} onChange={(e) => setForm({...form, phone: e.target.value})} className="bg-white/10 border-white/20 text-white placeholder:text-gray-400" />
+    <form onSubmit={handleSubmit} className="space-y-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <Input placeholder="Full Name *" required value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} className="bg-white/[0.06] border-white/10 text-white placeholder:text-gray-500 focus:border-white/30" />
+        <Input placeholder="Email *" type="email" required value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} className="bg-white/[0.06] border-white/10 text-white placeholder:text-gray-500 focus:border-white/30" />
+        <Input placeholder="Phone / WhatsApp" value={form.phone} onChange={(e) => setForm({...form, phone: e.target.value})} className="bg-white/[0.06] border-white/10 text-white placeholder:text-gray-500 focus:border-white/30" />
         <Select value={form.experience} onValueChange={(v) => setForm({...form, experience: v})}>
-          <SelectTrigger className="bg-white/10 border-white/20 text-white">
+          <SelectTrigger className="bg-white/[0.06] border-white/10 text-white">
             <SelectValue placeholder="Years of Experience" />
           </SelectTrigger>
           <SelectContent>
@@ -117,10 +127,10 @@ function AgentApplicationForm() {
           </SelectContent>
         </Select>
       </div>
-      <Button type="submit" className="w-full bg-white text-black hover:bg-gray-100 font-heading font-bold" disabled={createLead.isPending}>
-        {createLead.isPending ? 'Submitting...' : 'Apply to Join'}
-        <ArrowRight className="w-4 h-4 ml-2" />
-      </Button>
+      <button type="submit" disabled={createLead.isPending}
+        className="w-full bg-white text-black hover:bg-gray-100 font-heading font-bold text-sm py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+        {createLead.isPending ? 'Submitting...' : <>Apply to Join <ArrowRight className="w-4 h-4" /></>}
+      </button>
     </form>
   );
 }
@@ -128,69 +138,92 @@ function AgentApplicationForm() {
 export default function AgentHome() {
   return (
     <>
-      {/* Why RE/MAX ZAM */}
-      <section className="py-16 lg:py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-            <p className="text-xs text-gray-400 font-body tracking-widest uppercase mb-2">Join the Network</p>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-display font-black text-gray-900 max-w-2xl">
-              Everything You Need to Thrive in Dubai Real Estate
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {benefits.map((b, idx) => {
-              const Icon = b.icon;
-              return (
-                <motion.div
-                  key={b.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.08 }}
-                  className="group p-6 rounded-xl border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all duration-300"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-black flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5 text-white" />
-                  </div>
-                  <h3 className="text-base font-display font-black text-gray-900 mb-2">{b.title}</h3>
-                  <p className="text-sm text-gray-500 font-body leading-relaxed">{b.desc}</p>
+      {/* ── PROOF BAR ── */}
+      <section className="bg-black border-b border-white/10 py-5">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="flex items-center justify-between gap-8">
+            <div className="flex items-center gap-8 sm:gap-16 overflow-x-auto scrollbar-none">
+              {PROOF.map((p, idx) => (
+                <motion.div key={p.value} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: idx * 0.07 }} viewport={{ once: true }} className="shrink-0 text-center">
+                  <p className="text-2xl font-display font-black text-white">{p.value}</p>
+                  <p className="text-white/40 font-body text-xs mt-0.5">{p.label}</p>
                 </motion.div>
-              );
-            })}
+              ))}
+            </div>
+            <div className="hidden lg:block text-right shrink-0">
+              <p className="text-white/30 text-xs font-body">The world's most recognised</p>
+              <p className="text-white/60 text-xs font-heading font-bold">real estate brand</p>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Commission Tiers */}
-      <section className="py-16 bg-gray-50 border-y border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div initial={{ opacity: 0, y: -20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10">
-            <h2 className="text-2xl sm:text-3xl font-display font-black text-gray-900">Partnership Tiers</h2>
-            <p className="text-sm text-gray-500 font-body mt-1">Clear progression — the more you grow, the more you earn.</p>
+      {/* ── BENEFITS GRID ── */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
+            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">What You Get</p>
+            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight max-w-xl">
+              Everything You Need<br />to Win in Dubai
+            </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
-            {tiers.map((tier, idx) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-gray-100">
+            {BENEFITS.map(({ icon: Icon, title, desc }, idx) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.06 }}
+                className="bg-white p-8 group hover:bg-black transition-colors duration-300"
+              >
+                <div className="w-10 h-10 rounded-lg bg-gray-900 group-hover:bg-white/10 flex items-center justify-center mb-5 transition-colors">
+                  <Icon className="w-5 h-5 text-white" />
+                </div>
+                <h3 className="text-base font-display font-black text-gray-900 group-hover:text-white mb-2 transition-colors">{title}</h3>
+                <p className="text-sm text-gray-500 group-hover:text-gray-400 font-body leading-relaxed transition-colors">{desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── COMMISSION TIERS ── */}
+      <section className="py-20 bg-gray-50 border-y border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Clear Progression</p>
+            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
+              Partnership Tiers
+            </h2>
+            <p className="text-gray-500 font-body text-sm mt-2">The more you grow, the more you keep.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {TIERS.map((tier, idx) => (
               <motion.div
                 key={tier.title}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className={`rounded-xl p-6 border-2 ${tier.highlight ? 'bg-black border-black text-white' : 'bg-white border-gray-100'}`}
+                className={`rounded-2xl p-8 border-2 relative overflow-hidden ${tier.color}`}
               >
                 {tier.highlight && (
-                  <span className="inline-block text-xs font-heading font-bold bg-white text-black px-3 py-1 rounded-full mb-4">Most Popular</span>
+                  <div className="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-amber-500 to-amber-300" />
                 )}
-                <h3 className={`text-lg font-display font-black mb-1 ${tier.highlight ? 'text-white' : 'text-gray-900'}`}>{tier.title}</h3>
-                <p className={`text-xs font-body mb-4 ${tier.highlight ? 'text-gray-400' : 'text-gray-400'}`}>{tier.who}</p>
-                <div className={`text-3xl font-display font-black mb-1 ${tier.highlight ? 'text-white' : 'text-gray-900'}`}>{tier.split}</div>
-                <p className={`text-xs font-body mb-5 ${tier.highlight ? 'text-gray-400' : 'text-gray-400'}`}>Commission Split</p>
-                <ul className="space-y-2">
+                {tier.highlight && (
+                  <span className="inline-block text-xs font-heading font-bold bg-white text-black px-3 py-1 rounded-full mb-5">Most Popular</span>
+                )}
+                <h3 className={`text-xl font-display font-black mb-1 ${tier.textColor}`}>{tier.title}</h3>
+                <p className={`text-xs font-body mb-6 ${tier.subColor}`}>{tier.who}</p>
+                <div className={`text-4xl font-display font-black mb-1 ${tier.textColor}`}>{tier.split}</div>
+                <p className={`text-xs font-body mb-7 ${tier.subColor}`}>Commission Split</p>
+                <ul className="space-y-2.5">
                   {tier.includes.map(item => (
-                    <li key={item} className={`flex items-start gap-2 text-xs font-body ${tier.highlight ? 'text-gray-300' : 'text-gray-600'}`}>
-                      <span className={`mt-0.5 ${tier.highlight ? 'text-white' : 'text-black'}`}>✓</span> {item}
+                    <li key={item} className={`flex items-start gap-2.5 text-xs font-body ${tier.highlight ? 'text-gray-300' : 'text-gray-600'}`}>
+                      <span className={`mt-0.5 shrink-0 ${tier.highlight ? 'text-white' : 'text-black'}`}>✓</span> {item}
                     </li>
                   ))}
                 </ul>
@@ -200,58 +233,41 @@ export default function AgentHome() {
         </div>
       </section>
 
-      {/* Agent Stats Bar */}
-      <section className="py-12 bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
-            {[
-              { icon: Globe, value: '110+', label: 'Countries in RE/MAX network' },
-              { icon: Users, value: '145K+', label: 'Agents globally' },
-              { icon: Award, value: '#1', label: 'Most trusted RE brand worldwide' },
-              { icon: TrendingUp, value: '50+', label: 'Years of proven performance' },
-            ].map((s, idx) => {
-              const Icon = s.icon;
-              return (
-                <motion.div key={s.label} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: idx * 0.08 }} viewport={{ once: true }}>
-                  <Icon className="w-5 h-5 text-gray-300 mx-auto mb-2" />
-                  <p className="text-3xl font-display font-black text-gray-900">{s.value}</p>
-                  <p className="text-xs text-gray-400 font-body mt-1">{s.label}</p>
-                </motion.div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Agent Application CTA */}
-      <section className="py-16 bg-black">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+      {/* ── AGENT CTA ── */}
+      <section id="agent-apply" className="py-24 bg-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(50,100,200,0.08),transparent_60%)]" />
+        <div className="relative max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <p className="text-xs text-white/40 font-body tracking-widest uppercase mb-3">Join RE/MAX ZAM</p>
-              <h2 className="text-3xl sm:text-4xl font-display font-black text-white mb-4 leading-tight">
-                Ready to Build Your<br />Real Estate Career in Dubai?
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-px bg-white/30" />
+                <span className="text-white/40 font-body text-xs tracking-[0.2em] uppercase">Join RE/MAX ZAM</span>
+              </div>
+              <h2 className="text-4xl sm:text-5xl font-display font-black text-white leading-tight mb-5">
+                Ready to Build Your<br />Career in Dubai?
               </h2>
-              <p className="text-gray-400 font-body text-sm leading-relaxed mb-6">
-                Whether you're an experienced agent looking to scale, or new to real estate and eager to start — we have a path for you.
+              <p className="text-gray-400 font-body text-sm leading-relaxed mb-8">
+                Whether you're an experienced agent ready to scale, or brand new and hungry to start — we have a clear path, real support, and the brand to match.
               </p>
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {[
                   'RERA-licensed brokerage with full compliance support',
                   'No desk fees for qualifying associates',
-                  'Direct access to off-plan developer inventory',
-                  'Weekly team training & deal-sharing sessions',
+                  'Direct access to exclusive off-plan developer inventory',
+                  'Weekly deal-sharing sessions & ongoing training',
                 ].map(item => (
-                  <li key={item} className="flex items-start gap-2 text-sm text-gray-300 font-body">
-                    <span className="text-white mt-0.5">✓</span> {item}
+                  <li key={item} className="flex items-start gap-3 text-sm text-gray-300 font-body">
+                    <span className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-white text-xs shrink-0 mt-0.5">✓</span>
+                    {item}
                   </li>
                 ))}
               </ul>
             </motion.div>
+
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              className="bg-white/5 border border-white/10 rounded-2xl p-6">
-              <h3 className="text-lg font-display font-black text-white mb-1">Apply to Join Our Team</h3>
-              <p className="text-xs text-gray-400 font-body mb-5">We'll reach out within 48 hours to schedule a call.</p>
+              className="bg-white/[0.04] border border-white/10 rounded-2xl p-8">
+              <h3 className="text-xl font-display font-black text-white mb-1">Apply to Join Our Team</h3>
+              <p className="text-xs text-gray-500 font-body mb-7">We'll be in touch within 48 hours.</p>
               <AgentApplicationForm />
             </motion.div>
           </div>

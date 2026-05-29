@@ -1,11 +1,10 @@
 import { useAudience } from '@/lib/AudienceContext';
-import { Building2, TrendingUp, Users } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
-const options = [
-  { id: 'investor', label: 'Invest', icon: TrendingUp },
-  { id: 'seller', label: 'Sell', icon: Building2 },
-  { id: 'agent', label: 'Collaborate', icon: Users },
+const OPTIONS = [
+  { id: 'investor', label: 'I want to Invest', sublabel: 'Buy or off-plan' },
+  { id: 'seller', label: 'I want to Sell', sublabel: 'Get a valuation' },
+  { id: 'agent', label: 'I want to Collaborate', sublabel: 'Join the network' },
 ];
 
 export default function AudienceSelector() {
@@ -13,24 +12,29 @@ export default function AudienceSelector() {
 
   return (
     <div className="bg-black border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-1 h-11">
-          <span className="text-white/40 text-xs font-body mr-3 hidden sm:block tracking-wider uppercase">I want to</span>
-          {options.map(opt => {
-            const Icon = opt.icon;
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        <div className="flex items-center h-12 gap-1">
+          <span className="text-white/25 text-[10px] font-body tracking-[0.2em] uppercase mr-4 hidden sm:block">
+            I'm here to
+          </span>
+          {OPTIONS.map(opt => {
             const isActive = audience === opt.id;
             return (
               <button
                 key={opt.id}
                 onClick={() => selectAudience(opt.id)}
-                className={`flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-heading font-semibold transition-all ${
-                  isActive
-                    ? 'bg-white text-black'
-                    : 'text-white/60 hover:text-white hover:bg-white/10'
+                className={`relative h-full px-5 text-xs font-heading font-semibold transition-all duration-200 ${
+                  isActive ? 'text-white' : 'text-white/40 hover:text-white/70'
                 }`}
               >
-                <Icon className="w-3 h-3" />
                 {opt.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="audience-indicator"
+                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-white"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
               </button>
             );
           })}
