@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import {
   Link as LinkIcon, Sparkles, RefreshCw, CheckCircle2,
   AlertCircle, Loader2, FileText, Home, ArrowRight,
-  PlusCircle, ExternalLink, Calendar
+  PlusCircle, ExternalLink, Calendar, Plus
 } from 'lucide-react';
 import moment from 'moment';
 import ImageUploadSection from '@/components/PropertyImageUpload';
@@ -18,6 +18,7 @@ function ImportListingPanel() {
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [loadingSample, setLoadingSample] = useState(false);
 
   const handleImport = async () => {
     if (!url.trim()) return;
@@ -31,6 +32,19 @@ function ImportListingPanel() {
       setError(e?.response?.data?.error || e.message || 'Failed to import listing');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleCreateSampleListings = async () => {
+    setLoadingSample(true);
+    setError(null);
+    try {
+      await base44.functions.invoke('createSampleListings', {});
+      setResult({ title: 'Sample Listings Created', isSampleSuccess: true });
+    } catch (e) {
+      setError(e?.response?.data?.error || e.message || 'Failed to create sample listings');
+    } finally {
+      setLoadingSample(false);
     }
   };
 
@@ -73,6 +87,20 @@ function ImportListingPanel() {
         </Button>
       </div>
 
+      <div className="mt-4 pt-4 border-t border-border/30">
+        <p className="text-xs text-muted-foreground font-body mb-2">Or create sample listings across all categories:</p>
+        <Button
+          onClick={handleCreateSampleListings}
+          disabled={loadingSample}
+          variant="outline"
+          size="sm"
+          className="text-xs"
+        >
+          {loadingSample ? <Loader2 className="w-3 h-3 animate-spin mr-1" /> : <Plus className="w-3 h-3 mr-1" />}
+          Create 10 Sample Listings
+        </Button>
+      </div>
+
       {detectedPlatform && !result && !error && (
         <p className="text-xs text-muted-foreground mt-2 font-body">
           ✓ Detected: <span className={`font-medium ${detectedPlatform.color.split(' ')[1]}`}>{detectedPlatform.name}</span>
@@ -97,21 +125,32 @@ function ImportListingPanel() {
         <div className="mt-4 bg-emerald-50 border border-emerald-200 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-            <span className="font-heading font-semibold text-emerald-800">Listing imported successfully!</span>
+            <span className="font-heading font-semibold text-emerald-800">
+              {result.isSampleSuccess ? '10 Sample Listings Created!' : 'Listing imported successfully!'}
+            </span>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-3">
-            <div><p className="text-xs text-emerald-600 font-body">Title</p><p className="font-heading font-medium text-foreground text-xs line-clamp-2">{result.title}</p></div>
-            <div><p className="text-xs text-emerald-600 font-body">Price</p><p className="font-heading font-medium text-foreground">AED {(result.price_aed || 0).toLocaleString()}</p></div>
-            <div><p className="text-xs text-emerald-600 font-body">Location</p><p className="font-heading font-medium text-foreground">{result.location}</p></div>
-            <div><p className="text-xs text-emerald-600 font-body">Type</p><p className="font-heading font-medium text-foreground">{result.property_type}</p></div>
-          </div>
-          <ImageUploadSection propertyId={result.id} onImageUploaded={() => { setUrl(''); setResult(null); }} />
+          {!result.isSampleSuccess && (
+            <>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-3">
+                <div><p className="text-xs text-emerald-600 font-body">Title</p><p className="font-heading font-medium text-foreground text-xs line-clamp-2">{result.title}</p></div>
+                <div><p className="text-xs text-emerald-600 font-body">Price</p><p className="font-heading font-medium text-foreground">AED {(result.price_aed || 0).toLocaleString()}</p></div>
+                <div><p className="text-xs text-emerald-600 font-body">Location</p><p className="font-heading font-medium text-foreground">{result.location}</p></div>
+                <div><p className="text-xs text-emerald-600 font-body">Type</p><p className="font-heading font-medium text-foreground">{result.property_type}</p></div>
+              </div>
+              <ImageUploadSection propertyId={result.id} onImageUploaded={() => { setUrl(''); setResult(null); }} />
+            </>
+          )}
+          {result.isSampleSuccess && (
+            <p className="text-sm text-emerald-700 font-body mb-3">
+              Created 2 off-plan, 2 ready residential, 2 ready commercial, 2 rental commercial, and 2 rental residential listings. They're now live on the Properties page!
+            </p>
+          )}
           <div className="flex gap-2 mt-3">
             <Button size="sm" variant="outline" className="text-xs" onClick={() => { setUrl(''); setResult(null); }}>
-              Import Another
+              {result.isSampleSuccess ? 'Create More' : 'Import Another'}
             </Button>
             <Button size="sm" className="text-xs" asChild>
-              <Link to={`/properties/${result.id}`}>View Listing <ExternalLink className="w-3 h-3 ml-1" /></Link>
+              <Link to="/properties">View All Listings <ExternalLink className="w-3 h-3 ml-1" /></Link>
             </Button>
           </div>
         </div>
