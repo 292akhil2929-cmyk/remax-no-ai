@@ -7,6 +7,7 @@ const TEAM = [
     name: 'Faisal Contractor',
     role: 'CEO & Founder',
     photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg',
+    videoUrl: '', // Add video URL here
     bio: 'Faisal Contractor is an accomplished serial entrepreneur and growth architect. As the founder and CEO of Embark Growth Marketing and the visionary behind REMAX ZAM, Faisal has earned a reputation for transforming how investors engage with the UAE\'s real estate market. Focused on enabling smart, confident decisions, he is committed to innovation, strategic growth, and fostering meaningful industry relationships.',
     phone: '+97145828158',
     whatsapp: '97145828158',
@@ -18,6 +19,7 @@ const TEAM = [
     name: 'Justice',
     role: 'Property Consultant',
     photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Justice-chukwudi.png',
+    videoUrl: '', // Add video URL here
     bio: 'I use the market insights I learned at REMAX ZAM to provide unmatched support to my clients. The management\'s guidance gives me confidence to close deals and progress my career in ways I never imagined.',
     phone: '+97145828158',
     whatsapp: '97145828158',
@@ -29,6 +31,7 @@ const TEAM = [
     name: 'Imran',
     role: 'Property Consultant',
     photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Mohoammad-Imran.png',
+    videoUrl: '', // Add video URL here
     bio: 'The training and teamwork at REMAX ZAM helped me understand the industry faster and helps me keep track of latest updates within the industry.',
     phone: '+97145828158',
     whatsapp: '97145828158',
@@ -40,6 +43,7 @@ const TEAM = [
     name: 'Abu Bakkar',
     role: 'Property Consultant',
     photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Abu-bakkar-al-shams.png',
+    videoUrl: '', // Add video URL here
     bio: 'I am honored to be a part of REMAX and REMAX ZAM. REMAX is a global brand and REMAX ZAM has shown me why, it\'s an absolute pleasure for me to be part of this brand.',
     phone: '+97145828158',
     whatsapp: '97145828158',
@@ -51,6 +55,7 @@ const TEAM = [
     name: 'Khaldoun',
     role: 'Property Consultant',
     photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Ellipse-104.png',
+    videoUrl: '', // Add video URL here
     bio: 'I recently closed my biggest deal, and I couldn\'t have done it without the hands on training I received at REMAX ZAM. The support from the team and the market insights gave me the confidence to succeed.',
     phone: '+97145828158',
     whatsapp: '97145828158',
@@ -62,6 +67,7 @@ const TEAM = [
     name: 'Nour',
     role: 'Property Consultant',
     photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Ellipse-105.png',
+    videoUrl: '', // Add video URL here
     bio: 'I\'ve been able to build my personal brand and attract clients with the training and marketing resources at REMAX ZAM. The support from the team has helped me gain leads and grow consistently.',
     phone: '+97145828158',
     whatsapp: '97145828158',
@@ -73,6 +79,7 @@ const TEAM = [
     name: 'Manish',
     role: 'Property Consultant',
     photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Manish-Kapur.png',
+    videoUrl: '', // Add video URL here
     bio: 'I closed multiple high ticket deals back to back thanks to the mentorship and guidance provided by REMAX ZAM. Having access to a strong network made navigating the market so much easier.',
     phone: '+97145828158',
     whatsapp: '97145828158',
@@ -121,12 +128,24 @@ export default function Team() {
           <div className="mb-12">
             <div className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all flex flex-col md:flex-row">
               <div className="relative md:w-80 shrink-0">
-                <img
-                  src={TEAM[0].photo}
-                  alt={TEAM[0].name}
-                  className="w-full h-72 md:h-full object-cover object-top"
-                  onError={(e) => { e.target.src = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg'; }}
-                />
+                {TEAM[0].videoUrl ? (
+                  <div className="w-full h-72 md:h-full bg-gray-900 flex items-center justify-center">
+                    <iframe
+                      src={TEAM[0].videoUrl}
+                      title={TEAM[0].name}
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  </div>
+                ) : (
+                  <img
+                    src={TEAM[0].photo}
+                    alt={TEAM[0].name}
+                    className="w-full h-72 md:h-full object-cover object-top"
+                    onError={(e) => { e.target.src = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg'; }}
+                  />
+                )}
                 <span className={`absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-white ${TEAM[0].badgeColor}`}>
                   {TEAM[0].badge}
                 </span>
@@ -155,12 +174,24 @@ export default function Team() {
             {TEAM.slice(1).map(agent => (
               <div key={agent.name} className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all">
                 <div className="relative">
-                  <img
-                    src={agent.photo}
-                    alt={agent.name}
-                    className="w-full h-64 object-cover object-top"
-                    onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'; }}
-                  />
+                  {agent.videoUrl ? (
+                    <div className="w-full h-64 bg-gray-900 flex items-center justify-center">
+                      <iframe
+                        src={agent.videoUrl}
+                        title={agent.name}
+                        className="w-full h-full"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : (
+                    <img
+                      src={agent.photo}
+                      alt={agent.name}
+                      className="w-full h-64 object-cover object-top"
+                      onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'; }}
+                    />
+                  )}
                   <span className={`absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-white ${agent.badgeColor}`}>
                     {agent.badge}
                   </span>

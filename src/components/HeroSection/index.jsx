@@ -43,6 +43,11 @@ const HERO_CONTENT = {
 
 const DEFAULT = HERO_CONTENT.investor;
 
+// Update this object with your advisor video URL
+const ADVISOR_VIDEO_CONFIG = {
+  founderVideoUrl: '', // Add founder video URL here
+};
+
 export default function HeroSection() {
   const navigate = useNavigate();
   const { audience } = useAudience();
