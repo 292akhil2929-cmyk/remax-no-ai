@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
 import { useAudience } from '@/lib/AudienceContext';
 
-const DUBAI_VIDEO = 'https://cdn.pixabay.com/vimeo/358317471/Dubai%20-%2033926.mp4';
+const DUBAI_BG = 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=90&auto=format&fit=crop';
 
 const communities = [
   'Downtown Dubai', 'Dubai Marina', 'Palm Jumeirah', 'Business Bay', 'Dubai Hills Estate',
@@ -70,14 +70,15 @@ export default function HeroSection() {
 
   return (
     <section className="relative h-screen min-h-[680px] max-h-[960px] flex flex-col justify-center overflow-hidden">
-      {/* Video Background */}
-      <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover scale-105">
-        <source src={DUBAI_VIDEO} type="video/mp4" />
-      </video>
+      {/* Background Image */}
+      <div
+        className="absolute inset-0 w-full h-full scale-105 bg-center bg-cover"
+        style={{ backgroundImage: `url(${DUBAI_BG})` }}
+      />
 
-      {/* Multi-layer gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+      {/* Multi-layer gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
 
       {/* Content */}
       <div className="relative z-10 px-6 sm:px-10 lg:px-16 xl:px-24">
