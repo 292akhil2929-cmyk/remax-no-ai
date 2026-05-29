@@ -17,7 +17,7 @@ const NAV_GROUPS = [
     label: 'Invest',
     items: [
       { label: 'High Yield Properties', path: '/high-roi', desc: 'The communities and projects generating 7 to 11% returns' },
-      { label: 'Dugasta — Our Exclusive', path: '/dugasta', desc: '10% guaranteed for 10 years. No service charges. Full buyback.' },
+      { label: '10% Net ROI — Guaranteed', path: '/dugasta', desc: 'A contractually guaranteed 10% return for 10 years. No service charges. Full buyback.' },
       { label: 'Golden Visa', path: '/golden-visa', desc: 'Invest AED 2M in property and get UAE residency for the family' },
       { label: 'Off-Plan Projects', path: '/off-plan', desc: 'Get in early and lock in launch pricing before handover' },
     ],
