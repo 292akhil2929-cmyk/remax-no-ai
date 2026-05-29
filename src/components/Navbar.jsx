@@ -64,7 +64,7 @@ function NavDropdown({ group, location }) {
       <button
         onClick={() => setOpen(o => !o)}
         className={`flex items-center gap-1 text-sm font-body py-1 transition-colors duration-200 ${
-          isActive ? 'text-black font-semibold' : 'text-gray-500 hover:text-black'
+          isActive ? 'text-accent font-semibold' : 'text-gray-500 hover:text-accent'
         }`}
       >
         {group.label}
