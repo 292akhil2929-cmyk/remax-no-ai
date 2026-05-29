@@ -175,7 +175,7 @@ export default function DubaiUnfiltered() {
       <VideoModal episode={activeEpisode} onClose={() => setActiveEpisode(null)} />
 
       {/* ── HERO ── */}
-      <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-[#0a0a0a]">
+      <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-[#0a0a0a] pt-16">
         {/* Background image — Faisal with mic from official site */}
         <div
           className="absolute inset-0 bg-cover bg-center opacity-25"
