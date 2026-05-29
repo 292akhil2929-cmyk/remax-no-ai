@@ -48,7 +48,7 @@ const NAV_GROUPS = [
   },
 ];
 
-function NavDropdown({ group, location, isDarkHero, scrolled }) {
+function NavDropdown({ group, location, scrolled }) {
   const [open, setOpen] = useState(false);
   const ref = useRef(null);
   const isActive = group.items.some(i => location.pathname === i.path);
@@ -64,7 +64,7 @@ function NavDropdown({ group, location, isDarkHero, scrolled }) {
       <button
         onClick={() => setOpen(o => !o)}
         className={`flex items-center gap-1 text-sm font-body py-1 transition-colors duration-200 ${
-          isDarkHero && !scrolled ? (isActive ? 'text-white font-semibold' : 'text-white/60 hover:text-white') : (isActive ? 'text-accent font-semibold' : 'text-gray-500 hover:text-accent')
+          isActive ? 'text-accent font-semibold' : 'text-gray-500 hover:text-accent'
         }`}
       >
         {group.label}
@@ -99,7 +99,6 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const { clearAudience } = useAudience();
-  const isDarkHero = location.pathname === '/dubai-real-estate-unfiltered';
 
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 10);
@@ -108,10 +107,7 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/98 backdrop-blur-md shadow-sm border-b border-gray-100' : 
-      isDarkHero ? 'bg-white/10 backdrop-blur-md border-b border-white/10' : 'bg-white/95 backdrop-blur-md border-b border-gray-100'
-    }`}>
+    <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100">
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
          <div className="flex items-center justify-between h-16 lg:h-[70px]">
 
@@ -127,27 +123,25 @@ export default function Navbar() {
            {/* Desktop Nav */}
            <div className="hidden lg:flex items-center gap-8">
              {NAV_GROUPS.map(group => (
-               <NavDropdown key={group.label} group={group} location={location} isDarkHero={isDarkHero} scrolled={scrolled} />
+               <NavDropdown key={group.label} group={group} location={location} scrolled={scrolled} />
              ))}
            </div>
 
            {/* CTA */}
            <div className="hidden lg:flex items-center gap-3">
-             <Link to="/dashboard" className={`text-sm font-body transition-colors ${isDarkHero && !scrolled ? 'text-white/70 hover:text-white' : 'text-gray-500 hover:text-black'}`}>
+             <Link to="/dashboard" className="text-sm font-body transition-colors text-gray-500 hover:text-black">
                Dashboard
              </Link>
              <Link
                to="/contact"
-               className={`font-heading font-bold text-xs tracking-wider uppercase px-5 py-2.5 rounded-xl transition-colors ${
-                 isDarkHero && !scrolled ? 'bg-white/20 hover:bg-white/30 text-white border border-white/30' : 'bg-black hover:bg-gray-800 text-white'
-               }`}
+               className="font-heading font-bold text-xs tracking-wider uppercase px-5 py-2.5 rounded-xl transition-colors bg-black hover:bg-gray-800 text-white"
              >
                Get Advice
              </Link>
            </div>
 
            {/* Mobile Toggle */}
-           <button className={`lg:hidden p-1.5 -mr-1.5 transition-colors ${isDarkHero && !scrolled ? 'text-white' : 'text-black'}`} onClick={() => setOpen(!open)}>
+           <button className="lg:hidden p-1.5 -mr-1.5 transition-colors text-black" onClick={() => setOpen(!open)}>
              {open ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
            </button>
          </div>
