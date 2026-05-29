@@ -29,6 +29,7 @@ import BannerVideoGallery from './pages/BannerVideoGallery';
 import Dugasta from './pages/Dugasta';
 import HighROI from './pages/HighROI';
 import Developers from './pages/Developers';
+import DeveloperProfile from './pages/DeveloperProfile';
 import DubaiUnfiltered from './pages/DubaiUnfiltered';
 
 const AuthenticatedApp = () => {
@@ -80,6 +81,7 @@ const AuthenticatedApp = () => {
         <Route path="/dugasta" element={<Dugasta />} />
         <Route path="/high-roi" element={<HighROI />} />
         <Route path="/developers" element={<Developers />} />
+        <Route path="/developers/:developerSlug" element={<DeveloperProfile />} />
         <Route path="/dubai-real-estate-unfiltered" element={<DubaiUnfiltered />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />

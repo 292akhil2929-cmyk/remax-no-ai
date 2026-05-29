@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 const DEVELOPERS = [
   {
     name: 'Emaar Properties',
+    slug: 'emaar-properties',
     tier: 'Tier 1',
     tierLabel: 'Most Trusted',
     founded: '1997',
@@ -28,6 +29,7 @@ const DEVELOPERS = [
   },
   {
     name: 'DAMAC Properties',
+    slug: 'damac-properties',
     tier: 'Tier 1',
     tierLabel: 'Highly Trusted',
     founded: '2002',
@@ -49,6 +51,7 @@ const DEVELOPERS = [
   },
   {
     name: 'Sobha Realty',
+    slug: 'sobha-realty',
     tier: 'Tier 1',
     tierLabel: 'Highly Trusted',
     founded: '1976',
@@ -69,6 +72,7 @@ const DEVELOPERS = [
   },
   {
     name: 'Nakheel',
+    slug: 'nakheel',
     tier: 'Tier 1',
     tierLabel: 'Government-Backed',
     founded: '2000',
@@ -89,6 +93,7 @@ const DEVELOPERS = [
   },
   {
     name: 'Meraas',
+    slug: 'meraas',
     tier: 'Tier 1',
     tierLabel: 'Government-Backed',
     founded: '2007',
@@ -109,6 +114,7 @@ const DEVELOPERS = [
   },
   {
     name: 'Aldar Properties',
+    slug: 'aldar-properties',
     tier: 'Tier 1',
     tierLabel: 'Highly Trusted',
     founded: '2004',
@@ -128,6 +134,7 @@ const DEVELOPERS = [
   },
   {
     name: 'Ellington Properties',
+    slug: 'ellington-properties',
     tier: 'Tier 2',
     tierLabel: 'Established',
     founded: '2014',
@@ -148,6 +155,7 @@ const DEVELOPERS = [
   },
   {
     name: 'Binghatti Developers',
+    slug: 'binghatti-developers',
     tier: 'Tier 2',
     tierLabel: 'Established',
     founded: '2013',
@@ -168,6 +176,7 @@ const DEVELOPERS = [
   },
   {
     name: 'Danube Properties',
+    slug: 'danube-properties',
     tier: 'Tier 2',
     tierLabel: 'Established',
     founded: '2014',
@@ -188,6 +197,7 @@ const DEVELOPERS = [
   },
   {
     name: 'Select Group',
+    slug: 'select-group',
     tier: 'Tier 2',
     tierLabel: 'Established',
     founded: '2002',
@@ -338,12 +348,20 @@ export default function Developers() {
                         </li>
                       ))}
                     </ul>
-                    <Link
-                      to={`/properties?developer=${encodeURIComponent(dev.name.split(' ')[0])}`}
-                      className="shrink-0 inline-flex items-center gap-1.5 border border-gray-200 hover:border-black hover:text-black text-gray-500 font-heading font-semibold text-xs px-4 py-2 rounded-xl transition-colors whitespace-nowrap"
-                    >
-                      All Listings <ArrowRight className="w-3.5 h-3.5" />
-                    </Link>
+                    <div className="flex items-center gap-2 shrink-0">
+                      <Link
+                        to={`/developers/${dev.slug}`}
+                        className="inline-flex items-center gap-1.5 border border-primary text-primary hover:bg-primary hover:text-white font-heading font-semibold text-xs px-4 py-2 rounded-xl transition-colors whitespace-nowrap"
+                      >
+                        Profile <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                      <Link
+                        to={`/properties?developer=${encodeURIComponent(dev.name.split(' ')[0])}`}
+                        className="inline-flex items-center gap-1.5 border border-gray-200 hover:border-black hover:text-black text-gray-500 font-heading font-semibold text-xs px-4 py-2 rounded-xl transition-colors whitespace-nowrap"
+                      >
+                        Listings <ArrowRight className="w-3.5 h-3.5" />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
