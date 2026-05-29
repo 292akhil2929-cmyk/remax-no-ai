@@ -69,6 +69,7 @@ export default function HeroSection() {
   };
 
   return (
+    <div>
     <section className="relative h-screen min-h-[680px] max-h-[960px] flex flex-col justify-center overflow-hidden">
       {/* Background Image */}
       <div
@@ -196,25 +197,27 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* Bottom stats strip */}
-      <div className="absolute bottom-0 left-0 right-0 bg-white border-t border-gray-100">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-5">
-          <div className="flex items-center gap-10 sm:gap-16 overflow-x-auto scrollbar-none">
-            {[
-              { label: 'Total Transactions (2024)', value: 'AED 528B', source: 'DLD' },
-              { label: 'Average Rental Yield', value: '7–9%', source: 'RERA' },
-              { label: 'Capital Gains Tax', value: '0%', source: 'UAE Gov' },
-              { label: 'RE/MAX Agents Worldwide', value: '145K+', source: 'RE/MAX' },
-            ].map(s => (
-              <div key={s.label} className="shrink-0">
-                <p className="text-black font-display font-black text-xl">{s.value}</p>
-                <p className="text-gray-500 font-body text-xs mt-0.5">{s.label}</p>
-                <p className="text-gray-300 font-body text-[10px] tracking-wider uppercase mt-0.5">Source: {s.source}</p>
-              </div>
-            ))}
-          </div>
+    </section>
+
+    {/* Stats strip — sits below hero, no overlap */}
+    <div className="bg-white border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-5">
+        <div className="flex items-center gap-10 sm:gap-16 overflow-x-auto scrollbar-none">
+          {[
+            { label: 'Total Transactions (2024)', value: 'AED 528B', source: 'DLD' },
+            { label: 'Average Rental Yield', value: '7–9%', source: 'RERA' },
+            { label: 'Capital Gains Tax', value: '0%', source: 'UAE Gov' },
+            { label: 'RE/MAX Agents Worldwide', value: '145K+', source: 'RE/MAX' },
+          ].map(s => (
+            <div key={s.label} className="shrink-0">
+              <p className="text-black font-display font-black text-xl">{s.value}</p>
+              <p className="text-gray-500 font-body text-xs mt-0.5">{s.label}</p>
+              <p className="text-gray-300 font-body text-[10px] tracking-wider uppercase mt-0.5">Source: {s.source}</p>
+            </div>
+          ))}
         </div>
       </div>
-    </section>
+    </div>
+    </div>
   );
 }
