@@ -227,13 +227,13 @@ export default function Dugasta() {
               {/* Badge */}
               <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/40 rounded-full px-4 py-1.5 mb-7">
                 <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                <span className="text-amber-400 font-heading font-bold text-[10px] tracking-[0.25em] uppercase">RE/MAX ZAM Exclusive Partner</span>
+                <span className="text-amber-400 font-heading font-bold text-[10px] tracking-[0.25em] uppercase">Available Through RE/MAX ZAM Dubai</span>
               </div>
 
               <h1 className="font-display font-black text-white leading-[0.95] mb-6">
-                <span className="block text-6xl sm:text-7xl lg:text-8xl">Dugasta</span>
-                <span className="block text-6xl sm:text-7xl lg:text-8xl text-amber-400">10 on 10</span>
-                <span className="block text-2xl sm:text-3xl text-white/30 font-light italic mt-3 leading-tight">10% Guaranteed ROI · 10 Years · Zero Tax</span>
+                <span className="block text-5xl sm:text-7xl lg:text-8xl">Dugasta</span>
+                <span className="block text-5xl sm:text-7xl lg:text-8xl text-amber-400">10 on 10</span>
+                <span className="block text-xl sm:text-2xl text-white/35 font-body font-normal mt-4 leading-relaxed">10% Net ROI &nbsp;·&nbsp; 10 Years &nbsp;·&nbsp; Zero Tax &nbsp;·&nbsp; 100% Buyback</span>
               </h1>
 
               <p className="text-white/55 font-body text-base leading-relaxed mb-8 max-w-xl">
@@ -477,9 +477,15 @@ export default function Dugasta() {
                       </li>
                     ))}
                   </ul>
-                  <Link to="/contact" className="block w-full text-center bg-black hover:bg-gray-800 text-white font-heading font-bold text-sm py-3.5 rounded-xl transition-colors">
-                    Request Full Brochure & ROI Contract
-                  </Link>
+                  <div className="flex flex-col sm:flex-row gap-3">
+                    <Link to="/contact" className="flex-1 text-center bg-black hover:bg-gray-800 text-white font-heading font-bold text-sm py-3.5 rounded-xl transition-colors">
+                      Request Brochure
+                    </Link>
+                    <a href="https://wa.me/971508794494?text=Hi, I'd like details on the Dugasta project" target="_blank" rel="noopener noreferrer"
+                      className="flex-1 text-center bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-sm py-3.5 rounded-xl transition-colors">
+                      WhatsApp Us
+                    </a>
+                  </div>
                 </div>
               </div>
             </motion.div>
@@ -488,19 +494,19 @@ export default function Dugasta() {
       </section>
 
       {/* ── WHY RE/MAX ZAM ── */}
-      <section className="py-16 bg-amber-50 border-y border-amber-100">
+      <section className="py-16 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="inline-flex items-center gap-2 bg-amber-500 rounded-full px-3 py-1 mb-4">
-                <Star className="w-3 h-3 text-white fill-white" />
+              <div className="inline-flex items-center gap-2 bg-black rounded-full px-3 py-1 mb-4">
+                <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
                 <span className="text-white font-heading font-bold text-[10px] tracking-[0.2em] uppercase">Why Buy Through RE/MAX ZAM</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 leading-tight mb-5">
-                Exclusive Access.<br />No Extra Cost.
+                Our Team.<br />No Extra Cost to You.
               </h2>
               <p className="text-gray-600 font-body text-sm leading-relaxed mb-6">
-                RE/MAX ZAM is the exclusive sales partner for Dugasta in Dubai. That means you can access units before they go on the open market, at launch pricing, with a dedicated advisor who knows these projects inside and out. And it costs you nothing extra.
+                RE/MAX ZAM is an authorised selling agent for Dugasta in Dubai. Our team knows these projects in detail — the floor plans, the payment structures, the contracts. We guide you through everything from first enquiry to DLD registration. The developer pays our fee, so there is nothing extra for you to pay.
               </p>
               <ul className="space-y-3">
                 {[
@@ -517,9 +523,9 @@ export default function Dugasta() {
               </ul>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="bg-white rounded-2xl p-8 shadow-sm border border-amber-100">
+              <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200">
                 <h3 className="font-display font-black text-gray-900 text-2xl mb-1">Book a Consultation</h3>
-                <p className="text-gray-400 font-body text-xs mb-6">Get the full project brochure, ROI breakdown and payment plan options.</p>
+                <p className="text-gray-400 font-body text-xs mb-6">Get the full project brochure, ROI breakdown and payment plan options sent to you directly.</p>
                 <DugastaLeadForm dark={false} />
               </div>
             </motion.div>
@@ -541,24 +547,24 @@ export default function Dugasta() {
       </section>
 
       {/* ── BOTTOM CTA ── */}
-      <section className="py-24 bg-[#080808] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(245,158,11,0.1),transparent_70%)]" />
+      <section className="py-24 bg-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(245,158,11,0.08),transparent_70%)]" />
         <div className="relative max-w-3xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <p className="text-amber-400 font-body text-xs tracking-[0.2em] uppercase mb-4">Start Earning 10% Guaranteed</p>
+            <p className="text-amber-400 font-body text-xs tracking-[0.2em] uppercase mb-4">Ready to Invest?</p>
             <h2 className="text-4xl sm:text-5xl font-display font-black text-white leading-tight mb-5">
-              Talk to Our Dugasta<br />Investment Specialist Today
+              Speak to a Specialist<br />About the 10 on 10 Plan
             </h2>
             <p className="text-gray-400 font-body text-sm mb-10 max-w-xl mx-auto leading-relaxed">
-              Our team knows every Dugasta project inside out. We can walk you through the numbers, the contracts and the payment options. No pressure, no cost.
+              Our team can walk you through the full numbers, the ROI contract and the available payment options. No pressure, no cost to you.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://wa.me/971508794494?text=Hi, I want to learn more about Dugasta 10 on 10 plan" target="_blank" rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors">
-                <Phone className="w-4 h-4" /> WhatsApp Now
+              <a href="https://wa.me/971508794494?text=Hi, I want to learn more about the Dugasta 10 on 10 plan" target="_blank" rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors">
+                <Phone className="w-4 h-4" /> WhatsApp a Specialist
               </a>
-              <Link to="/contact" className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white border border-white/20 font-heading font-semibold text-sm px-8 py-4 rounded-xl transition-colors">
-                Schedule a Consultation <ArrowRight className="w-4 h-4" />
+              <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-gray-100 font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors">
+                Book a Free Consultation <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </motion.div>
