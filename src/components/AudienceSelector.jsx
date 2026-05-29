@@ -2,9 +2,9 @@ import { useAudience } from '@/lib/AudienceContext';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const OPTIONS = [
-  { id: 'investor', label: 'I want to Invest', sublabel: 'Buy or off-plan' },
-  { id: 'seller', label: 'I want to Sell', sublabel: 'Get a valuation' },
-  { id: 'agent', label: 'I want to Collaborate', sublabel: 'Join the network' },
+  { id: 'investor', label: 'I\'m Looking to Buy', sublabel: 'Buy or off-plan' },
+  { id: 'seller', label: 'I\'m Looking to Sell', sublabel: 'Get a valuation' },
+  { id: 'agent', label: 'I\'m an Agent', sublabel: 'Join the network' },
 ];
 
 export default function AudienceSelector() {
