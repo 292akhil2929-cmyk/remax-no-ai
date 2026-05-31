@@ -2,8 +2,8 @@ import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import LeadCaptureForm from '../components/LeadCaptureForm';
 
 const contactInfo = [
-  { icon: MapPin, label: 'Office', value: 'Dubai, United Arab Emirates' },
-  { icon: Phone, label: 'Phone', value: '+971 4 XXX XXXX' },
+  { icon: MapPin, label: 'Office', value: 'Bay View Tower, Office No. 1102, Dubai, UAE' },
+  { icon: Phone, label: 'Phone', value: '+971 4 582 8158' },
   { icon: Mail, label: 'Email', value: 'info@remaxzam.ae' },
   { icon: Clock, label: 'Hours', value: 'Sun - Thu: 9AM - 6PM' },
 ];
