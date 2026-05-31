@@ -16,6 +16,18 @@ const TEAM = [
     badgeColor: 'bg-[#B87333]',
   },
   {
+    name: 'Sarah Zeidan',
+    role: 'General Manager',
+    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+    videoUrl: '',
+    bio: 'Sarah Zeidan leads operations at REMAX ZAM as General Manager, overseeing the team\'s consultative approach and ensuring every client and agent receives the highest standard of service. Her leadership drives the company\'s culture of data-backed advising and professional growth.',
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
+    badge: 'General Manager',
+    badgeColor: 'bg-[#B87333]',
+  },
+  {
     name: 'Justice',
     role: 'Property Consultant',
     photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Justice-chukwudi.png',

@@ -13,6 +13,15 @@ const TEAM = [
     email: 'info@remaxzam.ae',
   },
   {
+    name: 'Sarah Zeidan',
+    role: 'General Manager',
+    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
+    bio: "Sarah Zeidan leads operations at REMAX ZAM as General Manager, overseeing the team's consultative approach and ensuring every client and agent receives the highest standard of service.",
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
+  },
+  {
     name: 'Justice',
     role: 'Property Consultant',
     photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Justice-chukwudi.png',
