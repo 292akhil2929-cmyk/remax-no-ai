@@ -31,6 +31,7 @@ import HighROI from './pages/HighROI';
 import Developers from './pages/Developers';
 import DeveloperProfile from './pages/DeveloperProfile';
 import DubaiUnfiltered from './pages/DubaiUnfiltered';
+import WhyREMAXZAM from './pages/WhyREMAXZAM';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -83,6 +84,7 @@ const AuthenticatedApp = () => {
         <Route path="/developers" element={<Developers />} />
         <Route path="/developers/:developerSlug" element={<DeveloperProfile />} />
         <Route path="/dubai-real-estate-unfiltered" element={<DubaiUnfiltered />} />
+        <Route path="/why-remax-zam" element={<WhyREMAXZAM />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>

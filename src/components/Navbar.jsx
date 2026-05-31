@@ -42,6 +42,7 @@ const NAV_GROUPS = [
     label: 'Company',
     items: [
       { label: 'About Us', path: '/about', desc: 'Who we are and why we do things differently' },
+      { label: 'Why RE/MAX ZAM', path: '/why-remax-zam', desc: 'Credentials, awards, client stories and our process' },
       { label: 'The Team', path: '/team', desc: 'The advisors you will actually be working with' },
       { label: 'Contact', path: '/contact', desc: 'Call, message or come in. We are easy to reach.' },
     ],
