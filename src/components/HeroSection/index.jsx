@@ -72,14 +72,15 @@ export default function HeroSection() {
 
   return (
     <div>
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-gradient-to-b from-slate-950 to-slate-900">
-      {/* Grid Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(0deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(255,255,255,.05) 25%, rgba(255,255,255,.05) 26%, transparent 27%, transparent 74%, rgba(255,255,255,.05) 75%, rgba(255,255,255,.05) 76%, transparent 77%, transparent)',
-          backgroundSize: '50px 50px'
-        }} />
-      </div>
+    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
+      {/* Dubai Skyline Background */}
+      <div
+        className="absolute inset-0 w-full h-full bg-center bg-cover scale-105"
+        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=90&fit=crop')` }}
+      />
+      {/* Dark gradient overlays for readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/40" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
       {/* Content */}
       <div className="relative z-10 px-6 sm:px-10 lg:px-16 xl:px-24 py-12 lg:py-0">
@@ -94,15 +95,24 @@ export default function HeroSection() {
               exit={{ opacity: 0, x: 30 }}
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
             >
-              {/* Red Accent Box with Headline */}
-              <div className="bg-red-600 rounded-lg p-8 mb-8">
-                <h1 className="font-display font-black text-white leading-tight text-3xl sm:text-4xl lg:text-5xl">
-                  {content.headline[0]}<br />{content.headline[1]} <span className="italic font-light">{content.accent}</span>
-                </h1>
+              {/* Eyebrow */}
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-8 h-px bg-red-500" />
+                <span className="text-red-400 font-body text-xs tracking-[0.25em] uppercase font-semibold">{content.eyebrow}</span>
               </div>
 
+              {/* Headline */}
+              <h1 className="font-display font-black leading-[1.05] mb-4">
+                <span className="block text-4xl sm:text-5xl lg:text-6xl text-white">{content.headline[0]}</span>
+                <span className="block text-4xl sm:text-5xl lg:text-6xl text-white">{content.headline[1]}</span>
+                <span className="block text-4xl sm:text-5xl lg:text-6xl text-red-500 italic font-light">{content.accent}</span>
+              </h1>
+
+              {/* Red underline accent */}
+              <div className="w-16 h-1 bg-red-600 rounded-full mb-6" />
+
               {/* Subheading */}
-              <p className="text-white/70 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-xl">
+              <p className="text-white/65 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-lg">
                 {content.sub}
               </p>
 
@@ -199,18 +209,25 @@ export default function HeroSection() {
              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
              className="relative hidden lg:block"
            >
-             <div style={{ paddingBottom: '56.25%' }} className="relative rounded-2xl overflow-hidden shadow-2xl bg-black">
-               <iframe
-                 style={{ position: 'absolute', top: 0, left: 0 }}
-                 width="100%"
-                 height="100%"
-                 src={FOUNDER_VIDEO_URL}
-                 title="REMAX ZAM Founder Message"
-                 frameBorder="0"
-                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                 allowFullScreen
-               />
+             {/* Glow effect behind video */}
+             <div className="absolute -inset-4 bg-red-600/20 rounded-3xl blur-2xl" />
+             {/* Border frame */}
+             <div className="relative rounded-2xl p-1 bg-gradient-to-br from-red-600/60 via-white/10 to-transparent shadow-2xl">
+               <div style={{ paddingBottom: '56.25%' }} className="relative rounded-xl overflow-hidden bg-black">
+                 <iframe
+                   style={{ position: 'absolute', top: 0, left: 0 }}
+                   width="100%"
+                   height="100%"
+                   src={FOUNDER_VIDEO_URL}
+                   title="REMAX ZAM Founder Message"
+                   frameBorder="0"
+                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                   allowFullScreen
+                 />
+               </div>
              </div>
+             {/* Caption */}
+             <p className="text-center text-white/40 text-xs font-body mt-3 tracking-wider uppercase">RE/MAX ZAM — Dubai Real Estate</p>
            </motion.div>
         </div>
       </div>
