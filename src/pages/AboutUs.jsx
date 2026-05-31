@@ -1,49 +1,70 @@
 import { Link } from 'react-router-dom';
-import { Award, Globe, Users, TrendingUp, ArrowRight, Linkedin } from 'lucide-react';
+import { Award, Globe, Users, TrendingUp, ArrowRight, Phone, Mail, MessageCircle } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
-const team = [
+const TEAM = [
   {
-    name: 'Khaled Al Mansoori',
-    role: 'Managing Director & Founder',
-    bio: '15+ years in Dubai real estate. Former CBRE and JLL senior advisor. Specialist in off-plan and ultra-luxury investment portfolios for HNWI clients across Europe, Asia, and the Middle East.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400',
-    linkedin: '#',
+    name: 'Faisal Contractor',
+    role: 'CEO & Founder',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg',
+    bio: "Faisal Contractor is an accomplished serial entrepreneur and growth architect. As the founder and CEO of Embark Growth Marketing and the visionary behind REMAX ZAM, Faisal has earned a reputation for transforming how investors engage with the UAE's real estate market.",
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
   },
   {
-    name: 'Sarah Thompson',
-    role: 'Head of International Sales',
-    bio: "12 years of experience placing international investors into Dubai's top-performing communities. Fluent in English, French, and Arabic. Previously with Knight Frank Dubai.",
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400',
-    linkedin: '#',
+    name: 'Justice',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Justice-chukwudi.png',
+    bio: "I use the market insights I learned at REMAX ZAM to provide unmatched support to my clients. The management's guidance gives me confidence to close deals and progress my career.",
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
   },
   {
-    name: 'Ravi Sharma',
-    role: 'Investment Strategy Director',
-    bio: 'Former investment banker with 10 years in UAE real estate. Oversees portfolio analysis, ROI modelling, and asset management strategies for institutional and private clients.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400',
-    linkedin: '#',
+    name: 'Imran',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Mohoammad-Imran.png',
+    bio: 'The training and teamwork at REMAX ZAM helped me understand the industry faster and helps me keep track of latest updates within the industry.',
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
   },
   {
-    name: 'Elena Kozlova',
-    role: 'Senior Property Consultant',
-    bio: 'Russian-speaking specialist with 8 years advising CIS investors on Dubai real estate. Expert in off-plan acquisitions, payment plans, and Golden Visa facilitation.',
-    image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400',
-    linkedin: '#',
+    name: 'Abu Bakkar',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Abu-bakkar-al-shams.png',
+    bio: "I am honored to be a part of REMAX and REMAX ZAM. REMAX is a global brand and REMAX ZAM has shown me why, it's an absolute pleasure for me to be part of this brand.",
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
   },
   {
-    name: 'Mohammed Al Rashid',
-    role: 'Property Consultant — GCC Markets',
-    bio: 'Specialist in GCC investor relations and luxury villa market. Manages relationships with leading developers including EMAAR, Nakheel, and DAMAC for exclusive early access opportunities.',
-    image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400',
-    linkedin: '#',
+    name: 'Khaldoun',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Ellipse-104.png',
+    bio: "I recently closed my biggest deal, and I couldn't have done it without the hands on training I received at REMAX ZAM. The support from the team gave me the confidence to succeed.",
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
   },
   {
-    name: 'Priya Nair',
-    role: 'Client Relations & Golden Visa Specialist',
-    bio: '7 years in UAE real estate and immigration advisory. Guides investors through the complete Golden Visa process from property selection to Emirates ID issuance.',
-    image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?w=400',
-    linkedin: '#',
+    name: 'Nour',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Ellipse-105.png',
+    bio: "I've been able to build my personal brand and attract clients with the training and marketing resources at REMAX ZAM. The support has helped me gain leads and grow consistently.",
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
+  },
+  {
+    name: 'Manish',
+    role: 'Property Consultant',
+    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Manish-Kapur.png',
+    bio: 'I closed multiple high ticket deals back to back thanks to the mentorship and guidance provided by REMAX ZAM. Having access to a strong network made navigating the market so much easier.',
+    phone: '+97145828158',
+    whatsapp: '97145828158',
+    email: 'info@remaxzam.ae',
   },
 ];
 
@@ -141,24 +162,61 @@ export default function AboutUs() {
           <div className="text-center mb-12">
             <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">The Team</p>
             <h2 className="text-3xl font-display font-bold text-foreground mb-3">Meet Your Investment Advisors</h2>
-            <p className="text-sm text-muted-foreground font-body max-w-lg mx-auto">A multilingual team of Dubai market specialists — each handpicked for their expertise, market knowledge, and client-first approach.</p>
+            <p className="text-sm text-muted-foreground font-body max-w-lg mx-auto">A specialist team built on deep Dubai market knowledge, multilingual capability, and a client-first approach.</p>
           </div>
+          {/* CEO Feature */}
+          <div className="mb-8">
+            <div className="bg-background border border-border/50 rounded-xl overflow-hidden flex flex-col md:flex-row">
+              <img src={TEAM[0].photo} alt={TEAM[0].name} className="w-full md:w-72 h-64 md:h-auto object-cover object-top shrink-0" onError={(e) => { e.target.src = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg'; }} />
+              <div className="p-8 flex flex-col justify-center">
+                <h3 className="font-heading font-bold text-foreground text-2xl mb-1">{TEAM[0].name}</h3>
+                <p className="text-sm font-heading font-semibold text-accent mb-4">{TEAM[0].role}</p>
+                <p className="text-sm text-muted-foreground font-body leading-relaxed mb-6 max-w-xl">{TEAM[0].bio}</p>
+                <div className="flex gap-3 flex-wrap">
+                  <a href={`tel:${TEAM[0].phone}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
+                    <Phone className="w-4 h-4" /> Call
+                  </a>
+                  <a href={`https://wa.me/${TEAM[0].whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors text-sm font-body text-muted-foreground hover:text-emerald-600">
+                    <MessageCircle className="w-4 h-4" /> WhatsApp
+                  </a>
+                  <a href={`mailto:${TEAM[0].email}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
+                    <Mail className="w-4 h-4" /> Email
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* Consultants Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {team.map(m => (
+            {TEAM.slice(1).map(m => (
               <div key={m.name} className="bg-background border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-colors">
-                <img src={m.image} alt={m.name} className="w-full h-52 object-cover object-top" />
+                <img src={m.photo} alt={m.name} className="w-full h-52 object-cover object-top" onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'; }} />
                 <div className="p-5">
-                  <div className="flex items-start justify-between mb-1">
-                    <h3 className="font-heading font-semibold text-foreground">{m.name}</h3>
-                    <a href={m.linkedin} className="text-muted-foreground hover:text-primary transition-colors">
-                      <Linkedin className="w-4 h-4" />
+                  <h3 className="font-heading font-semibold text-foreground mb-0.5">{m.name}</h3>
+                  <p className="text-xs font-heading font-semibold text-accent mb-2">{m.role}</p>
+                  <p className="text-xs text-muted-foreground font-body leading-relaxed mb-4">{m.bio}</p>
+                  <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border/50">
+                    <a href={`tel:${m.phone}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+                      <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                      <span className="text-[9px] font-body text-muted-foreground">Call</span>
+                    </a>
+                    <a href={`https://wa.me/${m.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
+                      <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
+                      <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
+                    </a>
+                    <a href={`mailto:${m.email}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+                      <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                      <span className="text-[9px] font-body text-muted-foreground">Email</span>
                     </a>
                   </div>
-                  <p className="text-xs font-heading font-semibold text-accent mb-2">{m.role}</p>
-                  <p className="text-xs text-muted-foreground font-body leading-relaxed">{m.bio}</p>
                 </div>
               </div>
             ))}
+          </div>
+          <div className="text-center mt-8">
+            <Link to="/team" className="inline-flex items-center gap-2 text-sm font-heading font-semibold text-primary hover:text-accent transition-colors">
+              View Full Team Page <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
         </div>
       </section>
