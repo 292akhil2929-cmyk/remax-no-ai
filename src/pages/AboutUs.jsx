@@ -95,24 +95,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="py-12 bg-card border-b border-border/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            {[
-              { value: '15+', label: 'Years in Dubai Real Estate' },
-              { value: 'AED 2B+', label: 'Total Transactions Closed' },
-              { value: '40+', label: 'Countries Represented' },
-              { value: '1,200+', label: 'Satisfied Investors' },
-            ].map(s => (
-              <div key={s.label}>
-                <p className="text-3xl font-display font-black text-primary mb-1">{s.value}</p>
-                <p className="text-xs font-body text-muted-foreground uppercase tracking-widest">{s.label}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* Mission */}
       <section className="py-16 bg-background">
