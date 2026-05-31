@@ -3,6 +3,7 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import ChatWidget from './ChatWidget.jsx';
 import ScrollToTop from './ScrollToTop';
+import ContactStrip from './ContactStrip';
 
 export default function Layout() {
   return (
@@ -12,6 +13,7 @@ export default function Layout() {
       <main className="pt-16 lg:pt-[70px]">
         <Outlet />
       </main>
+      <ContactStrip />
       <Footer />
       <ChatWidget />
     </div>

@@ -8,7 +8,7 @@ import { CheckCircle, ArrowRight } from 'lucide-react';
 
 export default function LeadCaptureForm({ leadType = "Investor", source = "Website", compact = false }) {
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ full_name: '', email: '', phone: '', investment_budget: '', investment_goal: '' });
+  const [form, setForm] = useState({ full_name: '', email: '', phone: '', investment_budget: '', investment_goal: '', property_interest: '' });
 
   const createLead = useMutation({
     mutationFn: (data) => base44.entities.Lead.create(data),
@@ -55,6 +55,7 @@ export default function LeadCaptureForm({ leadType = "Investor", source = "Websi
           ))}
         </SelectContent>
       </Select>
+      <Input placeholder="What are you looking for? (e.g. 2BR in Marina, off-plan, villa...)" value={form.property_interest} onChange={(e) => setForm({...form, property_interest: e.target.value})} className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground" />
       <Button type="submit" className="w-full font-heading font-semibold" disabled={createLead.isPending}>
         {createLead.isPending ? 'Submitting...' : 'Get Free Investment Advice'}
         <ArrowRight className="w-4 h-4 ml-2" />
