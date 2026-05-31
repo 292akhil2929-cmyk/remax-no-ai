@@ -33,6 +33,7 @@ import DeveloperProfile from './pages/DeveloperProfile';
 import DubaiUnfiltered from './pages/DubaiUnfiltered';
 import WhyREMAXZAM from './pages/WhyREMAXZAM';
 import RemaxDubai from './pages/RemaxDubai';
+import DubaiGuide from './pages/DubaiGuide';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -87,6 +88,7 @@ const AuthenticatedApp = () => {
         <Route path="/dubai-real-estate-unfiltered" element={<DubaiUnfiltered />} />
         <Route path="/why-remax-zam" element={<WhyREMAXZAM />} />
         <Route path="/remax-dubai" element={<RemaxDubai />} />
+        <Route path="/dubai-property-guide" element={<DubaiGuide />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
