@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { MessageCircle, X, Send, Loader2 } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import ReactMarkdown from 'react-markdown';
 
 export default function ChatWidget() {
   const [open, setOpen] = useState(false);
@@ -76,15 +77,49 @@ export default function ChatWidget() {
           {/* Messages */}
           <div className="flex-1 overflow-y-auto p-4 space-y-3 bg-gray-50">
             {messages.length === 0 && (
-              <div className="bg-white rounded-xl p-3 text-sm text-gray-700 shadow-sm border border-border">
-                Hi! I&apos;m Alex, your Dubai property advisor. Ask me about investments, Golden Visa, ROI, or any property in Dubai. How can I help you today?
+              <div className="space-y-2">
+                <div className="bg-white rounded-xl p-3 text-sm text-gray-700 shadow-sm border border-border">
+                  Hi! I&apos;m Alex, your Dubai property advisor. I can walk you through the buying process, renting rules, all fees, tenant rights, mortgage options, and more. How can I help?
+                </div>
+                <div className="space-y-1.5 pt-1">
+                  {[
+                    'How do I buy property in Dubai?',
+                    'What are the fees when buying?',
+                    'What are my rights as a tenant?',
+                    'How does renting work in Dubai?',
+                    'Can I get a mortgage as a foreigner?',
+                    'Tell me about the Golden Visa',
+                  ].map(q => (
+                    <button
+                      key={q}
+                      onClick={() => setInput(q)}
+                      className="block w-full text-left text-xs bg-white border border-border rounded-lg px-3 py-2 text-gray-600 hover:border-primary hover:text-primary transition-colors"
+                    >
+                      {q}
+                    </button>
+                  ))}
+                </div>
               </div>
             )}
             {messages.map((msg, i) => (
               msg.content && (
                 <div key={i} className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}>
                   <div className={`max-w-[80%] rounded-xl px-3 py-2 text-sm ${msg.role === 'user' ? 'bg-primary text-white' : 'bg-white text-gray-800 border border-border shadow-sm'}`}>
-                    {msg.content}
+                    {msg.role === 'user' ? msg.content : (
+                      <ReactMarkdown
+                        className="prose prose-sm max-w-none prose-p:my-1 prose-ul:my-1 prose-ol:my-1 prose-li:my-0.5 prose-strong:font-bold prose-headings:font-bold prose-headings:text-gray-900"
+                        components={{
+                          p: ({ children }) => <p className="my-1 leading-relaxed">{children}</p>,
+                          ul: ({ children }) => <ul className="my-1 ml-3 list-disc space-y-0.5">{children}</ul>,
+                          ol: ({ children }) => <ol className="my-1 ml-3 list-decimal space-y-0.5">{children}</ol>,
+                          li: ({ children }) => <li className="text-sm">{children}</li>,
+                          strong: ({ children }) => <strong className="font-bold text-gray-900">{children}</strong>,
+                          h3: ({ children }) => <h3 className="font-bold text-gray-900 mt-2 mb-1 text-sm">{children}</h3>,
+                        }}
+                      >
+                        {msg.content}
+                      </ReactMarkdown>
+                    )}
                   </div>
                 </div>
               )
