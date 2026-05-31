@@ -22,6 +22,12 @@ const NAV_GROUPS = [
     ],
   },
   {
+    label: 'Unfiltered',
+    items: [
+      { label: 'Dubai Real Estate Unfiltered', path: '/dubai-real-estate-unfiltered', desc: 'Unscripted conversations with Dubai\'s top developers and market insiders' },
+    ],
+  },
+  {
     label: 'Insights',
     items: [
       { label: 'Market Insights', path: '/insights', desc: 'What the data is saying about the Dubai market right now' },
@@ -29,7 +35,6 @@ const NAV_GROUPS = [
       { label: 'Developer Profiles', path: '/developers', desc: 'Who to trust, who to avoid, and what each one actually delivers' },
       { label: 'Area Guides', path: '/area-guides', desc: 'Yield, growth and lifestyle by neighbourhood' },
       { label: 'Blog', path: '/blog', desc: 'Plain-English guides for Dubai property investors' },
-      { label: 'Dubai Real Estate Unfiltered', path: '/dubai-real-estate-unfiltered', desc: 'Unscripted conversations with Dubai\'s top developers and market insiders' },
     ],
   },
   {
