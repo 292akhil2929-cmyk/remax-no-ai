@@ -84,10 +84,10 @@ export default function AboutUs() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-heading font-semibold text-white/70 tracking-widest mb-3 uppercase">About REMAX ZAM</p>
           <h1 className="text-3xl lg:text-5xl font-display font-bold text-white mb-5 max-w-2xl">
-            {"Dubai's Most Trusted Real Estate Investment Partner"}
+            Dubai Real Estate Advisory, Built on Data & Trust
           </h1>
           <p className="text-base text-white/80 font-body max-w-xl leading-relaxed mb-8">
-            For over 15 years, REMAX ZAM has guided international investors, families, and entrepreneurs to make smarter, more profitable real estate decisions in Dubai and the UAE.
+            REMAX ZAM takes a consultative, data-backed approach to real estate — acting as true advisors to investors and sellers, while building a clear growth pathway for our agents.
           </p>
           <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
             <Link to="/contact">Talk to Our Team <ArrowRight className="w-4 h-4 ml-1" /></Link>
