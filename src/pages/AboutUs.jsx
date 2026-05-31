@@ -68,14 +68,7 @@ const TEAM = [
   },
 ];
 
-const milestones = [
-  { year: '2010', event: 'REMAX ZAM founded in Dubai by Khaled Al Mansoori' },
-  { year: '2014', event: 'Expanded to serve international investors from 20+ countries' },
-  { year: '2017', event: 'Opened dedicated luxury and off-plan division' },
-  { year: '2020', event: 'Surpassed AED 1 billion in total transaction volume' },
-  { year: '2022', event: 'Launched Golden Visa advisory service for global investors' },
-  { year: '2024', event: 'Named Top 10 RE/MAX Franchise in the UAE' },
-];
+
 
 export default function AboutUs() {
   return (
@@ -221,29 +214,7 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="py-16 bg-background">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">Our Journey</p>
-            <h2 className="text-3xl font-display font-bold text-foreground">15 Years of Building Wealth in Dubai</h2>
-          </div>
-          <div className="space-y-6">
-            {milestones.map((m, i) => (
-              <div key={m.year} className="flex gap-6 items-start">
-                <div className="flex-shrink-0 w-14 text-right">
-                  <span className="text-sm font-heading font-bold text-primary">{m.year}</span>
-                </div>
-                <div className="flex-shrink-0 flex flex-col items-center">
-                  <div className="w-3 h-3 rounded-full bg-accent mt-0.5" />
-                  {i < milestones.length - 1 && <div className="w-0.5 h-12 bg-border mt-1" />}
-                </div>
-                <p className="text-sm font-body text-muted-foreground pt-0.5">{m.event}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+
 
       {/* CTA */}
       <section className="py-14 bg-primary text-white text-center">
