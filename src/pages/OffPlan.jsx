@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { TrendingUp, Calendar, CheckCircle2, ArrowRight, MapPin } from 'lucide-react';
+import { TrendingUp, Calendar, CheckCircle2, ArrowRight, MapPin, MessageCircle } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 
@@ -182,9 +182,19 @@ export default function OffPlan() {
                     ))}
                   </ul>
 
-                  <Button size="sm" className="w-full font-heading font-bold" asChild>
-                    <Link to="/contact">Request Brochure</Link>
-                  </Button>
+                  <div className="flex gap-2">
+                    <Button size="sm" className="flex-1 font-heading font-bold" asChild>
+                      <Link to="/contact">Request Brochure</Link>
+                    </Button>
+                    <a
+                      href={`https://wa.me/97145828158?text=Hi, I'm interested in ${encodeURIComponent(p.name)} — can an agent assist me?`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-emerald-500 hover:bg-emerald-600 transition-colors text-white text-xs font-heading font-bold shrink-0"
+                    >
+                      <MessageCircle className="w-3.5 h-3.5" /> Agent
+                    </a>
+                  </div>
                 </div>
               </div>
             ))}
