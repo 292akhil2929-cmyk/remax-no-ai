@@ -255,10 +255,10 @@ export default function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-5">
         <div className="flex items-center gap-10 sm:gap-16 overflow-x-auto scrollbar-none">
           {[
-            { label: 'Total Transactions (2024)', value: 'AED 528B', source: 'DLD' },
-            { label: 'Average Rental Yield', value: '7–9%', source: 'RERA' },
+            { label: 'Total Transactions (H1 2026)', value: 'AED 300B+', source: 'DLD' },
+            { label: 'Average Rental Yield', value: '7–10%', source: 'RERA' },
             { label: 'Capital Gains Tax', value: '0%', source: 'UAE Gov' },
-            { label: 'RE/MAX Agents Worldwide', value: '145K+', source: 'RE/MAX' },
+            { label: 'RE/MAX Agents Worldwide', value: '150K+', source: 'RE/MAX' },
           ].map(s => (
             <div key={s.label} className="shrink-0">
               <p className="text-black font-display font-black text-xl">{s.value}</p>
