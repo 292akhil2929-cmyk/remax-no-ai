@@ -54,6 +54,7 @@ function ImportListingPanel() {
     { name: 'PropertyFinder', color: 'bg-red-50 text-red-700', pattern: 'propertyfinder.ae' },
     { name: 'Bayut', color: 'bg-blue-50 text-blue-700', pattern: 'bayut.com' },
     { name: 'Dubizzle', color: 'bg-orange-50 text-orange-700', pattern: 'dubizzle.com' },
+    { name: 'remaxzam.ae', color: 'bg-emerald-50 text-emerald-700', pattern: 'remaxzam.ae' },
   ];
 
   const detectedPlatform = platforms.find(p => url.includes(p.pattern));
@@ -66,7 +67,7 @@ function ImportListingPanel() {
         </div>
         <div>
           <h3 className="font-heading font-bold text-foreground">Import Listing from URL</h3>
-          <p className="text-xs text-muted-foreground font-body">Paste a link from PropertyFinder, Bayut, or Dubizzle</p>
+          <p className="text-xs text-muted-foreground font-body">Paste a link from remaxzam.ae, PropertyFinder, Bayut, or Dubizzle</p>
         </div>
       </div>
 
@@ -95,7 +96,7 @@ function ImportListingPanel() {
             type="url"
             value={url}
             onChange={e => setUrl(e.target.value)}
-            placeholder="https://www.propertyfinder.ae/en/plp/buy/..."
+            placeholder="https://www.remaxzam.ae/listing/... or propertyfinder.ae, bayut.com..."
             className="flex-1 px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring"
           />
           <Button onClick={handleImport} disabled={loading || !url.trim() || !category} className="font-heading shrink-0">

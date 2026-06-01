@@ -18,19 +18,28 @@ Deno.serve(async (req) => {
     // Fetch the page content
     const pageRes = await fetch(url, {
       headers: {
-        'User-Agent': 'Mozilla/5.0 (compatible; REMAX-ZAM-Bot/1.0)',
-        'Accept': 'text/html,application/xhtml+xml',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'en-US,en;q=0.9',
       }
     });
     const html = await pageRes.text();
 
+    // For remaxzam.ae — extract JSON-LD structured data if present (more accurate)
+    let structuredData = '';
+    const jsonLdMatches = html.match(/<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi) || [];
+    for (const match of jsonLdMatches) {
+      const inner = match.replace(/<script[^>]*>/, '').replace(/<\/script>/, '');
+      structuredData += inner + '\n';
+    }
+
     // Strip tags to get text content
-    const text = html
+    const text = (structuredData + '\n\n' + html)
       .replace(/<script[^>]*>[\s\S]*?<\/script>/gi, '')
       .replace(/<style[^>]*>[\s\S]*?<\/style>/gi, '')
       .replace(/<[^>]+>/g, ' ')
       .replace(/\s+/g, ' ')
-      .substring(0, 8000);
+      .substring(0, 10000);
 
     // Use AI to extract structured data
     const extracted = await base44.asServiceRole.integrations.Core.InvokeLLM({
