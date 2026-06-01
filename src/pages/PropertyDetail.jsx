@@ -1,7 +1,7 @@
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { Bed, Bath, Maximize, TrendingUp, MapPin, Calendar, Building2, ArrowLeft } from 'lucide-react';
+import { Bed, Bath, Maximize, TrendingUp, MapPin, Calendar, Building2, ArrowLeft, Phone, Mail, MessageCircle } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import PropertyViewingForm from '../components/PropertyViewingForm';
@@ -105,6 +105,47 @@ export default function PropertyDetail() {
           {/* Right: Viewing form + Currency Converter */}
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-4">
+              {/* Agent Card */}
+              <div className="bg-card border border-border/50 rounded-lg p-5">
+                <p className="text-[10px] font-heading font-bold tracking-widest uppercase text-muted-foreground mb-3">Your Agent</p>
+                <div className="flex items-center gap-3 mb-4">
+                  <img
+                    src="https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg"
+                    alt="Faisal Contractor"
+                    className="w-12 h-12 rounded-full object-cover object-top"
+                  />
+                  <div>
+                    <p className="font-heading font-semibold text-foreground text-sm">Faisal Contractor</p>
+                    <p className="text-xs text-accent font-heading">CEO & Founder — REMAX ZAM</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-3 gap-2">
+                  <a
+                    href="tel:+97145828158"
+                    className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group"
+                  >
+                    <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                    <span className="text-[9px] font-body text-muted-foreground">Call</span>
+                  </a>
+                  <a
+                    href={`https://wa.me/97145828158?text=Hi, I'm interested in ${encodeURIComponent(property.title)} — can you assist me?`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group"
+                  >
+                    <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
+                    <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
+                  </a>
+                  <a
+                    href="mailto:info@remaxzam.ae"
+                    className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group"
+                  >
+                    <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                    <span className="text-[9px] font-body text-muted-foreground">Email</span>
+                  </a>
+                </div>
+              </div>
+
               <div className="bg-card border border-border/50 rounded-lg p-6">
                 <h3 className="font-heading font-semibold text-foreground mb-4 flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-primary" /> Book a Viewing
