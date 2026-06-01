@@ -69,8 +69,8 @@ const AGENTS = [
   },
 ];
 
-export default function AgentSelector({ propertyId, onAgentSelected }) {
-  const [selected, setSelected] = useState(null);
+export default function AgentSelector({ propertyId, currentAgentName, onAgentSelected }) {
+  const [selected, setSelected] = useState(currentAgentName || null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 

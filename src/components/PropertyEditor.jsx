@@ -3,6 +3,7 @@ import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { X, Loader2, AlertCircle } from 'lucide-react';
 import PropertyImageUpload from './PropertyImageUpload';
+import AgentSelector from './AgentSelector';
 
 export default function PropertyEditor({ property, onClose, onSaved }) {
   const [formData, setFormData] = useState({
@@ -128,6 +129,12 @@ export default function PropertyEditor({ property, onClose, onSaved }) {
             currentImages={property.gallery_images || (property.image_url ? [property.image_url] : [])}
             currentHero={property.image_url || ''}
             onImagesUpdated={onSaved}
+          />
+
+          <AgentSelector
+            propertyId={property.id}
+            currentAgentName={property.agent_name}
+            onAgentSelected={() => {}}
           />
 
           {error && (
