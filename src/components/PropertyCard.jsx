@@ -85,36 +85,40 @@ export default function PropertyCard({ property }) {
     else saveMutation.mutate();
   };
   return (
-    <div className="group bg-card border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300">
+    <div className="group bg-card border border-border/50 rounded-lg hover:border-primary/30 transition-all duration-300 overflow-visible">
       {/* Image area — plain div so arrow buttons are never blocked by a Link */}
       <div
-        className="relative aspect-[4/3] overflow-hidden cursor-pointer"
+        className="relative aspect-[4/3] cursor-pointer"
         onClick={() => navigate(`/properties/${property.id}`)}
       >
-        <img
-          src={images[imgIndex] || getFallbackImage(property)}
-          alt={property.title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-          onError={(e) => { e.target.src = DEFAULT_FALLBACK; }}
-        />
+        <div className="absolute inset-0 overflow-hidden rounded-t-lg">
+          <img
+            src={images[imgIndex] || getFallbackImage(property)}
+            alt={property.title}
+            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+            onError={(e) => { e.target.src = DEFAULT_FALLBACK; }}
+          />
+        </div>
 
         {/* Prev / Next arrows */}
         {images.length > 1 && (
           <>
             <button
               onClick={prevImg}
-              className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
+              style={{ zIndex: 20 }}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={nextImg}
-              className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
+              style={{ zIndex: 20 }}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
-            {/* Dot indicators */}
-            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-1 z-10 pointer-events-none">
+            {/* Counter */}
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 pointer-events-none" style={{ zIndex: 20 }}>
               {images.map((_, i) => (
                 <span key={i} className={`w-1.5 h-1.5 rounded-full transition-all ${i === imgIndex ? 'bg-white' : 'bg-white/50'}`} />
               ))}
