@@ -10,7 +10,7 @@ const GROUPS = [
     label: 'Sales',
     tabs: [
       { key: 'off-plan',          label: 'Off-Plan',          sub: 'New developments',    filter: p => p.listing_status === 'Off-Plan' },
-      { key: 'ready-residential', label: 'Ready Residential',  sub: 'Homes & apartments',   filter: p => (p.listing_status === 'Ready' || p.listing_status === 'Resale') && p.transaction_type === 'Residential Sale' },
+      { key: 'ready-residential', label: 'Ready Residential',  sub: 'Apartments, townhouses, villas',   filter: p => (p.listing_status === 'Ready' || p.listing_status === 'Resale') && p.transaction_type === 'Residential Sale' },
       { key: 'ready-commercial',  label: 'Ready Commercial',  sub: 'Offices & retail',     filter: p => (p.listing_status === 'Ready' || p.listing_status === 'Resale') && p.transaction_type === 'Commercial Sale' },
     ],
   },
