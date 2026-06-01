@@ -1,7 +1,8 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { Heart } from 'lucide-react';
+import { Heart, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Bed, Bath, Maximize, TrendingUp } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 
@@ -37,6 +38,18 @@ function getFallbackImage(property) {
 
 export default function PropertyCard({ property }) {
   const queryClient = useQueryClient();
+  const images = (property.gallery_images?.length ? property.gallery_images : null) ||
+    (property.image_url ? [property.image_url] : [getFallbackImage(property)]);
+  const [imgIndex, setImgIndex] = useState(0);
+
+  const prevImg = (e) => {
+    e.preventDefault();
+    setImgIndex(i => (i - 1 + images.length) % images.length);
+  };
+  const nextImg = (e) => {
+    e.preventDefault();
+    setImgIndex(i => (i + 1) % images.length);
+  };
 
   const { data: saved = [] } = useQuery({
     queryKey: ['savedProperties'],
@@ -73,11 +86,36 @@ export default function PropertyCard({ property }) {
       <div className="bg-card border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300">
         <div className="relative aspect-[4/3] overflow-hidden">
           <img
-            src={property.image_url || getFallbackImage(property)}
+            src={images[imgIndex] || getFallbackImage(property)}
             alt={property.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             onError={(e) => { e.target.src = DEFAULT_FALLBACK; }}
           />
+
+          {/* Prev / Next arrows — only shown when multiple images */}
+          {images.length > 1 && (
+            <>
+              <button
+                onClick={prevImg}
+                className="absolute left-2 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors opacity-0 group-hover:opacity-100"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+              <button
+                onClick={nextImg}
+                className="absolute right-2 top-1/2 -translate-y-1/2 z-10 w-7 h-7 rounded-full bg-black/50 text-white flex items-center justify-center hover:bg-black/70 transition-colors opacity-0 group-hover:opacity-100"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+              {/* Dot indicators */}
+              <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex gap-1 z-10">
+                {images.map((_, i) => (
+                  <span key={i} className={`w-1.5 h-1.5 rounded-full transition-all ${i === imgIndex ? 'bg-white' : 'bg-white/50'}`} />
+                ))}
+              </div>
+            </>
+          )}
+
           <button
             onClick={toggleSave}
             className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center shadow transition-all ${
