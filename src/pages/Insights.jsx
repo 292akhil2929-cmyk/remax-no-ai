@@ -9,9 +9,9 @@ import moment from 'moment';
 /* ── Static evergreen data ─────────────────────────────────── */
 
 const MARKET_STATS = [
-  { label: 'Q1 2025 Transaction Volume', value: 'AED 142B+', delta: '+28% YoY', up: true },
-  { label: 'Average Rental Yield (Dubai)', value: '7.2%', delta: 'vs 4.1% London', up: true },
-  { label: 'Off-Plan Sales Share', value: '62%', delta: 'Record high', up: true },
+  { label: 'Q1 2026 Transaction Volume', value: 'AED 170B+', delta: '+19% YoY', up: true },
+  { label: 'Average Rental Yield (Dubai)', value: '7.5%', delta: 'vs 4.2% London', up: true },
+  { label: 'Off-Plan Sales Share', value: '68%', delta: 'New record high', up: true },
   { label: 'Golden Visa Property Threshold', value: 'AED 2M', delta: 'Stable since 2022', up: null },
 ];
 
@@ -184,21 +184,26 @@ export default function Insights() {
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {posts.map(post => (
-                  <article key={post.id} className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all group">
-                    {post.image_url && (
-                      <img src={post.image_url} alt={post.title} className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500" />
-                    )}
-                    <div className="p-5">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Badge variant="secondary" className="text-xs">{post.category}</Badge>
-                        <span className="text-xs text-muted-foreground flex items-center gap-1">
-                          <Calendar className="w-3 h-3" /> {moment(post.created_date).format('MMM D, YYYY')}
+                  <Link key={post.id} to={`/blog/${post.id}`} className="group block">
+                    <article className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all h-full flex flex-col">
+                      {post.image_url && (
+                        <img src={post.image_url} alt={post.title} className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500" />
+                      )}
+                      <div className="p-5 flex flex-col flex-1">
+                        <div className="flex items-center gap-2 mb-3">
+                          <Badge variant="secondary" className="text-xs">{post.category}</Badge>
+                          <span className="text-xs text-muted-foreground flex items-center gap-1">
+                            <Calendar className="w-3 h-3" /> {moment(post.created_date).format('MMM D, YYYY')}
+                          </span>
+                        </div>
+                        <h3 className="font-heading font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
+                        <p className="text-sm text-muted-foreground font-body line-clamp-3 flex-1">{post.excerpt}</p>
+                        <span className="mt-3 text-xs text-primary font-heading font-semibold flex items-center gap-1">
+                          Read Article <ChevronRight className="w-3 h-3" />
                         </span>
                       </div>
-                      <h3 className="font-heading font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
-                      <p className="text-sm text-muted-foreground font-body line-clamp-3">{post.excerpt}</p>
-                    </div>
-                  </article>
+                    </article>
+                  </Link>
                 ))}
               </div>
             )}
@@ -239,7 +244,7 @@ export default function Insights() {
       <section className="py-16 bg-muted/30 border-y border-border/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-heading font-semibold text-primary tracking-widest uppercase mb-2">Data Intelligence</p>
-          <h2 className="text-2xl font-display font-bold text-foreground mb-8">Dubai Community Yield Snapshot — 2025</h2>
+          <h2 className="text-2xl font-display font-bold text-foreground mb-8">Dubai Community Yield Snapshot — 2026</h2>
           <div className="overflow-x-auto rounded-xl border border-border/50">
             <table className="w-full text-sm font-body bg-card">
               <thead className="bg-primary text-white">
@@ -271,7 +276,7 @@ export default function Insights() {
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-muted-foreground font-body mt-3">Data based on Q1 2025 DLD transaction records and REMAX ZAM proprietary market analysis. Yields are gross estimates; net yields vary by service charges and occupancy.</p>
+          <p className="text-xs text-muted-foreground font-body mt-3">Data based on Q1 2026 DLD transaction records and REMAX ZAM proprietary market analysis. Yields are gross estimates; net yields vary by service charges and occupancy.</p>
         </div>
       </section>
 
