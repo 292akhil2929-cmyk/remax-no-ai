@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import moment from 'moment';
 import ImageUploadSection from '@/components/PropertyImageUpload';
+import AgentSelector from '@/components/AgentSelector';
 import PropertyEditor from '@/components/PropertyEditor';
 
 /* ── Import Listing from URL ─────────────────────────── */
@@ -135,7 +136,8 @@ function ImportListingPanel() {
             <div><p className="text-xs text-emerald-600 font-body">Location</p><p className="font-heading font-medium text-foreground">{result.location}</p></div>
             <div><p className="text-xs text-emerald-600 font-body">Type</p><p className="font-heading font-medium text-foreground">{result.property_type}</p></div>
           </div>
-          <ImageUploadSection propertyId={result.id} onImageUploaded={() => { setUrl(''); setResult(null); setCategory(''); }} />
+          <ImageUploadSection propertyId={result.id} onImageUploaded={() => {}} />
+          <AgentSelector propertyId={result.id} onAgentSelected={() => { setUrl(''); setResult(null); setCategory(''); }} />
           <div className="flex gap-2 mt-3">
             <Button size="sm" variant="outline" className="text-xs" onClick={() => { setUrl(''); setResult(null); setCategory(''); }}>
               Import Another

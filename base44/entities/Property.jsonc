@@ -22,8 +22,7 @@
         "Commercial Sale",
         "Commercial Lease"
       ],
-      "title": "Transaction Type",
-      "description": "Residential Sale | Residential Rental | Commercial Sale | Commercial Lease"
+      "title": "Transaction Type"
     },
     "property_type": {
       "type": "string",
@@ -47,8 +46,7 @@
         "Ready",
         "Resale"
       ],
-      "title": "Listing Status",
-      "description": "Off-Plan (not built yet), Ready (new handover), Resale (secondary market). Leave blank for rentals."
+      "title": "Listing Status"
     },
     "bedrooms": {
       "type": "number",
@@ -68,8 +66,7 @@
     },
     "price_label": {
       "type": "string",
-      "title": "Price Label Override",
-      "description": "e.g. 'AED 85,000 / year' \u2014 shown on card if set"
+      "title": "Price Label Override"
     },
     "expected_roi": {
       "type": "number",
@@ -109,6 +106,30 @@
       ],
       "title": "Status",
       "default": "Available"
+    },
+    "agent_name": {
+      "type": "string",
+      "title": "Agent Name"
+    },
+    "agent_role": {
+      "type": "string",
+      "title": "Agent Role"
+    },
+    "agent_photo": {
+      "type": "string",
+      "title": "Agent Photo URL"
+    },
+    "agent_phone": {
+      "type": "string",
+      "title": "Agent Phone"
+    },
+    "agent_whatsapp": {
+      "type": "string",
+      "title": "Agent WhatsApp"
+    },
+    "agent_email": {
+      "type": "string",
+      "title": "Agent Email"
     }
   },
   "required": [
