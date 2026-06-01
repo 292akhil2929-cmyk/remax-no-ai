@@ -13,7 +13,7 @@ const communities = [
 const HERO_CONTENT = {
   investor: {
     eyebrow: 'Dubai Real Estate Investment',
-    headline: ['Own a Piece of', "The World's Most"],
+    headline: ['Own a Piece of', "The World's Most This is a test"],
     accent: 'Investable City',
     sub: 'Tax-free returns. Golden Visa eligibility. World-class infrastructure.',
     tabs: [
