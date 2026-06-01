@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Heart, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -37,6 +37,7 @@ function getFallbackImage(property) {
 }
 
 export default function PropertyCard({ property }) {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const images = (property.gallery_images?.length ? property.gallery_images : null) ||
     (property.image_url ? [property.image_url] : [getFallbackImage(property)]);
@@ -44,10 +45,12 @@ export default function PropertyCard({ property }) {
 
   const prevImg = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setImgIndex(i => (i - 1 + images.length) % images.length);
   };
   const nextImg = (e) => {
     e.preventDefault();
+    e.stopPropagation();
     setImgIndex(i => (i + 1) % images.length);
   };
 
@@ -83,16 +86,17 @@ export default function PropertyCard({ property }) {
   };
   return (
     <div className="group bg-card border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300">
-      {/* Image area — NOT a link so arrow buttons work cleanly */}
-      <div className="relative aspect-[4/3] overflow-hidden">
-        <Link to={`/properties/${property.id}`} className="block w-full h-full">
-          <img
-            src={images[imgIndex] || getFallbackImage(property)}
-            alt={property.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            onError={(e) => { e.target.src = DEFAULT_FALLBACK; }}
-          />
-        </Link>
+      {/* Image area — plain div so arrow buttons are never blocked by a Link */}
+      <div
+        className="relative aspect-[4/3] overflow-hidden cursor-pointer"
+        onClick={() => navigate(`/properties/${property.id}`)}
+      >
+        <img
+          src={images[imgIndex] || getFallbackImage(property)}
+          alt={property.title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+          onError={(e) => { e.target.src = DEFAULT_FALLBACK; }}
+        />
 
         {/* Prev / Next arrows */}
         {images.length > 1 && (
