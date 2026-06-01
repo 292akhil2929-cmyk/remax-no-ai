@@ -123,7 +123,12 @@ export default function PropertyEditor({ property, onClose, onSaved }) {
             <textarea name="description" value={formData.description} onChange={handleChange} rows="4" className="w-full px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring" />
           </div>
 
-          <PropertyImageUpload propertyId={property.id} onImageUploaded={() => {}} />
+          <PropertyImageUpload
+            propertyId={property.id}
+            currentImages={property.gallery_images || (property.image_url ? [property.image_url] : [])}
+            currentHero={property.image_url || ''}
+            onImagesUpdated={onSaved}
+          />
 
           {error && (
             <div className="flex items-start gap-2 text-sm text-red-600 bg-red-50 border border-red-200 rounded-lg p-3">

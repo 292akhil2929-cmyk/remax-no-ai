@@ -90,7 +90,14 @@
     },
     "image_url": {
       "type": "string",
-      "title": "Image URL"
+      "title": "Hero Image URL"
+    },
+    "gallery_images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "title": "Gallery Images (up to 10 URLs)"
     },
     "featured": {
       "type": "boolean",

@@ -137,7 +137,12 @@ function ImportListingPanel() {
             <div><p className="text-xs text-emerald-600 font-body">Location</p><p className="font-heading font-medium text-foreground">{result.location}</p></div>
             <div><p className="text-xs text-emerald-600 font-body">Type</p><p className="font-heading font-medium text-foreground">{result.property_type}</p></div>
           </div>
-          <ImageUploadSection propertyId={result.id} onImageUploaded={() => {}} />
+          <ImageUploadSection
+            propertyId={result.id}
+            currentImages={result.gallery_images || (result.image_url ? [result.image_url] : [])}
+            currentHero={result.image_url || ''}
+            onImagesUpdated={() => {}}
+          />
           <AgentSelector propertyId={result.id} onAgentSelected={() => { setUrl(''); setResult(null); setCategory(''); }} />
           <div className="flex gap-2 mt-3">
             <Button size="sm" variant="outline" className="text-xs" onClick={() => { setUrl(''); setResult(null); setCategory(''); }}>
