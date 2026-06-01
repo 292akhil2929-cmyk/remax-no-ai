@@ -85,13 +85,14 @@ export default function PropertyCard({ property }) {
     else saveMutation.mutate();
   };
   return (
-    <div className="group bg-card border border-border/50 rounded-lg hover:border-primary/30 transition-all duration-300 overflow-visible">
-      {/* Image area — plain div so arrow buttons are never blocked by a Link */}
-      <div
-        className="relative aspect-[4/3] cursor-pointer"
-        onClick={() => navigate(`/properties/${property.id}`)}
-      >
-        <div className="absolute inset-0 overflow-hidden rounded-t-lg">
+    <div className="group bg-card border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300">
+      {/* Image area */}
+      <div className="relative aspect-[4/3]" style={{ isolation: 'isolate' }}>
+        {/* Clickable image — navigate on click */}
+        <div
+          className="absolute inset-0 cursor-pointer overflow-hidden"
+          onClick={() => navigate(`/properties/${property.id}`)}
+        >
           <img
             src={images[imgIndex] || getFallbackImage(property)}
             alt={property.title}
@@ -100,44 +101,8 @@ export default function PropertyCard({ property }) {
           />
         </div>
 
-        {/* Prev / Next arrows */}
-        {images.length > 1 && (
-          <>
-            <button
-              onClick={prevImg}
-              style={{ zIndex: 20 }}
-              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
-            >
-              <ChevronLeft className="w-4 h-4" />
-            </button>
-            <button
-              onClick={nextImg}
-              style={{ zIndex: 20 }}
-              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/60 text-white flex items-center justify-center hover:bg-black/80 transition-colors"
-            >
-              <ChevronRight className="w-4 h-4" />
-            </button>
-            {/* Counter */}
-            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 pointer-events-none" style={{ zIndex: 20 }}>
-              {images.map((_, i) => (
-                <span key={i} className={`w-1.5 h-1.5 rounded-full transition-all ${i === imgIndex ? 'bg-white' : 'bg-white/50'}`} />
-              ))}
-            </div>
-          </>
-        )}
-
-        {/* Save button */}
-        <button
-          onClick={toggleSave}
-          className={`absolute top-3 right-3 z-10 w-8 h-8 rounded-full flex items-center justify-center shadow transition-all ${
-            isSaved ? 'bg-red-500 text-white' : 'bg-white/90 text-muted-foreground hover:text-red-500'
-          }`}
-        >
-          <Heart className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
-        </button>
-
-        {/* Status badges */}
-        <div className="absolute top-3 left-3 flex gap-2 flex-wrap max-w-[70%] pointer-events-none">
+        {/* Status badges — top left */}
+        <div className="absolute top-3 left-3 flex gap-2 flex-wrap max-w-[70%] pointer-events-none" style={{ zIndex: 10 }}>
           {property.listing_status === 'Off-Plan' && (
             <span className="text-xs font-heading font-semibold px-2.5 py-1 rounded bg-[#B87333] text-white shadow">Off-Plan</span>
           )}
@@ -158,11 +123,48 @@ export default function PropertyCard({ property }) {
           )}
         </div>
 
+        {/* Save button — top right */}
+        <button
+          onClick={toggleSave}
+          className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center shadow transition-all ${
+            isSaved ? 'bg-red-500 text-white' : 'bg-white/90 text-muted-foreground hover:text-red-500'
+          }`}
+          style={{ zIndex: 10 }}
+        >
+          <Heart className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
+        </button>
+
+        {/* ROI badge — bottom right */}
         {property.expected_roi && (
-          <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-amber-500 rounded-md px-2 py-1 shadow pointer-events-none">
+          <div className="absolute bottom-3 right-3 flex items-center gap-1 bg-amber-500 rounded-md px-2 py-1 shadow pointer-events-none" style={{ zIndex: 10 }}>
             <TrendingUp className="w-3 h-3 text-white" />
             <span className="text-xs font-heading font-bold text-white">{property.expected_roi}% ROI</span>
           </div>
+        )}
+
+        {/* Carousel arrows + dots — rendered LAST so they're on top */}
+        {images.length > 1 && (
+          <>
+            <button
+              onClick={prevImg}
+              className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-black transition-colors"
+              style={{ zIndex: 20 }}
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+            <button
+              onClick={nextImg}
+              className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-black transition-colors"
+              style={{ zIndex: 20 }}
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+            <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1 pointer-events-none" style={{ zIndex: 20 }}>
+              {images.map((_, i) => (
+                <span key={i} className={`w-1.5 h-1.5 rounded-full transition-all ${i === imgIndex ? 'bg-white' : 'bg-white/50'}`} />
+              ))}
+            </div>
+          </>
         )}
       </div>
 
