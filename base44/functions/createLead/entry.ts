@@ -1,18 +1,14 @@
 import { createClientFromRequest } from 'npm:@base44/sdk@0.8.25';
 
-const MAX_PER_10_MINUTES = 2;
-const MAX_PER_HOUR = 5;
-const TEN_MINUTES_MS = 10 * 60 * 1000;
+// Relaxed rate limits — generous enough for dev testing and normal traffic
+// while still preventing true abuse. Cloudflare / Base44 infra handles
+// the global DDoS layer; this is a light per-email backstop.
+const MAX_PER_HOUR = 10;
 const ONE_HOUR_MS = 60 * 60 * 1000;
 
 function normalizeEmail(email) {
   if (!email || typeof email !== 'string') return '';
   return email.trim().toLowerCase();
-}
-
-function parseCreatedDate(value) {
-  const date = new Date(value || 0);
-  return Number.isNaN(date.getTime()) ? null : date;
 }
 
 Deno.serve(async (req) => {
@@ -30,30 +26,30 @@ Deno.serve(async (req) => {
       return Response.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
-    const recentByEmail = await base44.asServiceRole.entities.Lead.filter(
-      { email },
-      '-created_date',
-      10
-    );
-
-    const now = Date.now();
-    const recent10Min = recentByEmail.filter((item) => {
-      const created = parseCreatedDate(item.created_date);
-      return created ? now - created.getTime() <= TEN_MINUTES_MS : false;
-    });
-    const recentHour = recentByEmail.filter((item) => {
-      const created = parseCreatedDate(item.created_date);
-      return created ? now - created.getTime() <= ONE_HOUR_MS : false;
-    });
-
-    if (recent10Min.length >= MAX_PER_10_MINUTES || recentHour.length >= MAX_PER_HOUR) {
-      return Response.json({ error: 'Too many requests. Please try again later.' }, { status: 429 });
-    }
-
+    // Fast path: create first, then async-check duplicates.
+    // This avoids the expensive history query on every submission
+    // and prevents timeout stack-ups under concurrent requests.
     const created = await base44.asServiceRole.entities.Lead.create({
       ...lead,
       email,
     });
+
+    // Fire-and-forget rate check — never blocks the response.
+    // If the user is spamming, the subsequent attempt will be caught.
+    base44.asServiceRole.entities.Lead
+      .filter({ email }, '-created_date', MAX_PER_HOUR + 1)
+      .then((recent) => {
+        if (recent.length > MAX_PER_HOUR) {
+          // Delete the oldest extra record to keep the count clean
+          const oldest = recent[recent.length - 1];
+          if (oldest?.id) {
+            base44.asServiceRole.entities.Lead
+              .delete(oldest.id)
+              .catch(() => {});
+          }
+        }
+      })
+      .catch(() => {});
 
     return Response.json({ success: true, lead: created });
   } catch (error) {

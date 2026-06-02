@@ -5,19 +5,42 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, ArrowRight } from 'lucide-react';
+import { sendLeadToBitrix } from '@/lib/bitrix';
 
 export default function LeadCaptureForm({ leadType = "Investor", source = "Website", compact = false }) {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ full_name: '', email: '', phone: '', investment_budget: '', investment_goal: '', property_interest: '' });
 
   const createLead = useMutation({
-    mutationFn: (data) => base44.functions.invoke('createLead', data),
-    onSuccess: () => setSubmitted(true),
+    mutationFn: async (data) => {
+      console.log('[LeadCaptureForm] Submitting lead to Base44...', { ...data });
+      const response = await base44.functions.invoke('createLead', data);
+      console.log('[LeadCaptureForm] Base44 response:', response);
+      return response;
+    },
+    onSuccess: (_response, variables) => {
+      console.log('[LeadCaptureForm] Lead saved to Base44 successfully');
+      setSubmitted(true);
+      console.log('[LeadCaptureForm] Sending lead to Bitrix24...', { ...variables });
+      sendLeadToBitrix(variables)
+        .then((res) => console.log('[LeadCaptureForm] Bitrix24 result:', res))
+        .catch((err) => console.warn('[LeadCaptureForm] Bitrix24 failed (non-blocking):', err));
+    },
+    onError: (error) => {
+      console.error('[LeadCaptureForm] Base44 submission failed:', error);
+    },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createLead.mutate({ ...form, lead_type: leadType, source });
+    // Double-submit guard: block if a request is already in flight
+    if (createLead.isPending) {
+      console.warn('[LeadCaptureForm] Submission blocked — request already in progress');
+      return;
+    }
+    const payload = { ...form, lead_type: leadType, source };
+    console.log('[LeadCaptureForm] Form submitted with payload:', payload);
+    createLead.mutate(payload);
   };
 
   if (submitted) {
