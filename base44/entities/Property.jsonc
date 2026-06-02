@@ -114,29 +114,9 @@
       "title": "Status",
       "default": "Available"
     },
-    "agent_name": {
+    "assigned_agent": {
       "type": "string",
-      "title": "Agent Name"
-    },
-    "agent_role": {
-      "type": "string",
-      "title": "Agent Role"
-    },
-    "agent_photo": {
-      "type": "string",
-      "title": "Agent Photo URL"
-    },
-    "agent_phone": {
-      "type": "string",
-      "title": "Agent Phone"
-    },
-    "agent_whatsapp": {
-      "type": "string",
-      "title": "Agent WhatsApp"
-    },
-    "agent_email": {
-      "type": "string",
-      "title": "Agent Email"
+      "title": "Assigned Agent (Agent ID)"
     }
   },
   "required": [

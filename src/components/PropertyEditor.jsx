@@ -133,7 +133,7 @@ export default function PropertyEditor({ property, onClose, onSaved }) {
 
           <AgentSelector
             propertyId={property.id}
-            currentAgentName={property.agent_name}
+            currentAgentId={property.assigned_agent}
             onAgentSelected={() => {}}
           />
 

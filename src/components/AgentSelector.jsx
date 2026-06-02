@@ -1,95 +1,37 @@
 import { useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { CheckCircle2, User } from 'lucide-react';
+import { CheckCircle2, User, Loader2 } from 'lucide-react';
 
-const AGENTS = [
-  {
-    name: 'Faisal Contractor',
-    role: 'CEO & Founder',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-  },
-  {
-    name: 'Sarah Zeidan',
-    role: 'General Manager',
-    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-  },
-  {
-    name: 'Justice',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Justice-chukwudi.png',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-  },
-  {
-    name: 'Imran',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Mohoammad-Imran.png',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-  },
-  {
-    name: 'Abu Bakkar',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Abu-bakkar-al-shams.png',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-  },
-  {
-    name: 'Khaldoun',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Ellipse-104.png',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-  },
-  {
-    name: 'Nour',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Ellipse-105.png',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-  },
-  {
-    name: 'Manish',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Manish-Kapur.png',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-  },
-];
+const FALLBACK = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg';
 
-export default function AgentSelector({ propertyId, currentAgentName, onAgentSelected }) {
-  const [selected, setSelected] = useState(currentAgentName || null);
+export default function AgentSelector({ propertyId, currentAgentId, onAgentSelected }) {
+  const [selectedId, setSelectedId] = useState(currentAgentId || null);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
 
+  const { data: agents = [], isLoading } = useQuery({
+    queryKey: ['agents'],
+    queryFn: () => base44.entities.Agent.list('sort_order'),
+  });
+
+  const activeAgents = agents.filter(a => a.active !== false);
+
   const handleSelect = async (agent) => {
-    setSelected(agent.name);
+    setSelectedId(agent.id);
     setSaving(true);
     setSaved(false);
-    await base44.entities.Property.update(propertyId, {
-      agent_name: agent.name,
-      agent_role: agent.role,
-      agent_photo: agent.photo,
-      agent_phone: agent.phone,
-      agent_whatsapp: agent.whatsapp,
-      agent_email: agent.email,
-    });
+    await base44.entities.Property.update(propertyId, { assigned_agent: agent.id });
     setSaving(false);
     setSaved(true);
     if (onAgentSelected) onAgentSelected(agent);
   };
+
+  if (isLoading) return (
+    <div className="mt-4 p-4 bg-white/50 rounded-lg border border-emerald-100 flex items-center gap-2 text-sm text-muted-foreground">
+      <Loader2 className="w-4 h-4 animate-spin" /> Loading agents...
+    </div>
+  );
 
   return (
     <div className="mt-4 p-4 bg-white/50 rounded-lg border border-emerald-100">
@@ -98,11 +40,11 @@ export default function AgentSelector({ propertyId, currentAgentName, onAgentSel
       </p>
 
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-        {AGENTS.map(agent => {
-          const isSelected = selected === agent.name;
+        {activeAgents.map(agent => {
+          const isSelected = selectedId === agent.id;
           return (
             <button
-              key={agent.name}
+              key={agent.id}
               onClick={() => handleSelect(agent)}
               disabled={saving}
               className={`flex flex-col items-center gap-1.5 p-2 rounded-lg border-2 transition-all text-center ${
@@ -113,10 +55,10 @@ export default function AgentSelector({ propertyId, currentAgentName, onAgentSel
             >
               <div className="relative">
                 <img
-                  src={agent.photo}
+                  src={agent.photo || FALLBACK}
                   alt={agent.name}
                   className="w-10 h-10 rounded-full object-cover object-top"
-                  onError={e => { e.target.src = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg'; }}
+                  onError={e => { e.target.src = FALLBACK; }}
                 />
                 {isSelected && (
                   <CheckCircle2 className="w-4 h-4 text-emerald-600 absolute -bottom-1 -right-1 bg-white rounded-full" />

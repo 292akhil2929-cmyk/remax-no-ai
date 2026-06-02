@@ -1,105 +1,10 @@
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { base44 } from '@/api/base44Client';
 import { Phone, Mail, MessageCircle, Star, ArrowRight, Users, Award, TrendingUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
-const TEAM = [
-  {
-    name: 'Faisal Contractor',
-    role: 'CEO & Founder',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg',
-    videoUrl: '', // Add video URL here
-    bio: 'Faisal Contractor is an accomplished serial entrepreneur and growth architect. As the founder and CEO of Embark Growth Marketing and the visionary behind REMAX ZAM, Faisal has earned a reputation for transforming how investors engage with the UAE\'s real estate market. Focused on enabling smart, confident decisions, he is committed to innovation, strategic growth, and fostering meaningful industry relationships.',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-    badge: 'Founder & CEO',
-    badgeColor: 'bg-[#B87333]',
-  },
-  {
-    name: 'Sarah Zeidan',
-    role: 'General Manager',
-    photo: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&q=80',
-    videoUrl: '',
-    bio: 'Sarah Zeidan leads operations at REMAX ZAM as General Manager, overseeing the team\'s consultative approach and ensuring every client and agent receives the highest standard of service. Her leadership drives the company\'s culture of data-backed advising and professional growth.',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-    badge: 'General Manager',
-    badgeColor: 'bg-[#B87333]',
-  },
-  {
-    name: 'Justice',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Justice-chukwudi.png',
-    videoUrl: '', // Add video URL here
-    bio: 'I use the market insights I learned at REMAX ZAM to provide unmatched support to my clients. The management\'s guidance gives me confidence to close deals and progress my career in ways I never imagined.',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-    badge: 'Consultant',
-    badgeColor: 'bg-slate-700',
-  },
-  {
-    name: 'Imran',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Mohoammad-Imran.png',
-    videoUrl: '', // Add video URL here
-    bio: 'The training and teamwork at REMAX ZAM helped me understand the industry faster and helps me keep track of latest updates within the industry.',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-    badge: 'Consultant',
-    badgeColor: 'bg-slate-700',
-  },
-  {
-    name: 'Abu Bakkar',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Abu-bakkar-al-shams.png',
-    videoUrl: '', // Add video URL here
-    bio: 'I am honored to be a part of REMAX and REMAX ZAM. REMAX is a global brand and REMAX ZAM has shown me why, it\'s an absolute pleasure for me to be part of this brand.',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-    badge: 'Consultant',
-    badgeColor: 'bg-slate-700',
-  },
-  {
-    name: 'Khaldoun',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Ellipse-104.png',
-    videoUrl: '', // Add video URL here
-    bio: 'I recently closed my biggest deal, and I couldn\'t have done it without the hands on training I received at REMAX ZAM. The support from the team and the market insights gave me the confidence to succeed.',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-    badge: 'Consultant',
-    badgeColor: 'bg-slate-700',
-  },
-  {
-    name: 'Nour',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Ellipse-105.png',
-    videoUrl: '', // Add video URL here
-    bio: 'I\'ve been able to build my personal brand and attract clients with the training and marketing resources at REMAX ZAM. The support from the team has helped me gain leads and grow consistently.',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-    badge: 'Consultant',
-    badgeColor: 'bg-slate-700',
-  },
-  {
-    name: 'Manish',
-    role: 'Property Consultant',
-    photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2026/02/Manish-Kapur.png',
-    videoUrl: '', // Add video URL here
-    bio: 'I closed multiple high ticket deals back to back thanks to the mentorship and guidance provided by REMAX ZAM. Having access to a strong network made navigating the market so much easier.',
-    phone: '+97145828158',
-    whatsapp: '97145828158',
-    email: 'info@remaxzam.ae',
-    badge: 'Consultant',
-    badgeColor: 'bg-slate-700',
-  },
-];
+const FALLBACK = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg';
 
 const perks = [
   { icon: TrendingUp, title: 'Uncapped Commission', desc: 'You pick your commission — 50, 65, or 80 percent — your business, your way. No desk fees for your first months.' },
@@ -109,6 +14,15 @@ const perks = [
 ];
 
 export default function Team() {
+  const { data: agents = [], isLoading } = useQuery({
+    queryKey: ['agents'],
+    queryFn: () => base44.entities.Agent.list('sort_order'),
+  });
+
+  const activeAgents = agents.filter(a => a.active !== false);
+  const ceo = activeAgents[0];
+  const rest = activeAgents.slice(1);
+
   return (
     <div className="min-h-screen">
       {/* Hero */}
@@ -136,100 +50,96 @@ export default function Team() {
       {/* Team Grid */}
       <section className="py-16 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* CEO Feature Card */}
-          <div className="mb-12">
-            <div className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all flex flex-col md:flex-row">
-              <div className="relative md:w-80 shrink-0">
-                {TEAM[0].videoUrl ? (
-                  <div className="w-full h-72 md:h-full bg-gray-900 flex items-center justify-center">
-                    <iframe
-                      src={TEAM[0].videoUrl}
-                      title={TEAM[0].name}
-                      className="w-full h-full"
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                    />
-                  </div>
-                ) : (
-                  <img
-                    src={TEAM[0].photo}
-                    alt={TEAM[0].name}
-                    className="w-full h-72 md:h-full object-cover object-top"
-                    onError={(e) => { e.target.src = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg'; }}
-                  />
-                )}
-                <span className={`absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-white ${TEAM[0].badgeColor}`}>
-                  {TEAM[0].badge}
-                </span>
-              </div>
-              <div className="p-8 flex flex-col justify-center">
-                <h3 className="font-heading font-bold text-foreground text-2xl mb-1">{TEAM[0].name}</h3>
-                <p className="text-sm font-heading font-semibold text-accent mb-4">{TEAM[0].role}</p>
-                <p className="text-sm text-muted-foreground font-body leading-relaxed mb-6 max-w-xl">{TEAM[0].bio}</p>
-                <div className="flex gap-3">
-                  <a href={`tel:${TEAM[0].phone}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
-                    <Phone className="w-4 h-4" /> Call
-                  </a>
-                  <a href={`https://wa.me/${TEAM[0].whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors text-sm font-body text-muted-foreground hover:text-emerald-600">
-                    <MessageCircle className="w-4 h-4" /> WhatsApp
-                  </a>
-                  <a href={`mailto:${TEAM[0].email}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
-                    <Mail className="w-4 h-4" /> Email
-                  </a>
-                </div>
-              </div>
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+              {[1,2,3,4,5,6].map(i => <div key={i} className="h-80 bg-muted animate-pulse rounded-xl" />)}
             </div>
-          </div>
-
-          {/* Consultants Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {TEAM.slice(1).map(agent => (
-              <div key={agent.name} className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all">
-                <div className="relative">
-                  {agent.videoUrl ? (
-                    <div className="w-full h-64 bg-gray-900 flex items-center justify-center">
-                      <iframe
-                        src={agent.videoUrl}
-                        title={agent.name}
-                        className="w-full h-full"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
+          ) : (
+            <>
+              {ceo && (
+                <div className="mb-12">
+                  <div className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all flex flex-col md:flex-row">
+                    <div className="relative md:w-80 shrink-0">
+                      <img
+                        src={ceo.photo || FALLBACK}
+                        alt={ceo.name}
+                        className="w-full h-72 md:h-full object-cover object-top"
+                        onError={e => { e.target.src = FALLBACK; }}
                       />
+                      <span className="absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-white bg-[#B87333]">
+                        {ceo.role}
+                      </span>
                     </div>
-                  ) : (
-                    <img
-                      src={agent.photo}
-                      alt={agent.name}
-                      className="w-full h-64 object-cover object-top"
-                      onError={(e) => { e.target.src = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&q=80'; }}
-                    />
-                  )}
-                  <span className={`absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-white ${agent.badgeColor}`}>
-                    {agent.badge}
-                  </span>
-                </div>
-                <div className="p-5">
-                  <h3 className="font-heading font-bold text-foreground text-lg mb-0.5">{agent.name}</h3>
-                  <p className="text-xs font-heading font-semibold text-accent mb-3">{agent.role}</p>
-                  <p className="text-xs text-muted-foreground font-body leading-relaxed mb-5">{agent.bio}</p>
-                  <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border/50">
-                    <a href={`tel:${agent.phone}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
-                      <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
-                      <span className="text-[9px] font-body text-muted-foreground">Call</span>
-                    </a>
-                    <a href={`https://wa.me/${agent.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
-                      <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
-                      <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
-                    </a>
-                    <a href={`mailto:${agent.email}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
-                      <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
-                      <span className="text-[9px] font-body text-muted-foreground">Email</span>
-                    </a>
+                    <div className="p-8 flex flex-col justify-center">
+                      <h3 className="font-heading font-bold text-foreground text-2xl mb-1">{ceo.name}</h3>
+                      <p className="text-sm font-heading font-semibold text-accent mb-4">{ceo.role}</p>
+                      <p className="text-sm text-muted-foreground font-body leading-relaxed mb-6 max-w-xl">{ceo.about}</p>
+                      <div className="flex gap-3">
+                        {ceo.phone && (
+                          <a href={`tel:${ceo.phone}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
+                            <Phone className="w-4 h-4" /> Call
+                          </a>
+                        )}
+                        {ceo.whatsapp && (
+                          <a href={`https://wa.me/${ceo.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors text-sm font-body text-muted-foreground hover:text-emerald-600">
+                            <MessageCircle className="w-4 h-4" /> WhatsApp
+                          </a>
+                        )}
+                        {ceo.email && (
+                          <a href={`mailto:${ceo.email}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
+                            <Mail className="w-4 h-4" /> Email
+                          </a>
+                        )}
+                      </div>
+                    </div>
                   </div>
                 </div>
+              )}
+
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+                {rest.map(agent => (
+                  <div key={agent.id} className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all">
+                    <div className="relative">
+                      <img
+                        src={agent.photo || FALLBACK}
+                        alt={agent.name}
+                        className="w-full h-64 object-cover object-top"
+                        onError={e => { e.target.src = FALLBACK; }}
+                      />
+                      <span className="absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-white bg-slate-700">
+                        {agent.role}
+                      </span>
+                    </div>
+                    <div className="p-5">
+                      <h3 className="font-heading font-bold text-foreground text-lg mb-0.5">{agent.name}</h3>
+                      <p className="text-xs font-heading font-semibold text-accent mb-3">{agent.role}</p>
+                      <p className="text-xs text-muted-foreground font-body leading-relaxed mb-5">{agent.about}</p>
+                      <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border/50">
+                        {agent.phone && (
+                          <a href={`tel:${agent.phone}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+                            <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                            <span className="text-[9px] font-body text-muted-foreground">Call</span>
+                          </a>
+                        )}
+                        {agent.whatsapp && (
+                          <a href={`https://wa.me/${agent.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
+                            <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
+                            <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
+                          </a>
+                        )}
+                        {agent.email && (
+                          <a href={`mailto:${agent.email}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+                            <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+                            <span className="text-[9px] font-body text-muted-foreground">Email</span>
+                          </a>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            </>
+          )}
         </div>
       </section>
 

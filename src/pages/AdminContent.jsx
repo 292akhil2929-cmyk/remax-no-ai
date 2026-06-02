@@ -7,7 +7,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import {
   Link as LinkIcon, Sparkles, RefreshCw, CheckCircle2,
   AlertCircle, Loader2, FileText, Home, ArrowRight,
-  PlusCircle, ExternalLink, Calendar, Plus, Edit2
+  PlusCircle, ExternalLink, Calendar, Plus, Edit2, Users
 } from 'lucide-react';
 import moment from 'moment';
 import ImageUploadSection from '@/components/PropertyImageUpload';
@@ -416,8 +416,15 @@ export default function AdminContent() {
       <section className="py-12 bg-[#0d1b3e] text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-2">REMAX ZAM — Admin</p>
-          <h1 className="text-3xl font-display font-black text-white mb-2">Content Command Centre</h1>
-          <p className="text-white/60 font-body text-sm">Import listings, generate blog posts, and manage your website content — all in one place.</p>
+          <div className="flex items-start justify-between">
+            <div>
+              <h1 className="text-3xl font-display font-black text-white mb-2">Content Command Centre</h1>
+              <p className="text-white/60 font-body text-sm">Import listings, generate blog posts, and manage your website content — all in one place.</p>
+            </div>
+            <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white/10 font-heading shrink-0">
+              <Link to="/admin/team"><Users className="w-4 h-4 mr-2" /> Team Management</Link>
+            </Button>
+          </div>
         </div>
       </section>
 

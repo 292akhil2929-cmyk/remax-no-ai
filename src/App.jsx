@@ -39,6 +39,7 @@ import DubaiGuide from './pages/DubaiGuide';
 import DugastaTR from './pages/DugastaTR';
 import Login from './pages/Login';
 import AccessDenied from './pages/AccessDenied';
+import AdminTeam from './pages/AdminTeam';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -103,6 +104,7 @@ const AuthenticatedApp = () => {
           }
         >
           <Route path="/admin/content" element={<AdminContent />} />
+          <Route path="/admin/team" element={<AdminTeam />} />
         </Route>
         <Route path="/theme-preview" element={<ThemePreview />} />
         <Route path="/video-gallery" element={<BannerVideoGallery />} />
