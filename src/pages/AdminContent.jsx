@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Link as LinkIcon, Sparkles, RefreshCw, CheckCircle2,
   AlertCircle, Loader2, FileText, Home, ArrowRight,
@@ -393,6 +393,22 @@ function RecentPropertiesPanel() {
 /* ── Main Page ───────────────────────────────────────── */
 export default function AdminContent() {
   const [refreshPosts, setRefreshPosts] = useState(0);
+  const navigate = useNavigate();
+
+  const { data: currentUser, isLoading: userLoading } = useQuery({
+    queryKey: ['currentUser'],
+    queryFn: () => base44.auth.me(),
+  });
+
+  useEffect(() => {
+    if (userLoading) return;
+    if (!currentUser) { navigate('/login', { replace: true }); return; }
+    if (currentUser.role !== 'admin') { navigate('/', { replace: true }); }
+  }, [currentUser, userLoading, navigate]);
+
+  if (userLoading || !currentUser || currentUser.role !== 'admin') {
+    return <div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin" /></div>;
+  }
 
   return (
     <div className="min-h-screen bg-background">

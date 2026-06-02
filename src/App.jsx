@@ -1,7 +1,8 @@
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import ProtectedRoute from '@/components/ProtectedRoute';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import { AudienceProvider } from '@/lib/AudienceContext';
@@ -79,7 +80,9 @@ const AuthenticatedApp = () => {
         <Route path="/blog/:postId" element={<BlogDetail />} />
         <Route path="/landlords" element={<Landlords />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/admin/content" element={<AdminContent />} />
+        <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
+          <Route path="/admin/content" element={<AdminContent />} />
+        </Route>
         <Route path="/theme-preview" element={<ThemePreview />} />
         <Route path="/video-gallery" element={<BannerVideoGallery />} />
         <Route path="/dugasta" element={<Dugasta />} />
