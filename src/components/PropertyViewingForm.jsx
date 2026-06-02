@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, Calendar, MessageSquare } from 'lucide-react';
+import { sendPropertyViewingToBitrix } from '@/lib/bitrix';
 
 export default function PropertyViewingForm({ property }) {
   const [submitted, setSubmitted] = useState(false);
@@ -18,12 +19,19 @@ export default function PropertyViewingForm({ property }) {
 
   const createLead = useMutation({
     mutationFn: (data) => base44.functions.invoke('createLead', data),
-    onSuccess: () => setSubmitted(true),
+    onSuccess: (_response, variables) => {
+      setSubmitted(true);
+      sendPropertyViewingToBitrix(variables).catch(() => {});
+    },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createLead.mutate({
+    if (createLead.isPending) {
+      console.warn('[PropertyViewingForm] Submission blocked — request already in progress');
+      return;
+    }
+    const payload = {
       full_name: form.full_name,
       email: form.email,
       phone: form.phone,
@@ -31,7 +39,12 @@ export default function PropertyViewingForm({ property }) {
       source: 'Property Viewing Request',
       property_interest: `${property.title} (${property.location})`,
       notes: `Request Type: ${form.request_type}${form.preferred_date ? ` | Preferred Date: ${form.preferred_date}` : ''}`,
-    });
+      // Bitrix property-viewing fields
+      property_title: property.title,
+      property_id: property.id,
+      assigned_agent_name: property.agent_name,
+    };
+    createLead.mutate(payload);
   };
 
   if (submitted) {
