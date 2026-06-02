@@ -31,7 +31,6 @@ export default function BannerVideoGallery() {
 
   const handleSelect = (id) => {
     setSelected(id);
-    console.log(`Selected video ${id}: ${videoOptions.find(v => v.id === id).title}`);
   };
 
   return (

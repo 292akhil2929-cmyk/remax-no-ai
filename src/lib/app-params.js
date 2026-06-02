@@ -34,18 +34,38 @@ const getAppParamValue = (paramName, { defaultValue = undefined, removeFromUrl =
 	return null;
 }
 
+// const getAppParams = () => {
+// 	if (getAppParamValue("clear_access_token") === 'true') {
+// 		storage.removeItem('base44_access_token');
+// 		storage.removeItem('token');
+// 	}
+// 	return {
+// 		appId: getAppParamValue("app_id", { defaultValue: import.meta.env.VITE_BASE44_APP_ID }),
+// 		token: getAppParamValue("access_token", { removeFromUrl: true }),
+// 		fromUrl: getAppParamValue("from_url", { defaultValue: window.location.href }),
+// 		functionsVersion: getAppParamValue("functions_version", { defaultValue: import.meta.env.VITE_BASE44_FUNCTIONS_VERSION }),
+// 		appBaseUrl: getAppParamValue("app_base_url", { defaultValue: import.meta.env.VITE_BASE44_APP_BASE_URL }),
+// 	}
+// }
+
 const getAppParams = () => {
-	if (getAppParamValue("clear_access_token") === 'true') {
-		storage.removeItem('base44_access_token');
-		storage.removeItem('token');
-	}
-	return {
-		appId: getAppParamValue("app_id", { defaultValue: import.meta.env.VITE_BASE44_APP_ID }),
-		token: getAppParamValue("access_token", { removeFromUrl: true }),
-		fromUrl: getAppParamValue("from_url", { defaultValue: window.location.href }),
-		functionsVersion: getAppParamValue("functions_version", { defaultValue: import.meta.env.VITE_BASE44_FUNCTIONS_VERSION }),
-		appBaseUrl: getAppParamValue("app_base_url", { defaultValue: import.meta.env.VITE_BASE44_APP_BASE_URL }),
-	}
+    if (getAppParamValue("clear_access_token") === 'true') {
+        storage.removeItem('base44_access_token');
+        storage.removeItem('token');
+    }
+    
+    // Get the current origin (e.g., "http://localhost:5173" or "https://zam-wealth-engine.base44.app")
+    const currentOrigin = typeof window !== 'undefined' ? window.location.origin : '';
+
+    return {
+        appId: getAppParamValue("app_id", { defaultValue: import.meta.env.VITE_BASE44_APP_ID }),
+        token: getAppParamValue("access_token", { removeFromUrl: true }),
+        fromUrl: getAppParamValue("from_url", { defaultValue: typeof window !== 'undefined' ? window.location.href : '' }),
+        functionsVersion: getAppParamValue("functions_version", { defaultValue: import.meta.env.VITE_BASE44_FUNCTIONS_VERSION }),
+        
+        // FIX: Default to the current browser origin so localhost stays on localhost!
+        appBaseUrl: getAppParamValue("app_base_url", { defaultValue: currentOrigin || import.meta.env.VITE_BASE44_APP_BASE_URL }),
+    }
 }
 
 

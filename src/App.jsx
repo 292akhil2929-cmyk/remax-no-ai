@@ -1,12 +1,13 @@
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import ProtectedRoute from '@/components/ProtectedRoute';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import { AudienceProvider } from '@/lib/AudienceContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
+import { useEffect } from 'react';
 import Home from './pages/Home.jsx';
 import Properties from './pages/Properties.jsx';
 import PropertyDetail from './pages/PropertyDetail';
@@ -41,6 +42,13 @@ import AccessDenied from './pages/AccessDenied';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (authError?.type === 'auth_required' && location.pathname !== '/login') {
+      navigateToLogin('/login');
+    }
+  }, [authError, location.pathname, navigateToLogin]);
 
   // Show loading spinner while checking app public settings or auth
   if (isLoadingPublicSettings || isLoadingAuth) {
@@ -56,9 +64,10 @@ const AuthenticatedApp = () => {
     if (authError.type === 'user_not_registered') {
       return <UserNotRegisteredError />;
     } else if (authError.type === 'auth_required') {
-      // Redirect to login automatically
-      navigateToLogin();
-      return null;
+      if (location.pathname === '/login') {
+        return null;
+      }
+      return <Navigate to="/login" replace />;
     }
   }
 
@@ -81,8 +90,18 @@ const AuthenticatedApp = () => {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/:postId" element={<BlogDetail />} />
         <Route path="/landlords" element={<Landlords />} />
-        <Route path="/dashboard" element={<Dashboard />} />
         <Route element={<ProtectedRoute unauthenticatedElement={<Navigate to="/login" replace />} />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+        </Route>
+        <Route
+          element={
+            <ProtectedRoute
+              requiredRole="admin"
+              unauthenticatedElement={<Navigate to="/login" replace />}
+              unauthorizedElement={<Navigate to="/access-denied" replace />}
+            />
+          }
+        >
           <Route path="/admin/content" element={<AdminContent />} />
         </Route>
         <Route path="/theme-preview" element={<ThemePreview />} />

@@ -138,7 +138,7 @@ function DugastaLeadForm({ dark = true }) {
   const [form, setForm] = useState({ full_name: '', email: '', phone: '', investment_budget: '', notes: '' });
 
   const createLead = useMutation({
-    mutationFn: (data) => base44.entities.Lead.create(data),
+    mutationFn: (data) => base44.functions.invoke('createLead', data),
     onSuccess: () => setSubmitted(true),
   });
 

@@ -2,10 +2,70 @@ import { createClientFromRequest } from 'npm:@base44/sdk@0.8.25';
 
 const SALES_TEAM_EMAIL = 'info@remaxzam.ae'; // Update to your sales team distribution email
 
+const SIGNING_SECRET = Deno.env.get('BASE44_FUNCTIONS_SIGNING_SECRET') || '';
+const TIMESTAMP_TOLERANCE_MS = 5 * 60 * 1000;
+
+function normalizeSignature(signature) {
+  if (!signature || typeof signature !== 'string') return '';
+  return signature.startsWith('sha256=') ? signature.slice(7) : signature;
+}
+
+function timingSafeEqual(a, b) {
+  if (a.length !== b.length) return false;
+  let result = 0;
+  for (let i = 0; i < a.length; i += 1) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return result === 0;
+}
+
+async function verifySignedRequest(req, bodyText) {
+  if (!SIGNING_SECRET) return false;
+  const signature = normalizeSignature(req.headers.get('x-base44-signature'));
+  const timestamp = req.headers.get('x-base44-timestamp');
+  if (!signature || !timestamp) return false;
+  const ts = Number(timestamp);
+  if (!Number.isFinite(ts)) return false;
+  if (Math.abs(Date.now() - ts) > TIMESTAMP_TOLERANCE_MS) return false;
+
+  const payload = `${timestamp}.${bodyText}`;
+  const key = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(SIGNING_SECRET),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  const signatureBuffer = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(payload));
+  const signatureHex = [...new Uint8Array(signatureBuffer)]
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+  return timingSafeEqual(signatureHex, signature);
+}
+
 Deno.serve(async (req) => {
   try {
+    if (req.method !== 'POST') {
+      return Response.json({ error: 'Method not allowed' }, { status: 405 });
+    }
+
+    const bodyText = await req.text();
     const base44 = createClientFromRequest(req);
-    const body = await req.json();
+    let user = null;
+    try {
+      user = await base44.auth.me();
+    } catch (_) {
+      user = null;
+    }
+
+    const isAdmin = !!user && user.role === 'admin';
+    const isSigned = !isAdmin && (await verifySignedRequest(req, bodyText));
+
+    if (!isAdmin && !isSigned) {
+      return Response.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const body = bodyText ? JSON.parse(bodyText) : {};
 
     const lead = body.data || {};
 

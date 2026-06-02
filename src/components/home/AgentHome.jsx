@@ -82,7 +82,7 @@ function AgentApplicationForm() {
   const [form, setForm] = useState({ full_name: '', email: '', phone: '', experience: '' });
 
   const createLead = useMutation({
-    mutationFn: (data) => base44.entities.Lead.create(data),
+    mutationFn: (data) => base44.functions.invoke('createLead', data),
     onSuccess: () => setSubmitted(true),
   });
 

@@ -17,7 +17,7 @@ export default function PropertyViewingForm({ property }) {
   });
 
   const createLead = useMutation({
-    mutationFn: (data) => base44.entities.Lead.create(data),
+    mutationFn: (data) => base44.functions.invoke('createLead', data),
     onSuccess: () => setSubmitted(true),
   });
 

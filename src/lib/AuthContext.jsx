@@ -120,16 +120,16 @@ export const AuthProvider = ({ children }) => {
     
     if (shouldRedirect) {
       // Use the SDK's logout method which handles token cleanup and redirect
-      base44.auth.logout(window.location.href);
+      base44.auth.logout('/login');
     } else {
       // Just remove the token without redirect
       base44.auth.logout();
     }
   };
 
-  const navigateToLogin = () => {
-    // Use the SDK's redirectToLogin method
-    base44.auth.redirectToLogin(window.location.href);
+  const navigateToLogin = (redirectPath = '/login') => {
+    // Use a relative path to avoid hardcoded absolute redirects
+    base44.auth.redirectToLogin(redirectPath);
   };
 
   return (

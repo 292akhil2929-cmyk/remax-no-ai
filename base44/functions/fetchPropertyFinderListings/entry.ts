@@ -1,11 +1,21 @@
+import { createClientFromRequest } from 'npm:@base44/sdk@0.8.25';
+
 Deno.serve(async (req) => {
   try {
+    if (req.method !== 'POST') {
+      return Response.json({ error: 'Method not allowed' }, { status: 405 });
+    }
+
+    const base44 = createClientFromRequest(req);
+    const user = await base44.auth.me();
+
+    if (!user || user.role !== 'admin') {
+      return Response.json({ error: 'Admin access required' }, { status: 403 });
+    }
+
     const brokerUrl = 'https://www.propertyfinder.ae/en/broker/remax-zam-12689';
     const response = await fetch(brokerUrl);
     const html = await response.text();
-
-    // Debug: log first 2000 chars to see structure
-    console.log('HTML snippet:', html.substring(0, 2000));
 
     const listings = [];
 

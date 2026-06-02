@@ -62,7 +62,7 @@ export default function JoinUs() {
   const [form, setForm] = useState({ full_name: '', email: '', phone: '', notes: '' });
 
   const createLead = useMutation({
-    mutationFn: (data) => base44.entities.Lead.create(data),
+    mutationFn: (data) => base44.functions.invoke('createLead', data),
     onSuccess: () => setSubmitted(true),
   });
 
