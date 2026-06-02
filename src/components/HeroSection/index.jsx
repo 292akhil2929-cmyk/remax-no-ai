@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search } from 'lucide-react';
@@ -52,6 +52,66 @@ export default function HeroSection() {
   const [query, setQuery] = useState('');
 
   const content = HERO_CONTENT[audience] || DEFAULT;
+
+  // YouTube player refs/state
+  const iframeRef = useRef(null);
+  const playerRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [playerReady, setPlayerReady] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+
+    const createPlayer = () => {
+      if (!iframeRef.current || !window.YT) return;
+      try {
+        playerRef.current = new window.YT.Player(iframeRef.current, {
+          videoId: YOUTUBE_VIDEO_ID,
+          playerVars: {
+            autoplay: 1,
+            controls: 0,
+            mute: 1,
+            loop: 1,
+            playlist: YOUTUBE_VIDEO_ID,
+            modestbranding: 1,
+            rel: 0,
+          },
+          events: {
+            onReady: (e) => {
+              if (!mounted) return;
+              setPlayerReady(true);
+              try { e.target.playVideo(); } catch (e) {}
+            },
+            onStateChange: (e) => {
+              if (!mounted) return;
+              setIsPlaying(e.data === window.YT.PlayerState.PLAYING);
+            }
+          }
+        });
+      } catch (err) {
+        // ignore
+      }
+    };
+
+    if (window.YT && window.YT.Player) {
+      createPlayer();
+    } else {
+      const tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/iframe_api';
+      document.body.appendChild(tag);
+      window.onYouTubeIframeAPIReady = () => {
+        if (mounted) createPlayer();
+      };
+    }
+
+    return () => {
+      mounted = false;
+      if (playerRef.current && playerRef.current.destroy) {
+        try { playerRef.current.destroy(); } catch (e) {}
+        playerRef.current = null;
+      }
+    };
+  }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -202,49 +262,25 @@ export default function HeroSection() {
           </AnimatePresence>
           </div>
 
-          {/* Right: Video Thumbnail */}
-           <motion.div
-             initial={{ opacity: 0, x: 30 }}
-             animate={{ opacity: 1, x: 0 }}
-             transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-             className="relative hidden lg:block"
-           >
-             {/* Glow effect */}
-             <div className="absolute -inset-4 bg-red-600/20 rounded-3xl blur-2xl" />
-             {/* Clickable thumbnail card */}
-             <a
-               href="https://youtu.be/xOqgW9LZR44"
-               target="_blank"
-               rel="noopener noreferrer"
-               className="relative block rounded-2xl p-1 bg-gradient-to-br from-red-600/60 via-white/10 to-transparent shadow-2xl group"
-             >
-               <div style={{ paddingBottom: '56.25%' }} className="relative rounded-xl overflow-hidden bg-black">
-                 {/* YouTube Thumbnail */}
-                 <img
-                   src="https://img.youtube.com/vi/xOqgW9LZR44/maxresdefault.jpg"
-                   alt="RE/MAX ZAM — Watch on YouTube"
-                   style={{ position: 'absolute', top: 0, left: 0 }}
-                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                 />
-                 {/* Dark overlay */}
-                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
-                 {/* Play button */}
-                 <div className="absolute inset-0 flex items-center justify-center">
-                   <div className="w-20 h-20 rounded-full bg-red-600 flex items-center justify-center shadow-2xl group-hover:scale-110 transition-transform duration-300">
-                     <svg viewBox="0 0 24 24" fill="white" className="w-8 h-8 ml-1">
-                       <path d="M8 5v14l11-7z" />
-                     </svg>
-                   </div>
-                 </div>
-                 {/* YouTube badge */}
-                 <div className="absolute bottom-4 right-4 flex items-center gap-2 bg-black/70 rounded-lg px-3 py-1.5 backdrop-blur-sm">
-                   <svg viewBox="0 0 24 24" fill="#FF0000" className="w-4 h-4"><path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/></svg>
-                   <span className="text-white text-xs font-body font-medium">Watch on YouTube</span>
-                 </div>
-               </div>
-             </a>
-             <p className="text-center text-white/40 text-xs font-body mt-3 tracking-wider uppercase">RE/MAX ZAM — Dubai Real Estate</p>
-           </motion.div>
+          {/* Right: Embedded Autoplay Video */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+            className="relative hidden lg:block"
+          >
+            {/* Glow effect */}
+            <div className="absolute -inset-4 bg-red-600/20 rounded-3xl blur-2xl" />
+            
+            {/* Video Container */}
+            <div className="relative block rounded-2xl p-1 bg-gradient-to-br from-red-600/60 via-white/10 to-transparent shadow-2xl">
+              <div style={{ paddingBottom: '56.25%' }} className="relative rounded-xl overflow-hidden bg-black">
+                {/* YouTube player mount point (replaced by IFrame API) */}
+                <div id="hero-youtube-player" ref={iframeRef} className="absolute top-0 left-0 w-full h-full" />
+              </div>
+            </div>
+            <p className="text-center text-white/40 text-xs font-body mt-3 tracking-wider uppercase">RE/MAX ZAM — Dubai Real Estate</p>
+          </motion.div>
         </div>
       </div>
 
