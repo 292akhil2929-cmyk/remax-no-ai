@@ -120,15 +120,16 @@ export default function PropertyViewingForm({ property, agentName }) {
         <Select value={form.request_type} onValueChange={(v) => { setForm({ ...form, request_type: v }); clearError('request_type'); }}>
           <SelectTrigger className={`bg-secondary border-border/50 text-foreground text-sm ${errors.request_type ? 'border-red-500' : ''}`}>
             <SelectValue placeholder="What would you like? *" />
-        </SelectTrigger>
-        <SelectContent>
-          <SelectItem value="Schedule Viewing">📅 Schedule a Viewing</SelectItem>
-          <SelectItem value="Investment Consultation">💼 Investment Consultation</SelectItem>
-          <SelectItem value="Mortgage Discussion">🏦 Mortgage Discussion</SelectItem>
-          <SelectItem value="General Inquiry">❓ General Inquiry</SelectItem>
-        </SelectContent>
-      </Select>
-      {errors.request_type && <p className="text-[11px] text-red-500 font-body -mt-2">{errors.request_type}</p>}
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="Schedule Viewing">📅 Schedule a Viewing</SelectItem>
+            <SelectItem value="Investment Consultation">💼 Investment Consultation</SelectItem>
+            <SelectItem value="Mortgage Discussion">🏦 Mortgage Discussion</SelectItem>
+            <SelectItem value="General Inquiry">❓ General Inquiry</SelectItem>
+          </SelectContent>
+        </Select>
+        {errors.request_type && <p className="text-[11px] text-red-500 font-body mt-1">{errors.request_type}</p>}
+      </div>
 
       <Input
         placeholder="Preferred Date (optional)"
