@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, Zap, Users, Globe, DollarSign, ArrowRight, Award, BookOpen, TrendingUp, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { sendApplicantToBitrixSPA } from '@/lib/bitrix';
 
 const brandStats = [
   { value: '145,000+', label: 'Agents Globally' },
@@ -63,11 +64,15 @@ export default function JoinUs() {
 
   const createLead = useMutation({
     mutationFn: (data) => base44.functions.invoke('createLead', data),
-    onSuccess: () => setSubmitted(true),
+    onSuccess: (_response, variables) => {
+      setSubmitted(true);
+      sendApplicantToBitrixSPA(variables).catch(() => {});
+    },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (createLead.isPending) return;
     createLead.mutate({ ...form, lead_type: 'Agent', source: 'Join Us Page' });
   };
 

@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { CheckCircle, Calendar, MessageSquare } from 'lucide-react';
 import { sendPropertyViewingToBitrix } from '@/lib/bitrix';
 
-export default function PropertyViewingForm({ property, agentName, bitrixUserId }) {
+export default function PropertyViewingForm({ property, agentName }) {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     full_name: '',
@@ -43,7 +43,6 @@ export default function PropertyViewingForm({ property, agentName, bitrixUserId 
       property_title: property.title,
       property_id: property.id,
       assigned_agent_name: agentName,
-      bitrix_user_id: bitrixUserId,
     };
     createLead.mutate(payload);
   };

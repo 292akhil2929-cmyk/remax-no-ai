@@ -18,7 +18,6 @@ const AGENT_FALLBACK = {
   phone: '+97145828158',
   whatsapp: '97145828158',
   email: 'info@remaxzam.ae',
-  bitrix_user_id: 18,
 };
 
 function useAgent(agentId) {
@@ -38,7 +37,6 @@ function resolveAgent(property, agentRecord) {
       phone: agentRecord.phone || AGENT_FALLBACK.phone,
       whatsapp: agentRecord.whatsapp || AGENT_FALLBACK.whatsapp,
       email: agentRecord.email || AGENT_FALLBACK.email,
-      bitrix_user_id: agentRecord.bitrix_user_id ?? AGENT_FALLBACK.bitrix_user_id,
     };
   }
   return AGENT_FALLBACK;
@@ -182,7 +180,7 @@ export default function PropertyDetail() {
                 <h3 className="font-heading font-semibold text-foreground mb-4 flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-primary" /> Book a Viewing
                 </h3>
-                <PropertyViewingForm property={property} agentName={agent.name} bitrixUserId={agent.bitrix_user_id} />
+                <PropertyViewingForm property={property} agentName={agent.name} />
               </div>
               <CurrencyConverter priceAED={property.price_aed} />
             </div>
