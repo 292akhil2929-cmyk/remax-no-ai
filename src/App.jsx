@@ -40,6 +40,7 @@ import DugastaTR from './pages/DugastaTR';
 import Login from './pages/Login';
 import AccessDenied from './pages/AccessDenied';
 import AdminTeam from './pages/AdminTeam';
+import Apply from './pages/Apply';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -117,6 +118,7 @@ const AuthenticatedApp = () => {
         <Route path="/remax-dubai" element={<RemaxDubai />} />
         <Route path="/dubai-property-guide" element={<DubaiGuide />} />
         <Route path="/dugasta-tr" element={<DugastaTR />} />
+        <Route path="/apply" element={<Apply />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/access-denied" element={<AccessDenied />} />

@@ -1,10 +1,6 @@
-import { useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Globe, BadgeCheck, Zap, BookOpen, TrendingUp, Headphones, Users, Award, CheckCircle, ArrowRight } from 'lucide-react';
-import { Input } from '@/components/ui/input';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 
 const BENEFITS = [
   {
@@ -76,64 +72,6 @@ const PROOF = [
   { value: '#1', label: 'Global RE brand' },
   { value: '50+', label: 'Years operating' },
 ];
-
-function AgentApplicationForm() {
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ full_name: '', email: '', phone: '', experience: '' });
-
-  const createLead = useMutation({
-    mutationFn: (data) => base44.functions.invoke('createLead', data),
-    onSuccess: () => setSubmitted(true),
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    createLead.mutate({
-      full_name: form.full_name,
-      email: form.email,
-      phone: form.phone,
-      lead_type: 'Agent',
-      source: 'Home - Agent',
-      notes: form.experience ? `Experience: ${form.experience}` : '',
-    });
-  };
-
-  if (submitted) {
-    return (
-      <div className="flex flex-col items-center justify-center py-10 text-center">
-        <div className="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center mb-5">
-          <CheckCircle className="w-7 h-7 text-emerald-400" />
-        </div>
-        <h3 className="font-display font-black text-white text-xl mb-2">Application Received</h3>
-        <p className="text-sm text-gray-400 font-body">Our partnership team will be in touch within 48 hours.</p>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit} className="space-y-3">
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-        <Input placeholder="Full Name *" required value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} className="bg-white/[0.06] border-white/10 text-white placeholder:text-gray-500 focus:border-white/30" />
-        <Input placeholder="Email *" type="email" required value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} className="bg-white/[0.06] border-white/10 text-white placeholder:text-gray-500 focus:border-white/30" />
-        <Input placeholder="Phone / WhatsApp" value={form.phone} onChange={(e) => setForm({...form, phone: e.target.value})} className="bg-white/[0.06] border-white/10 text-white placeholder:text-gray-500 focus:border-white/30" />
-        <Select value={form.experience} onValueChange={(v) => setForm({...form, experience: v})}>
-          <SelectTrigger className="bg-white/[0.06] border-white/10 text-white">
-            <SelectValue placeholder="Years of Experience" />
-          </SelectTrigger>
-          <SelectContent>
-            {['New to Real Estate', 'Less than 1 year', '1–3 years', '3–5 years', '5+ years'].map(o => (
-              <SelectItem key={o} value={o}>{o}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-      </div>
-      <button type="submit" disabled={createLead.isPending}
-        className="w-full bg-white text-black hover:bg-gray-100 font-heading font-bold text-sm py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2">
-        {createLead.isPending ? 'Submitting...' : <>Apply to Join <ArrowRight className="w-4 h-4" /></>}
-      </button>
-    </form>
-  );
-}
 
 export default function AgentHome() {
   return (
@@ -265,10 +203,14 @@ export default function AgentHome() {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl p-8">
-              <h3 className="text-xl font-display font-black text-white mb-1">Apply to Join Our Team</h3>
+              className="bg-white/[0.04] border border-white/10 rounded-2xl p-8 text-center">
+              <h3 className="text-xl font-display font-black text-white mb-2">Apply to Join Our Team</h3>
               <p className="text-xs text-gray-500 font-body mb-7">We'll be in touch within 48 hours.</p>
-              <AgentApplicationForm />
+              <Link to="/apply">
+                <button className="w-full bg-white text-black hover:bg-gray-100 font-heading font-bold text-sm py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                  Apply to Join <ArrowRight className="w-4 h-4" />
+                </button>
+              </Link>
             </motion.div>
           </div>
         </div>

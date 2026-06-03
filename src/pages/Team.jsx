@@ -42,7 +42,7 @@ export default function Team() {
             A team of specialist advisors built on a consultant-first growth model. We combine global REMAX expertise with deep Dubai market knowledge to deliver results for investors and buyers alike.
           </p>
           <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
-            <Link to="/join">Join Our Team <ArrowRight className="w-4 h-4 ml-1" /></Link>
+            <Link to="/apply">Join Our Team <ArrowRight className="w-4 h-4 ml-1" /></Link>
           </Button>
         </div>
       </section>
@@ -172,7 +172,7 @@ export default function Team() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
-                <Link to="/join">Apply to Join the Team</Link>
+                <Link to="/apply">Apply to Join the Team</Link>
               </Button>
               <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 font-heading" asChild>
                 <Link to="/contact">Ask Us a Question</Link>

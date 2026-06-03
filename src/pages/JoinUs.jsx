@@ -1,13 +1,7 @@
-import { useState } from 'react';
-import { useMutation } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
+import { Link } from 'react-router-dom';
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle, Zap, Users, Globe, DollarSign, ArrowRight, Award, BookOpen, TrendingUp, Star } from 'lucide-react';
+import { Zap, Users, Globe, DollarSign, ArrowRight, Award, BookOpen, TrendingUp, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { sendApplicantToBitrixSPA } from '@/lib/bitrix';
-import { isValidEmail, isValidPhone, isValidName } from '@/lib/validation';
 
 const brandStats = [
   { value: '145,000+', label: 'Agents Globally' },
@@ -60,38 +54,6 @@ const comparisons = [
 ];
 
 export default function JoinUs() {
-  const [submitted, setSubmitted] = useState(false);
-  const [errors, setErrors] = useState({});
-  const [form, setForm] = useState({ full_name: '', email: '', phone: '', notes: '' });
-
-  const validate = () => {
-    const errs = {};
-    if (!isValidName(form.full_name)) errs.full_name = 'Name must be at least 2 characters';
-    if (!isValidEmail(form.email)) errs.email = 'Please enter a valid email address';
-    if (form.phone && !isValidPhone(form.phone)) errs.phone = 'Please enter a valid phone number';
-    setErrors(errs);
-    return Object.keys(errs).length === 0;
-  };
-
-  const clearError = (field) => {
-    if (errors[field]) setErrors((prev) => { const next = { ...prev }; delete next[field]; return next; });
-  };
-
-  const createLead = useMutation({
-    mutationFn: (data) => base44.functions.invoke('createLead', data),
-    onSuccess: (_response, variables) => {
-      setSubmitted(true);
-      sendApplicantToBitrixSPA(variables).catch(() => {});
-    },
-  });
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (createLead.isPending) return;
-    if (!validate()) return;
-    createLead.mutate({ ...form, lead_type: 'Agent', source: 'Join Us Page' });
-  };
-
   return (
     <div className="min-h-screen">
 
@@ -183,42 +145,19 @@ export default function JoinUs() {
         </div>
       </section>
 
-      {/* Application form */}
-      <section className="py-16 bg-white">
-        <div className="max-w-xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-8">
-            <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-2 uppercase">Apply Now</p>
-            <h2 className="text-2xl font-display font-bold text-foreground">Join REMAX ZAM Dubai</h2>
-            <p className="text-sm text-muted-foreground font-body mt-2">Our team will contact you within 48 hours.</p>
-          </div>
-          <div className="bg-card border border-border/50 rounded-xl p-6 lg:p-8 shadow-sm">
-            {submitted ? (
-              <div className="text-center py-8">
-                <CheckCircle className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
-                <p className="font-heading font-semibold text-foreground">Application Received!</p>
-                <p className="text-sm text-muted-foreground mt-2">Our team will contact you within 48 hours.</p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubmit} className="space-y-4" noValidate>
-                <div>
-                  <Input placeholder="Full Name *" value={form.full_name} onChange={e => { setForm({...form, full_name: e.target.value}); clearError('full_name'); }} className={`bg-white border-border ${errors.full_name ? 'border-red-500' : ''}`} />
-                  {errors.full_name && <p className="text-[11px] text-red-500 font-body mt-1">{errors.full_name}</p>}
-                </div>
-                <div>
-                  <Input placeholder="Email *" type="email" value={form.email} onChange={e => { setForm({...form, email: e.target.value}); clearError('email'); }} className={`bg-white border-border ${errors.email ? 'border-red-500' : ''}`} />
-                  {errors.email && <p className="text-[11px] text-red-500 font-body mt-1">{errors.email}</p>}
-                </div>
-                <div>
-                  <Input placeholder="Phone" value={form.phone} onChange={e => { setForm({...form, phone: e.target.value}); clearError('phone'); }} className={`bg-white border-border ${errors.phone ? 'border-red-500' : ''}`} />
-                  {errors.phone && <p className="text-[11px] text-red-500 font-body mt-1">{errors.phone}</p>}
-                </div>
-                <Textarea placeholder="Tell us about your experience and current brokerage..." value={form.notes} onChange={e => setForm({...form, notes: e.target.value})} className="bg-white border-border" rows={4} />
-                <Button type="submit" className="w-full bg-[#0d1b3e] hover:bg-[#1a2d5a] text-white font-heading font-bold border-0" disabled={createLead.isPending}>
-                  {createLead.isPending ? 'Submitting...' : 'Submit Application'} <ArrowRight className="w-4 h-4 ml-2" />
-                </Button>
-              </form>
-            )}
-          </div>
+      {/* CTA — Apply to Join */}
+      <section className="py-20 bg-[#0d1b3e]">
+        <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <p className="text-[#c9a84c] font-heading font-semibold text-sm tracking-widest uppercase mb-3">Apply Now</p>
+          <h2 className="text-2xl lg:text-3xl font-display font-bold text-white mb-4">Ready to Join REMAX ZAM Dubai?</h2>
+          <p className="text-white/60 font-body text-base mb-8 leading-relaxed">
+            Complete our comprehensive application form and our recruitment team will review your profile within 48 hours.
+          </p>
+          <Link to="/apply">
+            <Button className="bg-[#c9a84c] hover:bg-[#c9a84c]/90 text-[#0d1b3e] font-heading font-bold text-base px-10 py-6 border-0">
+              Apply to Join <ArrowRight className="w-5 h-5 ml-2" />
+            </Button>
+          </Link>
         </div>
       </section>
     </div>

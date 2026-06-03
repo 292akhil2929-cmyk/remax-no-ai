@@ -41,7 +41,7 @@ const NAV_GROUPS = [
     label: 'Resources',
     items: [
       { label: 'What We Do', path: '/services', desc: 'Everything we handle so you do not have to' },
-      { label: 'Join as an Agent', path: '/join', desc: 'Work with one of the most active teams in Dubai' },
+      { label: 'Join as an Agent', path: '/apply', desc: 'Work with one of the most active teams in Dubai' },
     ],
   },
   {

@@ -146,7 +146,7 @@ export default function PropertySEOContent() {
               <Link to="/contact">Book Free Consultation</Link>
             </Button>
             <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 font-heading" asChild>
-              <Link to="/join">Join Our Team</Link>
+              <Link to="/apply">Join Our Team</Link>
             </Button>
           </div>
         </div>
