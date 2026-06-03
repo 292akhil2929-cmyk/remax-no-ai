@@ -11,7 +11,7 @@ export default function ContactStrip() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="font-heading font-semibold text-sm text-white/80 text-center sm:text-left">
-            Ready to invest in Dubai? Talk to a specialist — no cost, no pressure.
+            Ready to invest in Dubai? Talk to a specialist — no cost, no pressure!
           </p>
           <div className="flex flex-wrap items-center justify-center gap-3">
             <a
