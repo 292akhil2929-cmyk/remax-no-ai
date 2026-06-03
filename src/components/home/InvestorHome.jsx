@@ -37,10 +37,24 @@ const COMMUNITIES = [
 
 export default function InvestorHome() {
   const navigate = useNavigate();
-  const { data: properties = [] } = useQuery({
+  const { data: featuredProperties, isLoading, isError, error } = useQuery({
     queryKey: ['featured-properties'],
     queryFn: () => base44.entities.Property.filter({ featured: true }, '-created_date', 6),
   });
+
+  const { data: recentProperties = [] } = useQuery({
+    queryKey: ['recent-properties'],
+    queryFn: () => base44.entities.Property.list('-created_date', 6),
+    enabled: !isLoading && (!featuredProperties || featuredProperties.length === 0),
+  });
+
+  if (isError) {
+    console.error('[InvestorHome] Featured properties query failed:', error);
+  }
+
+  const properties = (featuredProperties && featuredProperties.length > 0)
+    ? featuredProperties
+    : recentProperties;
 
   return (
     <>
@@ -63,7 +77,17 @@ export default function InvestorHome() {
             </Link>
           </motion.div>
 
-          {properties.length > 0 ? (
+          {isLoading ? (
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              {[1, 2, 3].map(i => (
+                <div key={i} className="aspect-[4/3] bg-gray-100 rounded-2xl animate-pulse" />
+              ))}
+            </div>
+          ) : isError ? (
+            <div className="text-center py-12 text-gray-400 font-body text-sm">
+              Could not load properties. Please refresh the page.
+            </div>
+          ) : properties.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {properties.map((p, idx) => (
                 <motion.div key={p.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.07 }}>
@@ -72,10 +96,8 @@ export default function InvestorHome() {
               ))}
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-              {[1, 2, 3].map(i => (
-                <div key={i} className="aspect-[4/3] bg-gray-100 rounded-2xl animate-pulse" />
-              ))}
+            <div className="text-center py-12 text-gray-400 font-body text-sm">
+              No properties available right now. Check back soon.
             </div>
           )}
 
