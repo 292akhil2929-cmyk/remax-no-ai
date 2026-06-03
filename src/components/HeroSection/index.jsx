@@ -70,7 +70,7 @@ export default function HeroSection() {
           playerVars: {
             autoplay: 1,
             controls: 0,
-            mute: 1,
+            mute: 0, // FIXED: Changed from 1 to 0 to enable audio
             loop: 1,
             playlist: YOUTUBE_VIDEO_ID,
             modestbranding: 1,
@@ -143,7 +143,8 @@ export default function HeroSection() {
       <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
 
       {/* Content */}
-      <div className="relative z-10 px-6 sm:px-10 lg:px-16 xl:px-24 py-12 lg:py-0">
+      {/* FIXED: Added -mt-12 and lg:-mt-20 to pull the content layout slightly higher than perfect center */}
+      <div className="relative z-10 px-6 sm:px-10 lg:px-16 xl:px-24 py-12 lg:py-0 -mt-24 lg:-mt-36">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
           {/* Left: Headline with Red Accent Box */}
           <div>
