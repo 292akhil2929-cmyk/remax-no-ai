@@ -9,10 +9,10 @@ const FALLBACK = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg
 export default function AboutUs() {
   const { data: agents = [], isLoading } = useQuery({
     queryKey: ['agents'],
-    queryFn: () => base44.entities.Agent.list('sort_order'),
+    queryFn: () => base44.entities.Agent.list('sort_order')
   });
 
-  const activeAgents = agents.filter(a => a.active !== false);
+  const activeAgents = agents.filter((a) => a.active !== false);
   const ceo = activeAgents[0];
   const rest = activeAgents.slice(1);
 
@@ -20,11 +20,11 @@ export default function AboutUs() {
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
-        <img
-          src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1400"
-          alt="Dubai skyline"
-          className="absolute inset-0 w-full h-full object-cover"
-        />
+        <img src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/fbeb74e2a_Miva-Real-Estate-Real-Estate-Company-in-Dubai.jpg"
+
+        alt="Dubai skyline"
+        className="absolute inset-0 w-full h-full object-cover" />
+        
         <div className="absolute inset-0 bg-gradient-to-r from-primary/90 via-primary/70 to-primary/30" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-heading font-semibold text-white/70 tracking-widest mb-3 uppercase">About REMAX ZAM</p>
@@ -59,17 +59,17 @@ export default function AboutUs() {
             </div>
             <div className="grid grid-cols-2 gap-4">
               {[
-                { icon: Award, title: 'RERA Licensed', desc: 'Fully licensed by the Dubai Land Department and Real Estate Regulatory Agency' },
-                { icon: Globe, title: 'Global Reach', desc: 'Serving investors from 40+ countries across 6 continents' },
-                { icon: Users, title: 'Expert Team', desc: 'Multilingual team of 20+ advisors speaking 12 languages' },
-                { icon: TrendingUp, title: 'Track Record', desc: 'Over AED 2 billion in successfully closed transactions since 2010' },
-              ].map(({ icon: Icon, title, desc }) => (
-                <div key={title} className="bg-card border border-border/50 rounded-lg p-5">
+              { icon: Award, title: 'RERA Licensed', desc: 'Fully licensed by the Dubai Land Department and Real Estate Regulatory Agency' },
+              { icon: Globe, title: 'Global Reach', desc: 'Serving investors from 40+ countries across 6 continents' },
+              { icon: Users, title: 'Expert Team', desc: 'Multilingual team of 20+ advisors speaking 12 languages' },
+              { icon: TrendingUp, title: 'Track Record', desc: 'Over AED 2 billion in successfully closed transactions since 2010' }].
+              map(({ icon: Icon, title, desc }) =>
+              <div key={title} className="bg-card border border-border/50 rounded-lg p-5">
                   <Icon className="w-6 h-6 text-accent mb-3" />
                   <h4 className="font-heading font-semibold text-foreground text-sm mb-1">{title}</h4>
                   <p className="text-xs text-muted-foreground font-body leading-relaxed">{desc}</p>
                 </div>
-              ))}
+              )}
             </div>
           </div>
         </div>
@@ -84,86 +84,86 @@ export default function AboutUs() {
             <p className="text-sm text-muted-foreground font-body max-w-lg mx-auto">A specialist team built on deep Dubai market knowledge, multilingual capability, and a client-first approach.</p>
           </div>
 
-          {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {[1,2,3].map(i => <div key={i} className="h-64 bg-muted animate-pulse rounded-lg" />)}
-            </div>
-          ) : (
-            <>
-              {ceo && (
-                <div className="mb-8">
+          {isLoading ?
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[1, 2, 3].map((i) => <div key={i} className="h-64 bg-muted animate-pulse rounded-lg" />)}
+            </div> :
+
+          <>
+              {ceo &&
+            <div className="mb-8">
                   <div className="bg-background border border-border/50 rounded-xl overflow-hidden flex flex-col md:flex-row">
                     <img
-                      src={ceo.photo || FALLBACK}
-                      alt={ceo.name}
-                      className="w-full md:w-72 h-64 md:h-auto object-cover object-top shrink-0"
-                      onError={e => { e.target.src = FALLBACK; }}
-                    />
+                  src={ceo.photo || FALLBACK}
+                  alt={ceo.name}
+                  className="w-full md:w-72 h-64 md:h-auto object-cover object-top shrink-0"
+                  onError={(e) => {e.target.src = FALLBACK;}} />
+                
                     <div className="p-8 flex flex-col justify-center">
                       <h3 className="font-heading font-bold text-foreground text-2xl mb-1">{ceo.name}</h3>
                       <p className="text-sm font-heading font-semibold text-accent mb-4">{ceo.role}</p>
                       <p className="text-sm text-muted-foreground font-body leading-relaxed mb-6 max-w-xl">{ceo.about}</p>
                       <div className="flex gap-3 flex-wrap">
-                        {ceo.phone && (
-                          <a href={`tel:${ceo.phone}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
+                        {ceo.phone &&
+                    <a href={`tel:${ceo.phone}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
                             <Phone className="w-4 h-4" /> Call
                           </a>
-                        )}
-                        {ceo.whatsapp && (
-                          <a href={`https://wa.me/${ceo.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors text-sm font-body text-muted-foreground hover:text-emerald-600">
+                    }
+                        {ceo.whatsapp &&
+                    <a href={`https://wa.me/${ceo.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors text-sm font-body text-muted-foreground hover:text-emerald-600">
                             <MessageCircle className="w-4 h-4" /> WhatsApp
                           </a>
-                        )}
-                        {ceo.email && (
-                          <a href={`mailto:${ceo.email}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
+                    }
+                        {ceo.email &&
+                    <a href={`mailto:${ceo.email}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
                             <Mail className="w-4 h-4" /> Email
                           </a>
-                        )}
+                    }
                       </div>
                     </div>
                   </div>
                 </div>
-              )}
+            }
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {rest.map(m => (
-                  <div key={m.id} className="bg-background border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-colors">
+                {rest.map((m) =>
+              <div key={m.id} className="bg-background border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-colors">
                     <img
-                      src={m.photo || FALLBACK}
-                      alt={m.name}
-                      className="w-full h-52 object-cover object-top"
-                      onError={e => { e.target.src = FALLBACK; }}
-                    />
+                  src={m.photo || FALLBACK}
+                  alt={m.name}
+                  className="w-full h-52 object-cover object-top"
+                  onError={(e) => {e.target.src = FALLBACK;}} />
+                
                     <div className="p-5">
                       <h3 className="font-heading font-semibold text-foreground mb-0.5">{m.name}</h3>
                       <p className="text-xs font-heading font-semibold text-accent mb-2">{m.role}</p>
                       <p className="text-xs text-muted-foreground font-body leading-relaxed mb-4">{m.about}</p>
                       <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border/50">
-                        {m.phone && (
-                          <a href={`tel:${m.phone}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+                        {m.phone &&
+                    <a href={`tel:${m.phone}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
                             <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
                             <span className="text-[9px] font-body text-muted-foreground">Call</span>
                           </a>
-                        )}
-                        {m.whatsapp && (
-                          <a href={`https://wa.me/${m.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
+                    }
+                        {m.whatsapp &&
+                    <a href={`https://wa.me/${m.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
                             <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
                             <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
                           </a>
-                        )}
-                        {m.email && (
-                          <a href={`mailto:${m.email}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+                    }
+                        {m.email &&
+                    <a href={`mailto:${m.email}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
                             <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
                             <span className="text-[9px] font-body text-muted-foreground">Email</span>
                           </a>
-                        )}
+                    }
                       </div>
                     </div>
                   </div>
-                ))}
+              )}
               </div>
             </>
-          )}
+          }
 
           <div className="text-center mt-8">
             <Link to="/team" className="inline-flex items-center gap-2 text-sm font-heading font-semibold text-primary hover:text-accent transition-colors">
@@ -188,6 +188,6 @@ export default function AboutUs() {
           </div>
         </div>
       </section>
-    </div>
-  );
+    </div>);
+
 }
