@@ -6,40 +6,42 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { sendLeadToBitrix } from '@/lib/bitrix';
+import { isValidEmail, isValidPhone, isValidName } from '@/lib/validation';
 
 export default function LeadCaptureForm({ leadType = "Investor", source = "Website", compact = false }) {
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
   const [form, setForm] = useState({ full_name: '', email: '', phone: '', investment_budget: '', investment_goal: '', property_interest: '' });
+
+  const validate = () => {
+    const errs = {};
+    if (!isValidName(form.full_name)) errs.full_name = 'Name must be at least 2 characters';
+    if (!isValidEmail(form.email)) errs.email = 'Please enter a valid email address';
+    if (form.phone && !isValidPhone(form.phone)) errs.phone = 'Please enter a valid phone number';
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
+
+  const clearError = (field) => {
+    if (errors[field]) setErrors((prev) => { const next = { ...prev }; delete next[field]; return next; });
+  };
 
   const createLead = useMutation({
     mutationFn: async (data) => {
-      console.log('[LeadCaptureForm] Submitting lead to Base44...', { ...data });
       const response = await base44.functions.invoke('createLead', data);
-      console.log('[LeadCaptureForm] Base44 response:', response);
       return response;
     },
     onSuccess: (_response, variables) => {
-      console.log('[LeadCaptureForm] Lead saved to Base44 successfully');
       setSubmitted(true);
-      console.log('[LeadCaptureForm] Sending lead to Bitrix24...', { ...variables });
-      sendLeadToBitrix(variables)
-        .then((res) => console.log('[LeadCaptureForm] Bitrix24 result:', res))
-        .catch((err) => console.warn('[LeadCaptureForm] Bitrix24 failed (non-blocking):', err));
-    },
-    onError: (error) => {
-      console.error('[LeadCaptureForm] Base44 submission failed:', error);
+      sendLeadToBitrix(variables).catch(() => {});
     },
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Double-submit guard: block if a request is already in flight
-    if (createLead.isPending) {
-      console.warn('[LeadCaptureForm] Submission blocked — request already in progress');
-      return;
-    }
+    if (createLead.isPending) return;
+    if (!validate()) return;
     const payload = { ...form, lead_type: leadType, source };
-    console.log('[LeadCaptureForm] Form submitted with payload:', payload);
     createLead.mutate(payload);
   };
 
@@ -56,11 +58,20 @@ export default function LeadCaptureForm({ leadType = "Investor", source = "Websi
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
       <div className={compact ? "space-y-3" : "grid grid-cols-1 sm:grid-cols-2 gap-4"}>
-        <Input placeholder="Full Name *" required value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground" />
-        <Input placeholder="Email *" type="email" required value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground" />
-        <Input placeholder="Phone" value={form.phone} onChange={(e) => setForm({...form, phone: e.target.value})} className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground" />
+        <div>
+          <Input placeholder="Full Name *" value={form.full_name} onChange={(e) => { setForm({...form, full_name: e.target.value}); clearError('full_name'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.full_name ? 'border-red-500' : ''}`} />
+          {errors.full_name && <p className="text-[11px] text-red-500 font-body mt-1">{errors.full_name}</p>}
+        </div>
+        <div>
+          <Input placeholder="Email *" type="email" value={form.email} onChange={(e) => { setForm({...form, email: e.target.value}); clearError('email'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.email ? 'border-red-500' : ''}`} />
+          {errors.email && <p className="text-[11px] text-red-500 font-body mt-1">{errors.email}</p>}
+        </div>
+        <div>
+          <Input placeholder="Phone" value={form.phone} onChange={(e) => { setForm({...form, phone: e.target.value}); clearError('phone'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.phone ? 'border-red-500' : ''}`} />
+          {errors.phone && <p className="text-[11px] text-red-500 font-body mt-1">{errors.phone}</p>}
+        </div>
         <Select value={form.investment_budget} onValueChange={(v) => setForm({...form, investment_budget: v})}>
           <SelectTrigger className="bg-secondary border-border/50 text-foreground"><SelectValue placeholder="Investment Budget" /></SelectTrigger>
           <SelectContent>

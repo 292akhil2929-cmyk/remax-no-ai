@@ -7,9 +7,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { sendLeadToBitrix } from '@/lib/bitrix';
+import { isValidEmail, isValidPhone, isValidName, isValidPrice } from '@/lib/validation';
 
 export default function SellerLeadForm({ source = "Website", compact = false }) {
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     full_name: '',
     email: '',
@@ -20,6 +22,22 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
     property_description: '',
     reason_to_sell: '',
   });
+
+  const validate = () => {
+    const errs = {};
+    if (!isValidName(form.full_name)) errs.full_name = 'Name must be at least 2 characters';
+    if (!isValidEmail(form.email)) errs.email = 'Please enter a valid email address';
+    if (!isValidPhone(form.phone)) errs.phone = 'Please enter a valid phone number';
+    if (!form.property_type) errs.property_type = 'Please select a property type';
+    if (!form.property_location || !form.property_location.trim()) errs.property_location = 'Community / Area is required';
+    if (!isValidPrice(form.asking_price)) errs.asking_price = 'Please enter a valid asking price';
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
+
+  const clearError = (field) => {
+    if (errors[field]) setErrors((prev) => { const next = { ...prev }; delete next[field]; return next; });
+  };
 
   const createLead = useMutation({
     mutationFn: (data) => base44.functions.invoke('createLead', data),
@@ -32,6 +50,7 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (createLead.isPending) return;
+    if (!validate()) return;
     const notes = [
       form.asking_price ? `Asking Price: AED ${Number(form.asking_price).toLocaleString()}` : '',
       form.reason_to_sell ? `Reason: ${form.reason_to_sell}` : '',
@@ -66,22 +85,40 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
       <div className={compact ? "space-y-3" : "grid grid-cols-1 sm:grid-cols-2 gap-4"}>
-        <Input placeholder="Full Name *" required value={form.full_name} onChange={(e) => setForm({...form, full_name: e.target.value})} className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground" />
-        <Input placeholder="Phone Number *" type="tel" required value={form.phone} onChange={(e) => setForm({...form, phone: e.target.value})} className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground" />
-        <Input placeholder="Email Address *" type="email" required value={form.email} onChange={(e) => setForm({...form, email: e.target.value})} className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground" />
-        <Select value={form.property_type} onValueChange={(v) => setForm({...form, property_type: v})}>
-          <SelectTrigger className="bg-secondary border-border/50 text-foreground"><SelectValue placeholder="Property Type *" /></SelectTrigger>
-          <SelectContent>
-            {["Apartment", "Villa", "Penthouse", "Townhouse", "Land", "Office", "Retail", "Shop"].map(t => (
-              <SelectItem key={t} value={t}>{t}</SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+        <div>
+          <Input placeholder="Full Name *" value={form.full_name} onChange={(e) => { setForm({...form, full_name: e.target.value}); clearError('full_name'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.full_name ? 'border-red-500' : ''}`} />
+          {errors.full_name && <p className="text-[11px] text-red-500 font-body mt-1">{errors.full_name}</p>}
+        </div>
+        <div>
+          <Input placeholder="Phone Number *" type="tel" value={form.phone} onChange={(e) => { setForm({...form, phone: e.target.value}); clearError('phone'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.phone ? 'border-red-500' : ''}`} />
+          {errors.phone && <p className="text-[11px] text-red-500 font-body mt-1">{errors.phone}</p>}
+        </div>
+        <div>
+          <Input placeholder="Email Address *" type="email" value={form.email} onChange={(e) => { setForm({...form, email: e.target.value}); clearError('email'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.email ? 'border-red-500' : ''}`} />
+          {errors.email && <p className="text-[11px] text-red-500 font-body mt-1">{errors.email}</p>}
+        </div>
+        <div>
+          <Select value={form.property_type} onValueChange={(v) => { setForm({...form, property_type: v}); clearError('property_type'); }}>
+            <SelectTrigger className={`bg-secondary border-border/50 text-foreground ${errors.property_type ? 'border-red-500' : ''}`}><SelectValue placeholder="Property Type *" /></SelectTrigger>
+            <SelectContent>
+              {["Apartment", "Villa", "Penthouse", "Townhouse", "Land", "Office", "Retail", "Shop"].map(t => (
+                <SelectItem key={t} value={t}>{t}</SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+          {errors.property_type && <p className="text-[11px] text-red-500 font-body mt-1">{errors.property_type}</p>}
+        </div>
       </div>
-      <Input placeholder="Community / Area *" required value={form.property_location} onChange={(e) => setForm({...form, property_location: e.target.value})} className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground" />
-      <Input placeholder="Asking Price (AED) *" type="number" required value={form.asking_price} onChange={(e) => setForm({...form, asking_price: e.target.value})} className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground" />
+      <div>
+        <Input placeholder="Community / Area *" value={form.property_location} onChange={(e) => { setForm({...form, property_location: e.target.value}); clearError('property_location'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.property_location ? 'border-red-500' : ''}`} />
+        {errors.property_location && <p className="text-[11px] text-red-500 font-body mt-1">{errors.property_location}</p>}
+      </div>
+      <div>
+        <Input placeholder="Asking Price (AED) *" type="number" value={form.asking_price} onChange={(e) => { setForm({...form, asking_price: e.target.value}); clearError('asking_price'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.asking_price ? 'border-red-500' : ''}`} />
+        {errors.asking_price && <p className="text-[11px] text-red-500 font-body mt-1">{errors.asking_price}</p>}
+      </div>
       <Textarea placeholder="Property Description" value={form.property_description} onChange={(e) => setForm({...form, property_description: e.target.value})} className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground" rows={3} />
       <Select value={form.reason_to_sell} onValueChange={(v) => setForm({...form, reason_to_sell: v})}>
         <SelectTrigger className="bg-secondary border-border/50 text-foreground"><SelectValue placeholder="Why are you selling?" /></SelectTrigger>

@@ -6,9 +6,11 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, Calendar, MessageSquare } from 'lucide-react';
 import { sendPropertyViewingToBitrix } from '@/lib/bitrix';
+import { isValidEmail, isValidPhone, isValidName } from '@/lib/validation';
 
 export default function PropertyViewingForm({ property, agentName }) {
   const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState({});
   const [form, setForm] = useState({
     full_name: '',
     email: '',
@@ -16,6 +18,20 @@ export default function PropertyViewingForm({ property, agentName }) {
     request_type: '',
     preferred_date: '',
   });
+
+  const validate = () => {
+    const errs = {};
+    if (!isValidName(form.full_name)) errs.full_name = 'Name must be at least 2 characters';
+    if (!isValidEmail(form.email)) errs.email = 'Please enter a valid email address';
+    if (!isValidPhone(form.phone)) errs.phone = 'Please enter a valid phone number';
+    if (!form.request_type) errs.request_type = 'Please select an option';
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
+  };
+
+  const clearError = (field) => {
+    if (errors[field]) setErrors((prev) => { const next = { ...prev }; delete next[field]; return next; });
+  };
 
   const createLead = useMutation({
     mutationFn: (data) => base44.functions.invoke('createLead', data),
@@ -27,10 +43,8 @@ export default function PropertyViewingForm({ property, agentName }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (createLead.isPending) {
-      console.warn('[PropertyViewingForm] Submission blocked — request already in progress');
-      return;
-    }
+    if (createLead.isPending) return;
+    if (!validate()) return;
     const payload = {
       full_name: form.full_name,
       email: form.email,
@@ -69,35 +83,43 @@ export default function PropertyViewingForm({ property, agentName }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3">
+    <form onSubmit={handleSubmit} className="space-y-3" noValidate>
       <div className="space-y-3">
-        <Input
-          placeholder="Full Name *"
-          required
-          value={form.full_name}
-          onChange={(e) => setForm({ ...form, full_name: e.target.value })}
-          className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground text-sm"
-        />
-        <Input
-          placeholder="Email *"
-          type="email"
-          required
-          value={form.email}
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-          className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground text-sm"
-        />
-        <Input
-          placeholder="Phone *"
-          required
-          value={form.phone}
-          onChange={(e) => setForm({ ...form, phone: e.target.value })}
-          className="bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground text-sm"
-        />
+        <div>
+          <Input
+            placeholder="Full Name *"
+            value={form.full_name}
+            onChange={(e) => { setForm({ ...form, full_name: e.target.value }); clearError('full_name'); }}
+            className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground text-sm ${errors.full_name ? 'border-red-500' : ''}`}
+          />
+          {errors.full_name && <p className="text-[11px] text-red-500 font-body mt-1">{errors.full_name}</p>}
+        </div>
+        <div>
+          <Input
+            placeholder="Email *"
+            type="email"
+            value={form.email}
+            onChange={(e) => { setForm({ ...form, email: e.target.value }); clearError('email'); }}
+            className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground text-sm ${errors.email ? 'border-red-500' : ''}`}
+          />
+          {errors.email && <p className="text-[11px] text-red-500 font-body mt-1">{errors.email}</p>}
+        </div>
+        <div>
+          <Input
+            placeholder="Phone *"
+            type="tel"
+            value={form.phone}
+            onChange={(e) => { setForm({ ...form, phone: e.target.value }); clearError('phone'); }}
+            className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground text-sm ${errors.phone ? 'border-red-500' : ''}`}
+          />
+          {errors.phone && <p className="text-[11px] text-red-500 font-body mt-1">{errors.phone}</p>}
+        </div>
       </div>
 
-      <Select value={form.request_type} onValueChange={(v) => setForm({ ...form, request_type: v })}>
-        <SelectTrigger className="bg-secondary border-border/50 text-foreground text-sm">
-          <SelectValue placeholder="What would you like? *" />
+      <div>
+        <Select value={form.request_type} onValueChange={(v) => { setForm({ ...form, request_type: v }); clearError('request_type'); }}>
+          <SelectTrigger className={`bg-secondary border-border/50 text-foreground text-sm ${errors.request_type ? 'border-red-500' : ''}`}>
+            <SelectValue placeholder="What would you like? *" />
         </SelectTrigger>
         <SelectContent>
           <SelectItem value="Schedule Viewing">📅 Schedule a Viewing</SelectItem>
@@ -106,6 +128,7 @@ export default function PropertyViewingForm({ property, agentName }) {
           <SelectItem value="General Inquiry">❓ General Inquiry</SelectItem>
         </SelectContent>
       </Select>
+      {errors.request_type && <p className="text-[11px] text-red-500 font-body -mt-2">{errors.request_type}</p>}
 
       <Input
         placeholder="Preferred Date (optional)"
@@ -118,7 +141,7 @@ export default function PropertyViewingForm({ property, agentName }) {
       <Button
         type="submit"
         className="w-full font-heading font-semibold bg-primary hover:bg-primary/90"
-        disabled={createLead.isPending || !form.request_type}
+        disabled={createLead.isPending}
       >
         {createLead.isPending ? 'Submitting...' : 'Request Now'}
         <MessageSquare className="w-4 h-4 ml-2" />
