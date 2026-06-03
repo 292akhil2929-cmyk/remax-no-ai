@@ -11,12 +11,77 @@ import ROICalculator from '../components/ROICalculator';
 import PropertyInsightsPanel from '../components/PropertyInsightsPanel';
 import PropertyImageGallery from '../components/PropertyImageGallery';
 
+const AGENT_FALLBACK = {
+  name: 'Faisal Contractor',
+  role: 'CEO & Founder — REMAX ZAM',
+  photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg',
+  phone: '+97145828158',
+  whatsapp: '97145828158',
+  email: 'info@remaxzam.ae',
+  bitrix_user_id: 18,
+};
+
+function useAgent(agentId) {
+  return useQuery({
+    queryKey: ['agent', agentId],
+    queryFn: () => base44.entities.Agent.get(agentId),
+    enabled: !!agentId,
+  });
+}
+
+function resolveAgent(property, agentRecord) {
+  if (agentRecord) {
+    return {
+      name: agentRecord.name || AGENT_FALLBACK.name,
+      role: agentRecord.role || AGENT_FALLBACK.role,
+      photo: agentRecord.photo || AGENT_FALLBACK.photo,
+      phone: agentRecord.phone || AGENT_FALLBACK.phone,
+      whatsapp: agentRecord.whatsapp || AGENT_FALLBACK.whatsapp,
+      email: agentRecord.email || AGENT_FALLBACK.email,
+      bitrix_user_id: agentRecord.bitrix_user_id ?? AGENT_FALLBACK.bitrix_user_id,
+    };
+  }
+  return AGENT_FALLBACK;
+}
+
+function AgentCard({ agent, propertyTitle }) {
+  return (
+    <div className="bg-card border border-border/50 rounded-lg p-5 border-l-4 border-l-accent">
+      <p className="text-[10px] font-heading font-bold tracking-widest uppercase text-muted-foreground mb-3">Your Agent</p>
+      <div className="flex items-center gap-3 mb-4">
+        <img src={agent.photo} alt={agent.name} className="w-12 h-12 rounded-full object-cover object-top" />
+        <div>
+          <p className="font-heading font-semibold text-foreground text-sm">{agent.name}</p>
+          <p className="text-xs text-accent font-heading">{agent.role}</p>
+        </div>
+      </div>
+      <div className="grid grid-cols-3 gap-2">
+        <a href={`tel:${agent.phone}`} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+          <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+          <span className="text-[9px] font-body text-muted-foreground">Call</span>
+        </a>
+        <a href={`https://wa.me/${agent.whatsapp}?text=Hi, I'm interested in ${encodeURIComponent(propertyTitle)} — can you assist me?`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
+          <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
+          <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
+        </a>
+        <a href={`mailto:${agent.email}`} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+          <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
+          <span className="text-[9px] font-body text-muted-foreground">Email</span>
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export default function PropertyDetail() {
   const { propertyId } = useParams();
   const { data: property, isLoading } = useQuery({
     queryKey: ['property', propertyId],
     queryFn: () => base44.entities.Property.get(propertyId),
   });
+
+  const { data: agentRecord } = useAgent(property?.assigned_agent);
+  const agent = resolveAgent(property, agentRecord);
 
   if (isLoading) {
     return <div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin" /></div>;
@@ -85,42 +150,9 @@ export default function PropertyDetail() {
             </div>
 
             {/* Agent Card — mobile only */}
-            {(() => {
-              const agent = {
-                name: property.agent_name || 'Faisal Contractor',
-                role: property.agent_role || 'CEO & Founder — REMAX ZAM',
-                photo: property.agent_photo || 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg',
-                phone: property.agent_phone || '+97145828158',
-                whatsapp: property.agent_whatsapp || '97145828158',
-                email: property.agent_email || 'info@remaxzam.ae',
-              };
-              return (
-                <div className="lg:hidden bg-card border border-border/50 border-l-4 border-l-accent rounded-lg p-5">
-                  <p className="text-[10px] font-heading font-bold tracking-widest uppercase text-muted-foreground mb-3">Your Agent</p>
-                  <div className="flex items-center gap-3 mb-4">
-                    <img src={agent.photo} alt={agent.name} className="w-12 h-12 rounded-full object-cover object-top" />
-                    <div>
-                      <p className="font-heading font-semibold text-foreground text-sm">{agent.name}</p>
-                      <p className="text-xs text-accent font-heading">{agent.role}</p>
-                    </div>
-                  </div>
-                  <div className="grid grid-cols-3 gap-2">
-                    <a href={`tel:${agent.phone}`} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
-                      <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
-                      <span className="text-[9px] font-body text-muted-foreground">Call</span>
-                    </a>
-                    <a href={`https://wa.me/${agent.whatsapp}?text=Hi, I'm interested in ${encodeURIComponent(property.title)} — can you assist me?`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
-                      <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
-                      <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
-                    </a>
-                    <a href={`mailto:${agent.email}`} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
-                      <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
-                      <span className="text-[9px] font-body text-muted-foreground">Email</span>
-                    </a>
-                  </div>
-                </div>
-              );
-            })()}
+            <div className="lg:hidden">
+              <AgentCard agent={agent} propertyTitle={property.title} />
+            </div>
 
             {/* Investment Intelligence */}
             <PropertyInsightsPanel
@@ -144,48 +176,13 @@ export default function PropertyDetail() {
           <div className="lg:col-span-1">
             <div className="sticky top-24 space-y-4">
               {/* Agent Card */}
-              {(() => {
-                const agent = {
-                  name: property.agent_name || 'Faisal Contractor',
-                  role: property.agent_role || 'CEO & Founder — REMAX ZAM',
-                  photo: property.agent_photo || 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg',
-                  phone: property.agent_phone || '+97145828158',
-                  whatsapp: property.agent_whatsapp || '97145828158',
-                  email: property.agent_email || 'info@remaxzam.ae',
-                };
-                return (
-                  <div className="bg-card border border-border/50 rounded-lg p-5 border-l-4 border-l-accent">
-                    <p className="text-[10px] font-heading font-bold tracking-widest uppercase text-muted-foreground mb-3">Your Agent</p>
-                    <div className="flex items-center gap-3 mb-4">
-                      <img src={agent.photo} alt={agent.name} className="w-12 h-12 rounded-full object-cover object-top" />
-                      <div>
-                        <p className="font-heading font-semibold text-foreground text-sm">{agent.name}</p>
-                        <p className="text-xs text-accent font-heading">{agent.role}</p>
-                      </div>
-                    </div>
-                    <div className="grid grid-cols-3 gap-2">
-                      <a href={`tel:${agent.phone}`} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
-                        <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
-                        <span className="text-[9px] font-body text-muted-foreground">Call</span>
-                      </a>
-                      <a href={`https://wa.me/${agent.whatsapp}?text=Hi, I'm interested in ${encodeURIComponent(property.title)} — can you assist me?`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
-                        <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
-                        <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
-                      </a>
-                      <a href={`mailto:${agent.email}`} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
-                        <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
-                        <span className="text-[9px] font-body text-muted-foreground">Email</span>
-                      </a>
-                    </div>
-                  </div>
-                );
-              })()}
+              <AgentCard agent={agent} propertyTitle={property.title} />
 
               <div className="bg-card border border-border/50 rounded-lg p-6">
                 <h3 className="font-heading font-semibold text-foreground mb-4 flex items-center gap-2">
                   <Calendar className="w-4 h-4 text-primary" /> Book a Viewing
                 </h3>
-                <PropertyViewingForm property={property} />
+                <PropertyViewingForm property={property} agentName={agent.name} bitrixUserId={agent.bitrix_user_id} />
               </div>
               <CurrencyConverter priceAED={property.price_aed} />
             </div>

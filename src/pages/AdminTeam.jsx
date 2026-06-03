@@ -6,7 +6,7 @@ import { PlusCircle, Edit2, Trash2, Loader2, X, CheckCircle2, Users } from 'luci
 
 const FALLBACK = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg';
 
-const EMPTY_FORM = { name: '', role: '', photo: '', phone: '', whatsapp: '', email: '', about: '', active: true, sort_order: 0 };
+const EMPTY_FORM = { name: '', role: '', photo: '', phone: '', whatsapp: '', email: '', about: '', active: true, sort_order: 0, bitrix_user_id: null };
 
 function AgentForm({ initial, onSave, onCancel, saving }) {
   const [form, setForm] = useState(initial || EMPTY_FORM);
@@ -67,6 +67,18 @@ function AgentForm({ initial, onSave, onCancel, saving }) {
           <label className="text-xs font-heading font-medium text-foreground mb-1 block">Email</label>
           <input value={form.email} onChange={e => set('email', e.target.value)} className="w-full px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring" />
         </div>
+      </div>
+
+      <div>
+        <label className="text-xs font-heading font-medium text-foreground mb-1 block">Bitrix24 User ID</label>
+        <input
+          type="number"
+          value={form.bitrix_user_id ?? ''}
+          onChange={e => set('bitrix_user_id', e.target.value === '' ? null : Number(e.target.value))}
+          placeholder="e.g. 32 — leave empty to use default routing"
+          className="w-full px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+        />
+        <p className="text-[10px] text-muted-foreground font-body mt-1">Maps this agent to a Bitrix24 CRM user for lead assignment.</p>
       </div>
 
       <div>
@@ -182,6 +194,9 @@ export default function AdminTeam() {
                   <h3 className="font-heading font-bold text-foreground">{agent.name}</h3>
                   <p className="text-xs font-heading text-accent mb-2">{agent.role}</p>
                   {agent.email && <p className="text-xs text-muted-foreground font-body truncate mb-3">{agent.email}</p>}
+                  {agent.bitrix_user_id != null && (
+                    <p className="text-[10px] font-mono text-muted-foreground/60 mb-3">Bitrix ID: {agent.bitrix_user_id}</p>
+                  )}
                   <div className="flex gap-2">
                     <Button size="sm" variant="outline" className="flex-1 text-xs h-8" onClick={() => setModal({ mode: 'edit', agent })}>
                       <Edit2 className="w-3 h-3 mr-1" /> Edit

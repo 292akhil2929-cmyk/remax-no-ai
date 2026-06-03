@@ -30,6 +30,10 @@
       "type": "string",
       "title": "About / Bio"
     },
+    "bitrix_user_id": {
+      "type": "number",
+      "title": "Bitrix24 User ID"
+    },
     "active": {
       "type": "boolean",
       "title": "Active",

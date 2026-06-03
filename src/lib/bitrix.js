@@ -1,3 +1,6 @@
+const FALLBACK_ASSIGNED_BY_ID = 18;   // Faisal Contractor — executive routing
+const ADMIN_ASSIGNED_BY_ID = 230;     // Admin webhook account — safety net
+
 function getBitrixUrl() {
   const baseUrl = import.meta.env.VITE_BITRIX_WEBHOOK_URL;
   if (!baseUrl) return null;
@@ -35,6 +38,9 @@ export async function sendLeadToBitrix(formData) {
 }
 
 export async function sendPropertyViewingToBitrix(viewingData) {
+  const assignedById =
+    viewingData.bitrix_user_id ?? FALLBACK_ASSIGNED_BY_ID;
+
   return postToBitrix({
     fields: {
       TITLE: `Property Inquiry: ${viewingData.property_title}`,
@@ -42,6 +48,7 @@ export async function sendPropertyViewingToBitrix(viewingData) {
       PHONE: [{ VALUE: viewingData.phone, VALUE_TYPE: 'WORK' }],
       EMAIL: [{ VALUE: viewingData.email, VALUE_TYPE: 'WORK' }],
       SOURCE_ID: 'WEB',
+      ASSIGNED_BY_ID: assignedById,
       COMMENTS: `Property Name: ${viewingData.property_title}\nProperty Reference: ${viewingData.property_id || 'Not specified'}\nAssigned Agent: ${viewingData.assigned_agent_name || 'Unassigned'}\nSubmitted from: ${window.location.href}`,
     },
     params: { REGISTER_SONET_EVENT: 'Y' },
