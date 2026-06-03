@@ -46,7 +46,7 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
       property_interest: form.property_type && form.property_location ? `${form.property_type} in ${form.property_location}` : '',
       notes,
       // Bitrix fields
-      title: form.property_type ? `Seller Inquiry: ${form.property_type}` : 'Seller Inquiry',
+      title: form.property_type ? `Website Seller Inquiry: ${form.property_type}` : 'Website Seller Inquiry',
       is_seller: true,
       opportunity: form.asking_price ? Number(form.asking_price) : 0,
     };

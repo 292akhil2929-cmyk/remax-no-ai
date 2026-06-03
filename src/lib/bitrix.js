@@ -30,7 +30,7 @@ export async function sendLeadToBitrix(formData) {
 
   return postToBitrix({
     fields: {
-      TITLE: formData.title || 'New Lead',
+      TITLE: formData.title || 'Website General Lead',
       NAME: formData.full_name,
       PHONE: [{ VALUE: formData.phone, VALUE_TYPE: 'WORK' }],
       EMAIL: [{ VALUE: formData.email, VALUE_TYPE: 'WORK' }],
@@ -76,7 +76,7 @@ export async function sendApplicantToBitrixSPA(applicantData) {
   return postToBitrixRecruitment({
     entityTypeId: 1038,
     fields: {
-      TITLE: `New Agent Applicant: ${applicantData.full_name}`,
+      TITLE: `Website Agent Applicant: ${applicantData.full_name}`,
       NAME: applicantData.full_name,
       EMAIL: [{ VALUE: applicantData.email, VALUE_TYPE: 'WORK' }],
       PHONE: [{ VALUE: applicantData.phone, VALUE_TYPE: 'WORK' }],
@@ -88,7 +88,7 @@ export async function sendApplicantToBitrixSPA(applicantData) {
 export async function sendPropertyViewingToBitrix(viewingData) {
   return postToBitrix({
     fields: {
-      TITLE: `Property Inquiry: ${viewingData.property_title}`,
+      TITLE: `Website Property Inquiry: ${viewingData.property_title}`,
       NAME: viewingData.full_name,
       PHONE: [{ VALUE: viewingData.phone, VALUE_TYPE: 'WORK' }],
       EMAIL: [{ VALUE: viewingData.email, VALUE_TYPE: 'WORK' }],
