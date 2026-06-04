@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, Calendar, MessageSquare } from 'lucide-react';
-import { sendPropertyViewingToBitrix } from '@/lib/bitrix';
 import { isValidEmail, isValidPhone, isValidName } from '@/lib/validation';
 
 export default function PropertyViewingForm({ property, agentName }) {
@@ -35,9 +34,14 @@ export default function PropertyViewingForm({ property, agentName }) {
 
   const createLead = useMutation({
     mutationFn: (data) => base44.functions.invoke('createLead', data),
-    onSuccess: (_response, variables) => {
+    onSuccess: async (_response, variables) => {
       setSubmitted(true);
-      sendPropertyViewingToBitrix(variables).catch(() => {});
+      try {
+        const res = await base44.functions.invoke('sendLeadToBitrix', { ...variables, page_url: window.location.href });
+        console.log('[Bitrix Lead] Success:', res?.data);
+      } catch (err) {
+        console.error('[Bitrix Lead] Failed:', err?.message || err);
+      }
     },
   });
 

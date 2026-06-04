@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, ArrowRight } from 'lucide-react';
-import { sendLeadToBitrix } from '@/lib/bitrix';
 import { isValidEmail, isValidPhone, isValidName, isValidPrice } from '@/lib/validation';
 
 export default function SellerLeadForm({ source = "Website", compact = false }) {
@@ -41,9 +40,14 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
 
   const createLead = useMutation({
     mutationFn: (data) => base44.functions.invoke('createLead', data),
-    onSuccess: (_response, variables) => {
+    onSuccess: async (_response, variables) => {
       setSubmitted(true);
-      sendLeadToBitrix(variables).catch(() => {});
+      try {
+        const res = await base44.functions.invoke('sendLeadToBitrix', { ...variables, page_url: window.location.href });
+        console.log('[Bitrix Lead] Success:', res?.data);
+      } catch (err) {
+        console.error('[Bitrix Lead] Failed:', err?.message || err);
+      }
     },
   });
 
