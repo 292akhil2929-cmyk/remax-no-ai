@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, ArrowRight, Upload, User, Briefcase, Building2, FileText, Loader2 } from 'lucide-react';
-import { sendApplicantToBitrixSPA } from '@/lib/bitrix';
 import { isValidEmail, isValidPhone, isValidName } from '@/lib/validation';
 
 const EMPTY_FORM = {
@@ -142,9 +141,14 @@ export default function Apply() {
 
   const createLead = useMutation({
     mutationFn: (data) => base44.functions.invoke('createLead', data),
-    onSuccess: (_response, variables) => {
+    onSuccess: async (_response, variables) => {
       setSubmitted(true);
-      sendApplicantToBitrixSPA(variables).catch(() => {});
+      try {
+        const bitrixRes = await base44.functions.invoke('sendRecruitmentToBitrix', variables);
+        console.log('[Bitrix Recruitment] Success:', bitrixRes?.data);
+      } catch (err) {
+        console.error('[Bitrix Recruitment] Failed to forward to Bitrix:', err?.message || err);
+      }
     },
   });
 
