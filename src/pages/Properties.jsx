@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
 import PropertyCard from "../components/PropertyCard";
 import { Input } from "@/components/ui/input";
@@ -63,10 +64,13 @@ const TABS = GROUPS.flatMap((g) => g.tabs);
 const BEDROOM_OPTIONS = ["Any", "Studio", "1", "2", "3", "4", "5+"];
 
 export default function Properties() {
-  const [activeTab, setActiveTab] = useState("off-plan");
+  const [searchParams] = useSearchParams();
+  const initialTab = searchParams.get("tab") || "off-plan";
+  const initialCommunity = searchParams.get("community") || "";
+  const [activeTab, setActiveTab] = useState(initialTab);
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(initialCommunity);
   const [bedrooms, setBedrooms] = useState("Any");
   const [sortBy, setSortBy] = useState("newest");
 

@@ -117,8 +117,9 @@ export default function HeroSection() {
     e.preventDefault();
     const params = new URLSearchParams();
     if (query) params.set('community', query);
-    if (activeTab === 'rent') params.set('transaction', 'Residential Rental');
-    if (activeTab === 'off-plan') params.set('listing_status', 'Off-Plan');
+    // Map hero tab to properties page tab key
+    const tabMap = { buy: 'ready-residential', rent: 'rental-residential', 'off-plan': 'off-plan' };
+    params.set('tab', tabMap[activeTab] || 'ready-residential');
     navigate(`/properties?${params.toString()}`);
   };
 
@@ -212,12 +213,15 @@ export default function HeroSection() {
                   </form>
                   <div className="flex flex-wrap gap-x-5 gap-y-1.5 mt-4">
                     <span className="text-white/30 text-xs font-body">Popular:</span>
-                    {communities.map(c => (
-                      <button key={c} onClick={() => navigate(`/properties?community=${c}`)}
-                        className="text-xs text-white/50 hover:text-white transition-colors font-body hover:underline underline-offset-2">
-                        {c}
-                      </button>
-                    ))}
+                    {communities.map(c => {
+                      const tabMap = { buy: 'ready-residential', rent: 'rental-residential', 'off-plan': 'off-plan' };
+                      return (
+                        <button key={c} onClick={() => navigate(`/properties?tab=${tabMap[activeTab] || 'ready-residential'}&community=${c}`)}
+                          className="text-xs text-white/50 hover:text-white transition-colors font-body hover:underline underline-offset-2">
+                          {c}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               )}
