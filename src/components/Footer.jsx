@@ -56,7 +56,7 @@ export default function Footer() {
             <h4 className="font-heading font-semibold text-foreground mb-4">Contact</h4>
             <div className="space-y-3 text-sm text-muted-foreground font-body">
               <div className="flex items-center gap-2"><MapPin className="w-4 h-4 text-primary" /> Bay View Tower, Office 1102, Dubai</div>
-              <div className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +971 4 582 8158</div>
+              <div className="flex items-center gap-2"><Phone className="w-4 h-4 text-primary" /> +971508794494</div>
               <div className="flex items-center gap-2"><Mail className="w-4 h-4 text-primary" /> info@remaxzam.ae</div>
             </div>
           </div>

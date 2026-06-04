@@ -1,4 +1,5 @@
-import { MapContainer, TileLayer, Marker, Popup, Circle } from 'react-leaflet';
+import { useEffect } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, Circle, useMap } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
 
@@ -28,6 +29,14 @@ const landmarkIcon = new L.DivIcon({
   iconAnchor: [12, 12],
 });
 
+function MapController({ center, zoom }) {
+  const map = useMap();
+  useEffect(() => {
+    map.setView(center, zoom, { animate: true });
+  }, [map, center, zoom]);
+  return null;
+}
+
 export default function CommunityMap({ area }) {
   if (!area.mapCenter) return null;
 
@@ -49,6 +58,7 @@ export default function CommunityMap({ area }) {
           style={{ width: '100%', height: '100%' }}
           scrollWheelZoom={false}
         >
+          <MapController center={area.mapCenter} zoom={14} />
           <TileLayer
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

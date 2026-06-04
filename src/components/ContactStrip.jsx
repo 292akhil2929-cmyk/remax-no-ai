@@ -3,7 +3,7 @@ import { Phone, Mail, MessageCircle } from 'lucide-react';
 const WHATSAPP_NUMBER = '971508794494';
 const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to get more information about Dubai real estate.");
 const EMAIL = 'info@remaxzam.ae';
-const PHONE = '+971 4 582 8158';
+const PHONE = '+971508794494';
 
 export default function ContactStrip() {
   return (

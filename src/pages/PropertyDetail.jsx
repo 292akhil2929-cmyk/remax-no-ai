@@ -15,8 +15,8 @@ const AGENT_FALLBACK = {
   name: 'Faisal Contractor',
   role: 'CEO & Founder — REMAX ZAM',
   photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg',
-  phone: '+97145828158',
-  whatsapp: '97145828158',
+  phone: '+971508794494',
+  whatsapp: '971508794494',
   email: 'info@remaxzam.ae',
 };
 
@@ -34,8 +34,8 @@ function resolveAgent(property, agentRecord) {
       name: agentRecord.name || AGENT_FALLBACK.name,
       role: agentRecord.role || AGENT_FALLBACK.role,
       photo: agentRecord.photo || AGENT_FALLBACK.photo,
-      phone: agentRecord.phone || AGENT_FALLBACK.phone,
-      whatsapp: agentRecord.whatsapp || AGENT_FALLBACK.whatsapp,
+      phone: AGENT_FALLBACK.phone,
+      whatsapp: AGENT_FALLBACK.whatsapp,
       email: agentRecord.email || AGENT_FALLBACK.email,
     };
   }
@@ -142,8 +142,14 @@ export default function PropertyDetail() {
               {property.developer && (
                 <div className="flex items-center gap-2"><Building2 className="w-4 h-4 text-primary" /><span className="text-sm font-body"><span className="text-muted-foreground">Developer:</span> <Link to={`/developers?developer=${encodeURIComponent(property.developer)}`} className="text-foreground hover:text-primary font-medium transition-colors">{property.developer}</Link></span></div>
               )}
-              {property.completion_date && (
-                <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /><span className="text-sm font-body"><span className="text-muted-foreground">Completion:</span> <span className="text-foreground">{property.completion_date}</span></span></div>
+
+              {/* if propert is rental, say "Available for Rent" else say "Completion"*/}
+              {property.transaction_type && property.transaction_type.toLowerCase().includes('rental') ? (
+                <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /><span className="text-sm font-body"><span className="text-muted-foreground">Availabile since:</span> <span className="text-foreground">{property.completion_date}</span></span></div>
+              ) : (
+                property.completion_date && (
+                  <div className="flex items-center gap-2"><Calendar className="w-4 h-4 text-primary" /><span className="text-sm font-body"><span className="text-muted-foreground">Completion:</span> <span className="text-foreground">{property.completion_date}</span></span></div>
+                )
               )}
             </div>
 
@@ -159,15 +165,17 @@ export default function PropertyDetail() {
               community={property.community}
             />
 
-            {/* Calculators */}
-            <div className="space-y-6 pt-2">
-              <ROICalculator
-                propertyPrice={property.price_aed}
-                rentalYield={property.rental_yield}
-                expectedRoi={property.expected_roi}
-              />
-              <MortgageCalculator propertyPrice={property.price_aed} />
-            </div>
+            {/* Calculators — hide for rental/lease properties */}
+            {property.transaction_type && !property.transaction_type.toLowerCase().includes('rental') && !property.transaction_type.toLowerCase().includes('lease') && (
+              <div className="space-y-6 pt-2">
+                <ROICalculator
+                  propertyPrice={property.price_aed}
+                  rentalYield={property.rental_yield}
+                  expectedRoi={property.expected_roi}
+                />
+                <MortgageCalculator propertyPrice={property.price_aed} />
+              </div>
+            )}
           </div>
 
           {/* Right: Viewing form + Currency Converter */}
