@@ -13,25 +13,25 @@ const COMMUNITIES = [
     name: 'Palm Jumeirah',
     tag: 'Ultra-Luxury',
     roi: '5.2%',
-    img: 'https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=800&h=600&crop=entropy&cs=tinysrgb&fit=max&q=90',
+    img: 'https://images.unsplash.com/photo-1682410601904-24ec1d9858e6?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     name: 'Downtown Dubai',
     tag: 'City Living',
     roi: '6.1%',
-    img: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&h=600&crop=entropy&cs=tinysrgb&fit=max&q=90',
+    img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     name: 'Dubai Marina',
     tag: 'Waterfront',
     roi: '7.4%',
-    img: 'https://images.unsplash.com/photo-1505142468610-359e7d316be0?w=800&h=600&crop=entropy&cs=tinysrgb&fit=max&q=90',
+    img: 'https://images.unsplash.com/photo-1722502831583-b4e93ecc6027?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
   {
     name: 'Business Bay',
     tag: 'High Yield',
     roi: '8.2%',
-    img: 'https://images.unsplash.com/photo-1514565131-fce0801e5785?w=800&h=600&crop=entropy&cs=tinysrgb&fit=max&q=90',
+    img: 'https://plus.unsplash.com/premium_photo-1697729983477-345d7407a0d3?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   },
 ];
 

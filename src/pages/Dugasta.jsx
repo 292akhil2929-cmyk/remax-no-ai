@@ -10,6 +10,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { useMutation } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
+import { sendLeadToBitrix } from '@/lib/bitrix';
 
 // ─── DATA ──────────────────────────────────────────────────────────────────────
 
@@ -25,7 +26,7 @@ const PROJECTS = [
     roi: '10% Guaranteed',
     area: '719 to 1,400 sqft',
     tag: '10 on 10 Plan',
-    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/43ae51b62_generated_image.png',
+    image: '/images/dugasta.webp',
     highlights: [
       '10% net ROI guaranteed for 10 years by contract',
       'Zero service charges for the full 10 year period',
@@ -138,7 +139,23 @@ function DugastaLeadForm({ dark = true }) {
   const [form, setForm] = useState({ full_name: '', email: '', phone: '', investment_budget: '', notes: '' });
 
   const createLead = useMutation({
-    mutationFn: (data) => base44.functions.invoke('createLead', data),
+    mutationFn: async (data) => {
+      const res = await base44.functions.invoke('createLead', data);
+      // Forward to Bitrix
+      try {
+        await sendLeadToBitrix({
+          title: 'DUGASTA Website Lead',
+          full_name: data.full_name,
+          email: data.email,
+          phone: data.phone,
+          investment_budget: data.investment_budget,
+          source: 'DUGASTA',
+        });
+      } catch (e) {
+        console.error('[Dugasta] Bitrix forward failed:', e);
+      }
+      return res;
+    },
     onSuccess: () => setSubmitted(true),
   });
 
