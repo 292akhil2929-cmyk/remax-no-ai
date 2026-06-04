@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
-import { Heart, ChevronLeft, ChevronRight } from 'lucide-react';
-import { Bed, Bath, Maximize, TrendingUp } from 'lucide-react';
+import { isSaved, toggleSaved } from '@/lib/favorites';
+import { Heart, ChevronLeft, ChevronRight, Bed, Bath, Maximize, TrendingUp } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 
 const LOCATION_IMAGES = {
@@ -38,7 +36,6 @@ function getFallbackImage(property) {
 
 export default function PropertyCard({ property }) {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const images = (property.gallery_images?.length ? property.gallery_images : null) ||
     (property.image_url ? [property.image_url] : [getFallbackImage(property)]);
   const [imgIndex, setImgIndex] = useState(0);
@@ -54,35 +51,13 @@ export default function PropertyCard({ property }) {
     setImgIndex(i => (i + 1) % images.length);
   };
 
-  const { data: saved = [] } = useQuery({
-    queryKey: ['savedProperties'],
-    queryFn: () => base44.entities.SavedProperty.list(),
-  });
+  const [saved, setSaved] = useState(() => isSaved(property.id));
 
-  const isSaved = saved.some(s => s.property_id === property.id);
-  const savedRecord = saved.find(s => s.property_id === property.id);
-
-  const saveMutation = useMutation({
-    mutationFn: () => base44.entities.SavedProperty.create({
-      property_id: property.id,
-      property_title: property.title,
-      property_image: property.image_url,
-      property_price: property.price_aed,
-      property_location: property.community || property.location,
-      property_type: property.property_type,
-    }),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['savedProperties'] }),
-  });
-
-  const unsaveMutation = useMutation({
-    mutationFn: () => base44.entities.SavedProperty.delete(savedRecord.id),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['savedProperties'] }),
-  });
-
-  const toggleSave = (e) => {
+  const handleToggleSave = (e) => {
     e.preventDefault();
-    if (isSaved) unsaveMutation.mutate();
-    else saveMutation.mutate();
+    e.stopPropagation();
+    const next = toggleSaved(property.id);
+    setSaved(next.includes(property.id));
   };
   return (
     <div className="group bg-card border border-border/50 rounded-lg overflow-hidden hover:border-primary/30 transition-all duration-300">
@@ -125,13 +100,13 @@ export default function PropertyCard({ property }) {
 
         {/* Save button — top right */}
         <button
-          onClick={toggleSave}
+          onClick={handleToggleSave}
           className={`absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center shadow transition-all ${
-            isSaved ? 'bg-red-500 text-white' : 'bg-white/90 text-muted-foreground hover:text-red-500'
+            saved ? 'bg-red-500 text-white' : 'bg-white/90 text-muted-foreground hover:text-red-500'
           }`}
           style={{ zIndex: 10 }}
         >
-          <Heart className={`w-4 h-4 ${isSaved ? 'fill-current' : ''}`} />
+          <Heart className={`w-4 h-4 ${saved ? 'fill-current' : ''}`} />
         </button>
 
         {/* ROI badge — bottom right */}

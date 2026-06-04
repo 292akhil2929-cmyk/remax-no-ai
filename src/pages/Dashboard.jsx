@@ -2,18 +2,23 @@ import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
-import { Heart, Clock, Trash2, Search, ArrowRight, Home, TrendingUp } from 'lucide-react';
+import { Heart, Clock, Trash2, Search, ArrowRight, Home } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import PropertyRecommender from '@/components/PropertyRecommender';
+import { getSavedIds, removeSaved } from '@/lib/favorites';
 
 export default function Dashboard() {
   const queryClient = useQueryClient();
   const [tab, setTab] = useState('saved');
+  const [savedIds, setSavedIds] = useState(() => getSavedIds());
 
-  const { data: saved = [], isLoading: loadingSaved } = useQuery({
-    queryKey: ['savedProperties'],
-    queryFn: () => base44.entities.SavedProperty.list('-created_date', 50),
+  const { data: savedProperties = [], isLoading: loadingSaved } = useQuery({
+    queryKey: ['savedProperties', savedIds],
+    queryFn: () => savedIds.length > 0
+      ? base44.entities.Property.filter({ id: { $in: savedIds } })
+      : Promise.resolve([]),
+    enabled: true,
   });
 
   const { data: history = [], isLoading: loadingHistory } = useQuery({
@@ -21,10 +26,12 @@ export default function Dashboard() {
     queryFn: () => base44.entities.SearchHistory.list('-created_date', 20),
   });
 
-  const removeSaved = useMutation({
-    mutationFn: (id) => base44.entities.SavedProperty.delete(id),
-    onSuccess: () => queryClient.invalidateQueries({ queryKey: ['savedProperties'] }),
-  });
+  const handleRemoveSaved = (propertyId) => {
+    removeSaved(propertyId);
+    const next = getSavedIds();
+    setSavedIds(next);
+    queryClient.invalidateQueries({ queryKey: ['savedProperties'] });
+  };
 
   const clearHistory = useMutation({
     mutationFn: async () => {
@@ -66,7 +73,7 @@ export default function Dashboard() {
               <Heart className="w-5 h-5 text-red-500" />
             </div>
             <div>
-              <p className="text-xl font-heading font-bold text-foreground">{saved.length}</p>
+              <p className="text-xl font-heading font-bold text-foreground">{savedIds.length}</p>
               <p className="text-xs text-muted-foreground font-body">Saved Properties</p>
             </div>
           </div>
@@ -111,7 +118,7 @@ export default function Dashboard() {
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {[1,2,3].map(i => <div key={i} className="h-64 bg-muted animate-pulse rounded-lg" />)}
               </div>
-            ) : saved.length === 0 ? (
+            ) : savedIds.length === 0 ? (
               <div className="text-center py-20 border border-dashed border-border rounded-xl">
                 <Heart className="w-12 h-12 text-muted-foreground/30 mx-auto mb-4" />
                 <p className="font-heading font-semibold text-foreground mb-1">No saved properties yet</p>
@@ -122,12 +129,12 @@ export default function Dashboard() {
               </div>
             ) : (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {saved.map(item => (
+                {savedProperties.map(item => (
                   <div key={item.id} className="bg-card border border-border/50 rounded-lg overflow-hidden group hover:border-primary/30 transition-all">
-                    <Link to={`/properties/${item.property_id}`} className="block">
+                    <Link to={`/properties/${item.id}`} className="block">
                       <div className="relative aspect-[4/3] overflow-hidden bg-muted">
-                        {item.property_image ? (
-                          <img src={item.property_image} alt={item.property_title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                        {item.image_url ? (
+                          <img src={item.image_url} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                         ) : (
                           <div className="w-full h-full flex items-center justify-center">
                             <Home className="w-8 h-8 text-muted-foreground/30" />
@@ -135,12 +142,11 @@ export default function Dashboard() {
                         )}
                       </div>
                       <div className="p-4">
-                        <p className="text-xs text-primary font-heading font-medium tracking-wide mb-1">{item.property_location}</p>
-                        <h3 className="font-heading font-semibold text-foreground text-sm mb-2 line-clamp-1">{item.property_title}</h3>
+                        <p className="text-xs text-primary font-heading font-medium tracking-wide mb-1">{item.community || item.location}</p>
+                        <h3 className="font-heading font-semibold text-foreground text-sm mb-2 line-clamp-1">{item.title}</h3>
                         <p className="text-lg font-heading font-bold text-foreground">
-                          AED {(item.property_price || 0).toLocaleString()}
+                          AED {(item.price_aed || 0).toLocaleString()}
                         </p>
-                        <p className="text-xs text-muted-foreground mt-1">Saved {formatDate(item.created_date)}</p>
                       </div>
                     </Link>
                     <div className="px-4 pb-4">
@@ -148,7 +154,7 @@ export default function Dashboard() {
                         variant="outline"
                         size="sm"
                         className="w-full text-red-500 border-red-200 hover:bg-red-50 hover:border-red-300"
-                        onClick={() => removeSaved.mutate(item.id)}
+                        onClick={() => handleRemoveSaved(item.id)}
                       >
                         <Trash2 className="w-3.5 h-3.5 mr-1" /> Remove
                       </Button>
