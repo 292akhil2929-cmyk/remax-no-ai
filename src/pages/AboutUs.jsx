@@ -20,7 +20,7 @@ export default function AboutUs() {
     <div className="min-h-screen">
       {/* Hero */}
       <section className="relative py-24 overflow-hidden">
-        <img src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/fbeb74e2a_Miva-Real-Estate-Real-Estate-Company-in-Dubai.jpg"
+        <img src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/e5336d552_Hero.webp"
 
         alt="Dubai skyline"
         className="absolute inset-0 w-full h-full object-cover" />
