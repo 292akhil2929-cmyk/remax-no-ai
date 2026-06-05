@@ -52,9 +52,12 @@ export default function InvestorHome() {
     console.error('[InvestorHome] Featured properties query failed:', error);
   }
 
-  const properties = (featuredProperties && featuredProperties.length > 0)
-    ? featuredProperties
-    : recentProperties;
+  // Exclude pocket listings from public home page
+  const publicFeatured = (featuredProperties || []).filter((p) => !p.isPocketListing);
+  const publicRecent = recentProperties.filter((p) => !p.isPocketListing);
+  const properties = (publicFeatured && publicFeatured.length > 0)
+    ? publicFeatured
+    : publicRecent;
 
   return (
     <>

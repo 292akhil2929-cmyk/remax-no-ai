@@ -11,7 +11,8 @@ Deno.serve(async (req) => {
 
     // Fetch data
     const searchHistory = await base44.entities.SearchHistory.filter({ created_by: user.email }, '-created_date', 5);
-    const allProperties = await base44.entities.Property.list('-updated_date', 50);
+    const allProperties = (await base44.entities.Property.list('-updated_date', 50))
+      .filter((p) => !p.isPocketListing); // Exclude pocket listings from recommendations
 
     if (searchHistory.length === 0 || allProperties.length < 5) {
       return Response.json({ recommendations: [], count: 0 });

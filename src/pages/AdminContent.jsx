@@ -1,33 +1,66 @@
-import { useState, useEffect } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { base44 } from '@/api/base44Client';
+import { useState, useEffect } from "react";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { base44 } from "@/api/base44Client";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from "react-router-dom";
 import {
-  Link as LinkIcon, Sparkles, RefreshCw, CheckCircle2,
-  AlertCircle, Loader2, FileText, Home, ArrowRight,
-  PlusCircle, ExternalLink, Calendar, Plus, Edit2, Users
-} from 'lucide-react';
-import moment from 'moment';
-import ImageUploadSection from '@/components/PropertyImageUpload';
-import AgentSelector from '@/components/AgentSelector';
-import PropertyEditor from '@/components/PropertyEditor';
+  Link as LinkIcon,
+  Sparkles,
+  RefreshCw,
+  CheckCircle2,
+  AlertCircle,
+  Loader2,
+  FileText,
+  ExternalLink,
+  Calendar,
+  Users,
+} from "lucide-react";
+import moment from "moment";
+import ImageUploadSection from "@/components/PropertyImageUpload";
+import AgentSelector from "@/components/AgentSelector";
+import PropertyEditor from "@/components/PropertyEditor";
+import PropertyManagementDashboard from "@/components/PropertyManagementDashboard";
 
 /* ── Import Listing from URL ─────────────────────────── */
 function ImportListingPanel() {
-  const [url, setUrl] = useState('');
-  const [category, setCategory] = useState('');
+  const [url, setUrl] = useState("");
+  const [category, setCategory] = useState("");
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const categories = [
-    { value: 'off-plan', label: 'Off-Plan Residential', transaction: 'Residential Sale', status: 'Off-Plan' },
-    { value: 'ready-residential', label: 'Ready Residential', transaction: 'Residential Sale', status: 'Ready' },
-    { value: 'ready-commercial', label: 'Ready Commercial', transaction: 'Commercial Sale', status: 'Ready' },
-    { value: 'rental-residential', label: 'Rental Residential', transaction: 'Residential Rental', status: null },
-    { value: 'rental-commercial', label: 'Rental Commercial', transaction: 'Commercial Lease', status: null },
+    {
+      value: "off-plan",
+      label: "Off-Plan Residential",
+      transaction: "Residential Sale",
+      status: "Off-Plan",
+    },
+    {
+      value: "ready-residential",
+      label: "Ready Residential",
+      transaction: "Residential Sale",
+      status: "Ready",
+    },
+    {
+      value: "ready-commercial",
+      label: "Ready Commercial",
+      transaction: "Commercial Sale",
+      status: "Ready",
+    },
+    {
+      value: "rental-residential",
+      label: "Rental Residential",
+      transaction: "Residential Rental",
+      status: null,
+    },
+    {
+      value: "rental-commercial",
+      label: "Rental Commercial",
+      transaction: "Commercial Lease",
+      status: null,
+    },
   ];
 
   const handleImport = async () => {
@@ -36,28 +69,42 @@ function ImportListingPanel() {
     setResult(null);
     setError(null);
     try {
-      const selectedCat = categories.find(c => c.value === category);
-      const res = await base44.functions.invoke('importListing', {
+      const selectedCat = categories.find((c) => c.value === category);
+      const res = await base44.functions.invoke("importListing", {
         url: url.trim(),
         transaction_type: selectedCat.transaction,
         listing_status: selectedCat.status,
       });
       setResult(res.data.property);
     } catch (e) {
-      setError(e?.response?.data?.error || e.message || 'Failed to import listing');
+      setError(
+        e?.response?.data?.error || e.message || "Failed to import listing",
+      );
     } finally {
       setLoading(false);
     }
   };
 
   const platforms = [
-    { name: 'PropertyFinder', color: 'bg-red-50 text-red-700', pattern: 'propertyfinder.ae' },
-    { name: 'Bayut', color: 'bg-blue-50 text-blue-700', pattern: 'bayut.com' },
-    { name: 'Dubizzle', color: 'bg-orange-50 text-orange-700', pattern: 'dubizzle.com' },
-    { name: 'remaxzam.ae', color: 'bg-emerald-50 text-emerald-700', pattern: 'remaxzam.ae' },
+    {
+      name: "PropertyFinder",
+      color: "bg-red-50 text-red-700",
+      pattern: "propertyfinder.ae",
+    },
+    { name: "Bayut", color: "bg-blue-50 text-blue-700", pattern: "bayut.com" },
+    {
+      name: "Dubizzle",
+      color: "bg-orange-50 text-orange-700",
+      pattern: "dubizzle.com",
+    },
+    {
+      name: "remaxzam.ae",
+      color: "bg-emerald-50 text-emerald-700",
+      pattern: "remaxzam.ae",
+    },
   ];
 
-  const detectedPlatform = platforms.find(p => url.includes(p.pattern));
+  const detectedPlatform = platforms.find((p) => url.includes(p.pattern));
 
   return (
     <div className="bg-card border border-border/50 rounded-xl p-6">
@@ -66,28 +113,41 @@ function ImportListingPanel() {
           <LinkIcon className="w-5 h-5 text-primary" />
         </div>
         <div>
-          <h3 className="font-heading font-bold text-foreground">Import Listing from URL</h3>
-          <p className="text-xs text-muted-foreground font-body">Paste a link from remaxzam.ae, PropertyFinder, Bayut, or Dubizzle</p>
+          <h3 className="font-heading font-bold text-foreground">
+            Import Listing from URL
+          </h3>
+          <p className="text-xs text-muted-foreground font-body">
+            Paste a link from remaxzam.ae, PropertyFinder, Bayut, or Dubizzle
+          </p>
         </div>
       </div>
 
       <div className="flex gap-2 mb-2">
-        {platforms.map(p => (
-          <span key={p.name} className={`text-xs px-2 py-0.5 rounded font-body ${p.color}`}>{p.name}</span>
+        {platforms.map((p) => (
+          <span
+            key={p.name}
+            className={`text-xs px-2 py-0.5 rounded font-body ${p.color}`}
+          >
+            {p.name}
+          </span>
         ))}
       </div>
 
       <div className="space-y-3">
         <div>
-          <label className="text-xs font-heading font-medium text-foreground mb-2 block">Select Listing Category</label>
+          <label className="text-xs font-heading font-medium text-foreground mb-2 block">
+            Select Listing Category
+          </label>
           <select
             value={category}
-            onChange={e => setCategory(e.target.value)}
+            onChange={(e) => setCategory(e.target.value)}
             className="w-full px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring"
           >
             <option value="">Choose a category...</option>
-            {categories.map(cat => (
-              <option key={cat.value} value={cat.value}>{cat.label}</option>
+            {categories.map((cat) => (
+              <option key={cat.value} value={cat.value}>
+                {cat.label}
+              </option>
             ))}
           </select>
         </div>
@@ -95,19 +155,28 @@ function ImportListingPanel() {
           <input
             type="url"
             value={url}
-            onChange={e => setUrl(e.target.value)}
+            onChange={(e) => setUrl(e.target.value)}
             placeholder="https://www.remaxzam.ae/listing/... or propertyfinder.ae, bayut.com..."
             className="flex-1 px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring"
           />
-          <Button onClick={handleImport} disabled={loading || !url.trim() || !category} className="font-heading shrink-0">
-            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Import'}
+          <Button
+            onClick={handleImport}
+            disabled={loading || !url.trim() || !category}
+            className="font-heading shrink-0"
+          >
+            {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : "Import"}
           </Button>
         </div>
       </div>
 
       {detectedPlatform && !result && !error && (
         <p className="text-xs text-muted-foreground mt-2 font-body">
-          ✓ Detected: <span className={`font-medium ${detectedPlatform.color.split(' ')[1]}`}>{detectedPlatform.name}</span>
+          ✓ Detected:{" "}
+          <span
+            className={`font-medium ${detectedPlatform.color.split(" ")[1]}`}
+          >
+            {detectedPlatform.name}
+          </span>
         </p>
       )}
 
@@ -129,27 +198,70 @@ function ImportListingPanel() {
         <div className="mt-4 bg-emerald-50 border border-emerald-200 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-3">
             <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-            <span className="font-heading font-semibold text-emerald-800">Listing imported successfully!</span>
+            <span className="font-heading font-semibold text-emerald-800">
+              Listing imported successfully!
+            </span>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-3">
-            <div><p className="text-xs text-emerald-600 font-body">Title</p><p className="font-heading font-medium text-foreground text-xs line-clamp-2">{result.title}</p></div>
-            <div><p className="text-xs text-emerald-600 font-body">Price</p><p className="font-heading font-medium text-foreground">AED {(result.price_aed || 0).toLocaleString()}</p></div>
-            <div><p className="text-xs text-emerald-600 font-body">Location</p><p className="font-heading font-medium text-foreground">{result.location}</p></div>
-            <div><p className="text-xs text-emerald-600 font-body">Type</p><p className="font-heading font-medium text-foreground">{result.property_type}</p></div>
+            <div>
+              <p className="text-xs text-emerald-600 font-body">Title</p>
+              <p className="font-heading font-medium text-foreground text-xs line-clamp-2">
+                {result.title}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-emerald-600 font-body">Price</p>
+              <p className="font-heading font-medium text-foreground">
+                AED {(result.price_aed || 0).toLocaleString()}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-emerald-600 font-body">Location</p>
+              <p className="font-heading font-medium text-foreground">
+                {result.location}
+              </p>
+            </div>
+            <div>
+              <p className="text-xs text-emerald-600 font-body">Type</p>
+              <p className="font-heading font-medium text-foreground">
+                {result.property_type}
+              </p>
+            </div>
           </div>
           <ImageUploadSection
             propertyId={result.id}
-            currentImages={result.gallery_images || (result.image_url ? [result.image_url] : [])}
-            currentHero={result.image_url || ''}
+            currentImages={
+              result.gallery_images ||
+              (result.image_url ? [result.image_url] : [])
+            }
+            currentHero={result.image_url || ""}
             onImagesUpdated={() => {}}
           />
-          <AgentSelector propertyId={result.id} onAgentSelected={() => { setUrl(''); setResult(null); setCategory(''); }} />
+          <AgentSelector
+            propertyId={result.id}
+            onAgentSelected={() => {
+              setUrl("");
+              setResult(null);
+              setCategory("");
+            }}
+          />
           <div className="flex gap-2 mt-3">
-            <Button size="sm" variant="outline" className="text-xs" onClick={() => { setUrl(''); setResult(null); setCategory(''); }}>
+            <Button
+              size="sm"
+              variant="outline"
+              className="text-xs"
+              onClick={() => {
+                setUrl("");
+                setResult(null);
+                setCategory("");
+              }}
+            >
               Import Another
             </Button>
             <Button size="sm" className="text-xs" asChild>
-              <Link to="/properties">View All Listings <ExternalLink className="w-3 h-3 ml-1" /></Link>
+              <Link to="/properties">
+                View All Listings <ExternalLink className="w-3 h-3 ml-1" />
+              </Link>
             </Button>
           </div>
         </div>
@@ -160,17 +272,17 @@ function ImportListingPanel() {
 
 /* ── AI Blog Post Generator ──────────────────────────── */
 function BlogGeneratorPanel({ onGenerated }) {
-  const [topic, setTopic] = useState('');
+  const [topic, setTopic] = useState("");
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
 
   const suggestedTopics = [
-    'Dubai rental yields Q2 2025 — which areas are beating the market',
-    'New off-plan launches in JVC and Business Bay this month',
-    'UAE Golden Visa 2025 — latest updates for property investors',
-    'Why Dubai property prices are rising faster than expected in 2025',
-    'Best studios and 1BHK investments under AED 800K in Dubai right now',
+    "Dubai rental yields Q2 2025 — which areas are beating the market",
+    "New off-plan launches in JVC and Business Bay this month",
+    "UAE Golden Visa 2025 — latest updates for property investors",
+    "Why Dubai property prices are rising faster than expected in 2025",
+    "Best studios and 1BHK investments under AED 800K in Dubai right now",
   ];
 
   const handleGenerate = async (topicText) => {
@@ -180,11 +292,11 @@ function BlogGeneratorPanel({ onGenerated }) {
     setResult(null);
     setError(null);
     try {
-      const res = await base44.functions.invoke('autoPublishBlogPost', {});
+      const res = await base44.functions.invoke("autoPublishBlogPost", {});
       setResult(res.data.post);
       if (onGenerated) onGenerated();
     } catch (e) {
-      setError(e?.response?.data?.error || e.message || 'Generation failed');
+      setError(e?.response?.data?.error || e.message || "Generation failed");
     } finally {
       setLoading(false);
     }
@@ -197,18 +309,28 @@ function BlogGeneratorPanel({ onGenerated }) {
           <Sparkles className="w-5 h-5 text-accent" />
         </div>
         <div>
-          <h3 className="font-heading font-bold text-foreground">AI Blog Post Generator</h3>
-          <p className="text-xs text-muted-foreground font-body">Generate and publish a market insight post instantly</p>
+          <h3 className="font-heading font-bold text-foreground">
+            AI Blog Post Generator
+          </h3>
+          <p className="text-xs text-muted-foreground font-body">
+            Generate and publish a market insight post instantly
+          </p>
         </div>
-        <Badge className="ml-auto bg-emerald-100 text-emerald-700 border-emerald-200 text-xs">Auto-publishes</Badge>
+        <Badge className="ml-auto bg-emerald-100 text-emerald-700 border-emerald-200 text-xs">
+          Auto-publishes
+        </Badge>
       </div>
 
-      <p className="text-xs text-muted-foreground font-body mb-3">Suggested topics — click to generate, or type your own:</p>
+      <p className="text-xs text-muted-foreground font-body mb-3">
+        Suggested topics — click to generate, or type your own:
+      </p>
       <div className="flex flex-wrap gap-2 mb-4">
-        {suggestedTopics.map(t => (
+        {suggestedTopics.map((t) => (
           <button
             key={t}
-            onClick={() => { setTopic(t); }}
+            onClick={() => {
+              setTopic(t);
+            }}
             className="text-xs px-3 py-1.5 rounded-full border border-border/60 bg-muted hover:bg-primary/5 hover:border-primary/30 text-muted-foreground hover:text-primary transition-colors font-body text-left"
           >
             {t}
@@ -220,7 +342,7 @@ function BlogGeneratorPanel({ onGenerated }) {
         <input
           type="text"
           value={topic}
-          onChange={e => setTopic(e.target.value)}
+          onChange={(e) => setTopic(e.target.value)}
           placeholder="Or type a custom topic..."
           className="flex-1 px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring"
         />
@@ -229,7 +351,13 @@ function BlogGeneratorPanel({ onGenerated }) {
           disabled={loading}
           className="bg-accent hover:bg-accent/90 font-heading shrink-0 border-0"
         >
-          {loading ? <Loader2 className="w-4 h-4 animate-spin" /> : <><Sparkles className="w-4 h-4 mr-1" /> Generate</>}
+          {loading ? (
+            <Loader2 className="w-4 h-4 animate-spin" />
+          ) : (
+            <>
+              <Sparkles className="w-4 h-4 mr-1" /> Generate
+            </>
+          )}
         </Button>
       </div>
 
@@ -251,13 +379,33 @@ function BlogGeneratorPanel({ onGenerated }) {
         <div className="mt-4 bg-emerald-50 border border-emerald-200 rounded-xl p-4">
           <div className="flex items-center gap-2 mb-2">
             <CheckCircle2 className="w-5 h-5 text-emerald-600" />
-            <span className="font-heading font-semibold text-emerald-800">Post published to Insights!</span>
+            <span className="font-heading font-semibold text-emerald-800">
+              Post published to Insights!
+            </span>
           </div>
-          <p className="text-sm font-heading font-medium text-foreground mb-1">{result.title}</p>
-          <p className="text-xs text-muted-foreground font-body mb-3 line-clamp-2">{result.excerpt}</p>
+          <p className="text-sm font-heading font-medium text-foreground mb-1">
+            {result.title}
+          </p>
+          <p className="text-xs text-muted-foreground font-body mb-3 line-clamp-2">
+            {result.excerpt}
+          </p>
           <div className="flex gap-2">
-            <Button size="sm" variant="outline" className="text-xs" onClick={() => { setResult(null); setTopic(''); }}>Generate Another</Button>
-            <Button size="sm" className="text-xs" asChild><Link to="/insights">View on Site <ExternalLink className="w-3 h-3 ml-1" /></Link></Button>
+            <Button
+              size="sm"
+              variant="outline"
+              className="text-xs"
+              onClick={() => {
+                setResult(null);
+                setTopic("");
+              }}
+            >
+              Generate Another
+            </Button>
+            <Button size="sm" className="text-xs" asChild>
+              <Link to="/insights">
+                View on Site <ExternalLink className="w-3 h-3 ml-1" />
+              </Link>
+            </Button>
           </div>
         </div>
       )}
@@ -267,9 +415,13 @@ function BlogGeneratorPanel({ onGenerated }) {
 
 /* ── Recent Posts ────────────────────────────────────── */
 function RecentPostsPanel({ refresh }) {
-  const { data: posts = [], isLoading, refetch } = useQuery({
-    queryKey: ['admin-posts', refresh],
-    queryFn: () => base44.entities.BlogPost.list('-created_date', 8),
+  const {
+    data: posts = [],
+    isLoading,
+    refetch,
+  } = useQuery({
+    queryKey: ["admin-posts", refresh],
+    queryFn: () => base44.entities.BlogPost.list("-created_date", 8),
   });
 
   return (
@@ -278,26 +430,49 @@ function RecentPostsPanel({ refresh }) {
         <h3 className="font-heading font-bold text-foreground flex items-center gap-2">
           <FileText className="w-4 h-4 text-primary" /> Recent Blog Posts
         </h3>
-        <Button size="sm" variant="ghost" onClick={() => refetch()} className="text-muted-foreground hover:text-foreground">
+        <Button
+          size="sm"
+          variant="ghost"
+          onClick={() => refetch()}
+          className="text-muted-foreground hover:text-foreground"
+        >
           <RefreshCw className="w-3.5 h-3.5 mr-1" /> Refresh
         </Button>
       </div>
       {isLoading ? (
-        <div className="space-y-2">{[1,2,3].map(i => <div key={i} className="h-12 bg-muted animate-pulse rounded-lg" />)}</div>
+        <div className="space-y-2">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-12 bg-muted animate-pulse rounded-lg" />
+          ))}
+        </div>
       ) : posts.length === 0 ? (
-        <p className="text-sm text-muted-foreground font-body text-center py-6">No posts yet. Use the generator above!</p>
+        <p className="text-sm text-muted-foreground font-body text-center py-6">
+          No posts yet. Use the generator above!
+        </p>
       ) : (
         <div className="space-y-2">
-          {posts.map(post => (
-            <div key={post.id} className="flex items-center justify-between p-3 bg-muted/40 rounded-lg">
+          {posts.map((post) => (
+            <div
+              key={post.id}
+              className="flex items-center justify-between p-3 bg-muted/40 rounded-lg"
+            >
               <div className="min-w-0 flex-1">
-                <p className="text-sm font-heading font-medium text-foreground line-clamp-1">{post.title}</p>
+                <p className="text-sm font-heading font-medium text-foreground line-clamp-1">
+                  {post.title}
+                </p>
                 <div className="flex items-center gap-2 mt-0.5">
-                  <Badge variant="secondary" className="text-xs">{post.category}</Badge>
+                  <Badge variant="secondary" className="text-xs">
+                    {post.category}
+                  </Badge>
                   <span className="text-xs text-muted-foreground flex items-center gap-1">
-                    <Calendar className="w-3 h-3" />{moment(post.created_date).fromNow()}
+                    <Calendar className="w-3 h-3" />
+                    {moment(post.created_date).fromNow()}
                   </span>
-                  {post.published && <span className="text-xs text-emerald-600 font-medium">● Live</span>}
+                  {post.published && (
+                    <span className="text-xs text-emerald-600 font-medium">
+                      ● Live
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -308,87 +483,8 @@ function RecentPostsPanel({ refresh }) {
   );
 }
 
-/* ── Recent Properties ───────────────────────────────── */
-function RecentPropertiesPanel() {
-  const { data: properties = [], isLoading, refetch } = useQuery({
-    queryKey: ['admin-properties'],
-    queryFn: () => base44.entities.Property.list('-created_date', 6),
-  });
-
-  const [editingProperty, setEditingProperty] = useState(null);
-
-  const deleteProperty = async (id, e) => {
-    e.preventDefault();
-    if (confirm('Delete this listing?')) {
-      try {
-        await base44.entities.Property.delete(id);
-        refetch();
-      } catch (err) {
-        alert('Failed to delete: ' + (err?.message || 'Unknown error'));
-      }
-    }
-  };
-
-  return (
-    <>
-      <div className="bg-card border border-border/50 rounded-xl p-6">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="font-heading font-bold text-foreground flex items-center gap-2">
-            <Home className="w-4 h-4 text-primary" /> Recent Listings
-          </h3>
-          <Button size="sm" variant="outline" className="text-xs" asChild>
-            <Link to="/properties">View All <ArrowRight className="w-3 h-3 ml-1" /></Link>
-          </Button>
-        </div>
-        {isLoading ? (
-          <div className="space-y-2">{[1,2,3].map(i => <div key={i} className="h-12 bg-muted animate-pulse rounded-lg" />)}</div>
-        ) : properties.length === 0 ? (
-          <p className="text-sm text-muted-foreground font-body text-center py-6">No listings yet. Import from a URL above!</p>
-        ) : (
-          <div className="space-y-2">
-            {properties.map(p => (
-              <div key={p.id} className="flex items-center justify-between p-3 bg-muted/40 rounded-lg group hover:bg-blue-50/30 transition-colors">
-                <Link to={`/properties/${p.id}`} className="min-w-0 flex-1">
-                  <p className="text-sm font-heading font-medium text-foreground line-clamp-1">{p.title}</p>
-                  <div className="flex items-center gap-2 mt-0.5">
-                    <span className="text-xs text-muted-foreground">{p.location}</span>
-                    <span className="text-xs font-medium text-primary">AED {(p.price_aed || 0).toLocaleString()}</span>
-                  </div>
-                </Link>
-                <div className="flex items-center gap-2 ml-2 shrink-0">
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="text-xs text-primary hover:text-primary hover:bg-primary/10 h-7 px-2"
-                    onClick={() => setEditingProperty(p)}
-                  >
-                    <Edit2 className="w-3.5 h-3.5" />
-                  </Button>
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="text-xs text-red-600 hover:text-red-700 hover:bg-red-100/50 h-7 px-2"
-                    onClick={e => deleteProperty(p.id, e)}
-                  >
-                    Delete
-                  </Button>
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-      {editingProperty && (
-        <PropertyEditor
-          property={editingProperty}
-          onClose={() => setEditingProperty(null)}
-          onSaved={() => refetch()}
-        />
-      )}
-    </>
-  );
-}
+/* ── Property Management Dashboard (replaces old RecentPropertiesPanel) ── */
+/* PropertyManagementDashboard is imported and used below */
 
 /* ── Main Page ───────────────────────────────────────── */
 export default function AdminContent() {
@@ -396,18 +492,27 @@ export default function AdminContent() {
   const navigate = useNavigate();
 
   const { data: currentUser, isLoading: userLoading } = useQuery({
-    queryKey: ['currentUser'],
+    queryKey: ["currentUser"],
     queryFn: () => base44.auth.me(),
   });
 
   useEffect(() => {
     if (userLoading) return;
-    if (!currentUser) { navigate('/login', { replace: true }); return; }
-    if (currentUser.role !== 'admin') { navigate('/', { replace: true }); }
+    if (!currentUser) {
+      navigate("/login", { replace: true });
+      return;
+    }
+    if (currentUser.role !== "admin") {
+      navigate("/", { replace: true });
+    }
   }, [currentUser, userLoading, navigate]);
 
-  if (userLoading || !currentUser || currentUser.role !== 'admin') {
-    return <div className="min-h-screen flex items-center justify-center"><div className="w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin" /></div>;
+  if (userLoading || !currentUser || currentUser.role !== "admin") {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin" />
+      </div>
+    );
   }
 
   return (
@@ -415,42 +520,59 @@ export default function AdminContent() {
       {/* Header */}
       <section className="py-12 bg-[#0d1b3e] text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-2">REMAX ZAM — Admin</p>
+          <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-2">
+            REMAX ZAM — Admin
+          </p>
           <div className="flex items-start justify-between">
             <div>
-              <h1 className="text-3xl font-display font-black text-white mb-2">Content Command Centre</h1>
-              <p className="text-white/60 font-body text-sm">Import listings, generate blog posts, and manage your website content — all in one place.</p>
+              <h1 className="text-3xl font-display font-black text-white mb-2">
+                Content Command Centre
+              </h1>
+              <p className="text-white/60 font-body text-sm">
+                Import listings, generate blog posts, and manage your website
+                content — all in one place.
+              </p>
             </div>
-            <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white/10 font-heading shrink-0">
-              <Link to="/admin/team"><Users className="w-4 h-4 mr-2" /> Team Management</Link>
+            <Button
+              asChild
+              variant="outline"
+              className="border-white/30 text-white hover:bg-white/10 font-heading shrink-0"
+            >
+              <Link to="/admin/team">
+                <Users className="w-4 h-4 mr-2" /> Team Management
+              </Link>
             </Button>
           </div>
         </div>
       </section>
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
+        {/* Full Property Management Dashboard */}
+        <PropertyManagementDashboard />
+
+        {/* Import Listing */}
+        <ImportListingPanel />
 
         {/* Automation notice */}
         <div className="flex items-start gap-3 bg-emerald-50 border border-emerald-200 rounded-xl p-4">
           <CheckCircle2 className="w-5 h-5 text-emerald-600 shrink-0 mt-0.5" />
           <div>
-            <p className="text-sm font-heading font-semibold text-emerald-800">Daily Auto-Publishing is Active</p>
-            <p className="text-xs text-emerald-700 font-body mt-0.5">A new AI-generated market insight blog post is automatically published every day at 8:00 AM Dubai time. You can also generate posts manually below at any time.</p>
+            <p className="text-sm font-heading font-semibold text-emerald-800">
+              Daily Auto-Publishing is Active
+            </p>
+            <p className="text-xs text-emerald-700 font-body mt-0.5">
+              A new AI-generated market insight blog post is automatically
+              published every day at 8:00 AM Dubai time. You can also generate
+              posts manually below at any time.
+            </p>
           </div>
         </div>
 
-        {/* Import Listing */}
-        <ImportListingPanel />
-
         {/* Blog Generator */}
-        <BlogGeneratorPanel onGenerated={() => setRefreshPosts(r => r + 1)} />
+        <BlogGeneratorPanel onGenerated={() => setRefreshPosts((r) => r + 1)} />
 
-        {/* Two column: recent posts + recent properties */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <RecentPostsPanel refresh={refreshPosts} />
-          <RecentPropertiesPanel />
-        </div>
-
+        {/* Recent Posts */}
+        <RecentPostsPanel refresh={refreshPosts} />
       </div>
     </div>
   );

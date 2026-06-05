@@ -103,6 +103,11 @@
       "type": "boolean",
       "title": "Featured"
     },
+    "isPocketListing": {
+      "type": "boolean",
+      "title": "Pocket Listing",
+      "default": false
+    },
     "status": {
       "type": "string",
       "enum": [

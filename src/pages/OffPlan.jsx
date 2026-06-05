@@ -187,7 +187,7 @@ export default function OffPlan() {
                       <Link to="/contact">Request Brochure</Link>
                     </Button>
                     <a
-                      href={`https://wa.me/971508794494?text=Hi, I'm interested in ${encodeURIComponent(p.name)} — can an agent assist me?`}
+                      href={`https://wa.me/97145828158?text=Hi, I'm interested in ${encodeURIComponent(p.name)} — can an agent assist me?`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-emerald-500 hover:bg-emerald-600 transition-colors text-white text-xs font-heading font-bold shrink-0"

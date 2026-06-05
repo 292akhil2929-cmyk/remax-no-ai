@@ -18,14 +18,15 @@ export default function PropertyEditor({ property, onClose, onSaved }) {
     area_sqft: property.area_sqft || '',
     price_aed: property.price_aed || '',
     description: property.description || '',
+    isPocketListing: property.isPocketListing || false,
   });
 
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState(null);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value === '' ? null : (isNaN(value) ? value : Number(value)) }));
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : (value === '' ? null : (isNaN(value) ? value : Number(value))) }));
   };
 
   const handleSave = async () => {
@@ -46,8 +47,18 @@ export default function PropertyEditor({ property, onClose, onSaved }) {
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
       <div className="bg-card rounded-xl w-full max-w-2xl max-h-[90vh] overflow-y-auto">
         <div className="sticky top-0 flex items-center justify-between p-6 bg-card border-b border-border/50">
-          <h2 className="font-heading font-bold text-foreground">Edit Property</h2>
-          <button onClick={onClose} className="text-muted-foreground hover:text-foreground">
+          <div className="min-w-0 flex-1">
+            <h2 className="font-heading font-bold text-foreground">Edit Property</h2>
+            <a
+              href={`/properties/${property.id}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 text-xs text-primary hover:text-primary/80 font-body mt-0.5 hover:underline"
+            >
+              View live listing →
+            </a>
+          </div>
+          <button onClick={onClose} className="text-muted-foreground hover:text-foreground shrink-0 ml-4">
             <X className="w-5 h-5" />
           </button>
         </div>
@@ -122,6 +133,34 @@ export default function PropertyEditor({ property, onClose, onSaved }) {
           <div>
             <label className="text-sm font-heading font-medium text-foreground mb-1 block">Description</label>
             <textarea name="description" value={formData.description} onChange={handleChange} rows="4" className="w-full px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring" />
+          </div>
+
+          {/* Pocket Listing Toggle */}
+          <div className="flex items-center justify-between p-4 bg-amber-50 border border-amber-200 rounded-xl">
+            <div className="flex items-start gap-3">
+              <div className="w-5 h-5 rounded bg-amber-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <span className="text-amber-800 text-xs font-bold">P</span>
+              </div>
+              <div>
+                <label htmlFor="isPocketListing" className="text-sm font-heading font-semibold text-amber-900 cursor-pointer">
+                  Mark as Pocket Listing
+                </label>
+                <p className="text-xs text-amber-700 font-body mt-0.5">
+                  Hidden from public search &amp; portal feeds. Only accessible via direct link.
+                </p>
+              </div>
+            </div>
+            <label className="relative inline-flex items-center cursor-pointer">
+              <input
+                type="checkbox"
+                id="isPocketListing"
+                name="isPocketListing"
+                checked={formData.isPocketListing}
+                onChange={handleChange}
+                className="sr-only peer"
+              />
+              <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-amber-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
+            </label>
           </div>
 
           <PropertyImageUpload

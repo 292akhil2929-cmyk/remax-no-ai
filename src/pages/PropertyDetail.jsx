@@ -15,8 +15,8 @@ const AGENT_FALLBACK = {
   name: 'Faisal Contractor',
   role: 'CEO & Founder — REMAX ZAM',
   photo: 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/10/Rectangle-284.jpg',
-  phone: '+971508794494',
-  whatsapp: '971508794494',
+  phone: '+97145828158',
+  whatsapp: '97145828158',
   email: 'info@remaxzam.ae',
 };
 

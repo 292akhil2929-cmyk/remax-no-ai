@@ -81,13 +81,16 @@ export default function Properties() {
     ])
       .then(([dbProperties, pfResponse]) => {
         const pfListings = pfResponse.data?.listings || [];
-        setProperties([...dbProperties, ...pfListings]);
+        // Exclude pocket listings from public search
+        const publicDbProperties = dbProperties.filter((p) => !p.isPocketListing);
+        setProperties([...publicDbProperties, ...pfListings]);
         setLoading(false);
       })
       .catch(() => {
         // Fallback to database only if fetch fails
         base44.entities.Property.list("-created_date", 200).then((data) => {
-          setProperties(data);
+          const publicData = data.filter((p) => !p.isPocketListing);
+          setProperties(publicData);
           setLoading(false);
         });
       });

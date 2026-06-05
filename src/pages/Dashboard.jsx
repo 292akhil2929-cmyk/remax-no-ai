@@ -19,6 +19,7 @@ export default function Dashboard() {
       ? base44.entities.Property.filter({ id: { $in: savedIds } })
       : Promise.resolve([]),
     enabled: true,
+    select: (data) => data.filter((p) => !p.isPocketListing),
   });
 
   const { data: history = [], isLoading: loadingHistory } = useQuery({

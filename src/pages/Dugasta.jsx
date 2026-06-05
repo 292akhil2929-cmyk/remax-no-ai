@@ -277,7 +277,7 @@ export default function Dugasta() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <a href="https://wa.me/971508794494?text=Hi, I'd like to know more about the Dugasta 10 on 10 guaranteed ROI plan" target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/97145828158?text=Hi, I'd like to know more about the Dugasta 10 on 10 guaranteed ROI plan" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
                   <Phone className="w-4 h-4" /> WhatsApp a Specialist
                 </a>
@@ -508,7 +508,7 @@ export default function Dugasta() {
                     <Link to="/contact" className="flex-1 text-center bg-black hover:bg-gray-800 text-white font-heading font-bold text-sm py-3.5 rounded-xl transition-colors">
                       Request Brochure
                     </Link>
-                    <a href="https://wa.me/971508794494?text=Hi, I'd like details on the Dugasta project" target="_blank" rel="noopener noreferrer"
+                    <a href="https://wa.me/97145828158?text=Hi, I'd like details on the Dugasta project" target="_blank" rel="noopener noreferrer"
                       className="flex-1 text-center bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-sm py-3.5 rounded-xl transition-colors">
                       WhatsApp Us
                     </a>
@@ -590,7 +590,7 @@ export default function Dugasta() {
               If you are looking for guaranteed rental income from Dubai property with no service charges, no tenant stress and a built-in exit strategy, the 10 on 10 plan is built for you. Talk to our team today. No pressure, no cost.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://wa.me/971508794494?text=Hi, I want to learn more about the Dugasta 10 on 10 plan" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/97145828158?text=Hi, I want to learn more about the Dugasta 10 on 10 plan" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors">
                 <Phone className="w-4 h-4" /> WhatsApp a Specialist
               </a>

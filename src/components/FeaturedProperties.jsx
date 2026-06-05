@@ -12,6 +12,9 @@ export default function FeaturedProperties() {
     queryFn: () => base44.entities.Property.filter({ featured: true }, '-created_date', 6),
   });
 
+  // Exclude pocket listings from public featured section
+  const visibleProperties = properties.filter((p) => !p.isPocketListing);
+
   if (isLoading) {
     return (
       <section className="py-12 bg-slate-900">
@@ -49,14 +52,14 @@ export default function FeaturedProperties() {
         </motion.div>
 
         {/* Properties Grid */}
-        {properties.length > 0 ? (
+        {visibleProperties.length > 0 ? (
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"
           >
-            {properties.map((p, idx) => (
+            {visibleProperties.map((p, idx) => (
               <motion.div
                 key={p.id}
                 initial={{ opacity: 0, y: 40 }}

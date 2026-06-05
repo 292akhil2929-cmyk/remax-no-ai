@@ -3,7 +3,7 @@ import LeadCaptureForm from '../components/LeadCaptureForm';
 
 const contactInfo = [
   { icon: MapPin, label: 'Office', value: 'Bay View Tower, Office No. 1102, Dubai, UAE' },
-  { icon: Phone, label: 'Phone', value: '+971508794494' },
+  { icon: Phone, label: 'Phone', value: '+97145828158' },
   { icon: Mail, label: 'Email', value: 'info@remaxzam.ae' },
   { icon: Clock, label: 'Hours', value: 'Sun - Thu: 9AM - 6PM' },
 ];

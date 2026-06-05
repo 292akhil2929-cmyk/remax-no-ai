@@ -258,7 +258,7 @@ export default function DugastaTR() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3">
-                <a href="https://wa.me/971508794494?text=Merhaba, Dugasta 10 on 10 garantili ROI planı hakkında daha fazla bilgi almak istiyorum" target="_blank" rel="noopener noreferrer"
+                <a href="https://wa.me/97145828158?text=Merhaba, Dugasta 10 on 10 garantili ROI planı hakkında daha fazla bilgi almak istiyorum" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
                   <Phone className="w-4 h-4" /> WhatsApp ile Uzmanla Konuş
                 </a>
@@ -489,7 +489,7 @@ export default function DugastaTR() {
                     <Link to="/contact" className="flex-1 text-center bg-black hover:bg-gray-800 text-white font-heading font-bold text-sm py-3.5 rounded-xl transition-colors">
                       Broşür İste
                     </Link>
-                    <a href="https://wa.me/971508794494?text=Merhaba, Dugasta projesi hakkında bilgi almak istiyorum" target="_blank" rel="noopener noreferrer"
+                    <a href="https://wa.me/97145828158?text=Merhaba, Dugasta projesi hakkında bilgi almak istiyorum" target="_blank" rel="noopener noreferrer"
                       className="flex-1 text-center bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-sm py-3.5 rounded-xl transition-colors">
                       WhatsApp
                     </a>
@@ -571,7 +571,7 @@ export default function DugastaTR() {
               Dubai mülkünden hizmet ücreti, kiracı stresi ve yerleşik bir çıkış stratejisi olmadan garantili kira geliri arıyorsanız, 10 on 10 planı tam size göre yapılandırılmıştır. Bugün ekibimizle konuşun. Baskı yok, maliyet yok.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="https://wa.me/971508794494?text=Merhaba, Dugasta 10 on 10 planı hakkında daha fazla bilgi almak istiyorum" target="_blank" rel="noopener noreferrer"
+              <a href="https://wa.me/97145828158?text=Merhaba, Dugasta 10 on 10 planı hakkında daha fazla bilgi almak istiyorum" target="_blank" rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors">
                 <Phone className="w-4 h-4" /> WhatsApp ile Uzmanla Konuş
               </a>
