@@ -28,6 +28,7 @@ import Dashboard from './pages/Dashboard';
 import AdminContent from './pages/AdminContent';
 import ThemePreview from './pages/ThemePreview';
 import BannerVideoGallery from './pages/BannerVideoGallery';
+import ReadyListings from './pages/ReadyListings';
 import Dugasta from './pages/Dugasta';
 import HighROI from './pages/HighROI';
 import Developers from './pages/Developers';
@@ -80,6 +81,7 @@ const AuthenticatedApp = () => {
         <Route path="/" element={<Home />} />
         <Route path="/properties" element={<Properties />} />
         <Route path="/properties/:propertyId" element={<PropertyDetail />} />
+        <Route path="/ready-listings" element={<ReadyListings />} />
         <Route path="/join" element={<JoinUs />} />
         <Route path="/insights" element={<Insights />} />
         <Route path="/contact" element={<Contact />} />
