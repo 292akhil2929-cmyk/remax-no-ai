@@ -21,6 +21,7 @@ import ImageUploadSection from "@/components/PropertyImageUpload";
 import AgentSelector from "@/components/AgentSelector";
 import PropertyEditor from "@/components/PropertyEditor";
 import PropertyManagementDashboard from "@/components/PropertyManagementDashboard";
+import ManualPropertyForm from "@/components/ManualPropertyForm";
 
 /* ── Import Listing from URL ─────────────────────────── */
 function ImportListingPanel() {
@@ -489,6 +490,7 @@ function RecentPostsPanel({ refresh }) {
 /* ── Main Page ───────────────────────────────────────── */
 export default function AdminContent() {
   const [refreshPosts, setRefreshPosts] = useState(0);
+  const [entryMode, setEntryMode] = useState('import'); // 'import' | 'manual'
   const navigate = useNavigate();
 
   const { data: currentUser, isLoading: userLoading } = useQuery({
@@ -550,8 +552,39 @@ export default function AdminContent() {
         {/* Full Property Management Dashboard */}
         <PropertyManagementDashboard />
 
-        {/* Import Listing */}
-        <ImportListingPanel />
+        {/* Add New Property — Toggle between Auto-Import and Manual Entry */}
+        <div className="bg-card border border-border/50 rounded-xl overflow-hidden">
+          {/* Toggle Header */}
+          <div className="flex border-b border-border/50">
+            <button
+              onClick={() => setEntryMode('import')}
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-heading font-semibold transition-colors ${
+                entryMode === 'import'
+                  ? 'bg-primary/5 text-primary border-b-2 border-primary'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/30'
+              }`}
+            >
+              <LinkIcon className="w-4 h-4" />
+              Auto-Import (Dubizzle Scraper)
+            </button>
+            <button
+              onClick={() => setEntryMode('manual')}
+              className={`flex-1 flex items-center justify-center gap-2 px-4 py-3.5 text-sm font-heading font-semibold transition-colors ${
+                entryMode === 'manual'
+                  ? 'bg-primary/5 text-primary border-b-2 border-primary'
+                  : 'text-muted-foreground hover:text-foreground hover:bg-muted/30'
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+              </svg>
+              Manual Entry
+            </button>
+          </div>
+
+          {/* Panel Content */}
+          {entryMode === 'import' ? <ImportListingPanel /> : <ManualPropertyForm onBack={() => setEntryMode('import')} />}
+        </div>
 
         {/* Automation notice */}
         <div className="flex items-start gap-3 bg-emerald-50 border border-emerald-200 rounded-xl p-4">
