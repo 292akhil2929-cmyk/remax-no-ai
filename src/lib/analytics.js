@@ -1,5 +1,5 @@
 // GA4 Analytics helper — wraps window.gtag with safe guards
-export const GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+export const GA_MEASUREMENT_ID = 'G-99V9C9JK01';
 
 /** Fire a GA4 page_view event (used by SPA route tracker) */
 export function trackPageView(path) {
