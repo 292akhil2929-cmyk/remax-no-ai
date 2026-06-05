@@ -41,6 +41,7 @@ const INITIAL_FORM = {
   transaction_type: 'Residential Sale',
   listing_status: 'Ready',
   isPocketListing: false,
+  featured: false,
   price_aed: '',
   area_sqft: '',
   community: '',
@@ -132,6 +133,7 @@ export default function ManualPropertyForm({ onBack }) {
         transaction_type: formData.transaction_type,
         listing_status: formData.listing_status,
         isPocketListing: formData.isPocketListing,
+        featured: formData.featured,
         price_aed: Number(formData.price_aed),
         area_sqft: formData.area_sqft ? Number(formData.area_sqft) : null,
         community: formData.community.trim(),
@@ -312,10 +314,52 @@ export default function ManualPropertyForm({ onBack }) {
                 <input
                   type="checkbox"
                   checked={formData.isPocketListing}
-                  onChange={(e) => handleChange('isPocketListing', e.target.checked)}
+                  onChange={(e) => {
+                    handleChange('isPocketListing', e.target.checked);
+                    // If pocket listing is turned on, auto-uncheck featured
+                    if (e.target.checked) {
+                      handleChange('featured', false);
+                    }
+                  }}
                   className="sr-only peer"
                 />
                 <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-amber-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-amber-500"></div>
+              </label>
+            </div>
+
+            {/* Featured Toggle */}
+            <div className="flex items-center justify-between p-4 bg-sky-50 border border-sky-200 rounded-xl">
+              <div className="flex items-start gap-3">
+                <div className="w-5 h-5 rounded bg-sky-200 flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <svg className="w-3 h-3 text-sky-800" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                </div>
+                <div>
+                  <label className="text-sm font-heading font-semibold text-sky-900 cursor-pointer">
+                    Feature on Landing Page
+                  </label>
+                  <p className="text-xs text-sky-700 font-body mt-0.5">
+                    Show this property in the featured listings section on the homepage.
+                  </p>
+                  {formData.isPocketListing && (
+                    <p className="text-xs text-amber-600 font-body mt-1 flex items-center gap-1">
+                      <AlertCircle className="w-3 h-3" /> Pocket listings cannot be featured on the public homepage.
+                    </p>
+                  )}
+                </div>
+              </div>
+              <label className="relative inline-flex items-center cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={formData.featured}
+                  onChange={(e) => handleChange('featured', e.target.checked)}
+                  disabled={formData.isPocketListing}
+                  className="sr-only peer"
+                />
+                <div className={`w-11 h-6 rounded-full peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-sky-300 after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all ${
+                  formData.isPocketListing
+                    ? 'bg-gray-200 cursor-not-allowed'
+                    : 'bg-gray-200 peer-checked:bg-sky-500 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white cursor-pointer'
+                }`}></div>
               </label>
             </div>
           </div>

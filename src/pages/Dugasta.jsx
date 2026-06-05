@@ -26,7 +26,7 @@ const PROJECTS = [
     roi: '10% Guaranteed',
     area: '719 to 1,400 sqft',
     tag: '10 on 10 Plan',
-    image: '/images/dugasta.webp',
+    image: '/images/12.webp',
     highlights: [
       '10% net ROI guaranteed for 10 years by contract',
       'Zero service charges for the full 10 year period',
@@ -47,7 +47,7 @@ const PROJECTS = [
     roi: '10% Guaranteed',
     area: 'From 450 sqft',
     tag: 'Low Entry Price',
-    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/31f67884a_generated_image.png',
+    image: '/images/13.webp',
     highlights: [
       'Most affordable entry point in the Dugasta portfolio',
       '10% guaranteed annual return for the first 5 years',
@@ -68,7 +68,7 @@ const PROJECTS = [
     roi: '9 to 10%',
     area: 'From 500 sqft',
     tag: 'Near Handover',
-    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/4859121f7_generated_image.png',
+    image: '/images/14.webp',
     highlights: [
       'Very close to handover, so you can start earning quickly',
       'International City consistently has the highest rental demand in Dubai',
@@ -77,27 +77,6 @@ const PROJECTS = [
       'Fully registered with RERA and DLD escrow protected',
     ],
     description: "Moonsa Residences 2 is in International City, which has one of the highest occupancy rates in all of Dubai. Because it's so close to handover, investors can realistically start earning rental income within a few months.",
-  },
-  {
-    name: 'Weybridge Gardens 3',
-    community: 'Dubailand',
-    type: 'Apartments',
-    priceFrom: 'AED 650,000',
-    bedrooms: '1 to 2 BR',
-    handover: 'Q2 2027',
-    paymentPlan: '1% Monthly Post-Handover',
-    roi: '8 to 10%',
-    area: 'From 700 sqft',
-    tag: 'Exclusive via RE/MAX ZAM',
-    image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/889d50666_generated_image.png',
-    highlights: [
-      'Available exclusively through RE/MAX ZAM before public launch',
-      'Just 1% per month makes this one of the most accessible plans in Dubai',
-      'Smart home features and high quality finish throughout',
-      'Dubailand is seeing strong and consistent rental demand',
-      'Good capital appreciation expected by the time of handover',
-    ],
-    description: 'Weybridge Gardens 3 is only available through RE/MAX ZAM right now. The 1% monthly payment plan is genuinely one of the most accessible structures in the market, making it a great starting point for first-time Dubai investors.',
   },
 ];
 
@@ -245,11 +224,6 @@ export default function Dugasta() {
 
             {/* Copy — 3 cols */}
             <motion.div className="lg:col-span-3" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9 }}>
-              {/* Badge */}
-              <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/40 rounded-full px-4 py-1.5 mb-7">
-                <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                <span className="text-amber-400 font-heading font-bold text-[10px] tracking-[0.25em] uppercase">Available Through RE/MAX ZAM Dubai</span>
-              </div>
 
               <h1 className="font-display font-black text-white leading-[0.95] mb-6">
                 <span className="block text-5xl sm:text-7xl lg:text-8xl">10% Guaranteed</span>
@@ -464,24 +438,27 @@ export default function Dugasta() {
 
           <AnimatePresence mode="wait">
             <motion.div key={activeProject} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 bg-gray-50 rounded-2xl overflow-hidden border border-gray-100">
-                {/* Image */}
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <img src={PROJECTS[activeProject].image} alt={PROJECTS[activeProject].name} className="w-full h-full object-cover" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                  <span className="absolute top-4 left-4 bg-amber-500 text-black text-[10px] font-heading font-bold px-3 py-1.5 rounded-full">
+              <div className="grid grid-cols-1 lg:grid-cols-2 bg-gray-50 rounded-2xl overflow-hidden border border-gray-100 shadow-sm">
+                {/* Image — fills full column height */}
+                <div className="relative min-h-[320px] lg:min-h-full overflow-hidden">
+                  <img src={PROJECTS[activeProject].image} alt={PROJECTS[activeProject].name} className="absolute inset-0 w-full h-full object-cover" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+                  {/* Tag */}
+                  <span className="absolute top-5 left-5 bg-amber-500 text-black text-[10px] font-heading font-bold px-3 py-1.5 rounded-full shadow-lg">
                     {PROJECTS[activeProject].tag}
                   </span>
-                  <div className="absolute bottom-4 left-4 right-4">
-                    <p className="text-white font-display font-black text-2xl leading-tight">{PROJECTS[activeProject].name}</p>
-                    <p className="text-white/60 text-xs font-body flex items-center gap-1 mt-1">
+                  {/* Title overlay */}
+                  <div className="absolute bottom-5 left-5 right-5">
+                    <p className="text-white font-display font-black text-2xl leading-tight drop-shadow-lg">{PROJECTS[activeProject].name}</p>
+                    <p className="text-white/70 text-xs font-body flex items-center gap-1 mt-1.5 drop-shadow">
                       <MapPin className="w-3 h-3" />{PROJECTS[activeProject].community}
                     </p>
                   </div>
                 </div>
                 {/* Details */}
-                <div className="p-8">
+                <div className="p-8 lg:p-10 flex flex-col">
                   <p className="text-gray-500 font-body text-sm leading-relaxed mb-6">{PROJECTS[activeProject].description}</p>
+                  {/* Specs grid */}
                   <div className="grid grid-cols-2 gap-3 mb-6 text-xs font-body">
                     {[
                       { label: 'Price From', value: PROJECTS[activeProject].priceFrom },
@@ -497,14 +474,16 @@ export default function Dugasta() {
                       </div>
                     ))}
                   </div>
-                  <ul className="space-y-2 mb-7">
+                  {/* Highlights */}
+                  <ul className="space-y-2 mb-auto">
                     {PROJECTS[activeProject].highlights.map(h => (
                       <li key={h} className="flex items-start gap-2 text-xs text-gray-600 font-body">
                         <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0 mt-0.5" /> {h}
                       </li>
                     ))}
                   </ul>
-                  <div className="flex flex-col sm:flex-row gap-3">
+                  {/* Actions */}
+                  <div className="flex flex-col sm:flex-row gap-3 mt-7 pt-6 border-t border-gray-200">
                     <Link to="/contact" className="flex-1 text-center bg-black hover:bg-gray-800 text-white font-heading font-bold text-sm py-3.5 rounded-xl transition-colors">
                       Request Brochure
                     </Link>
