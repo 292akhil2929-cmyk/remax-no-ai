@@ -22,6 +22,7 @@ import AgentSelector from "@/components/AgentSelector";
 import PropertyEditor from "@/components/PropertyEditor";
 import PropertyManagementDashboard from "@/components/PropertyManagementDashboard";
 import ManualPropertyForm from "@/components/ManualPropertyForm";
+import ManagePodcast from "@/components/ManagePodcast";
 
 /* ── Import Listing from URL ─────────────────────────── */
 function ImportListingPanel() {
@@ -491,6 +492,7 @@ function RecentPostsPanel({ refresh }) {
 export default function AdminContent() {
   const [refreshPosts, setRefreshPosts] = useState(0);
   const [entryMode, setEntryMode] = useState('import'); // 'import' | 'manual'
+  const [adminTab, setAdminTab] = useState('content'); // 'content' | 'podcast'
   const navigate = useNavigate();
 
   const { data: currentUser, isLoading: userLoading } = useQuery({
@@ -548,6 +550,35 @@ export default function AdminContent() {
         </div>
       </section>
 
+      {/* Tab Navigation */}
+      <div className="border-b border-border/50 bg-card">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex gap-1">
+            {[
+              { id: 'content', label: 'Content & Listings' },
+              { id: 'podcast', label: 'Manage Podcast' },
+            ].map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => setAdminTab(tab.id)}
+                className={`px-5 py-3.5 text-sm font-heading font-semibold border-b-2 transition-colors ${
+                  adminTab === tab.id
+                    ? 'border-primary text-primary'
+                    : 'border-transparent text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      {adminTab === 'podcast' ? (
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <ManagePodcast />
+        </div>
+      ) : (
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-6">
         {/* Full Property Management Dashboard */}
         <PropertyManagementDashboard />
@@ -607,6 +638,7 @@ export default function AdminContent() {
         {/* Recent Posts */}
         <RecentPostsPanel refresh={refreshPosts} />
       </div>
+      )}
     </div>
   );
 }

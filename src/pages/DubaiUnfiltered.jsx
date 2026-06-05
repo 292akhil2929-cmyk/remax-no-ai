@@ -1,56 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+import { base44 } from '@/api/base44Client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, X, ArrowRight, Mic, Eye, TrendingUp, Shield, ExternalLink, Youtube } from 'lucide-react';
-
-// ── EPISODES ──────────────────────────────────────────────────────────────────
-// All YouTube video IDs pulled directly from @REMAXZAM channel
-const EPISODES = [
-  {
-    ep: 'Episode 4',
-    title: 'HNI Wealth Secrets: How Dubai Elite Invest With DAMAC',
-    description: 'Uncover the secrets for scaling luxury HNI portfolios and building trust while navigating mixed sentiments in Dubai\'s current real estate market.',
-    youtubeId: 'JSnKOFfZRIY',
-    thumbnail: `https://i.ytimg.com/vi/JSnKOFfZRIY/maxresdefault.jpg`,
-    duration: '16:02',
-    guest: 'DAMAC Properties',
-    tag: 'Luxury Investing',
-    featured: false,
-  },
-  {
-    ep: 'Episode 3',
-    title: 'Is Dubai Real Estate in Trouble? The Real Problem Isn\'t What You Think.',
-    description: 'Discover exactly how smart investors navigate the current Dubai property market. Learn to identify highly secure opportunities and filter out the noise.',
-    youtubeId: 'x4fUoWMCSjQ',
-    thumbnail: `https://i.ytimg.com/vi/x4fUoWMCSjQ/maxresdefault.jpg`,
-    duration: '27:30',
-    guest: 'Devmark',
-    tag: 'Market Reality',
-    featured: false,
-  },
-  {
-    ep: 'Episode 2',
-    title: 'Smart Money, Real Moves: How Smart Investors Move Capital',
-    description: 'Explore how UAE developers leverage iconic design and branding to build investor wealth within Dubai\'s evolving property market.',
-    youtubeId: 'XCrtYo-W5Es',
-    thumbnail: `https://i.ytimg.com/vi/XCrtYo-W5Es/maxresdefault.jpg`,
-    duration: '24:57',
-    guest: 'Sobha Realty',
-    tag: 'Wealth Strategy',
-    featured: false,
-  },
-  {
-    ep: 'Episode 1',
-    title: 'Beyond the Hype: Don\'t Invest in Dubai Real Estate in 2026 Until You Watch This',
-    description: 'Discover how smart investors build and grow high-performing real estate portfolios in Dubai\'s thriving property market. The episode that started it all.',
-    youtubeId: 'X0YeF0lsHYU',
-    thumbnail: `https://i.ytimg.com/vi/X0YeF0lsHYU/maxresdefault.jpg`,
-    duration: '23:01',
-    guest: 'Industry Panel',
-    tag: 'Foundation',
-    featured: true,
-  },
-];
 
 const WHY_CARDS = [
   {
@@ -166,8 +119,27 @@ function EpisodeCard({ episode, onPlay, index }) {
 // ── PAGE ─────────────────────────────────────────────────────────────────────
 export default function DubaiUnfiltered() {
   const [activeEpisode, setActiveEpisode] = useState(null);
-  const featured = EPISODES.find(e => e.featured);
-  const rest = EPISODES.filter(e => !e.featured);
+
+  const { data: dbEpisodes = [], isLoading: episodesLoading } = useQuery({
+    queryKey: ['podcast-episodes'],
+    queryFn: () => base44.entities.PodcastEpisode.list('-episodeNumber'),
+  });
+
+  // Normalise DB episodes to match existing episode shape
+  const episodes = dbEpisodes.map(ep => ({
+    ep: ep.episodeNumber ? `Episode ${ep.episodeNumber}` : '',
+    title: ep.title,
+    description: ep.description || '',
+    youtubeId: ep.youtubeVideoId,
+    thumbnail: `https://i.ytimg.com/vi/${ep.youtubeVideoId}/maxresdefault.jpg`,
+    duration: '',
+    guest: '',
+    tag: '',
+    featured: false,
+  }));
+
+  const featured = episodes[episodes.length - 1] || null; // lowest episode number = first episode
+  const rest = episodes.slice(0, -1);
   const introVideo = { title: 'Dubai Real Estate: The Unfiltered Truth (2026 Market Analysis)', thumbnail: 'https://i.ytimg.com/vi/hum-yWzaMnY/maxresdefault.jpg' };
 
   return (
@@ -206,8 +178,9 @@ export default function DubaiUnfiltered() {
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
               <button
-                onClick={() => setActiveEpisode(featured)}
-                className="inline-flex items-center gap-2.5 bg-red-600 hover:bg-red-500 text-white font-heading font-bold text-sm px-6 py-3.5 rounded-xl transition-colors"
+                onClick={() => episodes[0] && setActiveEpisode(episodes[0])}
+                disabled={!episodes[0]}
+                className="inline-flex items-center gap-2.5 bg-red-600 hover:bg-red-500 text-white font-heading font-bold text-sm px-6 py-3.5 rounded-xl transition-colors disabled:opacity-50"
               >
                 <Play className="w-4 h-4 fill-white" /> Watch Latest Episode
               </button>
@@ -331,7 +304,22 @@ export default function DubaiUnfiltered() {
             </div>
           </motion.div>
 
+          {/* Loading state */}
+          {episodesLoading && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 mb-6">
+              {[1,2,3].map(i => <div key={i} className="aspect-video bg-gray-100 animate-pulse rounded-2xl" />)}
+            </div>
+          )}
+
+          {/* Empty state */}
+          {!episodesLoading && episodes.length === 0 && (
+            <div className="text-center py-16 text-gray-400 font-body">
+              <p>Episodes coming soon. Subscribe on YouTube to stay updated.</p>
+            </div>
+          )}
+
           {/* Featured episode — large */}
+          {!episodesLoading && featured && (
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -370,13 +358,16 @@ export default function DubaiUnfiltered() {
               </div>
             </div>
           </motion.div>
+          )}
 
           {/* Remaining episodes grid */}
+          {!episodesLoading && rest.length > 0 && (
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
             {rest.map((ep, i) => (
               <EpisodeCard key={ep.youtubeId} episode={ep} onPlay={setActiveEpisode} index={i} />
             ))}
           </div>
+          )}
         </div>
       </section>
 
