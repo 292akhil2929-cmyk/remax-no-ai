@@ -8,6 +8,8 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import { AudienceProvider } from '@/lib/AudienceContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import { useEffect } from 'react';
+import { trackPageView } from '@/lib/analytics';
+import OutboundLinkTracker from '@/components/OutboundLinkTracker';
 import Home from './pages/Home.jsx';
 import Properties from './pages/Properties.jsx';
 import PropertyDetail from './pages/PropertyDetail';
@@ -46,6 +48,11 @@ import Apply from './pages/Apply';
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
   const location = useLocation();
+
+  // SPA route tracking — fire page_view on every navigation
+  useEffect(() => {
+    trackPageView(location.pathname + location.search);
+  }, [location.pathname, location.search]);
 
   useEffect(() => {
     if (authError?.type === 'auth_required' && location.pathname !== '/login') {
@@ -137,6 +144,7 @@ function App() {
       <AudienceProvider>
         <QueryClientProvider client={queryClientInstance}>
           <Router>
+            <OutboundLinkTracker />
             <AuthenticatedApp />
           </Router>
           <Toaster />
