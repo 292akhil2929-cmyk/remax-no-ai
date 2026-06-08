@@ -10,6 +10,7 @@ import MortgageCalculator from '../components/MortgageCalculator';
 import ROICalculator from '../components/ROICalculator';
 import PropertyInsightsPanel from '../components/PropertyInsightsPanel';
 import PropertyImageGallery from '../components/PropertyImageGallery';
+import { trackLeadEvent } from '@/lib/analytics';
 
 const AGENT_FALLBACK = {
   name: 'Faisal Contractor',
@@ -54,15 +55,15 @@ function AgentCard({ agent, propertyTitle }) {
         </div>
       </div>
       <div className="grid grid-cols-3 gap-2">
-        <a href={`tel:${agent.phone}`} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+        <a href={`tel:${agent.phone}`} onClick={() => trackLeadEvent('phone', { source: 'PropertyDetail' })} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
           <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
           <span className="text-[9px] font-body text-muted-foreground">Call</span>
         </a>
-        <a href={`https://wa.me/${agent.whatsapp}?text=Hi, I'm interested in ${encodeURIComponent(propertyTitle)} — can you assist me?`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
+        <a href={`https://wa.me/${agent.whatsapp}?text=Hi, I'm interested in ${encodeURIComponent(propertyTitle)} — can you assist me?`} target="_blank" rel="noopener noreferrer" onClick={() => trackLeadEvent('whatsapp', { source: 'PropertyDetail' })} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
           <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
           <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
         </a>
-        <a href={`mailto:${agent.email}`} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+        <a href={`mailto:${agent.email}`} onClick={() => trackLeadEvent('email', { source: 'PropertyDetail' })} className="flex flex-col items-center gap-1 p-2.5 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
           <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
           <span className="text-[9px] font-body text-muted-foreground">Email</span>
         </a>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { TrendingUp, Calendar, CheckCircle2, ArrowRight, MapPin, MessageCircle } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { trackLeadEvent } from '@/lib/analytics';
 
 const projects = [
   {
@@ -190,6 +191,7 @@ export default function OffPlan() {
                       href={`https://wa.me/97145828158?text=Hi, I'm interested in ${encodeURIComponent(p.name)} — can an agent assist me?`}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={() => trackLeadEvent('whatsapp', { source: 'OffPlan' })}
                       className="flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-emerald-500 hover:bg-emerald-600 transition-colors text-white text-xs font-heading font-bold shrink-0"
                     >
                       <MessageCircle className="w-3.5 h-3.5" /> Agent

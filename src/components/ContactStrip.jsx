@@ -1,4 +1,5 @@
 import { Phone, Mail, MessageCircle } from 'lucide-react';
+import { trackLeadEvent } from '@/lib/analytics';
 
 const WHATSAPP_NUMBER = '97145828158';
 const WHATSAPP_MSG = encodeURIComponent("Hi, I'd like to get more information about Dubai real estate.");
@@ -18,6 +19,7 @@ export default function ContactStrip() {
               href={`https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MSG}`}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackLeadEvent('whatsapp', { source: 'ContactStrip' })}
               className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-heading font-bold text-xs px-5 py-2.5 rounded-xl transition-colors"
             >
               <MessageCircle className="w-4 h-4" />
@@ -25,6 +27,7 @@ export default function ContactStrip() {
             </a>
             <a
               href={`tel:${PHONE.replace(/\s/g, '')}`}
+              onClick={() => trackLeadEvent('phone', { source: 'ContactStrip' })}
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-heading font-semibold text-xs px-5 py-2.5 rounded-xl transition-colors border border-white/20"
             >
               <Phone className="w-4 h-4" />
@@ -32,6 +35,7 @@ export default function ContactStrip() {
             </a>
             <a
               href={`mailto:${EMAIL}`}
+              onClick={() => trackLeadEvent('email', { source: 'ContactStrip' })}
               className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white font-heading font-semibold text-xs px-5 py-2.5 rounded-xl transition-colors border border-white/20"
             >
               <Mail className="w-4 h-4" />

@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { isValidEmail, isValidPhone, isValidName } from '@/lib/validation';
-import { trackEvent } from '@/lib/analytics';
+import { trackEvent, trackLeadEvent } from '@/lib/analytics';
 
 export default function LeadCaptureForm({ leadType = "Investor", source = "Website", compact = false }) {
   const [submitted, setSubmitted] = useState(false);
@@ -34,6 +34,7 @@ export default function LeadCaptureForm({ leadType = "Investor", source = "Websi
     onSuccess: async (_response, variables) => {
       setSubmitted(true);
       trackEvent('generate_lead', { lead_type: variables.lead_type, source: variables.source });
+      trackLeadEvent('form_submission', { lead_type: variables.lead_type, source: variables.source });
       try {
         const res = await base44.functions.invoke('sendLeadToBitrix', { ...variables, page_url: window.location.href });
         console.log('[Bitrix Lead] Success:', res?.data);

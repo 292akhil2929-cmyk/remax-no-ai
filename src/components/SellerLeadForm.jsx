@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { isValidEmail, isValidPhone, isValidName, isValidPrice } from '@/lib/validation';
+import { trackLeadEvent } from '@/lib/analytics';
 
 export default function SellerLeadForm({ source = "Website", compact = false }) {
   const [submitted, setSubmitted] = useState(false);
@@ -42,6 +43,7 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
     mutationFn: (data) => base44.functions.invoke('createLead', data),
     onSuccess: async (_response, variables) => {
       setSubmitted(true);
+      trackLeadEvent('form_submission', { lead_type: variables.lead_type || 'Seller', source: variables.source });
       try {
         const res = await base44.functions.invoke('sendLeadToBitrix', { ...variables, page_url: window.location.href });
         console.log('[Bitrix Lead] Success:', res?.data);

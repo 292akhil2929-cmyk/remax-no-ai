@@ -7,6 +7,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, ArrowRight, Upload, User, Briefcase, Building2, FileText, Loader2 } from 'lucide-react';
 import { isValidEmail, isValidPhone, isValidName } from '@/lib/validation';
+import { trackLeadEvent } from '@/lib/analytics';
 
 const EMPTY_FORM = {
   // Section A — Personal & Contact
@@ -143,6 +144,7 @@ export default function Apply() {
     mutationFn: (data) => base44.functions.invoke('createLead', data),
     onSuccess: async (_response, variables) => {
       setSubmitted(true);
+      trackLeadEvent('form_submission', { lead_type: 'Agent', source: 'Apply Page' });
       try {
         const bitrixRes = await base44.functions.invoke('sendRecruitmentToBitrix', variables);
         console.log('[Bitrix Recruitment] Success:', bitrixRes?.data);

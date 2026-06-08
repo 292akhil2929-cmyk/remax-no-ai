@@ -3,6 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { Phone, Mail, MessageCircle, Star, ArrowRight, Users, Award, TrendingUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import { trackLeadEvent } from '@/lib/analytics';
 
 const FALLBACK = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg';
 
@@ -76,17 +77,17 @@ export default function Team() {
                       <p className="text-sm text-muted-foreground font-body leading-relaxed mb-6 max-w-xl">{ceo.about}</p>
                       <div className="flex gap-3">
                         {ceo.phone && (
-                          <a href={`tel:${ceo.phone}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
+                          <a href={`tel:${ceo.phone}`} onClick={() => trackLeadEvent('phone', { source: 'Team' })} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
                             <Phone className="w-4 h-4" /> Call
                           </a>
                         )}
                         {ceo.whatsapp && (
-                          <a href={`https://wa.me/${ceo.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors text-sm font-body text-muted-foreground hover:text-emerald-600">
+                          <a href={`https://wa.me/${ceo.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={() => trackLeadEvent('whatsapp', { source: 'Team' })} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors text-sm font-body text-muted-foreground hover:text-emerald-600">
                             <MessageCircle className="w-4 h-4" /> WhatsApp
                           </a>
                         )}
                         {ceo.email && (
-                          <a href={`mailto:${ceo.email}`} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
+                          <a href={`mailto:${ceo.email}`} onClick={() => trackLeadEvent('email', { source: 'Team' })} className="flex items-center gap-2 px-4 py-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors text-sm font-body text-muted-foreground hover:text-primary">
                             <Mail className="w-4 h-4" /> Email
                           </a>
                         )}
@@ -116,19 +117,19 @@ export default function Team() {
                       <p className="text-xs text-muted-foreground font-body leading-relaxed mb-5">{agent.about}</p>
                       <div className="grid grid-cols-3 gap-2 pt-3 border-t border-border/50">
                         {agent.phone && (
-                          <a href={`tel:${agent.phone}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+                          <a href={`tel:${agent.phone}`} onClick={() => trackLeadEvent('phone', { source: 'Team' })} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
                             <Phone className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
                             <span className="text-[9px] font-body text-muted-foreground">Call</span>
                           </a>
                         )}
                         {agent.whatsapp && (
-                          <a href={`https://wa.me/${agent.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
+                          <a href={`https://wa.me/${agent.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={() => trackLeadEvent('whatsapp', { source: 'Team' })} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-emerald-50 transition-colors group">
                             <MessageCircle className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600" />
                             <span className="text-[9px] font-body text-muted-foreground">WhatsApp</span>
                           </a>
                         )}
                         {agent.email && (
-                          <a href={`mailto:${agent.email}`} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
+                          <a href={`mailto:${agent.email}`} onClick={() => trackLeadEvent('email', { source: 'Team' })} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-muted/50 hover:bg-primary/10 transition-colors group">
                             <Mail className="w-4 h-4 text-muted-foreground group-hover:text-primary" />
                             <span className="text-[9px] font-body text-muted-foreground">Email</span>
                           </a>

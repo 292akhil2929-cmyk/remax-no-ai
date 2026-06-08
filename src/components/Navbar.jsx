@@ -1,7 +1,8 @@
 import { useState, useRef, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Menu, X, ChevronDown, Heart } from 'lucide-react';
 import { useAudience } from '@/lib/AudienceContext';
+import { getSavedIds } from '@/lib/favorites';
 
 const NAV_GROUPS = [
   {
@@ -38,19 +39,13 @@ const NAV_GROUPS = [
     ],
   },
   {
-    label: 'Resources',
+    label: 'About Us',
     items: [
-      { label: 'What We Do', path: '/services', desc: 'Everything we handle so you do not have to' },
-      { label: 'Join as an Agent', path: '/apply', desc: 'Work with one of the most active teams in Dubai' },
-    ],
-  },
-  {
-    label: 'Company',
-    items: [
-      { label: 'About Us', path: '/about', desc: 'Who we are and why we do things differently' },
+      { label: 'Our Profile', path: '/about', desc: 'Who we are and why we do things differently' },
       { label: 'RE/MAX Dubai', path: '/remax-dubai', desc: "The world's #1 real estate brand — why it matters for your Dubai investment" },
       { label: 'Why RE/MAX ZAM', path: '/why-remax-zam', desc: 'Credentials, awards, client stories and our process' },
       { label: 'The Team', path: '/team', desc: 'The advisors you will actually be working with' },
+      { label: 'Join as an Agent', path: '/apply', desc: 'Work with one of the most active teams in Dubai' },
       { label: 'Contact', path: '/contact', desc: 'Call, message or come in. We are easy to reach.' },
     ],
   },
@@ -105,6 +100,7 @@ function NavDropdown({ group, location, scrolled }) {
 export default function Navbar() {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [favCount, setFavCount] = useState(0);
   const location = useLocation();
   const { clearAudience } = useAudience();
 
@@ -112,6 +108,13 @@ export default function Navbar() {
     const h = () => setScrolled(window.scrollY > 10);
     window.addEventListener('scroll', h);
     return () => window.removeEventListener('scroll', h);
+  }, []);
+
+  useEffect(() => {
+    setFavCount(getSavedIds().length);
+    const onStorage = () => setFavCount(getSavedIds().length);
+    window.addEventListener('storage', onStorage);
+    return () => window.removeEventListener('storage', onStorage);
   }, []);
 
   return (
@@ -130,15 +133,29 @@ export default function Navbar() {
 
            {/* Desktop Nav */}
            <div className="hidden lg:flex items-center gap-8">
+             <Link
+               to="/"
+               onClick={clearAudience}
+               className={`text-sm font-body py-1 transition-colors duration-200 ${
+                 location.pathname === '/' ? 'text-accent font-semibold' : 'text-gray-500 hover:text-accent'
+               }`}
+             >
+               Home
+             </Link>
              {NAV_GROUPS.map(group => (
                <NavDropdown key={group.label} group={group} location={location} scrolled={scrolled} />
              ))}
            </div>
 
            {/* CTA */}
-           <div className="hidden lg:flex items-center gap-3">
-             <Link to="/dashboard" className="text-sm font-body transition-colors text-gray-500 hover:text-black">
-               Dashboard
+           <div className="hidden lg:flex items-center gap-8">
+             <Link to="/dashboard" className="relative text-sm font-body transition-colors text-gray-500 hover:text-black">
+               <Heart className="w-4 h-4 inline-block" />
+               {favCount > 0 && (
+                 <span className="absolute -top-2 -right-3 bg-accent text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center">
+                   {favCount}
+                 </span>
+               )}
              </Link>
              <Link
                to="/contact"
@@ -159,6 +176,15 @@ export default function Navbar() {
       {open && (
         <div className="lg:hidden bg-white border-t border-gray-100">
           <div className="px-6 py-5 space-y-1 max-h-[80vh] overflow-y-auto">
+            <Link
+              to="/"
+              onClick={() => { setOpen(false); clearAudience(); }}
+              className={`block py-2.5 px-2 text-sm font-body rounded-lg transition-colors ${
+                location.pathname === '/' ? 'text-black font-medium' : 'text-gray-500 hover:text-black'
+              }`}
+            >
+              Home
+            </Link>
             {NAV_GROUPS.map(group => (
               <div key={group.label}>
                 <p className="text-xs font-heading font-bold text-gray-300 uppercase tracking-wider px-2 pt-5 pb-2">{group.label}</p>
@@ -177,7 +203,15 @@ export default function Navbar() {
               </div>
             ))}
             <div className="pt-5 mt-2 border-t border-gray-100 space-y-2">
-              <Link to="/dashboard" onClick={() => setOpen(false)} className="block py-2.5 px-2 text-sm font-body text-gray-500 hover:text-black">Dashboard</Link>
+              <Link to="/dashboard" onClick={() => setOpen(false)} className="flex items-center gap-2 py-2.5 px-2 text-sm font-body text-gray-500 hover:text-black">
+                <Heart className="w-4 h-4" />
+                Favorites
+                {favCount > 0 && (
+                  <span className="bg-accent text-white text-[10px] font-bold rounded-full px-1.5 py-0.5 leading-none ml-1">
+                    {favCount}
+                  </span>
+                )}
+              </Link>
             </div>
             <Link
               to="/contact"
