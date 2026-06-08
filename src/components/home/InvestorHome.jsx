@@ -68,9 +68,6 @@ export default function InvestorHome() {
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-end justify-between mb-12">
             <div>
-              <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3 flex items-center gap-2">
-                <Sparkles className="w-3 h-3 text-amber-500" /> Handpicked Listings
-              </p>
               <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
                 Dubai's Most Attractive<br />Investment Opportunities
               </h2>

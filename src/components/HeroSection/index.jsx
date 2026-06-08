@@ -1,63 +1,148 @@
-import { useState, useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Search } from 'lucide-react';
-import { useAudience } from '@/lib/AudienceContext';
-
-const DUBAI_BG = 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/e55db5afd_generated_image.png';
+import { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import { motion, AnimatePresence, useInView } from "framer-motion";
+import { Search } from "lucide-react";
+import { useAudience } from "@/lib/AudienceContext";
 
 const communities = [
-  'Downtown Dubai', 'Dubai Marina', 'Palm Jumeirah', 'Business Bay', 'Dubai Hills Estate',
+  "Downtown Dubai",
+  "Dubai Marina",
+  "Palm Jumeirah",
+  "Business Bay",
+  "Dubai Hills Estate",
 ];
 
 const HERO_CONTENT = {
   investor: {
-    eyebrow: 'Dubai Real Estate Investment',
-    headline: ['Own a Piece of', "The World's Most"],
-    accent: 'Investable City',
-    sub: 'Tax-free returns. Golden Visa eligibility. World-class infrastructure.',
+    headline: ["Own a Piece of", "The World's Most", "Investable City"],
+    sub: "Tax-free returns. Golden Visa eligibility. World-class infrastructure.",
     tabs: [
-      { id: 'buy', label: 'Buy' },
-      { id: 'off-plan', label: 'Off-Plan' },
-      { id: 'rent', label: 'Rent' },
+      { id: "buy", label: "Buy" },
+      { id: "off-plan", label: "Off-Plan" },
+      { id: "rent", label: "Rent" },
     ],
-    searchPlaceholder: 'Search by community, area or property type...',
+    searchPlaceholder: "Search by community, area or property type...",
   },
   seller: {
-    eyebrow: 'Sell with RE/MAX ZAM',
-    headline: ['Get the Best Price', 'For Your'],
-    accent: 'Dubai Property',
-    sub: '1,200+ active buyers. 145,000 global RE/MAX agents. Zero guesswork.',
+    headline: ["Get the Best Price", "For Your", "Dubai Property"],
+    sub: "1,200+ active buyers. 145,000 global RE/MAX agents. Zero guesswork.",
     tabs: null,
     searchPlaceholder: null,
   },
   agent: {
-    eyebrow: 'Join RE/MAX ZAM Dubai',
-    headline: ['Build the Real Estate', 'Career You'],
-    accent: 'Deserve',
-    sub: 'Global brand. Proven systems. Competitive splits. Start selling from day one.',
+    headline: ["Build the Real Estate", "Career You", "Deserve"],
+    sub: "Global brand. Proven systems. Competitive splits. Start selling from day one.",
     tabs: null,
     searchPlaceholder: null,
   },
 };
 
 const DEFAULT = HERO_CONTENT.investor;
+const YOUTUBE_VIDEO_ID = "xOqgW9LZR44";
 
-const YOUTUBE_VIDEO_ID = 'xOqgW9LZR44';
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.05,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.215, 0.61, 0.355, 1] },
+  },
+};
+
+function AnimatedCounter({ value, duration = 2, delay = 0 }) {
+  const [displayValue, setDisplayValue] = useState("");
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.5 });
+
+  useEffect(() => {
+    if (!isInView) return;
+
+    const match = value.match(/(\d+)/g);
+    if (!match) {
+      setDisplayValue(value);
+      return;
+    }
+
+    const start = 0;
+    const end = parseInt(match[match.length - 1], 10);
+    let startTime = null;
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
+
+      const easeProgress = progress * (2 - progress);
+      const currentCount = Math.floor(easeProgress * (end - start) + start);
+
+      if (value.includes("–")) {
+        const lowerBound = Math.min(currentCount, parseInt(match[0], 10));
+        setDisplayValue(`${lowerBound}–${currentCount}%`);
+      } else {
+        setDisplayValue(value.replace(match[match.length - 1], currentCount));
+      }
+
+      if (progress < 1) {
+        requestAnimationFrame(animate);
+      }
+    };
+
+    const timeoutId = setTimeout(() => {
+      requestAnimationFrame(animate);
+    }, delay * 1000);
+
+    return () => clearTimeout(timeoutId);
+  }, [value, isInView, duration, delay]);
+
+  return (
+    <span
+      ref={ref}
+      className="relative inline-block whitespace-nowrap text-amber-500"
+    >
+      <span className="invisible block" aria-hidden="true">
+        {value}
+      </span>
+      <span className="absolute left-0 top-0 tabular-nums w-full text-left">
+        {displayValue || value}
+      </span>
+    </span>
+  );
+}
 
 export default function HeroSection() {
   const navigate = useNavigate();
   const { audience } = useAudience();
-  const [activeTab, setActiveTab] = useState('buy');
-  const [query, setQuery] = useState('');
+  const [activeTab, setActiveTab] = useState("buy");
+  const [query, setQuery] = useState("");
 
   const content = HERO_CONTENT[audience] || DEFAULT;
 
-  // YouTube player refs/state
   const iframeRef = useRef(null);
   const playerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [playerReady, setPlayerReady] = useState(false);
+
+  useEffect(() => {
+    const setHeight = () => {
+      document.documentElement.style.setProperty(
+        "--vh",
+        `${window.innerHeight * 0.01}px`,
+      );
+    };
+    setHeight();
+    window.addEventListener("resize", setHeight);
+    return () => window.removeEventListener("resize", setHeight);
+  }, []);
 
   useEffect(() => {
     let mounted = true;
@@ -70,7 +155,7 @@ export default function HeroSection() {
           playerVars: {
             autoplay: 1,
             controls: 0,
-            mute: 0, // FIXED: Changed from 1 to 0 to enable audio
+            mute: 0,
             loop: 1,
             playlist: YOUTUBE_VIDEO_ID,
             modestbranding: 1,
@@ -80,24 +165,24 @@ export default function HeroSection() {
             onReady: (e) => {
               if (!mounted) return;
               setPlayerReady(true);
-              try { e.target.playVideo(); } catch (e) {}
+              try {
+                e.target.playVideo();
+              } catch (e) {}
             },
             onStateChange: (e) => {
               if (!mounted) return;
               setIsPlaying(e.data === window.YT.PlayerState.PLAYING);
-            }
-          }
+            },
+          },
         });
-      } catch (err) {
-        // ignore
-      }
+      } catch (err) {}
     };
 
     if (window.YT && window.YT.Player) {
       createPlayer();
     } else {
-      const tag = document.createElement('script');
-      tag.src = 'https://www.youtube.com/iframe_api';
+      const tag = document.createElement("script");
+      tag.src = "https://www.youtube.com/iframe_api";
       document.body.appendChild(tag);
       window.onYouTubeIframeAPIReady = () => {
         if (mounted) createPlayer();
@@ -107,7 +192,9 @@ export default function HeroSection() {
     return () => {
       mounted = false;
       if (playerRef.current && playerRef.current.destroy) {
-        try { playerRef.current.destroy(); } catch (e) {}
+        try {
+          playerRef.current.destroy();
+        } catch (e) {}
         playerRef.current = null;
       }
     };
@@ -116,200 +203,254 @@ export default function HeroSection() {
   const handleSearch = (e) => {
     e.preventDefault();
     const params = new URLSearchParams();
-    if (query) params.set('community', query);
-    // Map hero tab to properties page tab key
-    const tabMap = { buy: 'ready-residential', rent: 'rental-residential', 'off-plan': 'off-plan' };
-    params.set('tab', tabMap[activeTab] || 'ready-residential');
+    if (query) params.set("community", query);
+    const tabMap = {
+      buy: "ready-residential",
+      rent: "rental-residential",
+      "off-plan": "off-plan",
+    };
+    params.set("tab", tabMap[activeTab] || "ready-residential");
     navigate(`/properties?${params.toString()}`);
   };
 
-  const handleSellerCTA = () => {
-    document.getElementById('seller-valuation')?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  const handleAgentCTA = () => {
-    document.getElementById('agent-apply')?.scrollIntoView({ behavior: 'smooth' });
-  };
+  const handleSellerCTA = () =>
+    document
+      .getElementById("seller-valuation")
+      ?.scrollIntoView({ behavior: "smooth" });
+  const handleAgentCTA = () =>
+    document
+      .getElementById("agent-apply")
+      ?.scrollIntoView({ behavior: "smooth" });
 
   return (
-    <div>
-    <section className="relative min-h-screen flex flex-col justify-center overflow-hidden">
-      {/* Dubai Skyline Background */}
-      <div
-        className="absolute inset-0 w-full h-full bg-center bg-cover scale-105"
-        style={{ backgroundImage: `url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=90&fit=crop')` }}
-      />
-      {/* Dark gradient overlays for readability */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/40" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/20" />
+    <div
+      style={{ height: "calc(var(--vh, 1vh) * 96)" }}
+      className="bg-white p-3 sm:p-4 lg:p-5 flex flex-col box-border overflow-hidden"
+    >
+      <section className="relative flex-1 rounded-2xl overflow-hidden flex flex-col justify-center min-h-0 bg-zinc-900">
+        <div
+          className="absolute inset-0 w-full h-full bg-center bg-cover scale-100"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=90&fit=crop')`,
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
 
-      {/* Content */}
-      {/* FIXED: Added -mt-12 and lg:-mt-20 to pull the content layout slightly higher than perfect center */}
-      <div className="relative z-10 px-6 sm:px-10 lg:px-16 xl:px-24 py-12 lg:py-0 -mt-24 lg:-mt-36">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center max-w-7xl mx-auto">
-          {/* Left: Headline with Red Accent Box */}
-          <div>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={audience || 'default'}
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 30 }}
-              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            >
-              {/* Eyebrow */}
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-px bg-red-500" />
-                <span className="text-red-400 font-body text-xs tracking-[0.25em] uppercase font-semibold">{content.eyebrow}</span>
-              </div>
-
-              {/* Headline */}
-              <h1 className="font-display font-black leading-[1.05] mb-4">
-                <span className="block text-4xl sm:text-5xl lg:text-6xl text-white">{content.headline[0]}</span>
-                <span className="block text-4xl sm:text-5xl lg:text-6xl text-white">{content.headline[1]}</span>
-                <span className="block text-4xl sm:text-5xl lg:text-6xl text-red-500 italic font-light">{content.accent}</span>
-              </h1>
-
-              {/* Red underline accent */}
-              <div className="w-16 h-1 bg-red-600 rounded-full mb-6" />
-
-              {/* Subheading */}
-              <p className="text-white/65 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-lg">
-                {content.sub}
-              </p>
-
-              {/* Investor: Search Box */}
-              {content.tabs && (
-                <div>
-                  <div className="flex gap-1 mb-0">
-                    {content.tabs.map(tab => (
-                      <button
-                        key={tab.id}
-                        onClick={() => setActiveTab(tab.id)}
-                        className={`px-5 py-2 text-xs font-heading font-bold tracking-wider uppercase rounded-t-lg transition-all ${
-                          activeTab === tab.id
-                            ? 'bg-white text-black'
-                            : 'bg-white/10 text-white/70 hover:bg-white/20 backdrop-blur-sm border border-white/10'
-                        }`}
-                      >
-                        {tab.label}
-                      </button>
-                    ))}
-                  </div>
-                  <form onSubmit={handleSearch} className="bg-white/95 backdrop-blur-sm rounded-b-2xl rounded-tr-2xl shadow-2xl p-2 flex items-center gap-2 max-w-xl">
-                    <div className="flex-1 flex items-center gap-2 px-3">
-                      <Search className="w-4 h-4 text-gray-400 shrink-0" />
-                      <input
-                        type="text"
-                        value={query}
-                        onChange={e => setQuery(e.target.value)}
-                        placeholder={content.searchPlaceholder}
-                        className="w-full text-sm text-gray-800 placeholder-gray-400 bg-transparent outline-none font-body py-2.5"
-                      />
-                    </div>
-                    <button type="submit" className="bg-black hover:bg-gray-800 text-white font-heading font-bold text-xs tracking-wider uppercase px-6 py-3 rounded-xl transition-colors shrink-0">
-                      Search
-                    </button>
-                  </form>
-                  <div className="flex flex-wrap gap-x-5 gap-y-1.5 mt-4">
-                    <span className="text-white/30 text-xs font-body">Popular:</span>
-                    {communities.map(c => {
-                      const tabMap = { buy: 'ready-residential', rent: 'rental-residential', 'off-plan': 'off-plan' };
-                      return (
-                        <button key={c} onClick={() => navigate(`/properties?tab=${tabMap[activeTab] || 'ready-residential'}&community=${c}`)}
-                          className="text-xs text-white/50 hover:text-white transition-colors font-body hover:underline underline-offset-2">
-                          {c}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </div>
-              )}
-
-              {/* Seller CTA */}
-              {audience === 'seller' && (
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button
-                    onClick={handleSellerCTA}
-                    className="inline-flex items-center gap-2 bg-white text-black font-heading font-bold text-sm px-8 py-4 rounded-xl hover:bg-gray-100 transition-all"
-                  >
-                    Get Free Valuation
-                    <span className="text-lg">→</span>
-                  </button>
-                  <button
-                    onClick={() => navigate('/landlords')}
-                    className="inline-flex items-center gap-2 bg-transparent text-white border border-white/30 font-heading font-semibold text-sm px-8 py-4 rounded-xl hover:bg-white/10 transition-all"
-                  >
-                    How It Works
-                  </button>
-                </div>
-              )}
-
-              {/* Agent CTA */}
-              {audience === 'agent' && (
-                <div className="flex flex-col sm:flex-row gap-3">
-                  <button
-                    onClick={handleAgentCTA}
-                    className="inline-flex items-center gap-2 bg-white text-black font-heading font-bold text-sm px-8 py-4 rounded-xl hover:bg-gray-100 transition-all"
-                  >
-                    Apply to Join
-                    <span className="text-lg">→</span>
-                  </button>
-                  <button
-                    onClick={() => navigate('/join')}
-                    className="inline-flex items-center gap-2 bg-transparent text-white border border-white/30 font-heading font-semibold text-sm px-8 py-4 rounded-xl hover:bg-white/10 transition-all"
-                  >
-                    View Partner Tiers
-                  </button>
-                </div>
-              )}
-            </motion.div>
-          </AnimatePresence>
-          </div>
-
-          {/* Right: Embedded Autoplay Video */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
-            className="relative hidden lg:block"
-          >
-            {/* Glow effect */}
-            <div className="absolute -inset-4 bg-red-600/20 rounded-3xl blur-2xl" />
+        <div className="relative z-10 px-6 sm:px-12 lg:px-16 w-full max-w-[90rem] mx-auto py-4 md:py-8 my-auto overflow-y-auto lg:overflow-visible max-h-full">
+          {/* ADJUSTED: Shifted split to lg:grid-cols-2 (6-6 split) to make columns structurally identical */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
             
-            {/* Video Container */}
-            <div className="relative block rounded-2xl p-1 bg-gradient-to-br from-red-600/60 via-white/10 to-transparent shadow-2xl">
-              <div style={{ paddingBottom: '56.25%' }} className="relative rounded-xl overflow-hidden bg-black">
-                {/* YouTube player mount point (replaced by IFrame API) */}
-                <div id="hero-youtube-player" ref={iframeRef} className="absolute top-0 left-0 w-full h-full" />
+            {/* Left Column */}
+            <div className="w-full flex flex-col justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={audience || "default"}
+                  variants={containerVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit={{ opacity: 0, y: -20, transition: { duration: 0.25 } }}
+                >
+                  <motion.h1
+                    variants={itemVariants}
+                    className="font-display font-bold leading-[1.1] mb-5 tracking-tight drop-shadow-md text-3xl sm:text-5xl xl:text-6xl"
+                  >
+                    <span className="block text-white">
+                      {content.headline[0]}
+                    </span>
+                    <span className="block text-white">
+                      {content.headline[1]}
+                    </span>
+                    <span className="block text-amber-500 font-medium">
+                      {content.headline[2]}
+                    </span>
+                  </motion.h1>
+
+                  <motion.p
+                    variants={itemVariants}
+                    className="text-white/80 font-body text-xs sm:text-base leading-relaxed mb-6 max-w-md drop-shadow-sm"
+                  >
+                    {content.sub}
+                  </motion.p>
+
+                  {content.tabs && (
+                    <motion.div
+                      variants={itemVariants}
+                      className="w-full max-w-lg"
+                    >
+                      <div className="flex gap-1 mb-0">
+                        {content.tabs.map((tab) => (
+                          <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`px-4 py-2 text-[10px] sm:text-[11px] font-heading font-bold tracking-wider uppercase rounded-t-md transition-all ${
+                              activeTab === tab.id
+                                ? "bg-white text-black"
+                                : "bg-black/50 text-white hover:bg-black/70 backdrop-blur-md border border-white/10"
+                            }`}
+                          >
+                            {tab.label}
+                          </button>
+                        ))}
+                      </div>
+                      <form
+                        onSubmit={handleSearch}
+                        className="bg-white/95 backdrop-blur-sm rounded-b-xl rounded-tr-xl shadow-2xl p-1.5 flex items-center gap-2"
+                      >
+                        <div className="flex-1 flex items-center gap-2 px-1.5">
+                          <Search className="w-4 h-4 text-gray-400 shrink-0" />
+                          <input
+                            type="text"
+                            value={query}
+                            onChange={(e) => setQuery(e.target.value)}
+                            placeholder={content.searchPlaceholder}
+                            className="w-full text-xs sm:text-sm text-gray-800 placeholder-gray-400 bg-transparent outline-none font-body py-1"
+                          />
+                        </div>
+                        <button
+                          type="submit"
+                          className="bg-amber-500 hover:bg-amber-600 text-white font-heading font-bold text-[10px] sm:text-[11px] tracking-wider uppercase px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg transition-colors shrink-0 shadow-md"
+                        >
+                          Search
+                        </button>
+                      </form>
+                      <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3">
+                        <span className="text-white/60 text-[10px] sm:text-[11px] font-body font-medium">
+                          Popular:
+                        </span>
+                        {communities.map((c) => {
+                          const tabMap = {
+                            buy: "ready-residential",
+                            rent: "rental-residential",
+                            "off-plan": "off-plan",
+                          };
+                          return (
+                            <button
+                              key={c}
+                              onClick={() =>
+                                navigate(
+                                  `/properties?tab=${tabMap[activeTab] || "ready-residential"}&community=${c}`,
+                                )
+                              }
+                              className="text-[10px] sm:text-[11px] text-white/80 hover:text-amber-400 transition-colors font-body hover:underline underline-offset-2 drop-shadow-sm font-medium"
+                            >
+                              {c}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {audience === "seller" && (
+                    <motion.div
+                      variants={itemVariants}
+                      className="flex flex-col sm:flex-row gap-2.5"
+                    >
+                      <button
+                        onClick={handleSellerCTA}
+                        className="inline-flex items-center justify-center gap-2 bg-amber-500 text-white font-heading font-bold text-xs sm:text-sm px-5 py-3.5 rounded-lg hover:bg-amber-600 transition-all shadow-lg"
+                      >
+                        Get Free Valuation{" "}
+                        <span className="text-xs sm:text-sm">→</span>
+                      </button>
+                      <button
+                        onClick={() => navigate("/landlords")}
+                        className="inline-flex items-center justify-center gap-2 bg-black/40 backdrop-blur-md text-white border border-white/20 font-heading font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-lg hover:bg-black/60 transition-all"
+                      >
+                        How It Works
+                      </button>
+                    </motion.div>
+                  )}
+
+                  {audience === "agent" && (
+                    <motion.div
+                      variants={itemVariants}
+                      className="flex flex-col sm:flex-row gap-2.5"
+                    >
+                      <button
+                        onClick={handleAgentCTA}
+                        className="inline-flex items-center justify-center gap-2 bg-amber-500 text-white font-heading font-bold text-xs sm:text-sm px-5 py-3.5 rounded-lg hover:bg-amber-600 transition-all shadow-lg"
+                      >
+                        Apply to Join{" "}
+                        <span className="text-xs sm:text-sm">→</span>
+                      </button>
+                      <button
+                        onClick={() => navigate("/join")}
+                        className="inline-flex items-center justify-center gap-2 bg-black/40 backdrop-blur-md text-white border border-white/20 font-heading font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-lg hover:bg-black/60 transition-all"
+                      >
+                        View Partner Tiers
+                      </button>
+                    </motion.div>
+                  )}
+                </motion.div>
+              </AnimatePresence>
+            </div>
+
+            {/* Right Column: Video Panel */}
+            {/* ADJUSTED: Wrapped video layout in max-w-[88%] to cleanly decrease overall player frame sizing */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{
+                duration: 0.7,
+                ease: [0.22, 1, 0.36, 1],
+                delay: 0.2,
+              }}
+              className="relative hidden lg:block w-full max-w-[95%] mx-auto"
+            >
+              <div className="relative block rounded-2xl p-[2px] bg-gradient-to-br from-amber-500/20 via-white/5 to-transparent shadow-2xl overflow-hidden">
+                <div
+                  style={{ paddingBottom: "56.25%" }}
+                  className="relative rounded-2xl overflow-hidden bg-zinc-950 shadow-inner"
+                >
+                  <div
+                    id="hero-youtube-player"
+                    ref={iframeRef}
+                    className="absolute top-0 left-0 w-full h-full grayscale-[15%] opacity-95 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                  />
+                </div>
               </div>
-            </div>
-            <p className="text-center text-white/40 text-xs font-body mt-3 tracking-wider uppercase">RE/MAX ZAM — Dubai Real Estate</p>
-          </motion.div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* ── STATS ZONE ── */}
+      <div className="bg-transparent shrink-0 pt-3 lg:pt-5 px-2 lg:px-6">
+        <div className="max-w-[90rem] mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 items-start divide-y-0 md:divide-x divide-black/5">
+            {[
+              { label: "Total Transactions (H1 2026)", value: "AED 300B+" },
+              { label: "Average Rental Yield", value: "7–10%" },
+              { label: "Capital Gains Tax", value: "0%" },
+              { label: "RE/MAX Agents Worldwide", value: "150K+" },
+            ].map((s, idx) => (
+              <motion.div
+                key={s.label}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.4,
+                  delay: idx * 0.08,
+                  ease: [0.215, 0.61, 0.355, 1],
+                }}
+                className={`flex flex-col justify-between h-full ${idx > 0 ? "md:pl-6" : ""}`}
+              >
+                <span className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl tracking-tight block overflow-visible mb-0.5">
+                  <AnimatedCounter value={s.value} delay={0.3 + idx * 0.1} />
+                </span>
+
+                <span className="text-gray-500 font-body text-[11px] sm:text-xs leading-tight font-medium block">
+                  {s.label}
+                </span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
-
-    </section>
-
-    {/* Stats strip — sits below hero, no overlap */}
-    <div className="bg-white border-b border-gray-100">
-      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 xl:px-24 py-5">
-        <div className="flex items-center gap-10 sm:gap-16 overflow-x-auto scrollbar-none">
-          {[
-            { label: 'Total Transactions (H1 2026)', value: 'AED 300B+', source: 'DLD' },
-            { label: 'Average Rental Yield', value: '7–10%', source: 'RERA' },
-            { label: 'Capital Gains Tax', value: '0%', source: 'UAE Gov' },
-            { label: 'RE/MAX Agents Worldwide', value: '150K+', source: 'RE/MAX' },
-          ].map(s => (
-            <div key={s.label} className="shrink-0">
-              <p className="text-black font-display font-black text-xl">{s.value}</p>
-              <p className="text-gray-500 font-body text-xs mt-0.5">{s.label}</p>
-              <p className="text-gray-300 font-body text-[10px] tracking-wider uppercase mt-0.5">Source: {s.source}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
     </div>
   );
 }
