@@ -122,6 +122,10 @@
     "assigned_agent": {
       "type": "string",
       "title": "Assigned Agent (Agent ID)"
+    },
+    "youtubeVideoId": {
+      "type": "string",
+      "title": "YouTube Video ID"
     }
   },
   "required": [

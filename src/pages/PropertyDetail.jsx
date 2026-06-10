@@ -1,7 +1,8 @@
 import { useParams, Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import { motion } from 'framer-motion';
 import { base44 } from '@/api/base44Client';
-import { Bed, Bath, Maximize, TrendingUp, MapPin, Calendar, Building2, ArrowLeft, Phone, Mail, MessageCircle } from 'lucide-react';
+import { Bed, Bath, Maximize, TrendingUp, MapPin, Calendar, Building2, ArrowLeft, Phone, Mail, MessageCircle, Play } from 'lucide-react';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import PropertyViewingForm from '../components/PropertyViewingForm';
@@ -104,6 +105,36 @@ export default function PropertyDetail() {
               images={property.gallery_images || (property.image_url ? [property.image_url] : [])}
               title={property.title}
             />
+
+            {/* YouTube Video Embed */}
+            {property.youtubeVideoId && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.5 }}
+                className="bg-card border border-border/50 rounded-2xl overflow-hidden shadow-lg"
+              >
+                <div className="px-5 py-4 border-b border-border/30 flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-full bg-red-500/10 flex items-center justify-center">
+                    <Play className="w-4 h-4 text-red-500 fill-red-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading font-semibold text-foreground text-sm">Property Video Tour</h3>
+                    <p className="text-xs text-muted-foreground font-body">Experience this property in motion</p>
+                  </div>
+                </div>
+                <div className="relative w-full" style={{ paddingBottom: '56.25%' }}>
+                  <iframe
+                    src={`https://www.youtube.com/embed/${property.youtubeVideoId}?modestbranding=1&rel=0`}
+                    className="absolute top-0 left-0 w-full h-full"
+                    allowFullScreen
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    title="Property Video Tour"
+                  />
+                </div>
+              </motion.div>
+            )}
 
             <div>
               <div className="flex items-center gap-2 mb-2">

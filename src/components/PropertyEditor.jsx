@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { X, Loader2, AlertCircle } from 'lucide-react';
 import PropertyImageUpload from './PropertyImageUpload';
 import AgentSelector from './AgentSelector';
+import { extractYoutubeVideoId } from '@/lib/utils';
 
 export default function PropertyEditor({ property, onClose, onSaved }) {
   const [formData, setFormData] = useState({
@@ -20,6 +21,7 @@ export default function PropertyEditor({ property, onClose, onSaved }) {
     description: property.description || '',
     isPocketListing: property.isPocketListing || false,
     featured: property.featured || false,
+    youtubeVideoId: property.youtubeVideoId || '',
   });
 
   const [saving, setSaving] = useState(false);
@@ -27,6 +29,11 @@ export default function PropertyEditor({ property, onClose, onSaved }) {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+    // YouTube field: store raw text — extraction happens at save time
+    if (name === 'youtubeVideoId') {
+      setFormData(prev => ({ ...prev, youtubeVideoId: value }));
+      return;
+    }
     setFormData(prev => ({ ...prev, [name]: type === 'checkbox' ? checked : (value === '' ? null : (isNaN(value) ? value : Number(value))) }));
   };
 
@@ -34,7 +41,16 @@ export default function PropertyEditor({ property, onClose, onSaved }) {
     setSaving(true);
     setError(null);
     try {
-      await base44.entities.Property.update(property.id, formData);
+      const payload = { ...formData };
+      // Extract clean YouTube video ID from whatever the user typed (URL or raw ID)
+      const raw = formData.youtubeVideoId?.trim();
+      if (raw) {
+        const cleanId = extractYoutubeVideoId(raw);
+        payload.youtubeVideoId = cleanId || raw;
+      } else {
+        payload.youtubeVideoId = null;
+      }
+      await base44.entities.Property.update(property.id, payload);
       if (onSaved) onSaved();
       onClose();
     } catch (err) {
@@ -129,6 +145,21 @@ export default function PropertyEditor({ property, onClose, onSaved }) {
               <label className="text-sm font-heading font-medium text-foreground mb-1 block">Area (sqft)</label>
               <input type="number" name="area_sqft" value={formData.area_sqft} onChange={handleChange} className="w-full px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring" />
             </div>
+          </div>
+
+          <div>
+            <label className="text-sm font-heading font-medium text-foreground mb-1 block">YouTube Video URL</label>
+            <input
+              type="text"
+              name="youtubeVideoId"
+              value={formData.youtubeVideoId}
+              onChange={handleChange}
+              placeholder="e.g. https://www.youtube.com/watch?v=XXXXXX"
+              className="w-full px-3 py-2 text-sm border border-input rounded-lg font-body bg-background focus:outline-none focus:ring-2 focus:ring-ring"
+            />
+            <p className="text-[10px] text-muted-foreground font-body mt-1">
+              Paste a YouTube URL (watch, shorts, youtu.be, or embed). The video ID will be auto-extracted.
+            </p>
           </div>
 
           <div>

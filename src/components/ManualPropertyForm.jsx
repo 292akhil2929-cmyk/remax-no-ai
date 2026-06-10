@@ -23,7 +23,9 @@ import {
   Image,
   ArrowLeft,
   User,
+  Youtube,
 } from 'lucide-react';
+import { extractYoutubeVideoId } from '@/lib/utils';
 
 const FALLBACK_AGENT_PHOTO = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg';
 
@@ -50,6 +52,7 @@ const INITIAL_FORM = {
   bathrooms: '',
   furnished: '',
   assigned_agent: '',
+  youtubeVideoId: '',
 };
 
 export default function ManualPropertyForm({ onBack }) {
@@ -141,6 +144,12 @@ export default function ManualPropertyForm({ onBack }) {
         bedrooms: formData.bedrooms ? (formData.bedrooms === '7+' ? 7 : formData.bedrooms === 'Studio' ? 0 : Number(formData.bedrooms)) : null,
         bathrooms: formData.bathrooms ? (formData.bathrooms === '6+' ? 6 : Number(formData.bathrooms)) : null,
         furnished: formData.furnished || null,
+        youtubeVideoId: (() => {
+          const raw = formData.youtubeVideoId?.trim();
+          if (!raw) return null;
+          const cleanId = extractYoutubeVideoId(raw);
+          return cleanId || raw;
+        })(),
         assigned_agent: formData.assigned_agent || null,
         status: 'Available',
         gallery_images: images,
@@ -632,6 +641,33 @@ export default function ManualPropertyForm({ onBack }) {
                 </div>
               </div>
             )}
+          </div>
+        </section>
+
+        {/* ═══ Section 8: YouTube Video ═══ */}
+        <section>
+          <h4 className="text-sm font-heading font-semibold text-foreground mb-4 flex items-center gap-2">
+            <span className="w-6 h-6 rounded-full bg-primary/10 text-primary flex items-center justify-center text-xs font-bold">8</span>
+            YouTube Video (Optional)
+          </h4>
+          <div className="space-y-4 pl-0 sm:pl-8">
+            <div>
+              <label className="text-sm font-heading font-medium text-foreground mb-1.5 block">
+                YouTube Video URL
+              </label>
+              <div className="relative">
+                <Youtube className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                <Input
+                  value={formData.youtubeVideoId}
+                  onChange={(e) => handleChange('youtubeVideoId', e.target.value)}
+                  placeholder="e.g. https://www.youtube.com/watch?v=XXXXXX"
+                  className="text-sm pl-9"
+                />
+              </div>
+              <p className="text-[10px] text-muted-foreground font-body mt-1">
+                Paste a YouTube URL (watch, shorts, youtu.be, or embed link). The video ID will be auto-extracted and shown on the property detail page.
+              </p>
+            </div>
           </div>
         </section>
 
