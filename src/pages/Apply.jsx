@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
+import usePageSEO from '@/lib/usePageSEO';
 import { base44 } from '@/api/base44Client';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -95,6 +96,12 @@ function FieldGroup({ label, children, required, error }) {
 }
 
 export default function Apply() {
+  usePageSEO({
+    title: 'Join RE/MAX ZAM | Property Agent Careers in Dubai',
+    description: 'Looking to build a real estate career in Dubai? Join RE/MAX ZAM and access best-in-class training, leads, and the world\'s most trusted property brand.',
+    canonical: 'https://remaxzam.ae/join',
+  });
+
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [form, setForm] = useState(EMPTY_FORM);

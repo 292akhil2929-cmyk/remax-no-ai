@@ -1,5 +1,6 @@
 import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import LeadCaptureForm from '../components/LeadCaptureForm';
+import usePageSEO from '@/lib/usePageSEO';
 
 const contactInfo = [
   { icon: MapPin, label: 'Office', value: 'Bay View Tower, Office No. 1102, Dubai, UAE' },
@@ -9,6 +10,12 @@ const contactInfo = [
 ];
 
 export default function Contact() {
+  usePageSEO({
+    title: 'Contact RE/MAX ZAM | Book a Free Dubai Property Consultation',
+    description: 'Book a free 30-minute consultation with our Dubai real estate advisors. Call, WhatsApp, or email. Bay View Tower, Dubai.',
+    canonical: 'https://remaxzam.ae/contact',
+  });
+
   return (
     <div className="min-h-screen">
       <section className="py-16 bg-card/50 border-b border-border/50">

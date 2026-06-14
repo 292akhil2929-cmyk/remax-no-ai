@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
+import usePageSEO from '@/lib/usePageSEO';
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from 'react-router-dom';
@@ -139,6 +140,12 @@ function ArticleCard({ article, isLarge = false }) {
 }
 
 export default function Insights() {
+  usePageSEO({
+    title: 'Dubai Property Market Insights | Data & Analysis | RE/MAX ZAM',
+    description: 'Deep-dive data, area analysis, and investment strategy from RE/MAX ZAM. Trusted market intelligence for Dubai property investors.',
+    canonical: 'https://remaxzam.ae/insights',
+  });
+
   const { data: posts = [], isLoading } = useQuery({
     queryKey: ['blog-posts'],
     queryFn: () => base44.entities.BlogPost.filter({ published: true }, '-created_date', 20),

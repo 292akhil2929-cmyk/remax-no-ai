@@ -68,7 +68,7 @@ export default function FounderPassiveIncome() {
   usePageSEO({
     title: 'How I Earn Passive Income From Dubai Real Estate | Founder Story | RE/MAX ZAM',
     description: 'The owner of RE/MAX ZAM shares how he earns passive, tax-free income from his own Dubai property portfolio — and how you can invest in the same strategy.',
-    canonical: 'https://remaxzam.com/my-dubai-passive-income',
+    canonical: 'https://remaxzam.ae/my-dubai-passive-income',
     keywords: 'passive income dubai real estate, how to earn passive income dubai, dubai rental income investment, dubai property founder investor, tax free rental income dubai',
     schema: PAGE_SCHEMA,
   });

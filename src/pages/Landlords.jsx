@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle, TrendingUp, Users, Shield, Globe, Award, DollarSign, Clock, BarChart3, Building2, Star } from 'lucide-react';
+import usePageSEO from '@/lib/usePageSEO';
 import { Button } from '@/components/ui/button';
 import SellerLeadForm from '../components/SellerLeadForm';
 
@@ -83,6 +84,12 @@ const steps = [
 ];
 
 export default function Landlords() {
+  usePageSEO({
+    title: 'Dubai Property Management for Landlords | Rental Advisory | RE/MAX ZAM',
+    description: 'RE/MAX ZAM helps Dubai landlords maximise rental yields, find quality tenants, and manage their investment properties professionally.',
+    canonical: 'https://remaxzam.ae/landlords',
+  });
+
   return (
     <div className="bg-background">
       {/* Hero */}

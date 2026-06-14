@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
+import usePageSEO from '@/lib/usePageSEO';
 import { base44 } from '@/api/base44Client';
 import { Phone, Mail, MessageCircle, Star, ArrowRight, Users, Award, TrendingUp } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -14,7 +15,23 @@ const perks = [
   { icon: Star, title: 'RE/MAX Global Network', desc: 'Join the world\'s most recognised real estate brand with access to 146,000+ agents across 110+ countries and 8,700+ offices globally.' },
 ];
 
+const FOUNDER_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Faisal Contractor',
+  jobTitle: 'Owner & Principal Advisor, RE/MAX ZAM',
+  url: 'https://remaxzam.ae/about',
+  worksFor: { '@type': 'RealEstateAgent', name: 'RE/MAX ZAM' },
+};
+
 export default function Team() {
+  usePageSEO({
+    title: 'Our Advisory Team | RERA Licensed Dubai Property Agents | RE/MAX ZAM',
+    description: 'Meet the RE/MAX ZAM advisory team — RERA licensed, multilingual agents specialising in Dubai investment property, off-plan, and Golden Visa.',
+    canonical: 'https://remaxzam.ae/team',
+    additionalSchema: FOUNDER_SCHEMA,
+  });
+
   const { data: agents = [], isLoading } = useQuery({
     queryKey: ['agents'],
     queryFn: () => base44.entities.Agent.list('sort_order'),

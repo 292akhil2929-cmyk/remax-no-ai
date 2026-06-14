@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Building2, TrendingUp, Globe, Home, FileText, Users, Landmark, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import usePageSEO from '@/lib/usePageSEO';
 
 const services = [
   {
@@ -90,6 +91,12 @@ const services = [
 ];
 
 export default function Services() {
+  usePageSEO({
+    title: 'Our Services | Buy, Sell, Invest & Golden Visa | RE/MAX ZAM Dubai',
+    description: 'From property acquisition to portfolio management and Golden Visa advisory — RE/MAX ZAM provides end-to-end real estate services in Dubai.',
+    canonical: 'https://remaxzam.ae/services',
+  });
+
   return (
     <div className="min-h-screen">
       {/* Hero */}

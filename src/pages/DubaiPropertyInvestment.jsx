@@ -137,7 +137,7 @@ export default function DubaiPropertyInvestment() {
   usePageSEO({
     title: 'Dubai Property Investment | Passive Income, Golden Visa & Growth | RE/MAX ZAM',
     description: 'Build tax-free passive income, capital growth and 10-year residency with Dubai property. Download the free investor guide from RE/MAX ZAM — advisors who invest themselves.',
-    canonical: 'https://remaxzam.com/dubai-property-investment',
+    canonical: 'https://remaxzam.ae/dubai-property-investment',
     keywords: 'dubai property investment, invest in dubai real estate, passive income dubai property, dubai property for foreigners, buy property dubai 2025, dubai investment guide',
     schema: PAGE_SCHEMA,
   });

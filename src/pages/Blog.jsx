@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
+import usePageSEO from '@/lib/usePageSEO';
 import { base44 } from '@/api/base44Client';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, ArrowRight, BookOpen } from 'lucide-react';
@@ -15,6 +16,12 @@ const CATEGORY_COLORS = {
 };
 
 export default function Blog() {
+  usePageSEO({
+    title: 'Dubai Real Estate Blog | Market Insights & Investment Tips | RE/MAX ZAM',
+    description: 'Expert analysis, market data, and investment guides from RE/MAX ZAM\'s advisory team. Stay ahead of Dubai\'s property market.',
+    canonical: 'https://remaxzam.ae/blog',
+  });
+
   const { data: posts = [], isLoading } = useQuery({
     queryKey: ['blog-posts'],
     queryFn: () => base44.entities.BlogPost.filter({ published: true }, '-created_date'),

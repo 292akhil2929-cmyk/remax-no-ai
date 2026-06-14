@@ -177,7 +177,7 @@ export default function ROIDubaiProperty() {
   usePageSEO({
     title: '10% Net ROI Dubai Property | Tax-Free Rental Returns | RE/MAX ZAM',
     description: 'Earn up to 10% net rental ROI from Dubai property — tax-free, with 0% service charges and flexible payment plans. Calculate your returns and get a personalised plan.',
-    canonical: 'https://remaxzam.com/10-net-roi-dubai-property',
+    canonical: 'https://remaxzam.ae/10-net-roi-dubai-property',
     keywords: 'dubai property 10% roi, high rental yield dubai, dubai investment property returns, tax-free property dubai, dubai rental yield 2026, 10 percent roi dubai',
     schema: PAGE_SCHEMA,
   });

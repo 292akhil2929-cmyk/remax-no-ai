@@ -161,7 +161,7 @@ export default function GoldenVisaProperty() {
   usePageSEO({
     title: 'Dubai Golden Visa Through Property | AED 2M 10-Year Residency | RE/MAX ZAM',
     description: 'Invest AED 2M in Dubai property and secure a renewable 10-year UAE Golden Visa for your family. Check your eligibility in 60 seconds and see qualifying properties.',
-    canonical: 'https://remaxzam.com/dubai-golden-visa-property',
+    canonical: 'https://remaxzam.ae/dubai-golden-visa-property',
     keywords: 'dubai golden visa property, property for golden visa dubai, aed 2 million golden visa, uae residency by investment, dubai golden visa 2025, golden visa payment plan dubai',
     schema: PAGE_SCHEMA,
   });

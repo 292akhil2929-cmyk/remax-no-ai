@@ -90,7 +90,7 @@ export default function DugastaFAQ() {
   usePageSEO({
     title: 'Dugasta Properties FAQ | ROI, Payment Plans, Golden Visa & Risk | RE/MAX ZAM',
     description: 'Honest answers about Dugasta properties — up to 10% net ROI, 0% service charges, payment plans, buy-back and the Golden Visa. Trusted advice from RE/MAX ZAM.',
-    canonical: 'https://remaxzam.com/dugasta-faq',
+    canonical: 'https://remaxzam.ae/dugasta-faq',
     keywords: 'dugasta properties review, is dugasta safe, dugasta roi, dugasta payment plan, dugasta golden visa, dugasta dubai review 2025',
   });
 
