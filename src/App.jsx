@@ -44,6 +44,11 @@ import Login from './pages/Login';
 import AccessDenied from './pages/AccessDenied';
 import AdminTeam from './pages/AdminTeam';
 import Apply from './pages/Apply';
+import ROIDubaiProperty from './pages/ROIDubaiProperty';
+import GoldenVisaProperty from './pages/GoldenVisaProperty';
+import DubaiPropertyInvestment from './pages/DubaiPropertyInvestment';
+import FounderPassiveIncome from './pages/FounderPassiveIncome';
+import DugastaFAQ from './pages/DugastaFAQ';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -128,6 +133,11 @@ const AuthenticatedApp = () => {
         <Route path="/dubai-property-guide" element={<DubaiGuide />} />
         <Route path="/dugasta-tr" element={<DugastaTR />} />
         <Route path="/apply" element={<Apply />} />
+        <Route path="/10-net-roi-dubai-property" element={<ROIDubaiProperty />} />
+        <Route path="/dubai-golden-visa-property" element={<GoldenVisaProperty />} />
+        <Route path="/dubai-property-investment" element={<DubaiPropertyInvestment />} />
+        <Route path="/my-dubai-passive-income" element={<FounderPassiveIncome />} />
+        <Route path="/dugasta-faq" element={<DugastaFAQ />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/access-denied" element={<AccessDenied />} />
