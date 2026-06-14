@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -212,6 +212,14 @@ function FaqItem({ q, a }) {
 
 export default function Dugasta() {
   const [activeProject, setActiveProject] = useState(0);
+
+  // Canonical points to the more detailed campaign page
+  useEffect(() => {
+    let link = document.querySelector('link[rel="canonical"]');
+    if (!link) { link = document.createElement('link'); link.rel = 'canonical'; document.head.appendChild(link); }
+    link.href = 'https://remaxzam.ae/10-net-roi-dubai-property';
+    return () => { link.href = 'https://remaxzam.ae/dugasta'; };
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -582,6 +590,9 @@ export default function Dugasta() {
               </a>
               <Link to="/contact" className="inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-gray-100 font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors">
                 Book a Free Consultation <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link to="/10-net-roi-dubai-property" className="inline-flex items-center justify-center gap-2 border border-white/20 hover:border-white/40 text-white/60 hover:text-white font-body text-xs px-6 py-3 rounded-xl transition-colors mt-2">
+                Full campaign page with ROI calculator → /10-net-roi-dubai-property
               </Link>
             </div>
           </motion.div>

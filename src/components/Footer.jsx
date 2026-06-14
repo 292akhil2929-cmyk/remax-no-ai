@@ -44,14 +44,14 @@ export default function Footer() {
             </div>
           </div>
           <div>
-            <h4 className="font-heading font-semibold text-foreground mb-4">Investment Focus</h4>
+            <h4 className="font-heading font-semibold text-foreground mb-4">Invest in Dubai</h4>
             <div className="space-y-2 text-sm text-muted-foreground font-body">
-              <p>Off-Plan Properties</p>
-              <p>Ready Properties</p>
-              <p>Golden Visa Packages</p>
+              <Link to="/10-net-roi-dubai-property" className="block hover:text-primary transition-colors">10% Net ROI Property</Link>
+              <Link to="/dubai-golden-visa-property" className="block hover:text-primary transition-colors">Golden Visa Property</Link>
+              <Link to="/dubai-property-investment" className="block hover:text-primary transition-colors">Dubai Investment Guide</Link>
+              <Link to="/my-dubai-passive-income" className="block hover:text-primary transition-colors">Passive Income</Link>
+              <Link to="/dugasta-faq" className="block hover:text-primary transition-colors">Why Dugasta</Link>
               <Link to="/services" className="block hover:text-primary transition-colors">Portfolio Management</Link>
-              <Link to="/10-net-roi-dubai-property" className="block hover:text-primary transition-colors">Investment Calculator</Link>
-              <Link to="/dubai-property-investment" className="block hover:text-primary transition-colors">Why Dubai?</Link>
             </div>
           </div>
           <div>

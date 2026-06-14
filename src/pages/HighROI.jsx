@@ -164,9 +164,14 @@ export default function HighROI() {
                   </li>
                 ))}
               </ul>
-              <Link to="/dugasta" className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-black font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
-                View Dugasta Projects <ArrowRight className="w-4 h-4" />
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link to="/dugasta" className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-black font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
+                  View Dugasta Projects <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link to="/10-net-roi-dubai-property" className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white font-heading font-semibold text-sm px-7 py-3.5 rounded-xl transition-colors">
+                  ROI Calculator & Full Guide <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <img src="https://images.unsplash.com/photo-1605146769289-440113cc3d00?w=700&q=80" alt="Dubai investment property" className="w-full rounded-2xl object-cover aspect-[4/3]" />

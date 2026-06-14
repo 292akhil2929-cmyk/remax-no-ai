@@ -20,6 +20,12 @@ const NAV_GROUPS = [
       { label: '10% Net ROI — Guaranteed', path: '/dugasta', desc: 'A contractually guaranteed 10% return for 10 years. No service charges. Full buyback.' },
       { label: 'Golden Visa', path: '/golden-visa', desc: 'Invest AED 2M in property and get UAE residency for the family' },
       { label: 'Off-Plan Projects', path: '/off-plan', desc: 'Get in early and lock in launch pricing before handover' },
+      { label: '— June Campaigns —', path: null, desc: '' },
+      { label: '10% Net ROI (Campaign)', path: '/10-net-roi-dubai-property', desc: 'Deep-dive: earn up to 10% net tax-free with the ROI calculator' },
+      { label: 'Golden Visa Property', path: '/dubai-golden-visa-property', desc: 'Check your AED 2M Golden Visa eligibility in 60 seconds' },
+      { label: 'Dubai Property Investment', path: '/dubai-property-investment', desc: 'Full investor guide — passive income, tax benefits & more' },
+      { label: 'Passive Income Story', path: '/my-dubai-passive-income', desc: 'How the founder earns passive income from his own portfolio' },
+      { label: 'Why Dugasta', path: '/dugasta-faq', desc: 'Honest answers on ROI, payment plans, risk and the Golden Visa' },
     ],
   },
   {
@@ -75,21 +81,27 @@ function NavDropdown({ group, location, scrolled }) {
       </button>
 
       {open && (
-        <div className="absolute top-full left-0 mt-2 w-64 bg-white shadow-xl border border-gray-100 rounded-2xl py-2 z-50 overflow-hidden">
+        <div className="absolute top-full left-0 mt-2 w-72 bg-white shadow-xl border border-gray-100 rounded-2xl py-2 z-50 overflow-hidden">
           {group.items.map(item => (
-            <Link
-              key={item.path + item.label}
-              to={item.path}
-              onClick={() => setOpen(false)}
-              className={`flex flex-col px-5 py-3 transition-colors hover:bg-gray-50 ${
-                location.pathname === item.path ? 'bg-gray-50' : ''
-              }`}
-            >
-              <span className={`text-sm font-body font-medium ${location.pathname === item.path ? 'text-black' : 'text-gray-700'}`}>
-                {item.label}
-              </span>
-              <span className="text-xs text-gray-400 font-body mt-0.5">{item.desc}</span>
-            </Link>
+            item.path === null ? (
+              <div key={item.label} className="px-5 pt-3 pb-1">
+                <p className="text-[10px] font-heading font-bold text-gray-300 uppercase tracking-widest">{item.label}</p>
+              </div>
+            ) : (
+              <Link
+                key={item.path + item.label}
+                to={item.path}
+                onClick={() => setOpen(false)}
+                className={`flex flex-col px-5 py-3 transition-colors hover:bg-gray-50 ${
+                  location.pathname === item.path ? 'bg-gray-50' : ''
+                }`}
+              >
+                <span className={`text-sm font-body font-medium ${location.pathname === item.path ? 'text-black' : 'text-gray-700'}`}>
+                  {item.label}
+                </span>
+                {item.desc && <span className="text-xs text-gray-400 font-body mt-0.5">{item.desc}</span>}
+              </Link>
+            )
           ))}
         </div>
       )}
