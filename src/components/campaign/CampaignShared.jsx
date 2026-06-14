@@ -17,8 +17,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 // ─── CONSTANTS ────────────────────────────────────────────────────────────────
 
-export const WA_NUMBER = '971558172773';
-export const WA_BASE = `https://wa.me/${WA_NUMBER}?text=Hi%20RE%2FMAX%20ZAM%2C%20I%27d%20like%20to%20learn%20about%20Dubai%20property%20investment`;
+export const WA_NUMBER = '97145828158';
+export const WA_BASE = `https://wa.me/${WA_NUMBER}?text=Hi%20RE%2FMAX%20ZAM%2C%20I%27m%20interested%20in%20Dubai%20property%20investment.%20Can%20you%20help%3F`;
 
 // ─── UTM CAPTURE ─────────────────────────────────────────────────────────────
 
@@ -110,10 +110,13 @@ export function CampaignHeader({ ctaLabel = 'Book a Consultation', ctaHref = '#l
 
 // ─── WHATSAPP FLOAT ───────────────────────────────────────────────────────────
 
-export function WhatsAppFloat() {
+export function WhatsAppFloat({ message }) {
+  const href = message
+    ? `https://wa.me/${WA_NUMBER}?text=${message}`
+    : WA_BASE;
   return (
     <a
-      href={WA_BASE}
+      href={href}
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => trackLeadEvent('whatsapp', { source: 'Campaign Float' })}

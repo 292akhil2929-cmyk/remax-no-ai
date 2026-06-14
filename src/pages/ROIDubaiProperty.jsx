@@ -185,7 +185,7 @@ export default function ROIDubaiProperty() {
   return (
     <div className="min-h-screen bg-white font-body">
       <CampaignHeader ctaLabel="Book a Consultation" ctaHref="#lead-form" />
-      <WhatsAppFloat />
+      <WhatsAppFloat message="Hi%20RE%2FMAX%20ZAM%2C%20I%20want%20to%20learn%20about%20the%2010%25%20ROI%20property%20investment." />
 
       {/* ── HERO ── */}
       <section className="pt-28 pb-16 bg-white">

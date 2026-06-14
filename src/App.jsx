@@ -10,6 +10,7 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import { useEffect } from 'react';
 import { trackPageView } from '@/lib/analytics';
 import OutboundLinkTracker from '@/components/OutboundLinkTracker';
+import CookieConsent from '@/components/CookieConsent';
 import Home from './pages/Home.jsx';
 import Properties from './pages/Properties.jsx';
 import PropertyDetail from './pages/PropertyDetail';
@@ -156,6 +157,7 @@ function App() {
           <Router>
             <OutboundLinkTracker />
             <AuthenticatedApp />
+            <CookieConsent />
           </Router>
           <Toaster />
         </QueryClientProvider>
