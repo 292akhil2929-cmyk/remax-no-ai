@@ -1,32 +1,49 @@
 /**
- * usePageSEO — sets <title>, meta description, canonical, OG and Twitter tags
- * dynamically per page. Call at the top of every page component.
+ * usePageSEO — injects unique SEO tags into <head> on every page.
+ *
+ * Sets:
+ *   <title>
+ *   <meta name="description">
+ *   <meta name="keywords">
+ *   <meta name="robots">
+ *   <link rel="canonical">
+ *   og:title, og:description, og:url, og:type, og:image, og:image:alt,
+ *   og:image:width, og:image:height, og:site_name, og:locale
+ *   twitter:card, twitter:title, twitter:description, twitter:image, twitter:image:alt
+ *   JSON-LD schema block (optional)
  *
  * Usage:
  *   usePageSEO({
- *     title: 'Page Title | RE/MAX ZAM',
- *     description: 'Meta description …',
- *     canonical: 'https://remaxzam.com/page-slug',
- *     ogImage: 'https://…/image.jpg', // optional, falls back to default
- *     schema: { '@context': '…', '@type': '…', … }, // optional extra LD+JSON
+ *     title:       'Page Title | RE/MAX ZAM',
+ *     description: 'Meta description (≤160 chars)',
+ *     canonical:   'https://remaxzam.com/page-slug',
+ *     ogImage:     'https://…/image.jpg',   // optional — falls back to default
+ *     ogImageAlt:  'Descriptive alt text',  // optional
+ *     keywords:    'keyword, keyword',       // optional
+ *     schema:      { '@context': '…', … },  // optional extra LD+JSON
  *   });
  */
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-const DEFAULT_OG_IMAGE = 'https://remaxzam.ae/og-image.jpg';
+const DEFAULT_OG_IMAGE = 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/e55db5afd_generated_image.png';
+const DEFAULT_OG_IMAGE_ALT = 'RE/MAX ZAM Dubai — Dubai Real Estate Investment';
 const SITE_NAME = 'RE/MAX ZAM Dubai';
+const DEFAULT_TITLE = 'RE/MAX ZAM Dubai — Dubai Real Estate Investment, Off-Plan & Luxury Properties';
+const DEFAULT_DESCRIPTION = "RE/MAX ZAM is Dubai's trusted real estate agency. Browse off-plan properties, luxury villas and apartments for sale. 6–10% rental yields. Golden Visa eligible.";
 
-function setMeta(name, content, attr = 'name') {
+/** Upsert a <meta> element by attribute selector */
+function setMeta(attrName, attrValue, content) {
   if (!content) return;
-  let el = document.querySelector(`meta[${attr}="${name}"]`);
+  let el = document.querySelector(`meta[${attrName}="${attrValue}"]`);
   if (!el) {
     el = document.createElement('meta');
-    el.setAttribute(attr, name);
+    el.setAttribute(attrName, attrValue);
     document.head.appendChild(el);
   }
   el.setAttribute('content', content);
 }
 
+/** Upsert a <link> element by rel */
 function setLink(rel, href) {
   if (!href) return;
   let el = document.querySelector(`link[rel="${rel}"]`);
@@ -38,6 +55,7 @@ function setLink(rel, href) {
   el.setAttribute('href', href);
 }
 
+/** Inject / replace a <script type="application/ld+json"> block by id */
 function injectSchema(id, data) {
   const existing = document.getElementById(id);
   if (existing) existing.remove();
@@ -48,47 +66,65 @@ function injectSchema(id, data) {
   document.head.appendChild(script);
 }
 
-export default function usePageSEO({ title, description, canonical, ogImage, keywords, schema }) {
+export default function usePageSEO({
+  title,
+  description,
+  canonical,
+  ogImage,
+  ogImageAlt,
+  keywords,
+  schema,
+} = {}) {
+  const schemaRef = useRef(schema);
+  schemaRef.current = schema;
+
   useEffect(() => {
-    // Title
+    const image = ogImage || DEFAULT_OG_IMAGE;
+    const imageAlt = ogImageAlt || DEFAULT_OG_IMAGE_ALT;
+
+    // ── <title> ──────────────────────────────────────────────────────────────
     if (title) document.title = title;
 
-    // Primary meta
-    setMeta('description', description);
-    if (keywords) setMeta('keywords', keywords);
-    setMeta('robots', 'index, follow');
+    // ── Primary meta ─────────────────────────────────────────────────────────
+    setMeta('name', 'description', description);
+    if (keywords) setMeta('name', 'keywords', keywords);
+    setMeta('name', 'robots', 'index, follow');
 
-    // Canonical
+    // ── Canonical ────────────────────────────────────────────────────────────
     setLink('canonical', canonical);
 
-    // Open Graph
-    const image = ogImage || DEFAULT_OG_IMAGE;
-    setMeta('og:title', title, 'property');
-    setMeta('og:description', description, 'property');
-    setMeta('og:url', canonical, 'property');
-    setMeta('og:image', image, 'property');
-    setMeta('og:image:width', '1200', 'property');
-    setMeta('og:image:height', '630', 'property');
-    setMeta('og:type', 'website', 'property');
-    setMeta('og:site_name', SITE_NAME, 'property');
-    setMeta('og:locale', 'en_AE', 'property');
+    // ── Open Graph ───────────────────────────────────────────────────────────
+    setMeta('property', 'og:type',        'website');
+    setMeta('property', 'og:site_name',   SITE_NAME);
+    setMeta('property', 'og:locale',      'en_AE');
+    setMeta('property', 'og:title',       title);
+    setMeta('property', 'og:description', description);
+    setMeta('property', 'og:url',         canonical);
+    setMeta('property', 'og:image',       image);
+    setMeta('property', 'og:image:alt',   imageAlt);
+    setMeta('property', 'og:image:width', '1200');
+    setMeta('property', 'og:image:height','630');
 
-    // Twitter Card
-    setMeta('twitter:card', 'summary_large_image');
-    setMeta('twitter:title', title);
-    setMeta('twitter:description', description);
-    setMeta('twitter:image', image);
+    // ── Twitter Card ─────────────────────────────────────────────────────────
+    setMeta('name', 'twitter:card',        'summary_large_image');
+    setMeta('name', 'twitter:site',        '@remaxzam');
+    setMeta('name', 'twitter:title',       title);
+    setMeta('name', 'twitter:description', description);
+    setMeta('name', 'twitter:image',       image);
+    setMeta('name', 'twitter:image:alt',   imageAlt);
 
-    // Optional extra schema block
-    if (schema) {
-      injectSchema('page-schema', schema);
+    // ── JSON-LD schema ───────────────────────────────────────────────────────
+    if (schemaRef.current) {
+      injectSchema('page-schema', schemaRef.current);
     }
 
+    // ── Cleanup: restore defaults on unmount ─────────────────────────────────
     return () => {
-      // Restore index.html defaults on unmount
-      document.title = 'RE/MAX ZAM Dubai — Dubai Real Estate Investment, Off-Plan & Luxury Properties';
-      const pageSchema = document.getElementById('page-schema');
-      if (pageSchema) pageSchema.remove();
+      document.title = DEFAULT_TITLE;
+      setMeta('name', 'description', DEFAULT_DESCRIPTION);
+      const el = document.getElementById('page-schema');
+      if (el) el.remove();
     };
-  }, [title, description, canonical, ogImage, keywords, JSON.stringify(schema)]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [title, description, canonical, ogImage, ogImageAlt, keywords]);
 }
