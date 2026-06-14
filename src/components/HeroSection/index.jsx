@@ -422,31 +422,22 @@ export default function HeroSection() {
         <div className="max-w-[90rem] mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 items-start divide-y-0 md:divide-x divide-black/5">
             {[
-              { label: "Total Transactions (H1 2026)", value: "AED 300B+" },
-              { label: "Average Rental Yield", value: "7–10%" },
-              { label: "Capital Gains Tax", value: "0%" },
-              { label: "RE/MAX Agents Worldwide", value: "150K+" },
+              { label: "Total Dubai real estate transactions in 2025", value: "AED 917B+" },
+              { label: "Average tax-free rental yield in Dubai", value: "6-9%" },
+              { label: "Capital gains tax on UAE property", value: "0%" },
+              { label: "RE/MAX agents worldwide", value: "150,000+" },
             ].map((s, idx) => (
-              <motion.div
+              <div
                 key={s.label}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.4,
-                  delay: idx * 0.08,
-                  ease: [0.215, 0.61, 0.355, 1],
-                }}
                 className={`flex flex-col justify-between h-full ${idx > 0 ? "md:pl-6" : ""}`}
               >
-                <span className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl tracking-tight block overflow-visible mb-0.5">
-                  <AnimatedCounter value={s.value} delay={0.3 + idx * 0.1} />
+                <span className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl tracking-tight block overflow-visible mb-0.5 text-amber-500">
+                  {s.value}
                 </span>
-
                 <span className="text-gray-500 font-body text-[11px] sm:text-xs leading-tight font-medium block">
                   {s.label}
                 </span>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

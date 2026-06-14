@@ -49,7 +49,9 @@ export default function Footer() {
               <p>Off-Plan Properties</p>
               <p>Ready Properties</p>
               <p>Golden Visa Packages</p>
-              <p>Portfolio Management</p>
+              <Link to="/services" className="block hover:text-primary transition-colors">Portfolio Management</Link>
+              <Link to="/10-net-roi-dubai-property" className="block hover:text-primary transition-colors">Investment Calculator</Link>
+              <Link to="/dubai-property-investment" className="block hover:text-primary transition-colors">Why Dubai?</Link>
             </div>
           </div>
           <div>

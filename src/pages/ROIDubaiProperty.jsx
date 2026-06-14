@@ -282,13 +282,19 @@ export default function ROIDubaiProperty() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { name: 'Investor, UK', quote: 'My Dubai studio earns more per year than my London flat, and I pay no tax on it.' },
-              { name: 'Investor, India', quote: 'The team modelled my exact returns before I committed. Completely transparent.' },
-              { name: 'Investor, UAE', quote: 'Reserved off-plan, paid in stages, now collecting rent. Effortless.' },
+              { name: 'James T.', location: 'London, UK', quote: 'My Dubai studio generates more net income per year than my London flat - and I pay zero tax on it. RE/MAX ZAM walked me through every step.', stars: 5 },
+              { name: 'Priya S.', location: 'Singapore', quote: 'I was sceptical about investing abroad, but the ROI calculator made it real. My first unit is contracted at 8.5% net for 5 years.', stars: 5 },
+              { name: 'Marcus B.', location: 'Frankfurt, Germany', quote: 'I now earn passive income from three Dubai units. The team handled everything remotely - I have not visited once and the income arrives monthly.', stars: 5 },
             ].map(t => (
               <div key={t.name} className="bg-[#F4F6FA] rounded-2xl p-7 border border-gray-100">
+                <div className="flex gap-0.5 mb-4">
+                  {Array.from({ length: t.stars }).map((_, i) => (
+                    <span key={i} className="text-amber-400 text-sm">★</span>
+                  ))}
+                </div>
                 <p className="font-body text-gray-600 text-sm leading-relaxed italic mb-5">"{t.quote}"</p>
-                <p className="font-heading font-bold text-[#0E1B3A] text-xs">— {t.name}</p>
+                <p className="font-heading font-bold text-[#0E1B3A] text-xs">{t.name}</p>
+                <p className="font-body text-gray-400 text-xs">{t.location}</p>
               </div>
             ))}
           </div>
