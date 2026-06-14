@@ -13,7 +13,7 @@
  */
 import { useEffect } from 'react';
 
-const DEFAULT_OG_IMAGE = 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/e55db5afd_generated_image.png';
+const DEFAULT_OG_IMAGE = 'https://remaxzam.ae/og-image.jpg';
 const SITE_NAME = 'RE/MAX ZAM Dubai';
 
 function setMeta(name, content, attr = 'name') {
