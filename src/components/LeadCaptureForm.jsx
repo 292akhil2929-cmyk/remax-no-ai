@@ -6,12 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { isValidEmail, isValidPhone, isValidName } from '@/lib/validation';
+import PhoneInput from '@/components/PhoneInput';
 import { trackEvent, trackLeadEvent } from '@/lib/analytics';
 
 export default function LeadCaptureForm({ leadType = "Investor", source = "Website", compact = false }) {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
-  const [form, setForm] = useState({ full_name: '', email: '', phone: '', investment_budget: '', investment_goal: '', property_interest: '' });
+  const [form, setForm] = useState({ full_name: '', email: '', phone: '', phone_country_code: '+971', investment_budget: '', investment_goal: '', property_interest: '' });
 
   const validate = () => {
     const errs = {};
@@ -48,7 +49,7 @@ export default function LeadCaptureForm({ leadType = "Investor", source = "Websi
     e.preventDefault();
     if (createLead.isPending) return;
     if (!validate()) return;
-    const payload = { ...form, lead_type: leadType, source };
+    const payload = { ...form, phone: `${form.phone_country_code}${form.phone}`, lead_type: leadType, source };
     createLead.mutate(payload);
   };
 
@@ -75,9 +76,14 @@ export default function LeadCaptureForm({ leadType = "Investor", source = "Websi
           <Input placeholder="Email *" type="email" value={form.email} onChange={(e) => { setForm({...form, email: e.target.value}); clearError('email'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.email ? 'border-red-500' : ''}`} />
           {errors.email && <p className="text-[11px] text-red-500 font-body mt-1">{errors.email}</p>}
         </div>
-        <div>
-          <Input placeholder="Phone" value={form.phone} onChange={(e) => { setForm({...form, phone: e.target.value}); clearError('phone'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.phone ? 'border-red-500' : ''}`} />
-          {errors.phone && <p className="text-[11px] text-red-500 font-body mt-1">{errors.phone}</p>}
+        <div className={compact ? '' : 'sm:col-span-2'}>
+          <PhoneInput
+            value={form.phone}
+            countryCode={form.phone_country_code}
+            onChange={v => { setForm({...form, phone: v}); clearError('phone'); }}
+            onCountryChange={v => setForm({...form, phone_country_code: v})}
+            error={errors.phone}
+          />
         </div>
         <Select value={form.investment_budget} onValueChange={(v) => setForm({...form, investment_budget: v})}>
           <SelectTrigger className="bg-secondary border-border/50 text-foreground"><SelectValue placeholder="Investment Budget" /></SelectTrigger>

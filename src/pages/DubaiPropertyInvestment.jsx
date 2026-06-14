@@ -9,6 +9,7 @@ import { TrendingUp, Shield, DollarSign, Building2, Star, CheckCircle2, ArrowRig
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import PhoneInput from '@/components/PhoneInput';
 import { useMutation } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { trackLeadEvent } from '@/lib/analytics';
@@ -51,12 +52,12 @@ const PAGE_SCHEMA = {
 
 function GuideCapture({ dark = false, source = 'Guide Download' }) {
   const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({ full_name: '', email: '', country: '' });
+  const [form, setForm] = useState({ full_name: '', email: '', phone: '', phone_country_code: '+971', country: '' });
   const utms = getUTMParams();
 
   const mutation = useMutation({
     mutationFn: async (data) => {
-      return base44.functions.invoke('createLead', { ...data, ...utms, lead_type: 'Investor', source, investment_goal: 'Passive Income', notes: 'Guide download request' });
+      return base44.functions.invoke('createLead', { ...data, ...utms, lead_type: 'Investor', source, phone: `${data.phone_country_code}${data.phone}`, investment_goal: 'Passive Income', notes: 'Guide download request' });
     },
     onSuccess: () => { setSubmitted(true); trackLeadEvent('guide_download', { source }); },
   });
@@ -79,6 +80,13 @@ function GuideCapture({ dark = false, source = 'Guide Download' }) {
     <form onSubmit={e => { e.preventDefault(); mutation.mutate(form); }} className="space-y-3">
       <Input placeholder="Full Name *" required value={form.full_name} onChange={e => setForm({ ...form, full_name: e.target.value })} className={base} />
       <Input placeholder="Email Address *" type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} className={base} />
+      <PhoneInput
+        value={form.phone}
+        countryCode={form.phone_country_code}
+        onChange={v => setForm({ ...form, phone: v })}
+        onCountryChange={v => setForm({ ...form, phone_country_code: v })}
+        dark={dark}
+      />
       <Select value={form.country} onValueChange={v => setForm({ ...form, country: v })}>
         <SelectTrigger className={base}><SelectValue placeholder="Country" /></SelectTrigger>
         <SelectContent>
@@ -277,8 +285,8 @@ export default function DubaiPropertyInvestment() {
       {/* ── FINAL CTA ── */}
       <RedCTABand heading="Get the free guide — then let's build your Dubai Wealth Engine.">
         <div className="max-w-md mx-auto">
-          <div className="bg-white/10 rounded-2xl p-7 mb-4">
-            <GuideCapture dark source="Bottom Guide Download — /dubai-property-investment" />
+          <div className="bg-white rounded-2xl p-7 shadow-xl mb-4">
+            <GuideCapture dark={false} source="Bottom Guide Download — /dubai-property-investment" />
           </div>
           <a href="#lead-form" className="inline-flex items-center gap-2 border border-white/30 hover:border-white/60 text-white font-heading font-semibold text-sm px-7 py-3 rounded-xl transition-colors">
             Book a Free Consultation <ArrowRight className="w-4 h-4" />

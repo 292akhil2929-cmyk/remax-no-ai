@@ -311,8 +311,8 @@ export default function ROIDubaiProperty() {
 
       {/* ── FINAL CTA ── */}
       <RedCTABand heading="See your exact returns — then we'll build your plan.">
-        <div id="lead-form" className="max-w-md mx-auto bg-white/10 rounded-2xl p-7">
-          <CampaignLeadForm dark={true} source="Bottom CTA — /10-net-roi-dubai-property" ctaLabel="Get My Personalised Plan" />
+        <div id="lead-form" className="max-w-md mx-auto bg-white rounded-2xl p-7 shadow-xl">
+          <CampaignLeadForm dark={false} source="Bottom CTA — /10-net-roi-dubai-property" ctaLabel="Get My Personalised Plan" />
         </div>
       </RedCTABand>
 

@@ -5,10 +5,11 @@
  */
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { CheckCircle2, ChevronDown, ArrowRight, MessageCircle } from 'lucide-react';
+import { CheckCircle2, ChevronDown, ArrowRight, MessageCircle, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import PhoneInput from '@/components/PhoneInput';
 import { useMutation } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { sendLeadToBitrix } from '@/lib/bitrix';
@@ -71,7 +72,14 @@ export function CampaignHeader({ ctaLabel = 'Book a Consultation', ctaHref = '#l
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-md'} border-b border-gray-100`}>
+    <div className="fixed top-0 left-0 right-0 z-50">
+      {/* Back to main site */}
+      <div className="bg-[#0E1B3A]/90 backdrop-blur-sm px-5 lg:px-10 py-1.5 flex items-center">
+        <Link to="/" className="flex items-center gap-1.5 text-white/50 hover:text-white/80 text-[11px] font-body transition-colors">
+          <ArrowLeft className="w-3 h-3" /> Back to RE/MAX ZAM
+        </Link>
+      </div>
+    <header className={`transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-md'} border-b border-gray-100`}>
       <div className="max-w-7xl mx-auto px-5 lg:px-10 flex items-center justify-between h-16">
         <Link to="/">
           <img src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/202b99f88_RemaxZamLogo.webp" alt="RE/MAX ZAM" className="h-9 w-auto object-contain" />
@@ -105,6 +113,7 @@ export function CampaignHeader({ ctaLabel = 'Book a Consultation', ctaHref = '#l
         </div>
       )}
     </header>
+    </div>
   );
 }
 
@@ -170,12 +179,12 @@ export function CampaignLeadForm({ dark = false, source = 'Campaign', ctaLabel =
   const utms = getUTMParams();
 
   const [form, setForm] = useState({
-    full_name: '', email: '', phone: '', country: '', investment_budget: '', primary_goal: '',
+    full_name: '', email: '', phone: '', phone_country_code: '+971', country: '', investment_budget: '', primary_goal: '',
   });
 
   const mutation = useMutation({
     mutationFn: async (data) => {
-      const payload = { ...data, ...utms, lead_type: 'Investor', source };
+      const payload = { ...data, ...utms, lead_type: 'Investor', source, phone: `${data.phone_country_code}${data.phone}` };
       const res = await base44.functions.invoke('createLead', payload);
       try {
         await sendLeadToBitrix({ title: `${source} Lead`, ...data, source });
@@ -222,7 +231,13 @@ export function CampaignLeadForm({ dark = false, source = 'Campaign', ctaLabel =
     >
       <Input placeholder="Full Name *" required value={form.full_name} onChange={e => setForm({ ...form, full_name: e.target.value })} className={base} />
       <Input placeholder="Email Address *" type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} className={base} />
-      <Input placeholder="Phone / WhatsApp (with country code) *" required value={form.phone} onChange={e => setForm({ ...form, phone: e.target.value })} className={base} />
+      <PhoneInput
+        value={form.phone}
+        countryCode={form.phone_country_code}
+        onChange={v => setForm({ ...form, phone: v })}
+        onCountryChange={v => setForm({ ...form, phone_country_code: v })}
+        dark={dark}
+      />
       {!compact && (
         <>
           <Select value={form.country} onValueChange={v => setForm({ ...form, country: v })}>
@@ -292,12 +307,13 @@ export function FounderStrip({ linkLabel = 'See how the founder invests', linkHr
   );
 }
 
-// ─── RED CTA BAND ─────────────────────────────────────────────────────────────
+// ─── DARK NAVY CTA BAND (replaces RedCTABand) ────────────────────────────────
 
 export function RedCTABand({ heading, children }) {
   return (
-    <section className="py-20 bg-[#DC1C2E] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(255,255,255,0.06),transparent_70%)]" />
+    <section className="py-20 bg-[#0a1628] relative overflow-hidden">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(196,154,58,0.15),transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(14,27,58,0.8),transparent_70%)]" />
       <div className="relative max-w-3xl mx-auto px-5 lg:px-10 text-center">
         <h2 className="font-display font-black text-white text-3xl sm:text-4xl leading-tight mb-10">{heading}</h2>
         {children}

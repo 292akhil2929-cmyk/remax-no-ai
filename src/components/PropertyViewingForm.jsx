@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { CheckCircle, Calendar, MessageSquare } from 'lucide-react';
 import { isValidEmail, isValidPhone, isValidName } from '@/lib/validation';
+import PhoneInput from '@/components/PhoneInput';
 import { trackEvent, trackLeadEvent } from '@/lib/analytics';
 
 export default function PropertyViewingForm({ property, agentName }) {
@@ -15,6 +16,7 @@ export default function PropertyViewingForm({ property, agentName }) {
     full_name: '',
     email: '',
     phone: '',
+    phone_country_code: '+971',
     request_type: '',
     preferred_date: '',
   });
@@ -55,7 +57,7 @@ export default function PropertyViewingForm({ property, agentName }) {
     const payload = {
       full_name: form.full_name,
       email: form.email,
-      phone: form.phone,
+      phone: `${form.phone_country_code}${form.phone}`,
       lead_type: 'Investor',
       source: 'Property Viewing Request',
       property_interest: `${property.title} (${property.location})`,
@@ -79,7 +81,7 @@ export default function PropertyViewingForm({ property, agentName }) {
         <button
           onClick={() => {
             setSubmitted(false);
-            setForm({ full_name: '', email: '', phone: '', request_type: '', preferred_date: '' });
+            setForm({ full_name: '', email: '', phone: '', phone_country_code: '+971', request_type: '', preferred_date: '' });
           }}
           className="text-xs text-primary hover:underline font-medium"
         >
@@ -111,16 +113,13 @@ export default function PropertyViewingForm({ property, agentName }) {
           />
           {errors.email && <p className="text-[11px] text-red-500 font-body mt-1">{errors.email}</p>}
         </div>
-        <div>
-          <Input
-            placeholder="Phone *"
-            type="tel"
-            value={form.phone}
-            onChange={(e) => { setForm({ ...form, phone: e.target.value }); clearError('phone'); }}
-            className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground text-sm ${errors.phone ? 'border-red-500' : ''}`}
-          />
-          {errors.phone && <p className="text-[11px] text-red-500 font-body mt-1">{errors.phone}</p>}
-        </div>
+        <PhoneInput
+          value={form.phone}
+          countryCode={form.phone_country_code}
+          onChange={v => { setForm({ ...form, phone: v }); clearError('phone'); }}
+          onCountryChange={v => setForm({ ...form, phone_country_code: v })}
+          error={errors.phone}
+        />
       </div>
 
       <div>

@@ -278,8 +278,8 @@ export default function GoldenVisaProperty() {
 
       {/* ── FINAL CTA ── */}
       <RedCTABand heading="Find out if you qualify — and see the properties that get you there.">
-        <div className="max-w-md mx-auto bg-white/10 rounded-2xl p-7">
-          <CampaignLeadForm dark={true} source="Bottom CTA — /dubai-golden-visa-property" ctaLabel="Get My Eligibility Report" />
+        <div className="max-w-md mx-auto bg-white rounded-2xl p-7 shadow-xl">
+          <CampaignLeadForm dark={false} source="Bottom CTA — /dubai-golden-visa-property" ctaLabel="Get My Eligibility Report" />
         </div>
       </RedCTABand>
 

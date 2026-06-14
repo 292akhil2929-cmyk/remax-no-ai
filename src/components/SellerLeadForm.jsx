@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { isValidEmail, isValidPhone, isValidName, isValidPrice } from '@/lib/validation';
+import PhoneInput from '@/components/PhoneInput';
 import { trackLeadEvent } from '@/lib/analytics';
 
 export default function SellerLeadForm({ source = "Website", compact = false }) {
@@ -16,6 +17,7 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
     full_name: '',
     email: '',
     phone: '',
+    phone_country_code: '+971',
     property_type: '',
     property_location: '',
     asking_price: '',
@@ -65,7 +67,7 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
     const payload = {
       full_name: form.full_name,
       email: form.email,
-      phone: form.phone,
+      phone: `${form.phone_country_code}${form.phone}`,
       lead_type: 'Seller',
       source,
       property_interest: form.property_type && form.property_location ? `${form.property_type} in ${form.property_location}` : '',
@@ -98,12 +100,17 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
           {errors.full_name && <p className="text-[11px] text-red-500 font-body mt-1">{errors.full_name}</p>}
         </div>
         <div>
-          <Input placeholder="Phone Number *" type="tel" value={form.phone} onChange={(e) => { setForm({...form, phone: e.target.value}); clearError('phone'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.phone ? 'border-red-500' : ''}`} />
-          {errors.phone && <p className="text-[11px] text-red-500 font-body mt-1">{errors.phone}</p>}
-        </div>
-        <div>
           <Input placeholder="Email Address *" type="email" value={form.email} onChange={(e) => { setForm({...form, email: e.target.value}); clearError('email'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.email ? 'border-red-500' : ''}`} />
           {errors.email && <p className="text-[11px] text-red-500 font-body mt-1">{errors.email}</p>}
+        </div>
+        <div className={compact ? '' : 'sm:col-span-2'}>
+          <PhoneInput
+            value={form.phone}
+            countryCode={form.phone_country_code}
+            onChange={v => { setForm({...form, phone: v}); clearError('phone'); }}
+            onCountryChange={v => setForm({...form, phone_country_code: v})}
+            error={errors.phone}
+          />
         </div>
         <div>
           <Select value={form.property_type} onValueChange={(v) => { setForm({...form, property_type: v}); clearError('property_type'); }}>

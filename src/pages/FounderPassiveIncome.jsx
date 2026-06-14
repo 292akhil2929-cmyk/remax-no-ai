@@ -199,8 +199,8 @@ export default function FounderPassiveIncome() {
 
       {/* ── FINAL CTA ── */}
       <RedCTABand heading="Let me show you the numbers — book a call with my team.">
-        <div className="max-w-md mx-auto bg-white/10 rounded-2xl p-7">
-          <CampaignLeadForm dark={true} source="Bottom CTA — /my-dubai-passive-income" ctaLabel="Book a Call With My Team" />
+        <div className="max-w-md mx-auto bg-white rounded-2xl p-7 shadow-xl">
+          <CampaignLeadForm dark={false} source="Bottom CTA — /my-dubai-passive-income" ctaLabel="Book a Call With My Team" />
         </div>
       </RedCTABand>
 

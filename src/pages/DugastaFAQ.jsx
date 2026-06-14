@@ -159,8 +159,8 @@ export default function DugastaFAQ() {
 
       {/* ── FINAL CTA ── */}
       <RedCTABand heading="Still have a question? Get a straight answer from an advisor.">
-        <div id="lead-form" className="max-w-md mx-auto bg-white/10 rounded-2xl p-7 mb-6">
-          <CampaignLeadForm dark={true} source="Bottom CTA — /dugasta-faq" ctaLabel="Talk to an Advisor" />
+        <div id="lead-form" className="max-w-md mx-auto bg-white rounded-2xl p-7 shadow-xl mb-6">
+          <CampaignLeadForm dark={false} source="Bottom CTA — /dugasta-faq" ctaLabel="Talk to an Advisor" />
         </div>
         <a href={WA_BASE} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-heading font-bold text-sm px-7 py-3 rounded-xl transition-colors">
           <MessageCircle className="w-4 h-4" /> WhatsApp Us
