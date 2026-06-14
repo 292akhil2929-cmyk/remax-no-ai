@@ -12,6 +12,37 @@ import {
   CampaignHeader, CampaignFooter, WhatsAppFloat, TrustStrip,
   FounderStrip, RedCTABand, CampaignLeadForm, FaqAccordion, WA_BASE
 } from '@/components/campaign/CampaignShared';
+import usePageSEO from '@/lib/usePageSEO';
+
+const PAGE_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://remaxzam.com/dubai-golden-visa-property',
+      url: 'https://remaxzam.com/dubai-golden-visa-property',
+      name: 'Dubai Golden Visa Through Property | AED 2M 10-Year Residency | RE/MAX ZAM',
+      description: 'Invest AED 2M in Dubai property and secure a renewable 10-year UAE Golden Visa for your family. Check your eligibility in 60 seconds and see qualifying properties.',
+      breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://remaxzam.com' },
+          { '@type': 'ListItem', position: 2, name: 'Invest', item: 'https://remaxzam.com/dubai-property-investment' },
+          { '@type': 'ListItem', position: 3, name: 'Dubai Golden Visa Through Property', item: 'https://remaxzam.com/dubai-golden-visa-property' },
+        ],
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: "What's the minimum investment for a Golden Visa?", acceptedAnswer: { '@type': 'Answer', text: 'AED 2,000,000 in property (DLD-registered value). You can combine multiple properties to reach it.' } },
+        { '@type': 'Question', name: 'Can I qualify with a mortgage or payment plan?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — as of 2025, the full property value counts, so mortgaged and staged-payment purchases can qualify.' } },
+        { '@type': 'Question', name: 'Who is covered by the Golden Visa?', acceptedAnswer: { '@type': 'Answer', text: 'You, your spouse, your children, and domestic staff.' } },
+        { '@type': 'Question', name: 'How long does the Golden Visa process take?', acceptedAnswer: { '@type': 'Answer', text: 'Once your property and valuation are in place, the visa process is typically a few weeks. We guide you through every step.' } },
+      ],
+    },
+  ],
+};
 
 // ─── ELIGIBILITY CHECKER ──────────────────────────────────────────────────────
 
@@ -127,6 +158,14 @@ const BENEFIT_CARDS = [
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 
 export default function GoldenVisaProperty() {
+  usePageSEO({
+    title: 'Dubai Golden Visa Through Property | AED 2M 10-Year Residency | RE/MAX ZAM',
+    description: 'Invest AED 2M in Dubai property and secure a renewable 10-year UAE Golden Visa for your family. Check your eligibility in 60 seconds and see qualifying properties.',
+    canonical: 'https://remaxzam.com/dubai-golden-visa-property',
+    keywords: 'dubai golden visa property, property for golden visa dubai, aed 2 million golden visa, uae residency by investment, dubai golden visa 2025, golden visa payment plan dubai',
+    schema: PAGE_SCHEMA,
+  });
+
   return (
     <div className="min-h-screen bg-white font-body">
       <CampaignHeader ctaLabel="Check My Eligibility" ctaHref="#eligibility" />

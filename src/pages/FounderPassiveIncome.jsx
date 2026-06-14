@@ -9,6 +9,43 @@ import {
   CampaignHeader, CampaignFooter, WhatsAppFloat, TrustStrip,
   RedCTABand, CampaignLeadForm, FaqAccordion
 } from '@/components/campaign/CampaignShared';
+import usePageSEO from '@/lib/usePageSEO';
+
+const PAGE_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://remaxzam.com/my-dubai-passive-income',
+      url: 'https://remaxzam.com/my-dubai-passive-income',
+      name: 'How I Earn Passive Income From Dubai Real Estate | Founder Story | RE/MAX ZAM',
+      description: 'The owner of RE/MAX ZAM shares how he earns passive, tax-free income from his own Dubai property portfolio — and how you can invest in the same strategy.',
+      breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://remaxzam.com' },
+          { '@type': 'ListItem', position: 2, name: 'Dubai Property Investment', item: 'https://remaxzam.com/dubai-property-investment' },
+          { '@type': 'ListItem', position: 3, name: 'Founder Passive Income Story', item: 'https://remaxzam.com/my-dubai-passive-income' },
+        ],
+      },
+    },
+    {
+      '@type': 'Person',
+      name: 'Faisal Contractor',
+      jobTitle: 'Owner',
+      worksFor: { '@type': 'RealEstateAgent', name: 'RE/MAX ZAM Dubai', url: 'https://remaxzam.com' },
+      description: 'Owner of RE/MAX ZAM Dubai and personal investor in Dubai property, earning passive income from Dugasta and other high-yield communities.',
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'Does the founder of RE/MAX ZAM own Dubai property?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — Faisal Contractor invests in the same projects he recommends, including Dugasta communities. His income comes from the same strategy he shares with clients.' } },
+        { '@type': 'Question', name: 'Is this financial advice?', acceptedAnswer: { '@type': 'Answer', text: 'No. The founder shares his own experience and the team models transparent projections. Clients make their own decisions with full information.' } },
+        { '@type': 'Question', name: 'What happens on a consultation call?', acceptedAnswer: { '@type': 'Answer', text: 'The team learns your goals, models your returns and visa eligibility, and shows you matching properties. About 20 minutes.' } },
+      ],
+    },
+  ],
+};
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 
@@ -28,6 +65,14 @@ const FAQS = [
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 
 export default function FounderPassiveIncome() {
+  usePageSEO({
+    title: 'How I Earn Passive Income From Dubai Real Estate | Founder Story | RE/MAX ZAM',
+    description: 'The owner of RE/MAX ZAM shares how he earns passive, tax-free income from his own Dubai property portfolio — and how you can invest in the same strategy.',
+    canonical: 'https://remaxzam.com/my-dubai-passive-income',
+    keywords: 'passive income dubai real estate, how to earn passive income dubai, dubai rental income investment, dubai property founder investor, tax free rental income dubai',
+    schema: PAGE_SCHEMA,
+  });
+
   return (
     <div className="min-h-screen bg-white font-body">
       <CampaignHeader ctaLabel="Book a Call With My Team" ctaHref="#lead-form" />

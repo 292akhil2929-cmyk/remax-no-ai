@@ -12,6 +12,37 @@ import {
   CampaignHeader, CampaignFooter, WhatsAppFloat, TrustStrip,
   FounderStrip, RedCTABand, CampaignLeadForm, FaqAccordion
 } from '@/components/campaign/CampaignShared';
+import usePageSEO from '@/lib/usePageSEO';
+
+const PAGE_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://remaxzam.com/10-net-roi-dubai-property',
+      url: 'https://remaxzam.com/10-net-roi-dubai-property',
+      name: '10% Net ROI Dubai Property | Tax-Free Rental Returns | RE/MAX ZAM',
+      description: 'Earn up to 10% net rental ROI from Dubai property — tax-free, with 0% service charges and flexible payment plans. Calculate your returns and get a personalised plan.',
+      breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://remaxzam.com' },
+          { '@type': 'ListItem', position: 2, name: 'Invest', item: 'https://remaxzam.com/dubai-property-investment' },
+          { '@type': 'ListItem', position: 3, name: '10% Net ROI Dubai Property', item: 'https://remaxzam.com/10-net-roi-dubai-property' },
+        ],
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: 'Is the 10% ROI guaranteed?', acceptedAnswer: { '@type': 'Answer', text: "It's a contractual, projected net return on select projects for a defined period. We show you the exact terms per project — nothing is left vague." } },
+        { '@type': 'Question', name: 'Is rental income really tax-free in Dubai?', acceptedAnswer: { '@type': 'Answer', text: 'Yes. Dubai has no personal income tax, no capital gains tax and no tax on rental income.' } },
+        { '@type': 'Question', name: "What's the minimum to start?", acceptedAnswer: { '@type': 'Answer', text: 'Select units start from AED 350,000, with flexible payment plans.' } },
+        { '@type': 'Question', name: 'Can I get a Golden Visa too?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — from AED 2M in property you qualify for a renewable 10-year Golden Visa. Ask us how to structure it.' } },
+      ],
+    },
+  ],
+};
 
 // ─── ROI CALCULATOR ───────────────────────────────────────────────────────────
 
@@ -143,6 +174,14 @@ const PROTECTION_CARDS = [
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 
 export default function ROIDubaiProperty() {
+  usePageSEO({
+    title: '10% Net ROI Dubai Property | Tax-Free Rental Returns | RE/MAX ZAM',
+    description: 'Earn up to 10% net rental ROI from Dubai property — tax-free, with 0% service charges and flexible payment plans. Calculate your returns and get a personalised plan.',
+    canonical: 'https://remaxzam.com/10-net-roi-dubai-property',
+    keywords: 'dubai property 10% roi, high rental yield dubai, dubai investment property returns, tax-free property dubai, dubai rental yield 2026, 10 percent roi dubai',
+    schema: PAGE_SCHEMA,
+  });
+
   return (
     <div className="min-h-screen bg-white font-body">
       <CampaignHeader ctaLabel="Book a Consultation" ctaHref="#lead-form" />

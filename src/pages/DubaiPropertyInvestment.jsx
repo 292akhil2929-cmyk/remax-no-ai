@@ -16,6 +16,36 @@ import {
   CampaignHeader, CampaignFooter, WhatsAppFloat, TrustStrip,
   FounderStrip, RedCTABand, FaqAccordion, getUTMParams
 } from '@/components/campaign/CampaignShared';
+import usePageSEO from '@/lib/usePageSEO';
+
+const PAGE_SCHEMA = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': 'https://remaxzam.com/dubai-property-investment',
+      url: 'https://remaxzam.com/dubai-property-investment',
+      name: 'Dubai Property Investment | Passive Income, Golden Visa & Growth | RE/MAX ZAM',
+      description: 'Build tax-free passive income, capital growth and 10-year residency with Dubai property. Download the free investor guide from RE/MAX ZAM — advisors who invest themselves.',
+      breadcrumb: {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://remaxzam.com' },
+          { '@type': 'ListItem', position: 2, name: 'Dubai Property Investment', item: 'https://remaxzam.com/dubai-property-investment' },
+        ],
+      },
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        { '@type': 'Question', name: "I'm overseas — can I invest remotely?", acceptedAnswer: { '@type': 'Answer', text: 'Yes. Most of our investors buy from abroad. We handle everything and you can sign digitally.' } },
+        { '@type': 'Question', name: 'How much do I need to start investing in Dubai property?', acceptedAnswer: { '@type': 'Answer', text: 'From AED 350,000, with flexible payment plans.' } },
+        { '@type': 'Question', name: 'Is my money safe investing in Dubai property?', acceptedAnswer: { '@type': 'Answer', text: 'Dubai has a digitised land registry, freehold foreign ownership and escrow-protected off-plan payments.' } },
+        { '@type': 'Question', name: 'What returns can I expect from Dubai property?', acceptedAnswer: { '@type': 'Answer', text: 'Average Dubai yields are 6–9%; select projects offer up to 10% net. We model your exact numbers before you commit.' } },
+      ],
+    },
+  ],
+};
 
 // ─── EMAIL CAPTURE ────────────────────────────────────────────────────────────
 
@@ -104,6 +134,14 @@ const FAQS = [
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 
 export default function DubaiPropertyInvestment() {
+  usePageSEO({
+    title: 'Dubai Property Investment | Passive Income, Golden Visa & Growth | RE/MAX ZAM',
+    description: 'Build tax-free passive income, capital growth and 10-year residency with Dubai property. Download the free investor guide from RE/MAX ZAM — advisors who invest themselves.',
+    canonical: 'https://remaxzam.com/dubai-property-investment',
+    keywords: 'dubai property investment, invest in dubai real estate, passive income dubai property, dubai property for foreigners, buy property dubai 2025, dubai investment guide',
+    schema: PAGE_SCHEMA,
+  });
+
   return (
     <div className="min-h-screen bg-white font-body">
       <CampaignHeader ctaLabel="Book a Consultation" ctaHref="#lead-form" />
