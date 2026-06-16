@@ -4,6 +4,7 @@ import { TrendingUp, Calendar, CheckCircle2, ArrowRight, MapPin, MessageCircle }
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { trackLeadEvent } from '@/lib/analytics';
+import usePageSEO from '@/lib/usePageSEO';
 
 const projects = [
   {
@@ -105,6 +106,12 @@ const statusColors = {
 };
 
 export default function OffPlan() {
+  usePageSEO({
+    title: 'Off-Plan Properties in Dubai | RE/MAX Zam',
+    description: "Browse Dubai's best off-plan projects with flexible payment plans and strong capital growth. RE/MAX Zam advisors help you buy direct from top developers.",
+    canonical: 'https://remaxzam.ae/off-plan',
+  });
+
   const [filter, setFilter] = useState('all');
   const filtered = filter === 'all' ? projects : projects.filter(p => p.status === filter);
 

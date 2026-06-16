@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { TrendingUp, PiggyBank, Shield, ArrowRight, CheckCircle2, MapPin, Star } from 'lucide-react';
 import LeadCaptureForm from '@/components/LeadCaptureForm';
+import usePageSEO from '@/lib/usePageSEO';
 
 const TOP_AREAS = [
   { area: 'JVC', avgYield: '8.2%', avgPrice: 'AED 950/sqft', type: 'Apartments', why: 'Young professionals keep JVC consistently tenanted. Affordable entry, strong demand and easy highway access make this one of the most popular yield plays in Dubai.' },
@@ -19,6 +20,12 @@ const ROI_TYPES = [
 ];
 
 export default function HighROI() {
+  usePageSEO({
+    title: 'High-ROI Investment Properties in Dubai | RE/MAX Zam',
+    description: 'Discover Dubai properties with the strongest rental yields and capital growth. RE/MAX Zam helps investors target high-ROI areas with data-driven advice.',
+    canonical: 'https://remaxzam.ae/high-roi',
+  });
+
   return (
     <div className="min-h-screen">
 

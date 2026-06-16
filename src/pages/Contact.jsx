@@ -11,8 +11,8 @@ const contactInfo = [
 
 export default function Contact() {
   usePageSEO({
-    title: 'Contact RE/MAX ZAM | Book a Free Dubai Property Consultation',
-    description: 'Book a free 30-minute consultation with our Dubai real estate advisors. Call, WhatsApp, or email. Bay View Tower, Dubai.',
+    title: 'Contact RE/MAX Zam | Dubai Real Estate',
+    description: 'Talk to a RE/MAX Zam advisor about buying, selling or investing in Dubai property. Get in touch by phone, WhatsApp or email today.',
     canonical: 'https://remaxzam.ae/contact',
   });
 

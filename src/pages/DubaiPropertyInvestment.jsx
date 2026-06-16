@@ -77,7 +77,7 @@ function GuideCapture({ dark = false, source = 'Guide Download' }) {
   }
 
   return (
-    <form onSubmit={e => { e.preventDefault(); mutation.mutate(form); }} className="space-y-3">
+    <form id="guide-download-form" onSubmit={e => { e.preventDefault(); mutation.mutate(form); }} className="space-y-3">
       <Input placeholder="Full Name *" required value={form.full_name} onChange={e => setForm({ ...form, full_name: e.target.value })} className={base} />
       <Input placeholder="Email Address *" type="email" required value={form.email} onChange={e => setForm({ ...form, email: e.target.value })} className={base} />
       <PhoneInput

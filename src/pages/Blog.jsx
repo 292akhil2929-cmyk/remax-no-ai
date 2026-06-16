@@ -17,9 +17,9 @@ const CATEGORY_COLORS = {
 
 export default function Blog() {
   usePageSEO({
-    title: 'Dubai Real Estate Blog | Market Insights & Investment Tips | RE/MAX ZAM',
-    description: 'Expert analysis, market data, and investment guides from RE/MAX ZAM\'s advisory team. Stay ahead of Dubai\'s property market.',
-    canonical: 'https://remaxzam.ae/blog',
+    title: 'Dubai Real Estate Insights & Market News | RE/MAX Zam',
+    description: "Expert analysis on Dubai's property market — prices, trends and investment opportunities. Stay ahead with RE/MAX Zam's latest insights.",
+    canonical: 'https://remaxzam.ae/insights',
   });
 
   const { data: posts = [], isLoading } = useQuery({

@@ -93,7 +93,7 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4" noValidate>
+    <form id="seller-lead-form" onSubmit={handleSubmit} className="space-y-4" noValidate>
       <div className={compact ? "space-y-3" : "grid grid-cols-1 sm:grid-cols-2 gap-4"}>
         <div>
           <Input placeholder="Full Name *" value={form.full_name} onChange={(e) => { setForm({...form, full_name: e.target.value}); clearError('full_name'); }} className={`bg-secondary border-border/50 text-foreground placeholder:text-muted-foreground ${errors.full_name ? 'border-red-500' : ''}`} />

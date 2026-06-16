@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Award, Shield, Globe, Users, TrendingUp, Star, CheckCircle, ArrowRight, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import usePageSEO from '@/lib/usePageSEO';
 
 const STATS = [
   { value: '15+', label: 'Years in Dubai Real Estate', sub: 'Founded 2010' },
@@ -101,6 +102,12 @@ const TESTIMONIALS = [
 ];
 
 export default function WhyREMAXZAM() {
+  usePageSEO({
+    title: "Why RE/MAX Zam | Dubai's Global-Backed Brokerage",
+    description: 'Work with the RE/MAX global network in Dubai — international reach, senior advisors and end-to-end support. See why investors choose RE/MAX Zam.',
+    canonical: 'https://remaxzam.ae/why-remax-zam',
+  });
+
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}

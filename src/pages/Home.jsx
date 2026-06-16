@@ -8,9 +8,9 @@ import AgentHome from '../components/home/AgentHome';
 
 export default function Home() {
   usePageSEO({
-    title: 'Dubai Real Estate Investment | Off-Plan & Golden Visa Properties | RE/MAX ZAM',
-    description: "RE/MAX ZAM is Dubai's data-driven real estate advisory. Buy off-plan, earn up to 9% tax-free rental yield, and qualify for a UAE Golden Visa. RERA licensed advisors. Book a free consultation.",
-    canonical: 'https://remaxzam.com/',
+    title: 'Dubai Property Investment | RE/MAX Zam Real Estate',
+    description: 'Invest in Dubai off-plan, ready apartments and luxury villas with RE/MAX Zam. Backed by the RE/MAX global network and senior advisors. Explore high-ROI opportunities.',
+    canonical: 'https://remaxzam.ae/',
   });
 
   const { audience } = useAudience();

@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useMutation } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { trackLeadEvent } from '@/lib/analytics';
+import { sendLeadToBitrix } from '@/lib/bitrix';
 
 // ─── VERİ ──────────────────────────────────────────────────────────────────────
 
@@ -139,7 +140,23 @@ function DugastaLeadForm({ dark = true }) {
   const [form, setForm] = useState({ full_name: '', email: '', phone: '', investment_budget: '', notes: '' });
 
   const createLead = useMutation({
-    mutationFn: (data) => base44.functions.invoke('createLead', data),
+    mutationFn: async (data) => {
+      const res = await base44.functions.invoke('createLead', data);
+      // Forward to Bitrix
+      try {
+        await sendLeadToBitrix({
+          title: 'DUGASTA Website Lead (TR)',
+          full_name: data.full_name,
+          email: data.email,
+          phone: data.phone,
+          investment_budget: data.investment_budget,
+          source: 'DUGASTA TR',
+        });
+      } catch (e) {
+        console.error('[Dugasta TR] Bitrix forward failed:', e);
+      }
+      return res;
+    },
     onSuccess: () => {
       setSubmitted(true);
       trackLeadEvent('form_submission', { lead_type: 'Investor', source: 'Dugasta Türkçe Sayfası' });
@@ -167,7 +184,7 @@ function DugastaLeadForm({ dark = true }) {
   }
 
   return (
-    <form onSubmit={(e) => { e.preventDefault(); createLead.mutate({ ...form, lead_type: 'Investor', source: 'Dugasta Türkçe Sayfası — 10 on 10' }); }} className="space-y-3">
+    <form id="dugasta-lead-form-tr" onSubmit={(e) => { e.preventDefault(); createLead.mutate({ ...form, lead_type: 'Investor', source: 'Dugasta Türkçe Sayfası — 10 on 10' }); }} className="space-y-3">
       <Input placeholder="Ad Soyad *" required value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} className={inputClass} />
       <Input placeholder="E-posta Adresi *" type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} />
       <Input placeholder="Telefon / WhatsApp *" required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} />

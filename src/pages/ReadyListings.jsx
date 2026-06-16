@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { base44 } from '@/api/base44Client';
+import usePageSEO from '@/lib/usePageSEO';
 import PropertyCard from '../components/PropertyCard';
 import { Input } from '@/components/ui/input';
 import {
@@ -14,22 +15,17 @@ import { Search, SlidersHorizontal } from 'lucide-react';
 const BEDROOM_OPTIONS = ['Any', 'Studio', '1', '2', '3', '4', '5+'];
 
 export default function ReadyListings() {
+  usePageSEO({
+    title: 'Ready Properties for Sale in Dubai | RE/MAX Zam',
+    description: 'Move-in-ready apartments and villas in Dubai with rental income from day one. Explore handover-ready homes with RE/MAX Zam\'s investment advisors.',
+    canonical: 'https://remaxzam.ae/ready-listings',
+  });
+
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
   const [bedrooms, setBedrooms] = useState('Any');
   const [sortBy, setSortBy] = useState('newest');
-
-  // Inject noindex meta tag for SEO protection
-  useEffect(() => {
-    const meta = document.createElement('meta');
-    meta.name = 'robots';
-    meta.content = 'noindex, nofollow';
-    document.head.appendChild(meta);
-    return () => {
-      document.head.removeChild(meta);
-    };
-  }, []);
 
   // Fetch ONLY pocket listings — isolated from public data
   useEffect(() => {

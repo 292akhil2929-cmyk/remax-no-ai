@@ -92,7 +92,7 @@ export default function PropertyViewingForm({ property, agentName }) {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-3" noValidate>
+    <form id="property-viewing-form" onSubmit={handleSubmit} className="space-y-3" noValidate>
       <div className="space-y-3">
         <div>
           <Input

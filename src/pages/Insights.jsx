@@ -141,8 +141,8 @@ function ArticleCard({ article, isLarge = false }) {
 
 export default function Insights() {
   usePageSEO({
-    title: 'Dubai Property Market Insights | Data & Analysis | RE/MAX ZAM',
-    description: 'Deep-dive data, area analysis, and investment strategy from RE/MAX ZAM. Trusted market intelligence for Dubai property investors.',
+    title: 'Dubai Real Estate Insights & Market News | RE/MAX Zam',
+    description: "Expert analysis on Dubai's property market — prices, trends and investment opportunities. Stay ahead with RE/MAX Zam's latest insights.",
     canonical: 'https://remaxzam.ae/insights',
   });
 

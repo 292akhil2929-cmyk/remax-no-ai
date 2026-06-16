@@ -226,7 +226,7 @@ export default function Apply() {
       {/* Form */}
       <section className="py-12 px-4 sm:px-6 lg:px-8">
         <div className="max-w-3xl mx-auto">
-          <form onSubmit={handleSubmit} className="space-y-8" noValidate>
+          <form id="career-application-form" onSubmit={handleSubmit} className="space-y-8" noValidate>
             {/* ── SECTION A: Personal & Contact ── */}
             <div className="bg-card border border-border/50 rounded-xl p-6 lg:p-8 shadow-sm">
               <SectionHeader

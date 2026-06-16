@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle2, ArrowRight, Star, Clock, FileText, Home, Globe, Shield } from 'lucide-react';
 import { Button } from "@/components/ui/button";
+import usePageSEO from '@/lib/usePageSEO';
 
 const steps = [
   { step: '01', title: 'Choose a Qualifying Property', desc: 'Purchase a residential property worth AED 2 million or more from an approved developer or on the secondary market. Off-plan properties from DLD-registered developers also qualify.' },
@@ -20,6 +21,12 @@ const faqs = [
 ];
 
 export default function GoldenVisa() {
+  usePageSEO({
+    title: 'Dubai Golden Visa Through Property | RE/MAX Zam',
+    description: 'Qualify for the UAE Golden Visa via property investment from AED 2M. RE/MAX Zam guides you through eligible properties and the full application process.',
+    canonical: 'https://remaxzam.ae/golden-visa',
+  });
+
   return (
     <div className="min-h-screen">
       {/* Hero */}

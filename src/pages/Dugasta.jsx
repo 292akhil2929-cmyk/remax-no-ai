@@ -163,7 +163,7 @@ function DugastaLeadForm({ dark = true }) {
   }
 
   return (
-    <form onSubmit={(e) => { e.preventDefault(); createLead.mutate({ ...form, lead_type: 'Investor', source: 'Dugasta Page — 10 on 10' }); }} className="space-y-3">
+    <form id="dugasta-lead-form-en" onSubmit={(e) => { e.preventDefault(); createLead.mutate({ ...form, lead_type: 'Investor', source: 'Dugasta Page — 10 on 10' }); }} className="space-y-3">
       <Input placeholder="Full Name *" required value={form.full_name} onChange={(e) => setForm({ ...form, full_name: e.target.value })} className={inputClass} />
       <Input placeholder="Email Address *" type="email" required value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} className={inputClass} />
       <Input placeholder="Phone / WhatsApp *" required value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className={inputClass} />

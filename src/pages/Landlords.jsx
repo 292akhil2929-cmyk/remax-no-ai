@@ -85,8 +85,8 @@ const steps = [
 
 export default function Landlords() {
   usePageSEO({
-    title: 'Dubai Property Management for Landlords | Rental Advisory | RE/MAX ZAM',
-    description: 'RE/MAX ZAM helps Dubai landlords maximise rental yields, find quality tenants, and manage their investment properties professionally.',
+    title: 'Sell or Lease Your Dubai Property | RE/MAX Zam',
+    description: 'List your Dubai property with RE/MAX Zam and reach qualified local and international buyers through the RE/MAX global network.',
     canonical: 'https://remaxzam.ae/landlords',
   });
 

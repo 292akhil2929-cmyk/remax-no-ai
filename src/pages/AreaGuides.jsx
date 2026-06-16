@@ -4,6 +4,7 @@ import { MapPin, TrendingUp, Users, Landmark, Star, ArrowRight } from 'lucide-re
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import CommunityMap from '../components/CommunityMap';
+import usePageSEO from '@/lib/usePageSEO';
 
 const areas = [
   {
@@ -232,6 +233,12 @@ Developed by Nakheel, JVC benefits from a central location between Sheikh Mohamm
 ];
 
 export default function AreaGuides() {
+  usePageSEO({
+    title: 'Dubai Area Guides for Property Investors | RE/MAX Zam',
+    description: "Compare Dubai's best investment communities — prices, rental yields and lifestyle. In-depth area guides from RE/MAX Zam to help you choose where to buy.",
+    canonical: 'https://remaxzam.ae/area-guides',
+  });
+
   const [selected, setSelected] = useState(areas[0].id);
   const area = areas.find(a => a.id === selected);
 

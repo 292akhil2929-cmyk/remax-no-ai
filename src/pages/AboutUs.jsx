@@ -4,6 +4,7 @@ import { base44 } from '@/api/base44Client';
 import { Award, Globe, Users, TrendingUp, ArrowRight, Phone, Mail, MessageCircle, Building2, Home, Landmark, CheckCircle2 } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { trackLeadEvent } from '@/lib/analytics';
+import usePageSEO from '@/lib/usePageSEO';
 
 const FALLBACK = 'https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/man.jpg';
 
@@ -95,6 +96,12 @@ const services = [
 ];
 
 export default function AboutUs() {
+  usePageSEO({
+    title: 'About RE/MAX Zam | Dubai Real Estate Advisors',
+    description: "RE/MAX Zam combines RE/MAX's global network with senior Dubai property advisors. Learn how we help investors buy with confidence.",
+    canonical: 'https://remaxzam.ae/about',
+  });
+
   const { data: agents = [], isLoading } = useQuery({
     queryKey: ['agents'],
     queryFn: () => base44.entities.Agent.list('sort_order')

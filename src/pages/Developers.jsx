@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, CheckCircle2, ExternalLink, Building2 } from 'lucide-react';
 import { useEffect } from 'react';
+import usePageSEO from '@/lib/usePageSEO';
 
 const DEVELOPERS = [
   {
@@ -228,6 +229,12 @@ const statusColors = {
 };
 
 export default function Developers() {
+  usePageSEO({
+    title: 'Top Dubai Property Developers | RE/MAX Zam',
+    description: 'Explore projects from Dubai\'s leading developers. RE/MAX Zam connects investors directly with trusted developers and the latest launches.',
+    canonical: 'https://remaxzam.ae/developers',
+  });
+
   const [searchParams] = useSearchParams();
   const highlightedDeveloper = searchParams.get('developer');
 

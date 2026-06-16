@@ -28,8 +28,8 @@ import { useEffect, useRef } from 'react';
 const DEFAULT_OG_IMAGE = 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/e55db5afd_generated_image.png';
 const DEFAULT_OG_IMAGE_ALT = 'RE/MAX ZAM Dubai — Dubai Real Estate Investment';
 const SITE_NAME = 'RE/MAX ZAM Dubai';
-const DEFAULT_TITLE = 'RE/MAX ZAM Dubai — Dubai Real Estate Investment, Off-Plan & Luxury Properties';
-const DEFAULT_DESCRIPTION = "RE/MAX ZAM is Dubai's trusted real estate agency. Browse off-plan properties, luxury villas and apartments for sale. 6–10% rental yields. Golden Visa eligible.";
+const DEFAULT_TITLE = 'Dubai Property Investment | RE/MAX Zam Real Estate';
+const DEFAULT_DESCRIPTION = 'Invest in Dubai off-plan, ready apartments and luxury villas with RE/MAX Zam. Backed by the RE/MAX global network and senior advisors. Explore high-ROI opportunities.';
 
 /** Upsert a <meta> element by attribute selector */
 function setMeta(attrName, attrValue, content) {

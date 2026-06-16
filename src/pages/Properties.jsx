@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
+import usePageSEO from '@/lib/usePageSEO';
 import PropertyCard from "../components/PropertyCard";
 import { Input } from "@/components/ui/input";
 import {
@@ -64,6 +65,12 @@ const TABS = GROUPS.flatMap((g) => g.tabs);
 const BEDROOM_OPTIONS = ["Any", "Studio", "1", "2", "3", "4", "5+"];
 
 export default function Properties() {
+  usePageSEO({
+    title: 'Properties for Sale in Dubai | RE/MAX Zam',
+    description: 'Find apartments, villas and townhouses for sale across Dubai. Verified listings and expert RE/MAX Zam advisors guide your investment from search to handover.',
+    canonical: 'https://remaxzam.ae/properties',
+  });
+
   const [searchParams] = useSearchParams();
   const initialTab = searchParams.get("tab") || "off-plan";
   const initialCommunity = searchParams.get("community") || "";
