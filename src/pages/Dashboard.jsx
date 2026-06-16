@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
+import usePageSEO from '@/lib/usePageSEO';
 import { Link } from 'react-router-dom';
 import { Heart, Clock, Trash2, Search, ArrowRight, Home } from 'lucide-react';
 import { Button } from "@/components/ui/button";
@@ -9,6 +10,8 @@ import PropertyRecommender from '@/components/PropertyRecommender';
 import { getSavedIds, removeSaved } from '@/lib/favorites';
 
 export default function Dashboard() {
+  usePageSEO({ robots: 'noindex, nofollow' });
+
   const queryClient = useQueryClient();
   const [tab, setTab] = useState('saved');
   const [savedIds, setSavedIds] = useState(() => getSavedIds());

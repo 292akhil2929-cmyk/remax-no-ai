@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { base44 } from "@/api/base44Client";
+import usePageSEO from '@/lib/usePageSEO';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,6 +9,8 @@ import { LogIn, Mail, Lock, Loader2, ShieldCheck } from "lucide-react";
 import GoogleIcon from "@/components/GoogleIcon";
 
 export default function Login() {
+  usePageSEO({ robots: 'noindex, nofollow' });
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");

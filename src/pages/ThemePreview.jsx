@@ -1,4 +1,5 @@
 import { ArrowRight } from 'lucide-react';
+import usePageSEO from '@/lib/usePageSEO';
 
 const themes = [
   {
@@ -81,6 +82,8 @@ const themes = [
 ];
 
 export default function ThemePreview() {
+  usePageSEO({ robots: 'noindex, nofollow' });
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4">
       <div className="max-w-7xl mx-auto">

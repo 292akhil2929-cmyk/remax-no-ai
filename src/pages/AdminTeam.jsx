@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
+import usePageSEO from '@/lib/usePageSEO';
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Edit2, Trash2, Loader2, X, CheckCircle2, Users } from 'lucide-react';
 
@@ -109,6 +110,8 @@ function AgentForm({ initial, onSave, onCancel, saving }) {
 }
 
 export default function AdminTeam() {
+  usePageSEO({ robots: 'noindex, nofollow' });
+
   const queryClient = useQueryClient();
   const [modal, setModal] = useState(null); // null | { mode: 'add' } | { mode: 'edit', agent }
   const [savingId, setSavingId] = useState(null);

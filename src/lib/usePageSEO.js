@@ -20,6 +20,7 @@
  *     ogImage:     'https://…/image.jpg',   // optional — falls back to default
  *     ogImageAlt:  'Descriptive alt text',  // optional
  *     keywords:    'keyword, keyword',       // optional
+ *     robots:      'index, follow',          // optional — defaults to 'index, follow'; use 'noindex, nofollow' for private pages
  *     schema:      { '@context': '…', … },  // optional extra LD+JSON
  *   });
  */
@@ -30,6 +31,7 @@ const DEFAULT_OG_IMAGE_ALT = 'RE/MAX ZAM Dubai — Dubai Real Estate Investment'
 const SITE_NAME = 'RE/MAX ZAM Dubai';
 const DEFAULT_TITLE = 'Dubai Property Investment | RE/MAX Zam Real Estate';
 const DEFAULT_DESCRIPTION = 'Invest in Dubai off-plan, ready apartments and luxury villas with RE/MAX Zam. Backed by the RE/MAX global network and senior advisors. Explore high-ROI opportunities.';
+const DEFAULT_ROBOTS = 'index, follow';
 
 /** Upsert a <meta> element by attribute selector */
 function setMeta(attrName, attrValue, content) {
@@ -73,6 +75,7 @@ export default function usePageSEO({
   ogImage,
   ogImageAlt,
   keywords,
+  robots,
   schema,
 } = {}) {
   const schemaRef = useRef(schema);
@@ -88,7 +91,7 @@ export default function usePageSEO({
     // ── Primary meta ─────────────────────────────────────────────────────────
     setMeta('name', 'description', description);
     if (keywords) setMeta('name', 'keywords', keywords);
-    setMeta('name', 'robots', 'index, follow');
+    setMeta('name', 'robots', robots || DEFAULT_ROBOTS);
 
     // ── Canonical ────────────────────────────────────────────────────────────
     setLink('canonical', canonical);
@@ -122,9 +125,10 @@ export default function usePageSEO({
     return () => {
       document.title = DEFAULT_TITLE;
       setMeta('name', 'description', DEFAULT_DESCRIPTION);
+      setMeta('name', 'robots', DEFAULT_ROBOTS);
       const el = document.getElementById('page-schema');
       if (el) el.remove();
     };
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, canonical, ogImage, ogImageAlt, keywords]);
+  }, [title, description, canonical, ogImage, ogImageAlt, keywords, robots]);
 }

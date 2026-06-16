@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { base44 } from "@/api/base44Client";
+import usePageSEO from '@/lib/usePageSEO';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Link, useNavigate } from "react-router-dom";
@@ -490,6 +491,8 @@ function RecentPostsPanel({ refresh }) {
 
 /* ── Main Page ───────────────────────────────────────── */
 export default function AdminContent() {
+  usePageSEO({ robots: 'noindex, nofollow' });
+
   const [refreshPosts, setRefreshPosts] = useState(0);
   const [entryMode, setEntryMode] = useState('import'); // 'import' | 'manual'
   const [adminTab, setAdminTab] = useState('content'); // 'content' | 'podcast'

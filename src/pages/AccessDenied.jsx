@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom';
 import { ShieldX, LogOut, Home } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
+import usePageSEO from '@/lib/usePageSEO';
 import { Button } from '@/components/ui/button';
 
 export default function AccessDenied() {
+  usePageSEO({ robots: 'noindex, nofollow' });
+
   const handleLogout = () => {
     base44.auth.logout('/login');
   };
