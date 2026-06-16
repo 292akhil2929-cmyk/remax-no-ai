@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { CheckCircle, ArrowRight } from 'lucide-react';
 import { isValidEmail, isValidPhone, isValidName } from '@/lib/validation';
 import PhoneInput from '@/components/PhoneInput';
-import { trackEvent, trackLeadEvent } from '@/lib/analytics';
+import { trackLeadEvent } from '@/lib/analytics'; // Only importing the required helper
 
 export default function LeadCaptureForm({ leadType = "Investor", source = "Website", compact = false }) {
   const [submitted, setSubmitted] = useState(false);
@@ -34,8 +34,15 @@ export default function LeadCaptureForm({ leadType = "Investor", source = "Websi
     },
     onSuccess: async (_response, variables) => {
       setSubmitted(true);
-      trackEvent('generate_lead', { lead_type: variables.lead_type, source: variables.source, form_id: 'investor-lead-form' });
-      trackLeadEvent('form_submission', { lead_type: variables.lead_type, source: variables.source, form_id: 'investor-lead-form' });
+      
+      // FIXED: Removed duplicate trackEvent line to prevent double lead counts.
+      // This sends exactly one 'generate_lead' event with all tracking properties safely nested.
+      trackLeadEvent('form_submission', { 
+        lead_type: variables.lead_type, 
+        source: variables.source, 
+        form_id: 'investor-lead-form' 
+      });
+
       try {
         const res = await base44.functions.invoke('sendLeadToBitrix', { ...variables, page_url: window.location.href });
         console.log('[Bitrix Lead] Success:', res?.data);

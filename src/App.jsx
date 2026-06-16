@@ -51,6 +51,14 @@ import DubaiPropertyInvestment from './pages/DubaiPropertyInvestment';
 import FounderPassiveIncome from './pages/FounderPassiveIncome';
 import DugastaFAQ from './pages/DugastaFAQ';
 
+/** Redirects unknown old paths to the homepage via window.location.replace */
+function HomeRedirect() {
+  useEffect(() => {
+    window.location.replace('/');
+  }, []);
+  return null;
+}
+
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
   const location = useLocation();
@@ -65,6 +73,44 @@ const AuthenticatedApp = () => {
       navigateToLogin('/login');
     }
   }, [authError, location.pathname, navigateToLogin]);
+
+  // ── Legacy redirects: 301-style client-side redirects for old URLs ──────────
+  useEffect(() => {
+    const path = location.pathname;
+
+    // /property-listing/* → /off-plan
+    if (path.startsWith('/property-listing')) {
+      window.location.replace('/off-plan');
+      return;
+    }
+
+    // /properties/batumi/ and /properties/dubai-sports-city/ → /properties
+    if (path === '/properties/batumi/' || path === '/properties/batumi' ||
+        path === '/properties/dubai-sports-city/' || path === '/properties/dubai-sports-city') {
+      window.location.replace('/properties');
+      return;
+    }
+
+    // /properties/*-archive → /properties
+    if (/^\/properties\/.*-archive/.test(path)) {
+      window.location.replace('/properties');
+      return;
+    }
+
+    // /uae-properties/* → /properties
+    if (path.startsWith('/uae-properties')) {
+      window.location.replace('/properties');
+      return;
+    }
+
+    // /investor-guides/, /insights-blog/, /news/ → /insights
+    if (path.startsWith('/investor-guides') ||
+        path.startsWith('/insights-blog') ||
+        path.startsWith('/news')) {
+      window.location.replace('/insights');
+      return;
+    }
+  }, [location.pathname]);
 
   // Show loading spinner while checking app public settings or auth
   if (isLoadingPublicSettings || isLoadingAuth) {
@@ -139,10 +185,15 @@ const AuthenticatedApp = () => {
         <Route path="/dubai-property-investment" element={<DubaiPropertyInvestment />} />
         <Route path="/my-dubai-passive-income" element={<FounderPassiveIncome />} />
         <Route path="/dugasta-faq" element={<DugastaFAQ />} />
+        {/* Legacy 404 — /property/test/ deleted, returns 404 */}
+        <Route path="/property/test" element={<PageNotFound />} />
       </Route>
       <Route path="/login" element={<Login />} />
       <Route path="/access-denied" element={<AccessDenied />} />
-      <Route path="*" element={<PageNotFound />} />
+      {/* /property/test/ deleted → explicit 404 */}
+      <Route path="/property/test" element={<PageNotFound />} />
+      {/* Catch-all: unknown old paths fall back to home */}
+      <Route path="*" element={<HomeRedirect />} />
     </Routes>
   );
 };
