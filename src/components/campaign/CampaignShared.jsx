@@ -193,7 +193,7 @@ export function CampaignLeadForm({ dark = false, source = 'Campaign', ctaLabel =
     },
     onSuccess: () => {
       setSubmitted(true);
-      trackLeadEvent('form_submission', { lead_type: 'Investor', source });
+      trackLeadEvent('form_submission', { lead_type: 'Investor', source, form_id: 'lead-form' });
     },
   });
 

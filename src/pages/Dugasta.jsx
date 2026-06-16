@@ -138,7 +138,7 @@ function DugastaLeadForm({ dark = true }) {
     },
     onSuccess: () => {
       setSubmitted(true);
-      trackLeadEvent('form_submission', { lead_type: 'Investor', source: 'Dugasta Page' });
+      trackLeadEvent('form_submission', { lead_type: 'Investor', source: 'Dugasta Page', form_id: 'dugasta-lead-form-en' });
     },
   });
 

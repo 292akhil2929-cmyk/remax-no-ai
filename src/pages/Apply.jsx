@@ -151,7 +151,7 @@ export default function Apply() {
     mutationFn: (data) => base44.functions.invoke('createLead', data),
     onSuccess: async (_response, variables) => {
       setSubmitted(true);
-      trackLeadEvent('form_submission', { lead_type: 'Agent', source: 'Apply Page' });
+      trackLeadEvent('form_submission', { lead_type: 'Agent', source: 'Apply Page', form_id: 'career-application-form' });
       try {
         const bitrixRes = await base44.functions.invoke('sendRecruitmentToBitrix', variables);
         console.log('[Bitrix Recruitment] Success:', bitrixRes?.data);

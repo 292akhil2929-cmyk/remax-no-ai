@@ -159,7 +159,7 @@ function DugastaLeadForm({ dark = true }) {
     },
     onSuccess: () => {
       setSubmitted(true);
-      trackLeadEvent('form_submission', { lead_type: 'Investor', source: 'Dugasta Türkçe Sayfası' });
+      trackLeadEvent('form_submission', { lead_type: 'Investor', source: 'Dugasta Türkçe Sayfası', form_id: 'dugasta-lead-form-tr' });
     },
   });
 

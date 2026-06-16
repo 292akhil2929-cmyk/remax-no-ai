@@ -45,7 +45,7 @@ export default function SellerLeadForm({ source = "Website", compact = false }) 
     mutationFn: (data) => base44.functions.invoke('createLead', data),
     onSuccess: async (_response, variables) => {
       setSubmitted(true);
-      trackLeadEvent('form_submission', { lead_type: variables.lead_type || 'Seller', source: variables.source });
+      trackLeadEvent('form_submission', { lead_type: variables.lead_type || 'Seller', source: variables.source, form_id: 'seller-lead-form' });
       try {
         const res = await base44.functions.invoke('sendLeadToBitrix', { ...variables, page_url: window.location.href });
         console.log('[Bitrix Lead] Success:', res?.data);

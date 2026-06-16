@@ -39,8 +39,8 @@ export default function PropertyViewingForm({ property, agentName }) {
     mutationFn: (data) => base44.functions.invoke('createLead', data),
     onSuccess: async (_response, variables) => {
       setSubmitted(true);
-      trackEvent('generate_lead', { lead_type: variables.lead_type, source: variables.source });
-      trackLeadEvent('form_submission', { lead_type: variables.lead_type, source: variables.source });
+      trackEvent('generate_lead', { lead_type: variables.lead_type, source: variables.source, form_id: 'property-viewing-form' });
+      trackLeadEvent('form_submission', { lead_type: variables.lead_type, source: variables.source, form_id: 'property-viewing-form' });
       try {
         const res = await base44.functions.invoke('sendLeadToBitrix', { ...variables, page_url: window.location.href });
         console.log('[Bitrix Lead] Success:', res?.data);

@@ -59,7 +59,7 @@ function GuideCapture({ dark = false, source = 'Guide Download' }) {
     mutationFn: async (data) => {
       return base44.functions.invoke('createLead', { ...data, ...utms, lead_type: 'Investor', source, phone: `${data.phone_country_code}${data.phone}`, investment_goal: 'Passive Income', notes: 'Guide download request' });
     },
-    onSuccess: () => { setSubmitted(true); trackLeadEvent('guide_download', { source }); },
+    onSuccess: () => { setSubmitted(true); trackLeadEvent('guide_download', { source, form_id: 'guide-download-form' }); },
   });
 
   const base = dark
