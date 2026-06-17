@@ -219,13 +219,13 @@ const DEVELOPERS = [
 ];
 
 const tierColors = {
-  'Tier 1': { badge: 'bg-emerald-50 text-emerald-700 border border-emerald-200', dot: 'bg-emerald-500' },
-  'Tier 2': { badge: 'bg-blue-50 text-blue-700 border border-blue-200', dot: 'bg-blue-500' },
+  'Tier 1': { badge: 'bg-white text-gray-700 border border-gray-200', dot: 'bg-gray-700' },
+  'Tier 2': { badge: 'bg-gray-100 text-gray-500 border border-gray-200', dot: 'bg-gray-400' },
 };
 
 const statusColors = {
-  'Selling': 'bg-emerald-50 text-emerald-700',
-  'Upcoming': 'bg-amber-50 text-amber-700',
+  'Selling': 'bg-gray-100 text-gray-700',
+  'Upcoming': 'bg-gray-50 text-gray-500',
 };
 
 export default function Developers() {
@@ -254,7 +254,6 @@ export default function Developers() {
 
       {/* HERO */}
       <section className="py-20 bg-[#0a0a0a] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(245,158,11,0.1),transparent_60%)]" />
         <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl">
             <div className="flex items-center gap-3 mb-6">
@@ -285,7 +284,7 @@ export default function Developers() {
               transition={{ delay: i * 0.04 }}
               className={`bg-white rounded-2xl border overflow-hidden shadow-sm hover:shadow-md transition-all ${
                 highlightedDeveloper && dev.name.toLowerCase().includes(highlightedDeveloper.toLowerCase())
-                  ? 'border-emerald-300 shadow-lg ring-2 ring-emerald-100'
+                  ? 'border-black shadow-lg ring-2 ring-gray-100'
                   : 'border-gray-100'
               }`}
             >
@@ -307,7 +306,7 @@ export default function Developers() {
 
                 {/* Content */}
                 <div className="p-6 lg:p-8">
-                  <p className="text-gray-800 font-heading font-semibold text-sm mb-2 leading-snug">{dev.tagline}</p>
+                  <p className="text-gray-800 font-heading font-bold text-sm mb-2 leading-snug">{dev.tagline}</p>
                   <p className="text-gray-500 font-body text-xs leading-relaxed mb-5">{dev.description}</p>
 
                   {/* Stats */}
@@ -336,7 +335,7 @@ export default function Developers() {
                         <Link
                           key={proj.name}
                           to={proj.path}
-                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-heading font-semibold transition-all hover:shadow-sm hover:scale-[1.02] ${statusColors[proj.status]}`}
+                          className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-heading font-bold transition-all hover:shadow-sm hover:scale-[1.02] ${statusColors[proj.status]}`}
                         >
                           {proj.name}
                           <span className="text-[9px] font-body opacity-70">· {proj.status}</span>
@@ -351,20 +350,20 @@ export default function Developers() {
                     <ul className="flex flex-wrap gap-x-4 gap-y-1">
                       {dev.highlights.map(h => (
                         <li key={h} className="flex items-center gap-1.5 text-[11px] text-gray-500 font-body">
-                          <CheckCircle2 className="w-3 h-3 text-emerald-500 shrink-0" /> {h}
+                          <CheckCircle2 className="w-3 h-3 text-gray-400 shrink-0" /> {h}
                         </li>
                       ))}
                     </ul>
                     <div className="flex items-center gap-2 shrink-0">
                       <Link
                         to={`/developers/${dev.slug}`}
-                        className="inline-flex items-center gap-1.5 border border-primary text-primary hover:bg-primary hover:text-white font-heading font-semibold text-xs px-4 py-2 rounded-xl transition-colors whitespace-nowrap"
+                        className="inline-flex items-center gap-1.5 border border-black text-black hover:bg-black hover:text-white font-heading font-bold text-xs px-4 py-2 rounded-xl transition-colors whitespace-nowrap"
                       >
                         Profile <ArrowRight className="w-3.5 h-3.5" />
                       </Link>
                       <Link
                         to={`/properties?developer=${encodeURIComponent(dev.name.split(' ')[0])}`}
-                        className="inline-flex items-center gap-1.5 border border-gray-200 hover:border-black hover:text-black text-gray-500 font-heading font-semibold text-xs px-4 py-2 rounded-xl transition-colors whitespace-nowrap"
+                        className="inline-flex items-center gap-1.5 border border-gray-200 hover:border-black hover:text-black text-gray-500 font-heading font-bold text-xs px-4 py-2 rounded-xl transition-colors whitespace-nowrap"
                       >
                         Listings <ArrowRight className="w-3.5 h-3.5" />
                       </Link>

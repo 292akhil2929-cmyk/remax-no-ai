@@ -101,37 +101,37 @@ const FAQ_ITEMS = [
 ];
 
 const CATEGORY_COLORS = {
-  'Investment Guide': 'bg-primary/10 text-primary border-primary/20',
-  'Market Analysis': 'bg-emerald-50 text-emerald-700 border-emerald-200',
-  'Area Spotlight': 'bg-accent/10 text-accent border-accent/20',
-  'Golden Visa': 'bg-amber-50 text-amber-700 border-amber-200',
-  'Developer News': 'bg-blue-50 text-blue-700 border-blue-200',
-  'Agent Tips': 'bg-violet-50 text-violet-700 border-violet-200',
+  'Investment Guide': 'bg-gray-100 text-gray-700 border-gray-200',
+  'Market Analysis': 'bg-gray-100 text-gray-700 border-gray-200',
+  'Area Spotlight': 'bg-gray-100 text-gray-700 border-gray-200',
+  'Golden Visa': 'bg-gray-100 text-gray-700 border-gray-200',
+  'Developer News': 'bg-gray-100 text-gray-700 border-gray-200',
+  'Agent Tips': 'bg-gray-100 text-gray-700 border-gray-200',
 };
 
 function ArticleCard({ article, isLarge = false }) {
   const Icon = article.icon;
-  const colorClass = CATEGORY_COLORS[article.category] || 'bg-secondary text-secondary-foreground border-border';
+  const colorClass = CATEGORY_COLORS[article.category] || 'bg-gray-100 text-gray-700 border-gray-200';
 
   return (
-    <article className={`group bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all duration-300 flex flex-col ${isLarge ? 'lg:flex-row' : ''}`}>
+    <article className={`group bg-white border border-gray-100 rounded-xl overflow-hidden hover:border-gray-200 hover:shadow-md transition-all duration-300 flex flex-col ${isLarge ? 'lg:flex-row' : ''}`}>
       {/* Icon banner */}
-      <div className={`${isLarge ? 'lg:w-48 lg:flex-shrink-0' : ''} bg-gradient-to-br from-primary/5 to-primary/10 flex items-center justify-center p-8`}>
-        {Icon && <Icon className="w-10 h-10 text-primary/50" />}
+      <div className={`${isLarge ? 'lg:w-48 lg:flex-shrink-0' : ''} bg-gray-50 flex items-center justify-center p-8`}>
+        {Icon && <Icon className="w-10 h-10 text-gray-300" />}
       </div>
       <div className="p-5 flex flex-col flex-1">
         <div className="flex items-center gap-2 mb-3">
           <span className={`text-xs font-heading font-semibold px-2.5 py-0.5 rounded-full border ${colorClass}`}>{article.category}</span>
-          <span className="text-xs text-muted-foreground font-body">{article.readTime}</span>
+          <span className="text-xs text-gray-500 font-body">{article.readTime}</span>
         </div>
-        <h3 className={`font-heading font-bold text-foreground mb-2 group-hover:text-primary transition-colors leading-snug ${isLarge ? 'text-lg' : 'text-base'}`}>{article.title}</h3>
-        <p className="text-sm text-muted-foreground font-body leading-relaxed mb-4 flex-1">{article.excerpt}</p>
+        <h3 className={`font-heading font-bold text-gray-900 mb-2 group-hover:text-black transition-colors leading-snug ${isLarge ? 'text-lg' : 'text-base'}`}>{article.title}</h3>
+        <p className="text-sm text-gray-500 font-body leading-relaxed mb-4 flex-1">{article.excerpt}</p>
         <div className="flex flex-wrap gap-1.5 mb-4">
           {article.tags.map(t => (
-            <span key={t} className="text-xs px-2 py-0.5 bg-muted rounded font-body text-muted-foreground">{t}</span>
+            <span key={t} className="text-xs px-2 py-0.5 bg-gray-100 rounded font-body text-gray-500">{t}</span>
           ))}
         </div>
-        <Button variant="ghost" size="sm" className="self-start text-primary hover:text-primary hover:bg-primary/5 font-heading p-0 h-auto" asChild>
+        <Button variant="ghost" size="sm" className="self-start text-gray-900 hover:bg-gray-50 font-heading p-0 h-auto" asChild>
           <Link to="/contact">Request Full Report <ChevronRight className="w-3.5 h-3.5 ml-0.5" /></Link>
         </Button>
       </div>
@@ -155,9 +155,9 @@ export default function Insights() {
     <div className="min-h-screen">
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="py-16 bg-[#0d1b3e] text-white">
+      <section className="py-16 bg-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-3">REMAX ZAM — Knowledge Hub</p>
+          <p className="text-gray-400 font-heading font-semibold text-xs tracking-widest uppercase mb-3">REMAX ZAM — Knowledge Hub</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-white mb-4 leading-tight">
             Dubai Real Estate<br className="hidden sm:block" /> Market Insights 2025
           </h1>
@@ -169,7 +169,7 @@ export default function Insights() {
             {MARKET_STATS.map(s => (
               <div key={s.label} className="bg-white/8 border border-white/10 rounded-xl p-4">
                 <p className="text-xl lg:text-2xl font-heading font-black text-white mb-0.5">{s.value}</p>
-                <p className={`text-xs font-heading font-semibold mb-1 ${s.up === true ? 'text-emerald-400' : s.up === false ? 'text-red-400' : 'text-[#c9a84c]'}`}>{s.delta}</p>
+                <p className={`text-xs font-heading font-semibold mb-1 ${s.up === true ? 'text-white/70' : s.up === false ? 'text-white/70' : 'text-white/50'}`}>{s.delta}</p>
                 <p className="text-xs text-white/40 font-body leading-tight">{s.label}</p>
               </div>
             ))}
@@ -179,33 +179,33 @@ export default function Insights() {
 
       {/* ── Live Blog Posts (if any) ─────────────────────── */}
       {(isLoading || posts.length > 0) && (
-        <section className="py-12 bg-muted/30 border-b border-border/50">
+        <section className="py-12 bg-gray-50 border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-xl font-display font-bold text-foreground mb-6 flex items-center gap-2">
-              <Calendar className="w-5 h-5 text-primary" /> Latest from Our Team
+            <h2 className="text-xl font-display font-bold text-gray-900 mb-6 flex items-center gap-2">
+              <Calendar className="w-5 h-5 text-gray-900" /> Latest from Our Team
             </h2>
             {isLoading ? (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {[1,2,3].map(i => <div key={i} className="bg-card border border-border/50 rounded-xl h-64 animate-pulse" />)}
+                {[1,2,3].map(i => <div key={i} className="bg-white border border-gray-100 rounded-xl h-64 animate-pulse" />)}
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {posts.map(post => (
                   <Link key={post.id} to={`/blog/${post.id}`} className="group block">
-                    <article className="bg-card border border-border/50 rounded-xl overflow-hidden hover:border-primary/30 hover:shadow-md transition-all h-full flex flex-col">
+                    <article className="bg-white border border-gray-100 rounded-xl overflow-hidden hover:border-gray-200 hover:shadow-md transition-all h-full flex flex-col">
                       {post.image_url && (
                         <img src={post.image_url} alt={post.title} className="w-full aspect-video object-cover group-hover:scale-105 transition-transform duration-500" />
                       )}
                       <div className="p-5 flex flex-col flex-1">
                         <div className="flex items-center gap-2 mb-3">
                           <Badge variant="secondary" className="text-xs">{post.category}</Badge>
-                          <span className="text-xs text-muted-foreground flex items-center gap-1">
+                          <span className="text-xs text-gray-500 flex items-center gap-1">
                             <Calendar className="w-3 h-3" /> {moment(post.created_date).format('MMM D, YYYY')}
                           </span>
                         </div>
-                        <h3 className="font-heading font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">{post.title}</h3>
-                        <p className="text-sm text-muted-foreground font-body line-clamp-3 flex-1">{post.excerpt}</p>
-                        <span className="mt-3 text-xs text-primary font-heading font-semibold flex items-center gap-1">
+                        <h3 className="font-heading font-bold text-gray-900 mb-2 group-hover:text-black transition-colors">{post.title}</h3>
+                        <p className="text-sm text-gray-500 font-body line-clamp-3 flex-1">{post.excerpt}</p>
+                        <span className="mt-3 text-xs text-gray-900 font-heading font-bold flex items-center gap-1">
                           Read Article <ChevronRight className="w-3 h-3" />
                         </span>
                       </div>
@@ -223,11 +223,11 @@ export default function Insights() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
-              <p className="text-xs font-heading font-semibold text-primary tracking-widest uppercase mb-2">Deep-Dive Guides</p>
-              <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground">Essential Reading for Dubai Investors</h2>
-              <p className="text-sm text-muted-foreground font-body mt-2 max-w-xl">Comprehensive research reports on the topics that matter most — updated for 2025 market conditions.</p>
+              <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest uppercase mb-2">Deep-Dive Guides</p>
+              <h2 className="text-2xl lg:text-3xl font-display font-bold text-gray-900">Essential Reading for Dubai Investors</h2>
+              <p className="text-sm text-gray-500 font-body mt-2 max-w-xl">Comprehensive research reports on the topics that matter most — updated for 2025 market conditions.</p>
             </div>
-            <Button className="font-heading shrink-0" asChild>
+            <Button className="bg-black hover:bg-gray-900 text-white font-heading font-bold shrink-0" asChild>
               <Link to="/contact">Request Custom Report <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
           </div>
@@ -248,13 +248,13 @@ export default function Insights() {
       </section>
 
       {/* ── Market Snapshot Table ────────────────────────── */}
-      <section className="py-16 bg-muted/30 border-y border-border/50">
+      <section className="py-16 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-semibold text-primary tracking-widest uppercase mb-2">Data Intelligence</p>
-          <h2 className="text-2xl font-display font-bold text-foreground mb-8">Dubai Community Yield Snapshot — 2026</h2>
-          <div className="overflow-x-auto rounded-xl border border-border/50">
-            <table className="w-full text-sm font-body bg-card">
-              <thead className="bg-primary text-white">
+          <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest uppercase mb-2">Data Intelligence</p>
+          <h2 className="text-2xl font-display font-bold text-gray-900 mb-8">Dubai Community Yield Snapshot — 2026</h2>
+          <div className="overflow-x-auto rounded-xl border border-gray-100">
+            <table className="w-full text-sm font-body bg-white">
+              <thead className="bg-black text-white">
                 <tr>
                   {['Community', 'Avg. Rental Yield', 'Entry Price', 'Investor Type', 'Capital Growth Outlook'].map(h => (
                     <th key={h} className="text-left py-3 px-4 font-heading font-semibold text-sm">{h}</th>
@@ -263,45 +263,45 @@ export default function Insights() {
               </thead>
               <tbody>
                 {[
-                  { area: 'Jumeirah Village Circle (JVC)', yield: '8–10%', entry: 'AED 350K', type: 'Yield-First', outlook: '⬆ High Upside', outClass: 'text-emerald-600' },
-                  { area: 'Business Bay', yield: '6–8%', entry: 'AED 600K', type: 'Balanced', outlook: '⬆ Strong', outClass: 'text-emerald-600' },
-                  { area: 'Dubai Marina', yield: '6–8%', entry: 'AED 700K', type: 'Yield + Liquidity', outlook: '⬆ Strong', outClass: 'text-emerald-600' },
-                  { area: 'Downtown Dubai', yield: '5–7%', entry: 'AED 1.2M', type: 'Capital Growth', outlook: '⬆ Premium', outClass: 'text-emerald-600' },
-                  { area: 'Dubai Hills Estate', yield: '5–6%', entry: 'AED 1.5M', type: 'Family / Long-Term', outlook: '⬆ Consistent', outClass: 'text-emerald-600' },
-                  { area: 'Palm Jumeirah', yield: '5–7%', entry: 'AED 1.5M', type: 'Trophy Asset', outlook: '⬆ Strong Scarcity Value', outClass: 'text-emerald-600' },
+                  { area: 'Jumeirah Village Circle (JVC)', yield: '8–10%', entry: 'AED 350K', type: 'Yield-First', outlook: '⬆ High Upside', outClass: 'text-gray-900' },
+                  { area: 'Business Bay', yield: '6–8%', entry: 'AED 600K', type: 'Balanced', outlook: '⬆ Strong', outClass: 'text-gray-900' },
+                  { area: 'Dubai Marina', yield: '6–8%', entry: 'AED 700K', type: 'Yield + Liquidity', outlook: '⬆ Strong', outClass: 'text-gray-900' },
+                  { area: 'Downtown Dubai', yield: '5–7%', entry: 'AED 1.2M', type: 'Capital Growth', outlook: '⬆ Premium', outClass: 'text-gray-900' },
+                  { area: 'Dubai Hills Estate', yield: '5–6%', entry: 'AED 1.5M', type: 'Family / Long-Term', outlook: '⬆ Consistent', outClass: 'text-gray-900' },
+                  { area: 'Palm Jumeirah', yield: '5–7%', entry: 'AED 1.5M', type: 'Trophy Asset', outlook: '⬆ Strong Scarcity Value', outClass: 'text-gray-900' },
                 ].map((row, i) => (
-                  <tr key={row.area} className={`border-t border-border/40 hover:bg-primary/3 transition-colors ${i % 2 === 0 ? '' : 'bg-muted/20'}`}>
-                    <td className="py-3.5 px-4 font-medium text-foreground">{row.area}</td>
+                  <tr key={row.area} className={`border-t border-gray-100 hover:bg-gray-50 transition-colors ${i % 2 === 0 ? '' : 'bg-gray-50/50'}`}>
+                    <td className="py-3.5 px-4 font-medium text-gray-900">{row.area}</td>
                     <td className="py-3.5 px-4">
-                      <span className="px-2 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-200 rounded text-xs font-heading font-semibold">{row.yield}</span>
+                      <span className="px-2 py-0.5 bg-gray-100 text-gray-700 border border-gray-200 rounded text-xs font-heading font-semibold">{row.yield}</span>
                     </td>
-                    <td className="py-3.5 px-4 text-muted-foreground">{row.entry}</td>
-                    <td className="py-3.5 px-4 text-muted-foreground">{row.type}</td>
+                    <td className="py-3.5 px-4 text-gray-500">{row.entry}</td>
+                    <td className="py-3.5 px-4 text-gray-500">{row.type}</td>
                     <td className={`py-3.5 px-4 font-medium ${row.outClass}`}>{row.outlook}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
-          <p className="text-xs text-muted-foreground font-body mt-3">Data based on Q1 2026 DLD transaction records and REMAX ZAM proprietary market analysis. Yields are gross estimates; net yields vary by service charges and occupancy.</p>
+          <p className="text-xs text-gray-500 font-body mt-3">Data based on Q1 2026 DLD transaction records and REMAX ZAM proprietary market analysis. Yields are gross estimates; net yields vary by service charges and occupancy.</p>
         </div>
       </section>
 
       {/* ── FAQ — high GEO / voice search value ─────────── */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-semibold text-primary tracking-widest uppercase mb-2 text-center">Investor FAQs</p>
-          <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-3 text-center">Frequently Asked Questions</h2>
-          <p className="text-sm text-muted-foreground font-body text-center mb-10">The most common questions international investors ask before buying property in Dubai.</p>
+          <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest uppercase mb-2 text-center">Investor FAQs</p>
+          <h2 className="text-2xl lg:text-3xl font-display font-bold text-gray-900 mb-3 text-center">Frequently Asked Questions</h2>
+          <p className="text-sm text-gray-500 font-body text-center mb-10">The most common questions international investors ask before buying property in Dubai.</p>
 
           <div className="space-y-4">
             {FAQ_ITEMS.map(({ q, a }) => (
-              <div key={q} className="bg-card border border-border/50 rounded-xl p-6 hover:border-primary/30 transition-colors">
-                <h3 className="font-heading font-semibold text-foreground mb-3 flex items-start gap-2">
-                  <span className="text-primary font-heading text-lg leading-none mt-0.5">Q.</span>
+              <div key={q} className="bg-white border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors">
+                <h3 className="font-heading font-bold text-gray-900 mb-3 flex items-start gap-2">
+                  <span className="text-gray-400 font-heading text-lg leading-none mt-0.5">Q.</span>
                   {q}
                 </h3>
-                <p className="text-sm text-muted-foreground font-body leading-relaxed pl-5">{a}</p>
+                <p className="text-sm text-gray-500 font-body leading-relaxed pl-5">{a}</p>
               </div>
             ))}
           </div>
@@ -309,15 +309,15 @@ export default function Insights() {
       </section>
 
       {/* ── CTA ─────────────────────────────────────────── */}
-      <section className="py-16 bg-[#0d1b3e] text-white text-center">
+      <section className="py-16 bg-black text-white text-center">
         <div className="max-w-2xl mx-auto px-4">
-          <TrendingUp className="w-8 h-8 text-[#c9a84c] mx-auto mb-4" />
+          <TrendingUp className="w-8 h-8 text-white/40 mx-auto mb-4" />
           <h2 className="text-2xl lg:text-3xl font-display font-black mb-3">Get a Personalised Investment Report</h2>
           <p className="text-white/70 font-body mb-7 text-sm leading-relaxed">
             Our advisors will build a tailored analysis — matching your budget, risk profile, and ROI targets to the right Dubai community and property type.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button size="lg" className="bg-[#c9a84c] hover:bg-[#b8943f] text-[#0d1b3e] font-heading font-bold border-0" asChild>
+            <Button size="lg" className="bg-white hover:bg-gray-100 text-black font-heading font-bold border-0" asChild>
               <Link to="/contact">Request Free Analysis <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
             <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-heading" asChild>

@@ -60,17 +60,17 @@ function ROICalculator() {
 
   return (
     <div id="calculator" className="bg-white rounded-2xl shadow-xl border border-gray-100 p-7">
-      <p className="font-heading font-bold text-[#0E1B3A] text-lg mb-5">Calculate My Returns</p>
+      <p className="font-heading font-bold text-gray-900 text-lg mb-5">Calculate My Returns</p>
 
       <div className="mb-5">
         <div className="flex justify-between items-center mb-2">
           <label className="text-xs font-body text-gray-500">Investment Amount (AED)</label>
-          <span className="font-heading font-bold text-[#0E1B3A] text-sm">{fmt(amount)}</span>
+          <span className="font-heading font-bold text-gray-900 text-sm">{fmt(amount)}</span>
         </div>
         <input
           type="range" min={350000} max={5000000} step={50000}
           value={amount} onChange={e => setAmount(Number(e.target.value))}
-          className="w-full accent-[#DC1C2E] h-2 rounded-lg cursor-pointer"
+          className="w-full accent-black h-2 rounded-lg cursor-pointer"
         />
         <div className="flex justify-between text-[10px] text-gray-400 font-body mt-1">
           <span>AED 350K</span><span>AED 5M</span>
@@ -80,7 +80,7 @@ function ROICalculator() {
       <div className="mb-6">
         <label className="text-xs font-body text-gray-500 block mb-2">Target Net Yield</label>
         <Select value={yieldPct} onValueChange={setYieldPct}>
-          <SelectTrigger className="h-11 bg-[#F4F6FA] border-gray-200">
+          <SelectTrigger className="h-11 bg-gray-50 border-gray-200">
             <SelectValue />
           </SelectTrigger>
           <SelectContent>
@@ -91,18 +91,18 @@ function ROICalculator() {
         </Select>
       </div>
 
-      <div className="bg-[#F4F6FA] rounded-xl p-5 space-y-3 mb-5">
+      <div className="bg-gray-50 rounded-xl p-5 space-y-3 mb-5">
         <div className="flex justify-between items-center">
           <span className="text-xs font-body text-gray-500">Estimated annual net income</span>
-          <span className="font-heading font-bold text-[#0E1B3A]">{fmt(annual)}</span>
+          <span className="font-heading font-bold text-gray-900">{fmt(annual)}</span>
         </div>
         <div className="flex justify-between items-center">
           <span className="text-xs font-body text-gray-500">10-year income</span>
-          <span className="font-heading font-bold text-[#DC1C2E] text-lg">{fmt(tenYear)}</span>
+          <span className="font-heading font-black text-gray-900 text-lg">{fmt(tenYear)}</span>
         </div>
         <div className="border-t border-gray-200 pt-3">
           <p className="text-xs font-body text-gray-500 mb-1">Plus projected capital growth over 10 years <span className="text-gray-400">(projected)</span></p>
-          <p className="font-heading font-semibold text-[#C49A3A] text-sm">{fmt(growth5)} – {fmt(growth8)}</p>
+          <p className="font-heading font-bold text-gray-600 text-sm">{fmt(growth5)} – {fmt(growth8)}</p>
           <p className="text-[10px] text-gray-400 font-body mt-0.5">Based on 5%–8% annual appreciation, compounded.</p>
         </div>
       </div>
@@ -114,7 +114,7 @@ function ROICalculator() {
       ) : (
         <>
           <p className="text-xs font-body text-gray-600 mb-3">Want a personalised plan with real units and payment options?</p>
-          <Button onClick={() => setShowForm(true)} className="w-full h-11 bg-[#DC1C2E] hover:bg-[#b81626] text-white font-heading font-bold text-sm rounded-xl">
+          <Button onClick={() => setShowForm(true)} className="w-full h-11 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm rounded-xl">
             Get My Personalised Plan
           </Button>
         </>
@@ -139,12 +139,12 @@ function ComparisonBar() {
     <div className="space-y-3">
       {CITIES.map(c => (
         <div key={c.city} className="flex items-center gap-4">
-          <span className={`text-sm font-body w-24 shrink-0 ${c.highlight ? 'font-bold text-[#DC1C2E]' : 'text-gray-500'}`}>{c.city}</span>
+          <span className={`text-sm font-body w-24 shrink-0 ${c.highlight ? 'font-bold text-gray-900' : 'text-gray-500'}`}>{c.city}</span>
           <div className="flex-1 bg-gray-100 rounded-full h-7 overflow-hidden">
             <motion.div
               initial={{ width: 0 }} whileInView={{ width: `${(c.yieldPct / max) * 100}%` }}
               viewport={{ once: true }} transition={{ duration: 0.8, ease: 'easeOut' }}
-              className={`h-full rounded-full flex items-center justify-end pr-3 ${c.highlight ? 'bg-[#DC1C2E]' : 'bg-gray-300'}`}
+              className={`h-full rounded-full flex items-center justify-end pr-3 ${c.highlight ? 'bg-black' : 'bg-gray-300'}`}
             >
               <span className={`text-xs font-heading font-bold ${c.highlight ? 'text-white' : 'text-gray-600'}`}>{c.yieldPct}%</span>
             </motion.div>
@@ -191,18 +191,18 @@ export default function ROIDubaiProperty() {
       <section className="pt-28 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
-            <p className="text-xs font-body tracking-[0.25em] uppercase text-[#DC1C2E] mb-4">DUBAI WEALTH ENGINE</p>
-            <h1 className="font-display font-black text-[#0E1B3A] text-4xl sm:text-5xl leading-tight mb-5">
-              Earn up to <span className="text-[#DC1C2E]">10% net rental ROI</span> from <span className="text-[#DC1C2E]">Dubai property</span> — tax-free.
+            <p className="text-xs font-body tracking-[0.25em] uppercase text-gray-400 mb-4">DUBAI WEALTH ENGINE</p>
+            <h1 className="font-display font-black text-gray-900 text-4xl sm:text-5xl leading-tight mb-5">
+              Earn up to <span className="text-gray-900">10% net rental ROI</span> from <span className="text-gray-900">Dubai property</span> — tax-free.
             </h1>
             <p className="text-gray-600 font-body text-lg leading-relaxed mb-8">
               Your bank pays 2%. The right Dubai investment pays up to 10% net, contractually, for up to 10 years. See what your money could earn — in 30 seconds.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <a href="#calculator" className="inline-flex items-center justify-center gap-2 bg-[#DC1C2E] hover:bg-[#b81626] text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
+              <a href="#calculator" className="inline-flex items-center justify-center gap-2 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
                 Calculate My Returns <ArrowDown className="w-4 h-4" />
               </a>
-              <a href="#lead-form" className="inline-flex items-center justify-center gap-2 border border-[#0E1B3A]/20 hover:border-[#0E1B3A]/40 text-[#0E1B3A] font-heading font-semibold text-sm px-7 py-3.5 rounded-xl transition-colors">
+              <a href="#lead-form" className="inline-flex items-center justify-center gap-2 border border-gray-200 hover:border-gray-400 text-gray-900 font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
                 Book a Free Consultation
               </a>
             </div>
@@ -217,10 +217,10 @@ export default function ROIDubaiProperty() {
       <TrustStrip />
 
       {/* ── WHY DUBAI PAYS MORE ── */}
-      <section className="py-20 bg-[#F4F6FA]">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="text-center mb-12">
-            <h2 className="font-display font-black text-[#0E1B3A] text-3xl sm:text-4xl mb-3">Why Dubai pays more</h2>
+            <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">Why Dubai pays more</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -229,8 +229,8 @@ export default function ROIDubaiProperty() {
               { stat: 'Up to 10%', sub: 'Net ROI on select projects', desc: 'With 0% service charges protecting your yield.' },
             ].map(c => (
               <div key={c.stat} className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-center">
-                <p className="font-display font-black text-[#DC1C2E] text-5xl mb-2">{c.stat}</p>
-                <p className="font-heading font-bold text-[#0E1B3A] text-sm mb-2">{c.sub}</p>
+                <p className="font-display font-black text-gray-900 text-5xl mb-2">{c.stat}</p>
+                <p className="font-heading font-bold text-gray-900 text-sm mb-2">{c.sub}</p>
                 <p className="font-body text-gray-500 text-xs">{c.desc}</p>
               </div>
             ))}
@@ -242,28 +242,28 @@ export default function ROIDubaiProperty() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-5 lg:px-10">
           <div className="text-center mb-10">
-            <h2 className="font-display font-black text-[#0E1B3A] text-3xl sm:text-4xl mb-3">Same money. Three times the yield. Zero tax.</h2>
+            <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">Same money. Three times the yield. Zero tax.</h2>
           </div>
           <ComparisonBar />
           <p className="text-sm font-body text-gray-500 text-center mt-8">
-            On a AED 1,000,000 investment, that is the difference between ~AED 30,000 and up to <strong className="text-[#DC1C2E]">AED 100,000 a year</strong> — tax-free.
+            On a AED 1,000,000 investment, that is the difference between ~AED 30,000 and up to <strong className="font-bold text-gray-900">AED 100,000 a year</strong> — tax-free.
           </p>
         </div>
       </section>
 
       {/* ── PROTECTION ── */}
-      <section className="py-20 bg-[#F4F6FA]">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="text-center mb-12">
-            <h2 className="font-display font-black text-[#0E1B3A] text-3xl sm:text-4xl mb-3">How the returns are protected</h2>
+            <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">How the returns are protected</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {PROTECTION_CARDS.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
-                <div className="w-11 h-11 rounded-xl bg-red-50 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-[#DC1C2E]" />
+                <div className="w-11 h-11 rounded-xl bg-gray-100 flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5 text-gray-900" />
                 </div>
-                <h3 className="font-heading font-bold text-[#0E1B3A] text-sm mb-2">{title}</h3>
+                <h3 className="font-heading font-bold text-gray-900 text-sm mb-2">{title}</h3>
                 <p className="font-body text-gray-500 text-xs leading-relaxed">{desc}</p>
               </div>
             ))}
@@ -278,7 +278,7 @@ export default function ROIDubaiProperty() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="text-center mb-12">
-            <h2 className="font-display font-black text-[#0E1B3A] text-3xl sm:text-4xl mb-3">What investors say</h2>
+            <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">What investors say</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -286,14 +286,14 @@ export default function ROIDubaiProperty() {
               { name: 'Priya S.', location: 'Singapore', quote: 'I was sceptical about investing abroad, but the ROI calculator made it real. My first unit is contracted at 8.5% net for 5 years.', stars: 5 },
               { name: 'Marcus B.', location: 'Frankfurt, Germany', quote: 'I now earn passive income from three Dubai units. The team handled everything remotely - I have not visited once and the income arrives monthly.', stars: 5 },
             ].map(t => (
-              <div key={t.name} className="bg-[#F4F6FA] rounded-2xl p-7 border border-gray-100">
+              <div key={t.name} className="bg-gray-50 rounded-2xl p-7 border border-gray-100">
                 <div className="flex gap-0.5 mb-4">
                   {Array.from({ length: t.stars }).map((_, i) => (
-                    <span key={i} className="text-amber-400 text-sm">★</span>
+                    <span key={i} className="text-gray-300 text-sm">★</span>
                   ))}
                 </div>
                 <p className="font-body text-gray-600 text-sm leading-relaxed italic mb-5">"{t.quote}"</p>
-                <p className="font-heading font-bold text-[#0E1B3A] text-xs">{t.name}</p>
+                <p className="font-heading font-bold text-gray-900 text-xs">{t.name}</p>
                 <p className="font-body text-gray-400 text-xs">{t.location}</p>
               </div>
             ))}
@@ -302,9 +302,9 @@ export default function ROIDubaiProperty() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="py-20 bg-[#F4F6FA]">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-3xl mx-auto px-5 lg:px-10">
-          <h2 className="font-display font-black text-[#0E1B3A] text-3xl mb-8 text-center">Frequently Asked Questions</h2>
+          <h2 className="font-display font-black text-gray-900 text-3xl mb-8 text-center">Frequently Asked Questions</h2>
           {FAQS.map(f => <FaqAccordion key={f.q} {...f} />)}
         </div>
       </section>

@@ -39,13 +39,13 @@ export default function HighROI() {
         <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-px bg-amber-500/60" />
-              <span className="text-amber-400/80 font-body text-xs tracking-[0.2em] uppercase">Passive Income & Capital Growth</span>
+              <div className="w-8 h-px bg-white/30" />
+              <span className="text-white/50 font-body text-xs tracking-[0.2em] uppercase">Passive Income & Capital Growth</span>
             </div>
             <h1 className="font-display font-black text-white leading-[1.0] mb-6">
               <span className="block text-5xl sm:text-6xl lg:text-[5rem]">High Yield</span>
               <span className="block text-5xl sm:text-6xl lg:text-[5rem]">Dubai Property</span>
-              <span className="block text-3xl sm:text-4xl text-amber-400 font-light italic mt-2">7–11% Returns. Zero Tax.</span>
+              <span className="block text-white/70 font-body text-3xl sm:text-4xl mt-2">7–11% Returns. Zero Tax.</span>
             </h1>
             <p className="text-white/60 font-body text-base leading-relaxed mb-10 max-w-xl">
               Dubai keeps outperforming every other major property market in the world. No tax on rental income. World-class infrastructure. A city that genuinely never stops growing. Every year more businesses, tourists and residents arrive, and they all need somewhere to live.
@@ -54,7 +54,7 @@ export default function HighROI() {
               <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-black font-heading font-bold text-sm px-8 py-4 rounded-xl hover:bg-gray-100 transition-all">
                 Get My Free ROI Analysis <ArrowRight className="w-4 h-4" />
               </Link>
-              <Link to="/properties" className="inline-flex items-center gap-2 bg-transparent text-white border border-white/30 font-heading font-semibold text-sm px-8 py-4 rounded-xl hover:bg-white/10 transition-all">
+              <Link to="/properties" className="inline-flex items-center gap-2 bg-transparent text-white border border-white/30 font-heading font-bold text-sm px-8 py-4 rounded-xl hover:bg-white/10 transition-all">
                 Browse High-Yield Listings
               </Link>
             </div>
@@ -126,13 +126,13 @@ export default function HighROI() {
                     <p className="text-gray-400 font-body text-xs flex items-center gap-1 mt-0.5"><MapPin className="w-3 h-3" />{a.type}</p>
                   </div>
                   <div className="text-right">
-                    <p className="font-display font-black text-emerald-600 text-xl">{a.avgYield}</p>
+                    <p className="font-display font-black text-gray-900 text-xl">{a.avgYield}</p>
                     <p className="text-gray-400 text-[10px] font-body">avg yield</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-2 mb-3 pb-3 border-b border-gray-100">
-                  <TrendingUp className="w-3.5 h-3.5 text-amber-500" />
-                  <span className="text-gray-700 font-heading font-semibold text-sm">{a.avgPrice}</span>
+                  <TrendingUp className="w-3.5 h-3.5 text-gray-400" />
+                  <span className="text-gray-700 font-heading font-bold text-sm">{a.avgPrice}</span>
                   <span className="text-gray-400 font-body text-xs">avg price</span>
                 </div>
                 <p className="text-gray-500 font-body text-sm leading-relaxed">{a.why}</p>
@@ -149,15 +149,10 @@ export default function HighROI() {
       </section>
 
       {/* DUGASTA HIGHLIGHT */}
-      <section className="py-20 bg-[#0a0a0a] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.12),transparent_60%)]" />
+      <section className="py-20 bg-black relative overflow-hidden">
         <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/30 rounded-full px-3 py-1 mb-5">
-                <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                <span className="text-amber-400 font-heading font-bold text-[10px] tracking-[0.2em] uppercase">Exclusive Partner</span>
-              </div>
               <h2 className="text-4xl sm:text-5xl font-display font-black text-white leading-tight mb-5">
                 Dugasta Projects:<br />9–11% Yields
               </h2>
@@ -167,15 +162,15 @@ export default function HighROI() {
               <ul className="space-y-3 mb-8">
                 {['Get access to units before they go public', '1% per month is genuinely the most accessible plan in Dubai', 'Yields of 9 to 11% backed by a legally binding contract', 'No agency fees when you buy Dugasta through us'].map(item => (
                   <li key={item} className="flex items-center gap-3 text-sm text-gray-300 font-body">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" /> {item}
+                    <CheckCircle2 className="w-4 h-4 text-white/60 shrink-0" /> {item}
                   </li>
                 ))}
               </ul>
               <div className="flex flex-col sm:flex-row gap-3">
-                <Link to="/dugasta" className="inline-flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-black font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
+                <Link to="/dugasta" className="inline-flex items-center gap-2 bg-white hover:bg-gray-100 text-black font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
                   View Dugasta Projects <ArrowRight className="w-4 h-4" />
                 </Link>
-                <Link to="/10-net-roi-dubai-property" className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white font-heading font-semibold text-sm px-7 py-3.5 rounded-xl transition-colors">
+                <Link to="/10-net-roi-dubai-property" className="inline-flex items-center gap-2 border border-white/20 hover:border-white/40 text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
                   ROI Calculator & Full Guide <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>

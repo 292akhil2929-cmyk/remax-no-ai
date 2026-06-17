@@ -98,18 +98,18 @@ function EpisodeCard({ episode, onPlay, index }) {
           {episode.duration}
         </span>
         {/* Tag */}
-        <span className="absolute top-3 left-3 bg-red-600 text-white text-[9px] font-heading font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
+        <span className="absolute top-3 left-3 bg-black text-white text-[9px] font-heading font-bold px-2.5 py-1 rounded-full uppercase tracking-wider">
           {episode.tag}
         </span>
       </div>
       <div className="p-5">
         <p className="text-gray-400 font-body text-[10px] uppercase tracking-widest mb-1.5">{episode.ep} · {episode.guest}</p>
-        <h3 className="font-heading font-bold text-gray-900 text-sm leading-snug mb-2 group-hover:text-red-600 transition-colors line-clamp-2">
+        <h3 className="font-heading font-bold text-gray-900 text-sm leading-snug mb-2 group-hover:text-black transition-colors line-clamp-2">
           {episode.title}
         </h3>
         <p className="text-gray-500 font-body text-xs leading-relaxed line-clamp-2">{episode.description}</p>
-        <div className="mt-4 flex items-center gap-1.5 text-red-600 font-heading font-semibold text-xs">
-          <Play className="w-3 h-3 fill-red-600" /> Watch Episode
+        <div className="mt-4 flex items-center gap-1.5 text-gray-900 font-heading font-bold text-xs">
+          <Play className="w-3 h-3 fill-gray-900" /> Watch Episode
         </div>
       </div>
     </motion.div>
@@ -147,17 +147,14 @@ export default function DubaiUnfiltered() {
       <VideoModal episode={activeEpisode} onClose={() => setActiveEpisode(null)} />
 
       {/* ── HERO ── */}
-      <section className="relative min-h-[80vh] flex items-center overflow-hidden bg-[#0a0a0a] pt-16">
-        {/* Background image — Faisal with mic from official site */}
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-25"
-          style={{ backgroundImage: 'url(https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/Rectangle-429.jpg)' }}
+      <section className="relative min-h-[80vh] flex items-center overflow-hidden pt-16">
+        {/* Background image */}
+        <img
+          src="https://remax-zam.b-cdn.net/wp-content/uploads/2025/12/Rectangle-429.jpg"
+          alt=""
+          className="absolute inset-0 w-full h-full object-cover"
         />
-        {/* Multi-layer gradient overlay — matching home page style */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/55 to-black/25" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-black/30" />
-        {/* Red accent glow */}
-        <div className="absolute bottom-0 left-0 w-2/3 h-1/2 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(220,38,38,0.12),transparent_60%)]" />
+        <div className="absolute inset-0 bg-black/70" />
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-24 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left — copy */}
@@ -171,7 +168,7 @@ export default function DubaiUnfiltered() {
             />
             <h1 className="font-display font-black text-white leading-[0.95] mb-5">
               <span className="block text-4xl sm:text-5xl lg:text-6xl">Dubai Real Estate</span>
-              <span className="block text-4xl sm:text-5xl lg:text-6xl text-red-500">Unfiltered</span>
+              <span className="block text-4xl sm:text-5xl lg:text-6xl text-white">Unfiltered</span>
             </h1>
             <p className="text-white/70 font-body text-base leading-relaxed max-w-xl mb-8">
               Real conversations with Dubai's top developers and industry experts — breaking down market realities, opportunities, and investment strategies. <strong className="text-white">No scripts. No sales pitches. Just the truth.</strong>
@@ -180,7 +177,7 @@ export default function DubaiUnfiltered() {
               <button
                 onClick={() => episodes[0] && setActiveEpisode(episodes[0])}
                 disabled={!episodes[0]}
-                className="inline-flex items-center gap-2.5 bg-red-600 hover:bg-red-500 text-white font-heading font-bold text-sm px-6 py-3.5 rounded-xl transition-colors disabled:opacity-50"
+                className="inline-flex items-center gap-2.5 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm px-6 py-3.5 rounded-xl transition-colors disabled:opacity-50"
               >
                 <Play className="w-4 h-4 fill-white" /> Watch Latest Episode
               </button>
@@ -188,7 +185,7 @@ export default function DubaiUnfiltered() {
                 href="https://www.youtube.com/@REMAXZAM"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading font-semibold text-sm px-6 py-3.5 rounded-xl transition-colors"
+                className="inline-flex items-center gap-2.5 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading font-bold text-sm px-6 py-3.5 rounded-xl transition-colors"
               >
                 <Youtube className="w-4 h-4" /> Subscribe on YouTube
               </a>
@@ -214,16 +211,16 @@ export default function DubaiUnfiltered() {
               />
               <div className="absolute inset-0 bg-black/40 group-hover:bg-black/30 transition-colors" />
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 rounded-full bg-black/80 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                   <Play className="w-7 h-7 text-white fill-white ml-1" />
                 </div>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent">
-                <p className="text-red-400 font-body text-[10px] uppercase tracking-widest mb-1">The Initiative</p>
+                <p className="text-white/50 font-body text-[10px] uppercase tracking-widest mb-1">The Initiative</p>
                 <p className="text-white font-heading font-bold text-sm leading-snug">{introVideo.title}</p>
               </div>
             </div>
-            <p className="text-white/30 font-body text-[10px] text-center mt-3 uppercase tracking-widest">The video that launched this initiative</p>
+            <p className="text-white/40 font-body text-[10px] text-center mt-3 uppercase tracking-widest">The video that launched this initiative</p>
           </motion.a>
         </div>
       </section>
@@ -236,7 +233,7 @@ export default function DubaiUnfiltered() {
               <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Why This Exists</p>
               <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight mb-6">
                 In a Market Full of Noise,<br />
-                <span className="text-red-600">Investors Deserve Clarity</span>
+                <span className="text-gray-900">Investors Deserve Clarity</span>
               </h2>
               <p className="text-gray-600 font-body text-sm leading-relaxed mb-4">
                 The Dubai real estate market is one of the most exciting in the world — and one of the most misrepresented. Too much of what investors hear is curated, polished and designed to sell rather than to inform.
@@ -252,11 +249,11 @@ export default function DubaiUnfiltered() {
                   href="https://www.youtube.com/@REMAXZAM"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-heading font-bold text-sm px-5 py-3 rounded-xl transition-colors"
+                  className="inline-flex items-center gap-2 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm px-5 py-3 rounded-xl transition-colors"
                 >
                   <Youtube className="w-4 h-4" /> Subscribe Free
                 </a>
-                <Link to="/contact" className="inline-flex items-center gap-1.5 text-gray-700 hover:text-black font-heading font-semibold text-sm transition-colors">
+                <Link to="/contact" className="inline-flex items-center gap-1.5 text-gray-700 hover:text-black font-heading font-bold text-sm transition-colors">
                   Speak to an Advisor <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
@@ -272,8 +269,8 @@ export default function DubaiUnfiltered() {
                   transition={{ delay: i * 0.08 }}
                   className="bg-gray-50 rounded-2xl p-5 border border-gray-100"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5 text-red-600" />
+                  <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center mb-4">
+                    <Icon className="w-5 h-5 text-gray-900" />
                   </div>
                   <h4 className="font-heading font-bold text-gray-900 text-sm mb-2">{title}</h4>
                   <p className="text-gray-500 font-body text-xs leading-relaxed">{desc}</p>
@@ -297,7 +294,7 @@ export default function DubaiUnfiltered() {
                 href="https://www.youtube.com/@REMAXZAM"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm font-heading font-semibold text-gray-500 hover:text-red-600 transition-colors shrink-0"
+                className="inline-flex items-center gap-2 text-sm font-heading font-bold text-gray-500 hover:text-black transition-colors shrink-0"
               >
                 View on YouTube <ExternalLink className="w-4 h-4" />
               </a>
@@ -337,7 +334,7 @@ export default function DubaiUnfiltered() {
                 />
                 <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="w-16 h-16 rounded-full bg-red-600/90 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <div className="w-16 h-16 rounded-full bg-black/80 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
                     <Play className="w-7 h-7 text-white fill-white ml-1" />
                   </div>
                 </div>
@@ -348,12 +345,12 @@ export default function DubaiUnfiltered() {
               </div>
               <div className="p-8 flex flex-col justify-center">
                 <p className="text-gray-400 font-body text-[10px] uppercase tracking-widest mb-2">{featured.ep} · {featured.guest}</p>
-                <h3 className="font-heading font-bold text-gray-900 text-xl leading-snug mb-3 group-hover:text-red-600 transition-colors">
+                <h3 className="font-heading font-bold text-gray-900 text-xl leading-snug mb-3 group-hover:text-black transition-colors">
                   {featured.title}
                 </h3>
                 <p className="text-gray-500 font-body text-sm leading-relaxed mb-6">{featured.description}</p>
-                <div className="flex items-center gap-2 text-red-600 font-heading font-semibold text-sm">
-                  <Play className="w-4 h-4 fill-red-600" /> Watch Episode 1
+                <div className="flex items-center gap-2 text-gray-900 font-heading font-bold text-sm">
+                  <Play className="w-4 h-4 fill-gray-900" /> Watch Episode 1
                 </div>
               </div>
             </div>
@@ -372,20 +369,14 @@ export default function DubaiUnfiltered() {
       </section>
 
       {/* ── SUBSCRIBE CTA ── */}
-      <section className="py-20 bg-[#0a0a0a] relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(220,38,38,0.1),transparent_70%)]" />
-        <div className="relative max-w-3xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
+      <section className="py-20 bg-white border-t border-gray-100">
+        <div className="max-w-3xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <img
-              src="https://remax-zam.b-cdn.net/wp-content/uploads/2026/04/logo312.png"
-              alt="Dubai Real Estate Unfiltered"
-              className="h-16 mx-auto mb-8"
-              onError={(e) => { e.target.style.display = 'none'; }}
-            />
-            <h2 className="text-3xl sm:text-4xl font-display font-black text-white mb-4">
+            <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Stay Updated</p>
+            <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 mb-4">
               New Episodes Drop Every Month
             </h2>
-            <p className="text-white/50 font-body text-sm leading-relaxed max-w-xl mx-auto mb-10">
+            <p className="text-gray-500 font-body text-sm leading-relaxed max-w-xl mx-auto mb-10">
               Subscribe on YouTube and never miss a conversation. Each episode brings you a different developer, a different perspective, and a different set of investment insights you won't find anywhere else.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -393,13 +384,13 @@ export default function DubaiUnfiltered() {
                 href="https://www.youtube.com/@REMAXZAM"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-red-600 hover:bg-red-500 text-white font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors"
               >
                 <Youtube className="w-5 h-5" /> Subscribe on YouTube
               </a>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 border border-white/20 text-white font-heading font-semibold text-sm px-8 py-4 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-gray-200 hover:border-black text-gray-900 font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors"
               >
                 Speak to an Advisor <ArrowRight className="w-4 h-4" />
               </Link>

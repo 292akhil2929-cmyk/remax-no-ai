@@ -253,9 +253,9 @@ function FAQItem({ faq }) {
 
 function FeesTable({ data }) {
   const colorMap = {
-    red: 'bg-red-50 text-red-700 border-red-200',
-    blue: 'bg-blue-50 text-blue-700 border-blue-200',
-    amber: 'bg-amber-50 text-amber-700 border-amber-200',
+    red: 'bg-gray-100 text-gray-700 border-gray-200',
+    blue: 'bg-gray-100 text-gray-700 border-gray-200',
+    amber: 'bg-gray-100 text-gray-700 border-gray-200',
   };
   return (
     <div className="mb-10">
@@ -295,23 +295,22 @@ export default function DubaiGuide() {
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <section className="relative py-20 bg-black overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,38,38,0.15),transparent_60%)]" />
         <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1920&q=60" alt="Dubai guide" className="absolute inset-0 w-full h-full object-cover opacity-10" />
         <div className="relative max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
           <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-8 h-px bg-red-500" />
-            <span className="text-red-400 font-body text-xs tracking-[0.25em] uppercase font-semibold">The Definitive Resource</span>
-            <div className="w-8 h-px bg-red-500" />
+            <div className="w-8 h-px bg-white/30" />
+            <span className="text-gray-400 font-body text-xs tracking-[0.25em] uppercase font-semibold">The Definitive Resource</span>
+            <div className="w-8 h-px bg-white/30" />
           </div>
           <h1 className="font-display font-black text-white text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
             Dubai Real Estate<br />
-            <span className="text-red-500">Complete Guide 2026</span>
+            <span className="text-white">Complete Guide 2026</span>
           </h1>
           <p className="text-white/60 font-body text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
             Everything you need to know — buying process, renting process, all fees, tenant rights, landlord rights, mortgages, and 12 of the most important FAQs. Straight facts, no jargon.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-heading font-bold border-0" asChild>
+            <Button size="lg" className="bg-white text-black hover:bg-gray-100 font-heading font-bold border-0" asChild>
               <Link to="/contact">Speak to an Expert <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
             <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-heading" asChild>
@@ -322,7 +321,7 @@ export default function DubaiGuide() {
       </section>
 
       {/* Sticky Tab Navigation */}
-      <div className="sticky top-0 z-30 bg-white border-b border-gray-100 shadow-sm">
+      <div className="sticky top-16 lg:top-[70px] z-30 bg-white border-b border-gray-100 shadow-sm">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 overflow-x-auto scrollbar-none">
           <div className="flex gap-1 py-2 min-w-max">
             {TABS.map(tab => (
@@ -331,7 +330,7 @@ export default function DubaiGuide() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-heading font-bold transition-all whitespace-nowrap ${
                   activeTab === tab.id
-                    ? 'bg-red-600 text-white'
+                    ? 'bg-black text-white'
                     : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
                 }`}
               >
@@ -356,7 +355,7 @@ export default function DubaiGuide() {
             <div className="space-y-8">
               {BUYING_STEPS.map((s, i) => (
                 <motion.div key={s.step} initial={{ opacity: 0, x: -15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.06 }} className="flex gap-6">
-                  <div className="w-14 h-14 rounded-2xl bg-red-600 flex items-center justify-center shrink-0">
+                  <div className="w-14 h-14 rounded-2xl bg-black flex items-center justify-center shrink-0">
                     <span className="font-display font-black text-white text-sm">{s.step}</span>
                   </div>
                   <div className="flex-1">
@@ -365,7 +364,7 @@ export default function DubaiGuide() {
                     <div className="bg-gray-50 rounded-xl p-4 space-y-2">
                       {s.tips.map(tip => (
                         <div key={tip} className="flex items-start gap-2">
-                          <CheckCircle className="w-3.5 h-3.5 text-red-500 shrink-0 mt-0.5" />
+                          <CheckCircle className="w-3.5 h-3.5 text-gray-400 shrink-0 mt-0.5" />
                           <p className="text-xs font-body text-gray-600">{tip}</p>
                         </div>
                       ))}
@@ -377,7 +376,7 @@ export default function DubaiGuide() {
             <div className="mt-12 bg-black rounded-2xl p-8 text-center">
               <p className="text-white font-display font-bold text-xl mb-2">Ready to Buy? Talk to a RE/MAX ZAM Advisor</p>
               <p className="text-white/50 font-body text-sm mb-6">We guide you through every step above — from property selection to Title Deed in your name.</p>
-              <Button className="bg-red-600 hover:bg-red-700 text-white font-heading font-bold border-0" asChild>
+              <Button className="bg-white text-black hover:bg-gray-100 font-heading font-bold border-0" asChild>
                 <Link to="/contact">Book Free Consultation <ArrowRight className="w-4 h-4 ml-1" /></Link>
               </Button>
             </div>
@@ -423,12 +422,12 @@ export default function DubaiGuide() {
               <p className="text-gray-500 font-body text-sm leading-relaxed max-w-2xl">A complete breakdown of every cost involved in buying, renting, and owning property in Dubai. No hidden surprises — this is the full picture.</p>
             </div>
             {FEES_DATA.map(d => <FeesTable key={d.category} data={d} />)}
-            <div className="bg-red-50 border border-red-100 rounded-2xl p-6 mt-6">
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6 mt-6">
               <div className="flex items-start gap-3">
-                <AlertCircle className="w-5 h-5 text-red-600 shrink-0 mt-0.5" />
+                <AlertCircle className="w-5 h-5 text-gray-600 shrink-0 mt-0.5" />
                 <div>
-                  <p className="font-heading font-bold text-red-800 text-sm mb-1">Rule of Thumb for Buyers</p>
-                  <p className="text-red-700 font-body text-sm leading-relaxed">Always budget an additional <strong>7–9% of the property price</strong> for total purchase transaction costs. For a AED 2,000,000 property, that means approximately AED 140,000–180,000 in additional costs on top of your purchase price.</p>
+                  <p className="font-heading font-bold text-gray-900 text-sm mb-1">Rule of Thumb for Buyers</p>
+                  <p className="text-gray-700 font-body text-sm leading-relaxed">Always budget an additional <strong>7–9% of the property price</strong> for total purchase transaction costs. For a AED 2,000,000 property, that means approximately AED 140,000–180,000 in additional costs on top of your purchase price.</p>
                 </div>
               </div>
             </div>
@@ -446,14 +445,14 @@ export default function DubaiGuide() {
               {TENANT_RIGHTS.map((r, i) => (
                 <motion.div key={r.title} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="border border-gray-100 rounded-2xl p-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
-                      <r.icon className="w-5 h-5 text-blue-600" />
+                    <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
+                      <r.icon className="w-5 h-5 text-gray-900" />
                     </div>
                     <div>
                       <h3 className="font-heading font-bold text-gray-900 mb-2">{r.title}</h3>
                       <p className="text-gray-500 font-body text-sm leading-relaxed mb-4">{r.body}</p>
-                      <div className="bg-blue-50 border border-blue-100 rounded-xl p-3">
-                        <p className="text-blue-800 font-body text-xs leading-relaxed"><span className="font-bold">Key takeaway: </span>{r.important}</p>
+                      <div className="bg-gray-50 border border-gray-200 rounded-xl p-3">
+                        <p className="text-gray-700 font-body text-xs leading-relaxed"><span className="font-bold">Key takeaway: </span>{r.important}</p>
                       </div>
                     </div>
                   </div>
@@ -470,7 +469,7 @@ export default function DubaiGuide() {
                   { label: 'DLD Portal', url: 'https://dubailand.gov.ae' },
                 ].map(l => (
                   <a key={l.label} href={l.url} target="_blank" rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-gray-200 rounded-full text-xs font-heading font-bold text-gray-700 hover:border-red-300 hover:text-red-600 transition-colors">
+                    className="inline-flex items-center gap-1.5 px-4 py-2 bg-white border border-gray-200 rounded-full text-xs font-heading font-bold text-gray-700 hover:border-black hover:text-black transition-colors">
                     {l.label} <ArrowRight className="w-3 h-3" />
                   </a>
                 ))}
@@ -488,9 +487,9 @@ export default function DubaiGuide() {
             </div>
             <div className="grid sm:grid-cols-2 gap-5">
               {LANDLORD_RIGHTS.map((r, i) => (
-                <motion.div key={r.title} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="border border-gray-100 rounded-2xl p-6 hover:border-red-200 hover:shadow-sm transition-all">
-                  <div className="w-8 h-8 rounded-lg bg-red-50 flex items-center justify-center mb-4">
-                    <CheckCircle className="w-4 h-4 text-red-600" />
+                <motion.div key={r.title} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="border border-gray-100 rounded-2xl p-6 hover:border-gray-200 hover:shadow-sm transition-all">
+                  <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center mb-4">
+                    <CheckCircle className="w-4 h-4 text-gray-700" />
                   </div>
                   <h3 className="font-heading font-bold text-gray-900 text-sm mb-2">{r.title}</h3>
                   <p className="text-gray-500 font-body text-xs leading-relaxed">{r.body}</p>
@@ -500,7 +499,7 @@ export default function DubaiGuide() {
             <div className="mt-10 bg-black rounded-2xl p-8">
               <h3 className="font-display font-bold text-white text-xl mb-2">Investing in Dubai Property?</h3>
               <p className="text-white/50 font-body text-sm mb-6">RE/MAX ZAM offers full landlord advisory — from tenant screening to rent collection and dispute resolution. Let us manage your Dubai investment.</p>
-              <Button className="bg-red-600 hover:bg-red-700 text-white font-heading font-bold border-0" asChild>
+              <Button className="bg-white text-black hover:bg-gray-100 font-heading font-bold border-0" asChild>
                 <Link to="/contact">Get Landlord Advisory <ArrowRight className="w-4 h-4 ml-1" /></Link>
               </Button>
             </div>
@@ -536,7 +535,7 @@ export default function DubaiGuide() {
                 { step: '05', title: 'Transfer with Mortgage', desc: "The bank issues a manager's cheque for the loan amount, which is combined with your equity cheque at the Trustee Office for the full purchase price to the seller." },
               ].map(s => (
                 <div key={s.step} className="flex gap-5 items-start">
-                  <div className="w-10 h-10 rounded-xl bg-red-600 flex items-center justify-center shrink-0">
+                  <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center shrink-0">
                     <span className="font-display font-black text-white text-xs">{s.step}</span>
                   </div>
                   <div>
@@ -548,8 +547,8 @@ export default function DubaiGuide() {
             </div>
 
             {/* Key Notes */}
-            <div className="bg-amber-50 border border-amber-100 rounded-2xl p-6">
-              <h3 className="font-heading font-bold text-amber-900 text-sm mb-3">Important Notes for Expat Mortgages</h3>
+            <div className="bg-gray-50 border border-gray-200 rounded-2xl p-6">
+              <h3 className="font-heading font-bold text-gray-900 text-sm mb-3">Important Notes for Expat Mortgages</h3>
               <div className="space-y-2">
                 {[
                   'Fixed-rate periods in Dubai are typically 1–5 years; after that the rate becomes variable',
@@ -559,8 +558,8 @@ export default function DubaiGuide() {
                   'Life insurance equal to the loan amount is typically required by UAE lenders',
                 ].map(n => (
                   <div key={n} className="flex items-start gap-2">
-                    <AlertCircle className="w-3.5 h-3.5 text-amber-600 shrink-0 mt-0.5" />
-                    <p className="text-amber-800 font-body text-xs leading-relaxed">{n}</p>
+                    <AlertCircle className="w-3.5 h-3.5 text-gray-500 shrink-0 mt-0.5" />
+                    <p className="text-gray-600 font-body text-xs leading-relaxed">{n}</p>
                   </div>
                 ))}
               </div>
@@ -578,10 +577,10 @@ export default function DubaiGuide() {
             <div className="space-y-3">
               {FAQS.map(faq => <FAQItem key={faq.q} faq={faq} />)}
             </div>
-            <div className="mt-12 bg-red-600 rounded-2xl p-8 text-center">
+            <div className="mt-12 bg-black rounded-2xl p-8 text-center">
               <p className="font-display font-bold text-white text-xl mb-2">Still Have Questions?</p>
               <p className="text-white/70 font-body text-sm mb-6">Our team answers every inquiry within 24 hours. No sales pitch — just honest answers.</p>
-              <Button className="bg-white text-red-600 hover:bg-gray-100 font-heading font-bold border-0" asChild>
+              <Button className="bg-white text-black hover:bg-gray-100 font-heading font-bold border-0" asChild>
                 <Link to="/contact">Ask a RE/MAX ZAM Advisor <ArrowRight className="w-4 h-4 ml-1" /></Link>
               </Button>
             </div>

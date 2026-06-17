@@ -41,12 +41,12 @@ export function getUTMParams() {
 
 export function TrustStrip() {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-3 px-4 bg-[#F4F6FA] border-y border-gray-200 text-xs font-body text-[#0E1B3A]/70">
-      <span className="flex items-center gap-1.5"><span className="text-[#DC1C2E] font-bold">✦</span> RE/MAX — world's most recognised real estate brand</span>
+    <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 py-3 px-4 bg-gray-50 border-y border-gray-200 text-xs font-body text-gray-500">
+      <span className="flex items-center gap-1.5"><span className="text-black font-bold">✦</span> RE/MAX — world's most recognised real estate brand</span>
       <span className="hidden sm:block text-gray-300">|</span>
-      <span className="flex items-center gap-1.5"><span className="text-[#DC1C2E] font-bold">✦</span> 6–9% tax-free Dubai yields</span>
+      <span className="flex items-center gap-1.5"><span className="text-black font-bold">✦</span> 6–9% tax-free Dubai yields</span>
       <span className="hidden sm:block text-gray-300">|</span>
-      <span className="flex items-center gap-1.5"><span className="text-[#DC1C2E] font-bold">✦</span> Founder-invested in Dubai property</span>
+      <span className="flex items-center gap-1.5"><span className="text-black font-bold">✦</span> Founder-invested in Dubai property</span>
     </div>
   );
 }
@@ -74,7 +74,7 @@ export function CampaignHeader({ ctaLabel = 'Book a Consultation', ctaHref = '#l
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
       {/* Back to main site */}
-      <div className="bg-[#0E1B3A]/90 backdrop-blur-sm px-5 lg:px-10 py-1.5 flex items-center">
+      <div className="bg-black/90 backdrop-blur-sm px-5 lg:px-10 py-1.5 flex items-center">
         <Link to="/" className="flex items-center gap-1.5 text-white/50 hover:text-white/80 text-[11px] font-body transition-colors">
           <ArrowLeft className="w-3 h-3" /> Back to RE/MAX ZAM
         </Link>
@@ -88,15 +88,15 @@ export function CampaignHeader({ ctaLabel = 'Book a Consultation', ctaHref = '#l
         {/* Desktop nav */}
         <nav className="hidden lg:flex items-center gap-6">
           {links.map(l => (
-            <Link key={l.href} to={l.href} className="text-xs font-body text-[#0E1B3A]/60 hover:text-[#0E1B3A] transition-colors whitespace-nowrap">{l.label}</Link>
+            <Link key={l.href} to={l.href} className="text-xs font-body text-gray-500 hover:text-gray-900 transition-colors whitespace-nowrap">{l.label}</Link>
           ))}
         </nav>
 
         <div className="flex items-center gap-3">
-          <a href={ctaHref} className="hidden sm:inline-flex items-center gap-1.5 bg-[#DC1C2E] hover:bg-[#b81626] text-white font-heading font-bold text-xs tracking-wide px-5 py-2.5 rounded-xl transition-colors whitespace-nowrap">
+          <a href={ctaHref} className="hidden sm:inline-flex items-center gap-1.5 bg-black hover:bg-gray-900 text-white font-heading font-bold text-xs tracking-wide px-5 py-2.5 rounded-xl transition-colors whitespace-nowrap">
             {ctaLabel}
           </a>
-          <button onClick={() => setMobileOpen(o => !o)} className="lg:hidden p-1.5 text-[#0E1B3A]">
+          <button onClick={() => setMobileOpen(o => !o)} className="lg:hidden p-1.5 text-gray-900">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               {mobileOpen ? <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />}
             </svg>
@@ -107,9 +107,9 @@ export function CampaignHeader({ ctaLabel = 'Book a Consultation', ctaHref = '#l
       {mobileOpen && (
         <div className="lg:hidden bg-white border-t border-gray-100 px-5 py-4 space-y-3">
           {links.map(l => (
-            <Link key={l.href} to={l.href} onClick={() => setMobileOpen(false)} className="block text-sm font-body text-[#0E1B3A]/70 hover:text-[#0E1B3A] py-1">{l.label}</Link>
+            <Link key={l.href} to={l.href} onClick={() => setMobileOpen(false)} className="block text-sm font-body text-gray-500 hover:text-gray-900 py-1">{l.label}</Link>
           ))}
-          <a href={ctaHref} className="block w-full mt-3 bg-[#DC1C2E] text-white font-heading font-bold text-xs text-center py-3 rounded-xl">{ctaLabel}</a>
+          <a href={ctaHref} className="block w-full mt-3 bg-black text-white font-heading font-bold text-xs text-center py-3 rounded-xl">{ctaLabel}</a>
         </div>
       )}
     </header>
@@ -143,14 +143,14 @@ export function WhatsAppFloat({ message }) {
 
 export function CampaignFooter() {
   return (
-    <footer className="bg-[#0E1B3A] text-white">
+    <footer className="bg-black text-white">
       <div className="max-w-7xl mx-auto px-5 lg:px-10 py-14 grid grid-cols-1 md:grid-cols-3 gap-10">
         <div>
           <img src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/202b99f88_RemaxZamLogo.webp" alt="RE/MAX ZAM" className="h-10 w-auto object-contain mb-4 brightness-0 invert" />
           <p className="text-white/50 font-body text-xs leading-relaxed">Dubai's trusted investment real estate advisory. Maximisation of Your Investment.</p>
         </div>
         <div>
-          <p className="font-heading font-semibold text-sm mb-4">Quick Links</p>
+          <p className="font-heading font-bold text-sm mb-4">Quick Links</p>
           <div className="space-y-2">
             {[['10% ROI', '/10-net-roi-dubai-property'], ['Golden Visa', '/dubai-golden-visa-property'], ['Invest in Dubai', '/dubai-property-investment'], ['Founder Story', '/my-dubai-passive-income'], ['FAQ', '/dugasta-faq'], ['Contact', '/contact']].map(([l, h]) => (
               <Link key={h} to={h} className="block text-xs text-white/40 hover:text-white/80 font-body transition-colors">{l}</Link>
@@ -158,7 +158,7 @@ export function CampaignFooter() {
           </div>
         </div>
         <div>
-          <p className="font-heading font-semibold text-sm mb-4">RE/MAX ZAM, Dubai UAE</p>
+          <p className="font-heading font-bold text-sm mb-4">RE/MAX ZAM, Dubai UAE</p>
           <p className="text-white/40 font-body text-xs leading-relaxed mb-3">Bay View Tower, Office 1102, Dubai</p>
           <p className="text-white/40 font-body text-xs">+97145828158 · info@remaxzam.ae</p>
         </div>
@@ -199,7 +199,7 @@ export function CampaignLeadForm({ dark = false, source = 'Campaign', ctaLabel =
 
   const base = dark
     ? 'bg-white/10 border-white/20 text-white placeholder:text-white/40 h-11'
-    : 'bg-white border-gray-200 text-[#0E1B3A] placeholder:text-gray-400 h-11';
+    : 'bg-white border-gray-200 text-gray-900 placeholder:text-gray-400 h-11';
 
   if (submitted) {
     return (
@@ -208,7 +208,7 @@ export function CampaignLeadForm({ dark = false, source = 'Campaign', ctaLabel =
           <CheckCircle2 className="w-7 h-7 text-emerald-500" />
         </div>
         <div>
-          <p className={`font-heading font-bold text-lg mb-1 ${dark ? 'text-white' : 'text-[#0E1B3A]'}`}>Thank you!</p>
+          <p className={`font-heading font-bold text-lg mb-1 ${dark ? 'text-white' : 'text-gray-900'}`}>Thank you!</p>
           <p className={`font-body text-sm ${dark ? 'text-white/50' : 'text-gray-500'}`}>An advisor will WhatsApp you within minutes.</p>
         </div>
         <a
@@ -260,7 +260,7 @@ export function CampaignLeadForm({ dark = false, source = 'Campaign', ctaLabel =
           </Select>
         </>
       )}
-      <Button type="submit" disabled={mutation.isPending} className="w-full h-12 bg-[#DC1C2E] hover:bg-[#b81626] text-white font-heading font-bold text-sm tracking-wide rounded-xl transition-colors">
+      <Button type="submit" disabled={mutation.isPending} className="w-full h-12 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm tracking-wide rounded-xl transition-colors">
         {mutation.isPending ? 'Sending…' : ctaLabel} {!mutation.isPending && <ArrowRight className="w-4 h-4 ml-1" />}
       </Button>
       <p className={`text-[10px] font-body text-center ${dark ? 'text-white/25' : 'text-gray-400'}`}>No spam. A senior advisor contacts you directly.</p>
@@ -275,7 +275,7 @@ export function FaqAccordion({ q, a, dark = false }) {
   return (
     <div className={`border-b ${dark ? 'border-white/10' : 'border-gray-100'}`}>
       <button onClick={() => setOpen(o => !o)} className="w-full flex items-center justify-between py-5 text-left gap-4">
-        <span className={`font-heading font-semibold text-sm leading-snug ${dark ? 'text-white' : 'text-[#0E1B3A]'}`}>{q}</span>
+        <span className={`font-heading font-bold text-sm leading-snug ${dark ? 'text-white' : 'text-gray-900'}`}>{q}</span>
         <ChevronDown className={`w-4 h-4 shrink-0 transition-transform ${open ? 'rotate-180' : ''} ${dark ? 'text-white/40' : 'text-gray-400'}`} />
       </button>
       <AnimatePresence initial={false}>
@@ -293,13 +293,13 @@ export function FaqAccordion({ q, a, dark = false }) {
 
 export function FounderStrip({ linkLabel = 'See how the founder invests', linkHref = '/my-dubai-passive-income' }) {
   return (
-    <section className="py-16 bg-[#0E1B3A]">
+    <section className="py-16 bg-black">
       <div className="max-w-4xl mx-auto px-5 lg:px-10 text-center">
         <blockquote className="font-body text-white/70 text-lg leading-relaxed italic mb-6">
           "I don't just sell Dubai real estate — I live off the passive income mine generates. I'll show you the exact numbers."
         </blockquote>
-        <p className="font-heading font-bold text-[#C49A3A] text-sm mb-8">— Faisal Contractor, Owner, RE/MAX ZAM</p>
-        <Link to={linkHref} className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-semibold text-sm px-7 py-3 rounded-xl transition-colors">
+        <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX ZAM</p>
+        <Link to={linkHref} className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-bold text-sm px-7 py-3 rounded-xl transition-colors">
           {linkLabel} <ArrowRight className="w-4 h-4" />
         </Link>
       </div>
@@ -307,13 +307,11 @@ export function FounderStrip({ linkLabel = 'See how the founder invests', linkHr
   );
 }
 
-// ─── DARK NAVY CTA BAND (replaces RedCTABand) ────────────────────────────────
+// ─── DARK CTA BAND ────────────────────────────────────────────────────────────
 
 export function RedCTABand({ heading, children }) {
   return (
-    <section className="py-20 bg-[#0a1628] relative overflow-hidden">
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_right,_rgba(196,154,58,0.15),transparent_60%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_left,_rgba(14,27,58,0.8),transparent_70%)]" />
+    <section className="py-20 bg-black relative overflow-hidden">
       <div className="relative max-w-3xl mx-auto px-5 lg:px-10 text-center">
         <h2 className="font-display font-black text-white text-3xl sm:text-4xl leading-tight mb-10">{heading}</h2>
         {children}

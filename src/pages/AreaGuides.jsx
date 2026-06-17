@@ -245,11 +245,11 @@ export default function AreaGuides() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="py-16 bg-card/50 border-b border-border/50">
+      <section className="py-16 bg-gray-50 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">Location Intelligence</p>
-          <h1 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-4">Dubai Area Investment Guides</h1>
-          <p className="text-base text-muted-foreground font-body max-w-2xl leading-relaxed">
+          <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest mb-3 uppercase">Location Intelligence</p>
+          <h1 className="text-3xl lg:text-5xl font-display font-bold text-gray-900 mb-4">Dubai Area Investment Guides</h1>
+          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed">
             In-depth analysis of Dubai's top residential communities — comparing rental yields, price appreciation, tenant demand, and lifestyle credentials to help international investors choose the right location for their strategy.
           </p>
         </div>
@@ -262,7 +262,7 @@ export default function AreaGuides() {
 
             {/* Sidebar */}
             <div className="lg:w-64 flex-shrink-0">
-              <p className="text-xs font-heading font-semibold text-muted-foreground uppercase tracking-widest mb-3">Select Area</p>
+              <p className="text-xs font-heading font-semibold text-gray-400 uppercase tracking-widest mb-3">Select Area</p>
               <div className="space-y-1">
                 {areas.map(a => (
                   <button
@@ -270,8 +270,8 @@ export default function AreaGuides() {
                     onClick={() => setSelected(a.id)}
                     className={`w-full text-left px-4 py-3 rounded-lg text-sm font-body transition-colors ${
                       selected === a.id
-                        ? 'bg-primary text-white font-medium'
-                        : 'text-muted-foreground hover:bg-card hover:text-foreground'
+                        ? 'bg-black text-white font-bold'
+                        : 'text-gray-500 hover:bg-gray-100 hover:text-gray-900'
                     }`}
                   >
                     {a.name}
@@ -290,8 +290,8 @@ export default function AreaGuides() {
                 {area.tags.map(t => <Badge key={t} variant="secondary">{t}</Badge>)}
               </div>
 
-              <h2 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-1">{area.name}</h2>
-              <p className="text-base text-primary font-body font-medium mb-6">{area.tagline}</p>
+              <h2 className="text-2xl lg:text-3xl font-display font-bold text-gray-900 mb-1">{area.name}</h2>
+              <p className="text-base text-gray-500 font-body mb-6">{area.tagline}</p>
 
               {/* Key Stats */}
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 mb-8">
@@ -300,19 +300,19 @@ export default function AreaGuides() {
                   { icon: TrendingUp, label: 'Avg. Rental Yield', value: area.avgYield },
                   { icon: Users, label: 'Investor Profile', value: area.investorProfile },
                 ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="bg-card border border-border/50 rounded-lg p-4">
-                    <Icon className="w-4 h-4 text-accent mb-2" />
-                    <p className="text-xs text-muted-foreground font-body mb-1">{label}</p>
-                    <p className="text-sm font-heading font-semibold text-foreground">{value}</p>
+                  <div key={label} className="bg-white border border-gray-100 rounded-lg p-4">
+                    <Icon className="w-4 h-4 text-gray-400 mb-2" />
+                    <p className="text-xs text-gray-500 font-body mb-1">{label}</p>
+                    <p className="text-sm font-heading font-bold text-gray-900">{value}</p>
                   </div>
                 ))}
               </div>
 
               {/* Overview */}
               <div className="mb-8">
-                <h3 className="font-heading font-semibold text-foreground mb-3">Community Overview</h3>
+                <h3 className="font-heading font-bold text-gray-900 mb-3">Community Overview</h3>
                 {area.overview.split('\n\n').map((para, i) => (
-                  <p key={i} className="text-sm text-muted-foreground font-body leading-relaxed mb-3">{para}</p>
+                  <p key={i} className="text-sm text-gray-500 font-body leading-relaxed mb-3">{para}</p>
                 ))}
               </div>
 
@@ -321,11 +321,11 @@ export default function AreaGuides() {
 
               {/* Highlights */}
               <div className="mb-8">
-                <h3 className="font-heading font-semibold text-foreground mb-4">Investment Highlights</h3>
+                <h3 className="font-heading font-bold text-gray-900 mb-4">Investment Highlights</h3>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {area.highlights.map(h => (
-                    <li key={h} className="flex items-start gap-2 text-sm font-body text-muted-foreground">
-                      <Star className="w-4 h-4 text-accent flex-shrink-0 mt-0.5" />
+                    <li key={h} className="flex items-start gap-2 text-sm font-body text-gray-500">
+                      <Star className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
                       {h}
                     </li>
                   ))}
@@ -334,36 +334,36 @@ export default function AreaGuides() {
 
               {/* Property Types */}
               <div className="mb-8">
-                <h3 className="font-heading font-semibold text-foreground mb-3">Available Property Types</h3>
+                <h3 className="font-heading font-bold text-gray-900 mb-3">Available Property Types</h3>
                 <div className="flex flex-wrap gap-2">
                   {area.propertyTypes.map(t => (
-                    <span key={t} className="px-3 py-1.5 text-xs font-heading font-medium bg-primary/10 text-primary border border-primary/20 rounded-full">{t}</span>
+                    <span key={t} className="px-3 py-1.5 text-xs font-heading font-medium bg-gray-100 text-gray-700 border border-gray-200 rounded-full">{t}</span>
                   ))}
                 </div>
               </div>
 
               {/* Best For */}
-              <div className="bg-accent/5 border border-accent/20 rounded-lg p-5 mb-8">
-                <h3 className="font-heading font-semibold text-foreground mb-2 flex items-center gap-2">
-                  <TrendingUp className="w-4 h-4 text-accent" /> Best For
+              <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 mb-8">
+                <h3 className="font-heading font-bold text-gray-900 mb-2 flex items-center gap-2">
+                  <TrendingUp className="w-4 h-4 text-gray-400" /> Best For
                 </h3>
-                <p className="text-sm text-muted-foreground font-body">{area.bestFor}</p>
+                <p className="text-sm text-gray-500 font-body">{area.bestFor}</p>
               </div>
 
               {/* Expert Note */}
-              <div className="bg-muted/50 border-l-4 border-primary rounded-r-lg p-5 mb-8">
-                <p className="text-xs font-heading font-semibold text-primary uppercase tracking-widest mb-2">REMAX ZAM Expert Insight</p>
-                <p className="text-sm text-muted-foreground font-body leading-relaxed">{area.seoNote}</p>
+              <div className="bg-gray-50 border-l-4 border-black rounded-r-lg p-5 mb-8">
+                <p className="text-xs font-heading font-semibold text-gray-400 uppercase tracking-widest mb-2">REMAX ZAM Expert Insight</p>
+                <p className="text-sm text-gray-500 font-body leading-relaxed">{area.seoNote}</p>
               </div>
 
               {/* CTA */}
               <div className="flex flex-col sm:flex-row gap-3">
-                <Button className="font-heading font-bold" asChild>
+                <Button className="bg-black hover:bg-gray-900 text-white font-heading font-bold" asChild>
                   <Link to="/properties">
                     View {area.name} Properties <ArrowRight className="w-4 h-4 ml-1" />
                   </Link>
                 </Button>
-                <Button variant="outline" className="font-heading border-primary/30 text-primary hover:bg-primary/5" asChild>
+                <Button variant="outline" className="font-heading border-gray-200 text-gray-700 hover:bg-gray-50" asChild>
                   <Link to="/contact">Get Investment Advice</Link>
                 </Button>
               </div>
@@ -373,32 +373,32 @@ export default function AreaGuides() {
       </section>
 
       {/* Compare All Areas Table */}
-      <section className="py-16 bg-muted/30 border-t border-border/50">
+      <section className="py-16 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-display font-bold text-foreground mb-6">Compare Dubai Investment Areas at a Glance</h2>
+          <h2 className="text-2xl font-display font-bold text-gray-900 mb-6">Compare Dubai Investment Areas at a Glance</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm font-body">
               <thead>
-                <tr className="border-b border-border/50">
-                  <th className="text-left py-3 pr-4 font-heading font-semibold text-foreground">Area</th>
-                  <th className="text-left py-3 pr-4 font-heading font-semibold text-foreground">Entry Price</th>
-                  <th className="text-left py-3 pr-4 font-heading font-semibold text-foreground">Rental Yield</th>
-                  <th className="text-left py-3 font-heading font-semibold text-foreground">Best For</th>
+                <tr className="border-b border-gray-100">
+                  <th className="text-left py-3 pr-4 font-heading font-bold text-gray-900">Area</th>
+                  <th className="text-left py-3 pr-4 font-heading font-bold text-gray-900">Entry Price</th>
+                  <th className="text-left py-3 pr-4 font-heading font-bold text-gray-900">Rental Yield</th>
+                  <th className="text-left py-3 font-heading font-bold text-gray-900">Best For</th>
                 </tr>
               </thead>
               <tbody>
                 {areas.map(a => (
                   <tr
                     key={a.id}
-                    className="border-b border-border/30 hover:bg-background cursor-pointer transition-colors"
+                    className="border-b border-gray-100 hover:bg-white cursor-pointer transition-colors"
                     onClick={() => { setSelected(a.id); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   >
-                    <td className="py-3 pr-4 font-medium text-foreground">{a.name}</td>
-                    <td className="py-3 pr-4 text-muted-foreground">{a.priceRange.split('\u2013')[0].trim()}</td>
+                    <td className="py-3 pr-4 font-medium text-gray-900">{a.name}</td>
+                    <td className="py-3 pr-4 text-gray-500">{a.priceRange.split('\u2013')[0].trim()}</td>
                     <td className="py-3 pr-4">
-                      <span className="px-2 py-0.5 bg-emerald-50 text-emerald-700 rounded text-xs font-medium">{a.avgYield}</span>
+                      <span className="px-2 py-0.5 bg-gray-100 text-gray-700 rounded text-xs font-medium">{a.avgYield}</span>
                     </td>
-                    <td className="py-3 text-muted-foreground">{a.investorProfile}</td>
+                    <td className="py-3 text-gray-500">{a.investorProfile}</td>
                   </tr>
                 ))}
               </tbody>
@@ -408,14 +408,14 @@ export default function AreaGuides() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-14 bg-primary text-white text-center">
+      <section className="py-14 bg-black text-white text-center">
         <div className="max-w-2xl mx-auto px-4">
           <MapPin className="w-8 h-8 mx-auto text-white/60 mb-4" />
           <h2 className="text-2xl lg:text-3xl font-display font-bold mb-3">Not Sure Which Area is Right For You?</h2>
           <p className="text-white/75 font-body mb-7 text-sm leading-relaxed">
             Our investment advisors specialise in matching international buyers with the Dubai community that aligns with their budget, lifestyle, and ROI goals. Book a free 30-minute strategy call.
           </p>
-          <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
+          <Button size="lg" className="bg-white hover:bg-gray-100 text-black font-heading font-bold border-0" asChild>
             <Link to="/contact">Book Free Consultation</Link>
           </Button>
         </div>

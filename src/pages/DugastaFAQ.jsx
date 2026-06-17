@@ -104,15 +104,15 @@ export default function DugastaFAQ() {
       <section className="pt-28 pb-16 bg-white text-center">
         <div className="max-w-3xl mx-auto px-5 lg:px-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-            <p className="text-xs font-body tracking-[0.25em] uppercase text-[#DC1C2E] mb-4">DUGASTA — HONEST ANSWERS</p>
-            <h1 className="font-display font-black text-[#0E1B3A] text-4xl sm:text-5xl leading-tight mb-5">
+            <p className="text-xs font-body tracking-[0.25em] uppercase text-gray-400 mb-4">DUGASTA — HONEST ANSWERS</p>
+            <h1 className="font-display font-black text-gray-900 text-4xl sm:text-5xl leading-tight mb-5">
               Dugasta properties: your questions, answered straight.
             </h1>
             <p className="text-gray-600 font-body text-lg leading-relaxed mb-8">
               Everything investors ask us about Dugasta — returns, risks, payment plans and the Golden Visa. No spin. If you would rather just talk it through, we are one tap away.
             </p>
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
-              <a href="#lead-form" className="inline-flex items-center justify-center gap-2 bg-[#DC1C2E] hover:bg-[#b81626] text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
+              <a href="#lead-form" className="inline-flex items-center justify-center gap-2 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
                 Talk to an Advisor
               </a>
               <a href={WA_BASE} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
@@ -126,7 +126,7 @@ export default function DugastaFAQ() {
       <TrustStrip />
 
       {/* ── FAQ GROUPS ── */}
-      <section className="py-20 bg-[#F4F6FA]">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-3xl mx-auto px-5 lg:px-10">
           {FAQ_GROUPS.map((group, gi) => (
             <motion.div
@@ -135,7 +135,7 @@ export default function DugastaFAQ() {
               viewport={{ once: true }} transition={{ delay: gi * 0.05 }}
               className="mb-12"
             >
-              <h2 className="font-display font-black text-[#0E1B3A] text-2xl mb-2">{group.heading}</h2>
+              <h2 className="font-display font-black text-gray-900 text-2xl mb-2">{group.heading}</h2>
               <div className="bg-white rounded-2xl border border-gray-100 shadow-sm px-6">
                 {group.faqs.map(f => <FaqAccordion key={f.q} {...f} />)}
               </div>
@@ -145,12 +145,12 @@ export default function DugastaFAQ() {
       </section>
 
       {/* ── FOUNDER STRIP ── */}
-      <section className="py-16 bg-[#0E1B3A]">
+      <section className="py-16 bg-black">
         <div className="max-w-4xl mx-auto px-5 lg:px-10 text-center">
           <blockquote className="font-body text-white/70 text-lg leading-relaxed italic mb-6">
             "I recommend Dugasta because I invest in it myself. Ask me anything."
           </blockquote>
-          <p className="font-heading font-bold text-[#C49A3A] text-sm mb-8">— Faisal Contractor, Owner, RE/MAX ZAM</p>
+          <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX ZAM</p>
           <Link to="/my-dubai-passive-income" className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-semibold text-sm px-7 py-3 rounded-xl transition-colors">
             See how the founder invests <ArrowRight className="w-4 h-4" />
           </Link>
