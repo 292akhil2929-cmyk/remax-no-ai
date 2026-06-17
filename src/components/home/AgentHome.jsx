@@ -119,7 +119,7 @@ export default function AgentHome() {
                 <div className="w-10 h-10 rounded-lg bg-gray-900 group-hover:bg-white/10 flex items-center justify-center mb-5 transition-colors">
                   <Icon className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="text-base font-display font-black text-gray-900 group-hover:text-white mb-2 transition-colors">{title}</h3>
+                <h3 className="text-base font-heading font-semibold tracking-tight text-gray-900 group-hover:text-white mb-2 transition-colors">{title}</h3>
                 <p className="text-sm text-gray-500 group-hover:text-gray-400 font-body leading-relaxed transition-colors">{desc}</p>
               </motion.div>
             ))}
@@ -154,7 +154,7 @@ export default function AgentHome() {
                 {tier.highlight && (
                   <span className="inline-block text-xs font-heading font-bold bg-white text-black px-3 py-1 rounded-full mb-5">Most Popular</span>
                 )}
-                <h3 className={`text-xl font-display font-black mb-1 ${tier.textColor}`}>{tier.title}</h3>
+                <h3 className={`text-lg font-heading font-semibold tracking-tight mb-1 ${tier.textColor}`}>{tier.title}</h3>
                 <p className={`text-xs font-body mb-6 ${tier.subColor}`}>{tier.who}</p>
                 <div className={`text-4xl font-display font-black mb-1 ${tier.textColor}`}>{tier.split}</div>
                 <p className={`text-xs font-body mb-7 ${tier.subColor}`}>Commission Split</p>
@@ -204,7 +204,7 @@ export default function AgentHome() {
 
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               className="bg-white/[0.04] border border-white/10 rounded-2xl p-8 text-center">
-              <h3 className="text-xl font-display font-black text-white mb-2">Apply to Join Our Team</h3>
+              <h3 className="text-lg font-heading font-semibold tracking-tight text-white mb-2">Apply to Join Our Team</h3>
               <p className="text-xs text-gray-500 font-body mb-7">We'll be in touch within 48 hours.</p>
               <Link to="/apply">
                 <button className="w-full bg-white text-black hover:bg-gray-100 font-heading font-bold text-sm py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2">

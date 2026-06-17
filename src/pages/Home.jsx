@@ -17,7 +17,6 @@ export default function Home() {
 
   return (
     <div>
-      <AudienceSelector />
       <HeroSection />
       {audience === 'investor' && <InvestorHome />}
       {audience === 'seller' && <SellerHome />}

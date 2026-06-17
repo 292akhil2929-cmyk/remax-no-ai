@@ -1,8 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Search } from "lucide-react";
-import { useAudience } from "@/lib/AudienceContext";
+import { Search, Play, X } from "lucide-react";
+// Assumes you have this context in your project
+import { useAudience } from "@/lib/AudienceContext"; 
 
 const communities = [
   "Downtown Dubai",
@@ -38,16 +39,19 @@ const HERO_CONTENT = {
 };
 
 const DEFAULT = HERO_CONTENT.investor;
-const YOUTUBE_VIDEO_ID = "xOqgW9LZR44";
+
+// Audience Options integrated from AudienceSelector
+const AUDIENCE_OPTIONS = [
+  { id: 'investor', label: 'Invest' },
+  { id: 'seller', label: 'Sell' },
+  { id: 'agent', label: 'Join as an Agent' },
+];
 
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.05,
-    },
+    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
   },
 };
 
@@ -107,7 +111,7 @@ function AnimatedCounter({ value, duration = 2, delay = 0 }) {
   return (
     <span
       ref={ref}
-      className="relative inline-block whitespace-nowrap text-amber-500"
+      className="relative inline-block whitespace-nowrap text-zinc-900"
     >
       <span className="invisible block" aria-hidden="true">
         {value}
@@ -121,83 +125,31 @@ function AnimatedCounter({ value, duration = 2, delay = 0 }) {
 
 export default function HeroSection() {
   const navigate = useNavigate();
-  const { audience } = useAudience();
+  // Pulled in selectAudience from the context
+  const { audience, selectAudience } = useAudience();
   const [activeTab, setActiveTab] = useState("buy");
   const [query, setQuery] = useState("");
+  
+  // Video & Device State
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   const content = HERO_CONTENT[audience] || DEFAULT;
 
-  const iframeRef = useRef(null);
-  const playerRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [playerReady, setPlayerReady] = useState(false);
-
   useEffect(() => {
-    const setHeight = () => {
+    const handleResize = () => {
+      // Calculate true viewport height
       document.documentElement.style.setProperty(
         "--vh",
-        `${window.innerHeight * 0.01}px`,
+        `${window.innerHeight * 0.01}px`
       );
+      // Check if mobile for YouTube Short vs Standard Video
+      setIsMobile(window.innerWidth < 768);
     };
-    setHeight();
-    window.addEventListener("resize", setHeight);
-    return () => window.removeEventListener("resize", setHeight);
-  }, []);
-
-  useEffect(() => {
-    let mounted = true;
-
-    const createPlayer = () => {
-      if (!iframeRef.current || !window.YT) return;
-      try {
-        playerRef.current = new window.YT.Player(iframeRef.current, {
-          videoId: YOUTUBE_VIDEO_ID,
-          playerVars: {
-            autoplay: 1,
-            controls: 0,
-            mute: 0,
-            loop: 1,
-            playlist: YOUTUBE_VIDEO_ID,
-            modestbranding: 1,
-            rel: 0,
-          },
-          events: {
-            onReady: (e) => {
-              if (!mounted) return;
-              setPlayerReady(true);
-              try {
-                e.target.playVideo();
-              } catch (e) {}
-            },
-            onStateChange: (e) => {
-              if (!mounted) return;
-              setIsPlaying(e.data === window.YT.PlayerState.PLAYING);
-            },
-          },
-        });
-      } catch (err) {}
-    };
-
-    if (window.YT && window.YT.Player) {
-      createPlayer();
-    } else {
-      const tag = document.createElement("script");
-      tag.src = "https://www.youtube.com/iframe_api";
-      document.body.appendChild(tag);
-      window.onYouTubeIframeAPIReady = () => {
-        if (mounted) createPlayer();
-      };
-    }
-
-    return () => {
-      mounted = false;
-      if (playerRef.current && playerRef.current.destroy) {
-        try {
-          playerRef.current.destroy();
-        } catch (e) {}
-        playerRef.current = null;
-      }
-    };
+    
+    handleResize(); // Initial call
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const handleSearch = (e) => {
@@ -214,234 +166,315 @@ export default function HeroSection() {
   };
 
   const handleSellerCTA = () =>
-    document
-      .getElementById("seller-valuation")
-      ?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("seller-valuation")?.scrollIntoView({ behavior: "smooth" });
   const handleAgentCTA = () =>
-    document
-      .getElementById("agent-apply")
-      ?.scrollIntoView({ behavior: "smooth" });
+    document.getElementById("agent-apply")?.scrollIntoView({ behavior: "smooth" });
 
   return (
     <div
-      style={{ height: "calc(var(--vh, 1vh) * 96)" }}
-      className="bg-white p-3 sm:p-4 lg:p-5 flex flex-col box-border overflow-hidden"
+      style={{ height: "calc(var(--vh, 1vh) * 93)" }}
+      className="bg-white p-3 sm:p-4 lg:p-5 flex flex-col box-border overflow-hidden relative"
     >
-      <section className="relative flex-1 rounded-2xl overflow-hidden flex flex-col justify-center min-h-0 bg-zinc-900">
+      <section className="relative w-full h-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden bg-zinc-900">
+        
+        {/* Top Right Watch Video Toggle Button */}
+        <div className="absolute top-6 sm:top-8 right-6 sm:right-8 z-50">
+          <button
+            onClick={() => setIsVideoPlaying(!isVideoPlaying)}
+            className="group flex items-center gap-2.5 px-5 py-2.5 bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/20 rounded-full text-white font-heading text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all shadow-xl"
+          >
+            {isVideoPlaying ? (
+              <>
+                <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" /> 
+                Close Video
+              </>
+            ) : (
+              <>
+                <Play className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" /> 
+                Watch Video
+              </>
+            )}
+          </button>
+        </div>
+
+        {/* Background Image Layer */}
         <div
-          className="absolute inset-0 w-full h-full bg-center bg-cover scale-100"
-          style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=90&fit=crop')`,
-          }}
+          className="absolute inset-0 w-full h-full bg-center bg-cover scale-105"
+          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1920&q=90&fit=crop` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
 
-        <div className="relative z-10 px-6 sm:px-12 lg:px-16 w-full max-w-[90rem] mx-auto py-4 md:py-8 my-auto overflow-y-auto lg:overflow-visible max-h-full">
-          {/* ADJUSTED: Shifted split to lg:grid-cols-2 (6-6 split) to make columns structurally identical */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
-            
-            {/* Left Column */}
-            <div className="w-full flex flex-col justify-center">
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={audience || "default"}
-                  variants={containerVariants}
-                  initial="hidden"
-                  animate="visible"
-                  exit={{ opacity: 0, y: -20, transition: { duration: 0.25 } }}
-                >
-                  <motion.h1
-                    variants={itemVariants}
-                    className="font-display font-bold leading-[1.1] mb-5 tracking-tight drop-shadow-md text-3xl sm:text-5xl xl:text-6xl"
-                  >
-                    <span className="block text-white">
-                      {content.headline[0]}
-                    </span>
-                    <span className="block text-white">
-                      {content.headline[1]}
-                    </span>
-                    <span className="block text-amber-500 font-medium">
-                      {content.headline[2]}
-                    </span>
-                  </motion.h1>
-
-                  <motion.p
-                    variants={itemVariants}
-                    className="text-white/80 font-body text-xs sm:text-base leading-relaxed mb-6 max-w-md drop-shadow-sm"
-                  >
-                    {content.sub}
-                  </motion.p>
-
-                  {content.tabs && (
-                    <motion.div
-                      variants={itemVariants}
-                      className="w-full max-w-lg"
-                    >
-                      <div className="flex gap-1 mb-0">
-                        {content.tabs.map((tab) => (
-                          <button
-                            key={tab.id}
-                            onClick={() => setActiveTab(tab.id)}
-                            className={`px-4 py-2 text-[10px] sm:text-[11px] font-heading font-bold tracking-wider uppercase rounded-t-md transition-all ${
-                              activeTab === tab.id
-                                ? "bg-white text-black"
-                                : "bg-black/50 text-white hover:bg-black/70 backdrop-blur-md border border-white/10"
-                            }`}
-                          >
-                            {tab.label}
-                          </button>
-                        ))}
-                      </div>
-                      <form
-                        onSubmit={handleSearch}
-                        className="bg-white/95 backdrop-blur-sm rounded-b-xl rounded-tr-xl shadow-2xl p-1.5 flex items-center gap-2"
-                      >
-                        <div className="flex-1 flex items-center gap-2 px-1.5">
-                          <Search className="w-4 h-4 text-gray-400 shrink-0" />
-                          <input
-                            type="text"
-                            value={query}
-                            onChange={(e) => setQuery(e.target.value)}
-                            placeholder={content.searchPlaceholder}
-                            className="w-full text-xs sm:text-sm text-gray-800 placeholder-gray-400 bg-transparent outline-none font-body py-1"
-                          />
-                        </div>
-                        <button
-                          type="submit"
-                          className="bg-amber-500 hover:bg-amber-600 text-white font-heading font-bold text-[10px] sm:text-[11px] tracking-wider uppercase px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg transition-colors shrink-0 shadow-md"
-                        >
-                          Search
-                        </button>
-                      </form>
-                      <div className="flex flex-wrap gap-x-3 gap-y-1 mt-3">
-                        <span className="text-white/60 text-[10px] sm:text-[11px] font-body font-medium">
-                          Popular:
-                        </span>
-                        {communities.map((c) => {
-                          const tabMap = {
-                            buy: "ready-residential",
-                            rent: "rental-residential",
-                            "off-plan": "off-plan",
-                          };
-                          return (
-                            <button
-                              key={c}
-                              onClick={() =>
-                                navigate(
-                                  `/properties?tab=${tabMap[activeTab] || "ready-residential"}&community=${c}`,
-                                )
-                              }
-                              className="text-[10px] sm:text-[11px] text-white/80 hover:text-amber-400 transition-colors font-body hover:underline underline-offset-2 drop-shadow-sm font-medium"
-                            >
-                              {c}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </motion.div>
-                  )}
-
-                  {audience === "seller" && (
-                    <motion.div
-                      variants={itemVariants}
-                      className="flex flex-col sm:flex-row gap-2.5"
-                    >
-                      <button
-                        onClick={handleSellerCTA}
-                        className="inline-flex items-center justify-center gap-2 bg-amber-500 text-white font-heading font-bold text-xs sm:text-sm px-5 py-3.5 rounded-lg hover:bg-amber-600 transition-all shadow-lg"
-                      >
-                        Get Free Valuation{" "}
-                        <span className="text-xs sm:text-sm">→</span>
-                      </button>
-                      <button
-                        onClick={() => navigate("/landlords")}
-                        className="inline-flex items-center justify-center gap-2 bg-black/40 backdrop-blur-md text-white border border-white/20 font-heading font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-lg hover:bg-black/60 transition-all"
-                      >
-                        How It Works
-                      </button>
-                    </motion.div>
-                  )}
-
-                  {audience === "agent" && (
-                    <motion.div
-                      variants={itemVariants}
-                      className="flex flex-col sm:flex-row gap-2.5"
-                    >
-                      <button
-                        onClick={handleAgentCTA}
-                        className="inline-flex items-center justify-center gap-2 bg-amber-500 text-white font-heading font-bold text-xs sm:text-sm px-5 py-3.5 rounded-lg hover:bg-amber-600 transition-all shadow-lg"
-                      >
-                        Apply to Join{" "}
-                        <span className="text-xs sm:text-sm">→</span>
-                      </button>
-                      <button
-                        onClick={() => navigate("/join")}
-                        className="inline-flex items-center justify-center gap-2 bg-black/40 backdrop-blur-md text-white border border-white/20 font-heading font-semibold text-xs sm:text-sm px-5 py-3.5 rounded-lg hover:bg-black/60 transition-all"
-                      >
-                        View Partner Tiers
-                      </button>
-                    </motion.div>
-                  )}
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            {/* Right Column: Video Panel */}
-            {/* ADJUSTED: Wrapped video layout in max-w-[88%] to cleanly decrease overall player frame sizing */}
+        {/* Video Player Overlay */}
+        <AnimatePresence>
+          {isVideoPlaying && (
             <motion.div
-              initial={{ opacity: 0, scale: 0.97 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{
-                duration: 0.7,
-                ease: [0.22, 1, 0.36, 1],
-                delay: 0.2,
-              }}
-              className="relative hidden lg:block w-full max-w-[95%] mx-auto"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="absolute inset-0 z-30 bg-black"
             >
-              <div className="relative block rounded-2xl p-[2px] bg-gradient-to-br from-amber-500/20 via-white/5 to-transparent shadow-2xl overflow-hidden">
-                <div
-                  style={{ paddingBottom: "56.25%" }}
-                  className="relative rounded-2xl overflow-hidden bg-zinc-950 shadow-inner"
-                >
-                  <div
-                    id="hero-youtube-player"
-                    ref={iframeRef}
-                    className="absolute top-0 left-0 w-full h-full grayscale-[15%] opacity-95 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                  />
-                </div>
-              </div>
+              <iframe
+                src={`https://www.youtube.com/embed/${isMobile ? 'CWQyNkSb5Z0' : 'xOqgW9LZR44'}?autoplay=1&controls=1&rel=0&modestbranding=1`}
+                title="Dubai Real Estate"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                className="w-full h-full border-none"
+              />
             </motion.div>
+          )}
+        </AnimatePresence>
 
-          </div>
-        </div>
-      </section>
+        {/* Text Gradients - Fades out when video plays */}
+        <motion.div 
+          animate={{ opacity: isVideoPlaying ? 0 : 1 }} 
+          transition={{ duration: 0.5 }}
+          className="absolute inset-0 pointer-events-none z-10"
+        >
+          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        </motion.div>
 
-      {/* ── STATS ZONE ── */}
-      <div className="bg-transparent shrink-0 pt-3 lg:pt-5 px-2 lg:px-6">
-        <div className="max-w-[90rem] mx-auto">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-x-6 gap-y-4 items-start divide-y-0 md:divide-x divide-black/5">
-            {[
-              { label: "Total Dubai real estate transactions in 2025", value: "AED 917B+" },
-              { label: "Average tax-free rental yield in Dubai", value: "6-9%" },
-              { label: "Capital gains tax on UAE property", value: "0%" },
-              { label: "RE/MAX agents worldwide", value: "150,000+" },
-            ].map((s, idx) => (
-              <div
-                key={s.label}
-                className={`flex flex-col justify-between h-full ${idx > 0 ? "md:pl-6" : ""}`}
-              >
-                <span className="font-display font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl tracking-tight block overflow-visible mb-0.5 text-amber-500">
-                  {s.value}
-                </span>
-                <span className="text-gray-500 font-body text-[11px] sm:text-xs leading-tight font-medium block">
-                  {s.label}
-                </span>
+        {/* Centered Content Container - Fades out and disables clicks when video plays */}
+        <motion.div 
+          animate={{ opacity: isVideoPlaying ? 0 : 1 }}
+          transition={{ duration: 0.5 }}
+          className={`relative z-20 w-full h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pb-24 md:pb-32 ${isVideoPlaying ? 'pointer-events-none' : ''}`}
+        >
+          {/* ── SEAMLESS AUDIENCE SELECTOR PILL ── */}
+          <motion.div 
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="mb-8 flex justify-center w-full"
+          >
+            <div className="inline-flex items-center p-1.5 backdrop-blur-xl bg-black/40 border border-white/10 rounded-full shadow-2xl max-w-full overflow-x-auto no-scrollbar">
+              <span className="text-white/50 text-[10px] font-body tracking-[0.2em] uppercase pl-5 pr-3 hidden sm:block font-medium">
+                I want to
+              </span>
+              <div className="flex items-center gap-1">
+                {AUDIENCE_OPTIONS.map(opt => {
+                  const isActive = audience === opt.id;
+                  return (
+                    <button
+                      key={opt.id}
+                      onClick={() => selectAudience(opt.id)}
+                      className={`relative px-4 sm:px-6 py-2 sm:py-2.5 text-[10px] sm:text-xs font-heading font-bold tracking-wider uppercase rounded-full transition-colors duration-300 whitespace-nowrap ${
+                        isActive ? 'text-zinc-900' : 'text-white hover:text-white/70'
+                      }`}
+                    >
+                      {isActive && (
+                        <motion.div
+                          layoutId="audience-hero-pill"
+                          className="absolute inset-0 bg-white rounded-full shadow-sm"
+                          transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                        />
+                      )}
+                      <span className="relative z-10">{opt.label}</span>
+                    </button>
+                  );
+                })}
               </div>
-            ))}
+            </div>
+          </motion.div>
+
+          {/* Dynamic Hero Content below the selector */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={audience || "default"}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+              exit={{ opacity: 0, y: -20, transition: { duration: 0.25 } }}
+              className="w-full max-w-5xl mx-auto flex flex-col items-center text-center min-h-[340px] sm:min-h-[380px] md:min-h-[420px]"
+            >
+              {/* Headline */}
+              <motion.h1
+                variants={itemVariants}
+                className="font-display font-black leading-[1.1] mb-4 tracking-tight text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white drop-shadow-md max-w-3xl mx-auto"
+              >
+                {content.headline.join(" ")}
+              </motion.h1>
+
+              {/* Subtitle */}
+              <motion.p
+                variants={itemVariants}
+                className="text-white/90 font-body text-sm sm:text-base md:text-lg leading-relaxed mb-8 max-w-2xl drop-shadow-sm font-medium"
+              >
+                {content.sub}
+              </motion.p>
+
+              {/* Search Bar & Tabs (Investor Audience) */}
+              {content.tabs && (
+                <motion.div variants={itemVariants} className="w-full max-w-3xl">
+                  {/* Attached Tabs */}
+                  <div className="flex justify-center relative z-10 -mb-[1px]">
+                    <div className="flex bg-zinc-900/90 backdrop-blur-md rounded-t-xl overflow-hidden shadow-lg border-b-0">
+                      {content.tabs.map((tab) => (
+                        <button
+                          key={tab.id}
+                          onClick={() => setActiveTab(tab.id)}
+                          className={`px-6 sm:px-8 py-3 text-xs sm:text-sm font-heading font-semibold transition-all ${
+                            activeTab === tab.id
+                              ? "bg-white text-zinc-900"
+                              : "text-white/80 hover:text-white hover:bg-white/10"
+                          }`}
+                        >
+                          {tab.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* Search Form */}
+                  <form
+                    onSubmit={handleSearch}
+                    className="relative z-20 w-full bg-white rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.3)] p-2 sm:p-2.5 flex flex-col sm:flex-row items-center gap-2"
+                  >
+                    <div className="flex-1 flex items-center gap-3 px-4 w-full">
+                      <Search className="w-5 h-5 text-gray-400 shrink-0" />
+                      <input
+                        type="text"
+                        value={query}
+                        onChange={(e) => setQuery(e.target.value)}
+                        placeholder={content.searchPlaceholder}
+                        className="w-full text-sm sm:text-base text-gray-800 placeholder-gray-400 bg-transparent outline-none font-body py-2"
+                      />
+                    </div>
+                    <button
+                      type="submit"
+                      className="w-full sm:w-auto bg-zinc-900 hover:bg-zinc-800 text-white font-heading font-bold text-xs sm:text-sm tracking-wide px-8 py-3.5 rounded-xl transition-colors shrink-0 shadow-md"
+                    >
+                      Search
+                    </button>
+                  </form>
+
+                  {/* Popular Tags */}
+                  <div className="flex flex-wrap justify-center gap-x-4 gap-y-2 mt-6">
+                    <span className="text-white/70 text-[11px] sm:text-xs font-body font-medium">
+                      Popular:
+                    </span>
+                    {communities.map((c) => {
+                      const tabMap = {
+                        buy: "ready-residential",
+                        rent: "rental-residential",
+                        "off-plan": "off-plan",
+                      };
+                      return (
+                        <button
+                          key={c}
+                          onClick={() =>
+                            navigate(
+                              `/properties?tab=${tabMap[activeTab] || "ready-residential"}&community=${c}`
+                            )
+                          }
+                          className="text-[11px] sm:text-xs text-white/90 hover:text-white transition-colors font-body hover:underline underline-offset-4 drop-shadow-sm font-medium"
+                        >
+                          {c}
+                        </button>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Seller CTAs */}
+              {audience === "seller" && (
+                <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center w-full">
+                  <button
+                    onClick={handleSellerCTA}
+                    className="inline-flex items-center justify-center gap-2 bg-white text-zinc-900 font-heading font-bold text-sm px-8 py-4 rounded-xl hover:bg-gray-100 transition-all shadow-xl"
+                  >
+                    Get Free Valuation <span>→</span>
+                  </button>
+                  <button
+                    onClick={() => navigate("/landlords")}
+                    className="inline-flex items-center justify-center gap-2 bg-black/40 backdrop-blur-md text-white border border-white/20 font-heading font-semibold text-sm px-8 py-4 rounded-xl hover:bg-black/60 transition-all"
+                  >
+                    How It Works
+                  </button>
+                </motion.div>
+              )}
+
+              {/* Agent CTAs */}
+              {audience === "agent" && (
+                <motion.div variants={itemVariants} className="flex flex-col sm:flex-row gap-4 justify-center w-full">
+                  <button
+                    onClick={handleAgentCTA}
+                    className="inline-flex items-center justify-center gap-2 bg-white text-zinc-900 font-heading font-bold text-sm px-8 py-4 rounded-xl hover:bg-gray-100 transition-all shadow-xl"
+                  >
+                    Apply to Join <span>→</span>
+                  </button>
+                  <button
+                    onClick={() => navigate("/join")}
+                    className="inline-flex items-center justify-center gap-2 bg-black/40 backdrop-blur-md text-white border border-white/20 font-heading font-semibold text-sm px-8 py-4 rounded-xl hover:bg-black/60 transition-all"
+                  >
+                    View Partner Tiers
+                  </button>
+                </motion.div>
+              )}
+            </motion.div>
+          </AnimatePresence>
+        </motion.div>
+
+        {/* ── BOTTOM STATS CUTOUT - Fades out when video plays ── */}
+        <motion.div 
+          animate={{ opacity: isVideoPlaying ? 0 : 1, y: isVideoPlaying ? 20 : 0 }}
+          transition={{ duration: 0.5 }}
+          className={`absolute bottom-0 right-0 w-full lg:w-[85%] xl:w-[75%] bg-white rounded-none lg:rounded-tl-[3rem] z-20 ${isVideoPlaying ? 'pointer-events-none' : ''}`}
+        >
+          
+          {/* SVG Seamless Reverse Curve (Bottom-Left Desktop Cutout) */}
+          <svg 
+            className="hidden lg:block absolute bottom-0 right-full w-10 h-10 sm:w-12 sm:h-12 text-white pointer-events-none translate-x-[1px]" 
+            viewBox="0 0 100 100" 
+            fill="currentColor"
+            preserveAspectRatio="none"
+          >
+            <path d="M 100 100 L 0 100 A 100 100 0 0 0 100 0 Z" />
+          </svg>
+
+          {/* SVG Seamless Reverse Curve (Top-Left Mobile Cutout) */}
+          <svg 
+            className="block lg:hidden absolute bottom-full left-0 w-8 h-8 sm:w-10 sm:h-10 text-white pointer-events-none translate-y-[1px]" 
+            viewBox="0 0 100 100" 
+            fill="currentColor"
+            preserveAspectRatio="none"
+          >
+            <path d="M 0 100 L 100 100 A 100 100 0 0 1 0 0 Z" />
+          </svg>
+
+          {/* SVG Seamless Reverse Curve (Top-Right All Screens) */}
+          <svg 
+            className="absolute bottom-full right-0 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-white pointer-events-none translate-y-[1px]" 
+            viewBox="0 0 100 100" 
+            fill="currentColor"
+            preserveAspectRatio="none"
+          >
+            <path d="M 100 100 L 0 100 A 100 100 0 0 0 100 0 Z" />
+          </svg>
+
+          <div className="px-6 py-6 sm:px-10 sm:py-8 h-full">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center h-full">
+              {[
+                { label: "Tax-Free Yield", value: "6-9%" },
+                { label: "Capital Gains Tax", value: "0%" },
+                { label: "Global RE/MAX Agents", value: "150k+" },
+                { label: "Transactions 2025", value: "AED 917B+" },
+              ].map((s, idx) => (
+                <div key={s.label} className="flex flex-col justify-center">
+                  <span className="font-display font-black text-2xl sm:text-3xl lg:text-4xl tracking-tight mb-1">
+                    <AnimatedCounter value={s.value} />
+                  </span>
+                  <span className="text-gray-500 font-body text-[11px] sm:text-xs font-medium">
+                    {s.label}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </div>
+        </motion.div>
+
+      </section>
     </div>
   );
 }

@@ -6,7 +6,7 @@ import { ArrowRight, TrendingUp, Sparkles } from 'lucide-react';
 import PropertyCard from '@/components/PropertyCard';
 import LeadCaptureForm from '@/components/LeadCaptureForm';
 import MarketTicker from '@/components/MarketTicker';
-import WhyDubaiCarousel from '@/components/WhyDubaiCarousel';
+import BlogCarousel from '@/components/WhyDubaiCarousel';
 
 const COMMUNITIES = [
   {
@@ -109,17 +109,22 @@ export default function InvestorHome() {
         </div>
       </section>
 
-      {/* ── WHY DUBAI ── */}
-      <WhyDubaiCarousel />
+      {/* ── LATEST BLOGS ── */}
+      <BlogCarousel />
 
       {/* ── COMMUNITY GUIDE ── */}
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Where to Invest</p>
-            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
-              Dubai's Highest<br />Yield Communities
-            </h2>
+
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-end justify-between mb-12">
+            <div>
+              <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
+                Dubai's Highest<br />Yield Communities
+              </h2>
+            </div>
+            <Link to="/area-guides" className="hidden sm:flex items-center gap-2 text-gray-400 hover:text-gray-900 text-sm font-body transition-colors group">
+              Explore all area guides <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
           </motion.div>
 
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
@@ -146,17 +151,87 @@ export default function InvestorHome() {
               </motion.div>
             ))}
           </div>
-
-          <div className="text-center mt-8">
-            <Link to="/area-guides" className="inline-flex items-center gap-2 text-gray-500 hover:text-gray-900 text-sm font-body transition-colors group">
-              Explore all area guides <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Link>
-          </div>
         </div>
       </section>
 
+      <div className="bg-white px-3 sm:px-4 lg:px-5 pb-3 sm:pb-4 lg:pb-5 box-border">
+      
+      {/* ── INNER CANVAS: Matches Hero border radius and dark theme ── */}
+      <section className="relative w-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl py-16 sm:py-24 lg:py-32">
+        
+        {/* Background image with dark overlay */}
+        <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/landscape.png')" }} />
+        <div className="absolute inset-0 bg-black/10" />
+        {/* Subtle premium ambient gradients */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.15),transparent_50%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            
+            {/* ── LEFT COLUMN: Copy & Bullet Points ── */}
+            <motion.div 
+              initial={{ opacity: 0, x: -30 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }}
+              className="max-w-xl"
+            >
+
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.1] tracking-tight mb-6">
+                Build Your <br className="hidden sm:block" />
+                <span className="text-amber-500">Dubai Portfolio</span>
+              </h2>
+              
+              <p className="text-white/80 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-lg">
+                Our senior advisors will sit down with you, understand what you are trying to achieve, and show you exactly which properties match your budget and goals. No jargon, no pressure.
+              </p>
+              
+              <ul className="space-y-5">
+                {[
+                  'ROI analysis based on your actual budget and timeline',
+                  'An honest comparison of off-plan versus ready property',
+                  'Golden Visa pathway and tax-free income structuring',
+                  'Free 30-minute strategy session with no obligation',
+                ].map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-4 text-sm sm:text-base text-white/90 font-body font-medium">
+                    {/* Upgraded Checkmark Icon */}
+                    <span className="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 text-[10px] shrink-0 mt-0.5 shadow-[0_0_10px_rgba(245,158,11,0.2)]">
+                      ✓
+                    </span>
+                    <span className="leading-snug">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* ── RIGHT COLUMN: Glassmorphic Form Card ── */}
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }} 
+              whileInView={{ opacity: 1, x: 0 }} 
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }}
+              className="w-full max-w-md mx-auto lg:ml-auto lg:mr-0"
+            >
+              <div className="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 lg:p-10 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                <h3 className="text-xl sm:text-2xl font-heading font-bold tracking-tight text-white mb-2">
+                  Start Your Investment Journey
+                </h3>
+                <p className="text-xs sm:text-sm text-white/50 font-body mb-8">
+                  We respond within 24 hours.
+                </p>
+                
+                <LeadCaptureForm leadType="Investor" source="Home - Investor" />
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+    </div>
+
       {/* ── INVESTOR CTA ── */}
-      <section className="py-24 bg-black relative overflow-hidden">
+      {/* <section className="py-24 bg-black relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(180,130,50,0.15),transparent_60%)]" />
         <div className="relative max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
@@ -188,13 +263,13 @@ export default function InvestorHome() {
 
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               className="bg-white/[0.04] border border-white/10 rounded-2xl p-8 backdrop-blur-sm">
-              <h3 className="text-xl font-display font-black text-white mb-1">Start Your Investment Journey</h3>
+              <h3 className="text-lg font-heading font-semibold tracking-tight text-white mb-1">Start Your Investment Journey</h3>
               <p className="text-xs text-gray-500 font-body mb-7">We respond within 24 hours.</p>
               <LeadCaptureForm leadType="Investor" source="Home - Investor" />
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
     </>
   );
 }
