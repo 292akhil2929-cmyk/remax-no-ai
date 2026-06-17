@@ -114,7 +114,7 @@ export default function SellerHome() {
                     <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center mb-5">
                       <Icon className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-2xl font-display font-black text-gray-900 mb-3">{s.title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-heading font-semibold tracking-tight text-gray-900 mb-3">{s.title}</h3>
                     <p className="text-gray-500 font-body text-sm leading-relaxed">{s.desc}</p>
                   </div>
                 </motion.div>
@@ -150,7 +150,7 @@ export default function SellerHome() {
                 </div>
                 <div className="flex items-center justify-between pt-5 border-t border-gray-100">
                   <div>
-                    <p className="text-sm font-display font-black text-gray-900">{t.name}</p>
+                    <p className="text-sm font-heading font-semibold tracking-tight text-gray-900">{t.name}</p>
                     <p className="text-xs text-gray-400 font-body">{t.country}</p>
                   </div>
                   <span className="text-xs font-heading font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full">{t.result}</span>
@@ -194,7 +194,7 @@ export default function SellerHome() {
 
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
               className="bg-white/[0.04] border border-white/10 rounded-2xl p-8">
-              <h3 className="text-xl font-display font-black text-white mb-1">Request a Free Valuation</h3>
+              <h3 className="text-lg font-heading font-semibold tracking-tight text-white mb-1">Request a Free Valuation</h3>
               <p className="text-xs text-gray-500 font-body mb-7">Our consultants respond within 24 hours.</p>
               <SellerLeadForm source="Home - Seller" />
             </motion.div>
