@@ -178,7 +178,7 @@ export default function HeroSection() {
       <section className="relative w-full h-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden bg-zinc-900">
         
         {/* Top Right Watch Video Toggle Button */}
-        <div className="absolute top-6 sm:top-8 right-6 sm:right-8 z-50">
+        <div className="absolute top-6 sm:top-8 right-6 sm:right-8 z-40">
           <button
             onClick={() => setIsVideoPlaying(!isVideoPlaying)}
             className="group flex items-center gap-2.5 px-5 py-2.5 bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/20 rounded-full text-white font-heading text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all shadow-xl"
