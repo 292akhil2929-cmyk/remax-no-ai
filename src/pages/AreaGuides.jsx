@@ -245,11 +245,11 @@ export default function AreaGuides() {
   return (
     <div className="min-h-screen">
       {/* Hero */}
-      <section className="py-16 bg-gray-50 border-b border-gray-100">
+      <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest mb-3 uppercase">Location Intelligence</p>
-          <h1 className="text-3xl lg:text-5xl font-display font-bold text-gray-900 mb-4">Dubai Area Investment Guides</h1>
-          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed">
+          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Location Intelligence</p>
+          <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Dubai Area Investment Guides</h1>
+          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             In-depth analysis of Dubai's top residential communities — comparing rental yields, price appreciation, tenant demand, and lifestyle credentials to help international investors choose the right location for their strategy.
           </p>
         </div>

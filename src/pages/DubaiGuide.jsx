@@ -294,26 +294,18 @@ export default function DubaiGuide() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="relative py-20 bg-black overflow-hidden">
-        <img src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=1920&q=60" alt="Dubai guide" className="absolute inset-0 w-full h-full object-cover opacity-10" />
-        <div className="relative max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-8 h-px bg-white/30" />
-            <span className="text-gray-400 font-body text-xs tracking-[0.25em] uppercase font-semibold">The Definitive Resource</span>
-            <div className="w-8 h-px bg-white/30" />
-          </div>
-          <h1 className="font-display font-black text-white text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
-            Dubai Real Estate<br />
-            <span className="text-white">Complete Guide 2026</span>
-          </h1>
-          <p className="text-white/60 font-body text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-8">
+      <section className="py-16 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">The Definitive Resource</p>
+          <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Dubai Real Estate Complete Guide 2026</h1>
+          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             Everything you need to know — buying process, renting process, all fees, tenant rights, landlord rights, mortgages, and 12 of the most important FAQs. Straight facts, no jargon.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-white text-black hover:bg-gray-100 font-heading font-bold border-0" asChild>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button size="lg" className="bg-black text-white hover:bg-gray-900 font-heading font-bold border-0" asChild>
               <Link to="/contact">Speak to an Expert <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-heading" asChild>
+            <Button size="lg" variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-50 font-heading" asChild>
               <Link to="/properties">Browse Properties</Link>
             </Button>
           </div>

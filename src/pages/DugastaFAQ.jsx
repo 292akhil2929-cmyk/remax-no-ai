@@ -8,7 +8,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, MessageCircle } from 'lucide-react';
 import {
-  CampaignHeader, CampaignFooter, WhatsAppFloat, TrustStrip,
+  WhatsAppFloat, TrustStrip,
   RedCTABand, CampaignLeadForm, FaqAccordion, WA_BASE
 } from '@/components/campaign/CampaignShared';
 import usePageSEO from '@/lib/usePageSEO';
@@ -97,11 +97,10 @@ export default function DugastaFAQ() {
   return (
     <div className="min-h-screen bg-white font-body">
       <FAQSchema />
-      <CampaignHeader ctaLabel="Talk to an Advisor" ctaHref="#lead-form" />
       <WhatsAppFloat />
 
       {/* ── HERO ── */}
-      <section className="pt-28 pb-16 bg-white text-center">
+      <section className="pt-12 pb-16 bg-white text-center">
         <div className="max-w-3xl mx-auto px-5 lg:px-10">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
             <p className="text-xs font-body tracking-[0.25em] uppercase text-gray-400 mb-4">DUGASTA — HONEST ANSWERS</p>
@@ -167,7 +166,6 @@ export default function DugastaFAQ() {
         </a>
       </RedCTABand>
 
-      <CampaignFooter />
     </div>
   );
 }

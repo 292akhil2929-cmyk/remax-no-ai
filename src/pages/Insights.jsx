@@ -155,22 +155,22 @@ export default function Insights() {
     <div className="min-h-screen">
 
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="py-16 bg-black text-white">
+      <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-gray-400 font-heading font-semibold text-xs tracking-widest uppercase mb-3">REMAX ZAM — Knowledge Hub</p>
-          <h1 className="text-3xl lg:text-5xl font-display font-black text-white mb-4 leading-tight">
-            Dubai Real Estate<br className="hidden sm:block" /> Market Insights 2025
+          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">RE/MAX ZAM — Knowledge Hub</p>
+          <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">
+            Dubai Real Estate Market Insights 2025
           </h1>
-          <p className="text-lg text-white/70 font-body max-w-2xl leading-relaxed mb-8">
+          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             Expert analysis, investment guides, rental yield data, and the latest Dubai property market trends — everything international investors need to make smarter decisions.
           </p>
           {/* Live Stats */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {MARKET_STATS.map(s => (
-              <div key={s.label} className="bg-white/8 border border-white/10 rounded-xl p-4">
-                <p className="text-xl lg:text-2xl font-heading font-black text-white mb-0.5">{s.value}</p>
-                <p className={`text-xs font-heading font-semibold mb-1 ${s.up === true ? 'text-white/70' : s.up === false ? 'text-white/70' : 'text-white/50'}`}>{s.delta}</p>
-                <p className="text-xs text-white/40 font-body leading-tight">{s.label}</p>
+              <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl p-4">
+                <p className="text-xl lg:text-2xl font-heading font-black text-gray-900 mb-0.5">{s.value}</p>
+                <p className="text-xs font-heading font-semibold mb-1 text-gray-500">{s.delta}</p>
+                <p className="text-xs text-gray-400 font-body leading-tight">{s.label}</p>
               </div>
             ))}
           </div>

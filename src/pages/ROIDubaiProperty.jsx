@@ -9,7 +9,7 @@ import { ArrowDown, Shield, Percent, TrendingUp, RefreshCw } from 'lucide-react'
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
-  CampaignHeader, CampaignFooter, WhatsAppFloat, TrustStrip,
+  WhatsAppFloat, TrustStrip,
   FounderStrip, RedCTABand, CampaignLeadForm, FaqAccordion
 } from '@/components/campaign/CampaignShared';
 import usePageSEO from '@/lib/usePageSEO';
@@ -184,11 +184,10 @@ export default function ROIDubaiProperty() {
 
   return (
     <div className="min-h-screen bg-white font-body">
-      <CampaignHeader ctaLabel="Book a Consultation" ctaHref="#lead-form" />
       <WhatsAppFloat message="Hi%20RE%2FMAX%20ZAM%2C%20I%20want%20to%20learn%20about%20the%2010%25%20ROI%20property%20investment." />
 
       {/* ── HERO ── */}
-      <section className="pt-28 pb-16 bg-white">
+      <section className="pt-12 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
             <p className="text-xs font-body tracking-[0.25em] uppercase text-gray-400 mb-4">DUBAI WEALTH ENGINE</p>
@@ -316,7 +315,6 @@ export default function ROIDubaiProperty() {
         </div>
       </RedCTABand>
 
-      <CampaignFooter />
     </div>
   );
 }

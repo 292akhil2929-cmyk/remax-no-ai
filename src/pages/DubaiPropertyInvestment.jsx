@@ -28,8 +28,6 @@ import { useMutation } from "@tanstack/react-query";
 import { base44 } from "@/api/base44Client";
 import { trackLeadEvent } from "@/lib/analytics";
 import {
-  CampaignHeader,
-  CampaignFooter,
   WhatsAppFloat,
   TrustStrip,
   FounderStrip,
@@ -322,11 +320,10 @@ export default function DubaiPropertyInvestment() {
 
   return (
     <div className="min-h-screen bg-white font-body">
-      <CampaignHeader ctaLabel="Book a Consultation" ctaHref="#lead-form" />
       <WhatsAppFloat />
 
       {/* ── HERO ── */}
-      <section className="pt-28 pb-16 bg-white">
+      <section className="pt-12 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -534,7 +531,6 @@ export default function DubaiPropertyInvestment() {
         </div>
       </RedCTABand>
 
-      <CampaignFooter />
     </div>
   );
 }

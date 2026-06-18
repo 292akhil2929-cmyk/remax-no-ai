@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Play, TrendingUp, Percent, Shield, ArrowRight } from 'lucide-react';
 import {
-  CampaignHeader, CampaignFooter, WhatsAppFloat, TrustStrip,
+  WhatsAppFloat, TrustStrip,
   RedCTABand, CampaignLeadForm, FaqAccordion
 } from '@/components/campaign/CampaignShared';
 import usePageSEO from '@/lib/usePageSEO';
@@ -75,11 +75,10 @@ export default function FounderPassiveIncome() {
 
   return (
     <div className="min-h-screen bg-white font-body">
-      <CampaignHeader ctaLabel="Book a Call With My Team" ctaHref="#lead-form" />
       <WhatsAppFloat />
 
       {/* ── HERO ── */}
-      <section className="pt-28 pb-16 bg-white">
+      <section className="pt-12 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Video placeholder */}
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
@@ -204,7 +203,6 @@ export default function FounderPassiveIncome() {
         </div>
       </RedCTABand>
 
-      <CampaignFooter />
     </div>
   );
 }

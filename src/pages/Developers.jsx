@@ -253,21 +253,13 @@ export default function Developers() {
     <div className="min-h-screen bg-gray-50">
 
       {/* HERO */}
-      <section className="py-20 bg-[#0a0a0a] relative overflow-hidden">
-        <div className="relative max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }} className="max-w-3xl">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-8 h-px bg-white/30" />
-              <span className="text-white/40 font-body text-xs tracking-[0.2em] uppercase">Developer Intelligence</span>
-            </div>
-            <h1 className="font-display font-black text-white leading-[1.0] mb-5">
-              <span className="block text-5xl sm:text-6xl lg:text-7xl">Top 10 Dubai</span>
-              <span className="block text-5xl sm:text-6xl lg:text-7xl text-white/30 italic font-light">Developer Profiles</span>
-            </h1>
-            <p className="text-white/50 font-body text-base leading-relaxed max-w-xl">
-              Who built your property matters more than most people realise. Here are the developers we trust, their projects currently selling, and what you can expect from each one.
-            </p>
-          </motion.div>
+      <section className="py-16 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Developer Intelligence</p>
+          <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Top 10 Dubai Developer Profiles</h1>
+          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
+            Who built your property matters more than most people realise. Here are the developers we trust, their projects currently selling, and what you can expect from each one.
+          </p>
         </div>
       </section>
 

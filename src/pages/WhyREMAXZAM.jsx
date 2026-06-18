@@ -111,26 +111,18 @@ export default function WhyREMAXZAM() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="relative py-24 bg-black overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(220,38,38,0.15),transparent_60%)]" />
-        <div className="relative max-w-5xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="w-8 h-px bg-red-500" />
-            <span className="text-red-400 font-body text-xs tracking-[0.25em] uppercase font-semibold">Trust & Credentials</span>
-            <div className="w-8 h-px bg-red-500" />
-          </div>
-          <h1 className="font-display font-black text-white text-4xl sm:text-5xl lg:text-6xl leading-tight mb-6">
-            Why Investors Choose<br />
-            <span className="text-red-500">RE/MAX ZAM Dubai</span>
-          </h1>
-          <p className="text-white/60 font-body text-base sm:text-lg max-w-2xl mx-auto leading-relaxed mb-10">
+      <section className="py-16 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Trust &amp; Credentials</p>
+          <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Why Investors Choose RE/MAX ZAM Dubai</h1>
+          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             15 years. AED 2 billion in transactions. 1,200+ investors across 40 countries. Here is exactly why international investors trust us with their most significant financial decisions.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-heading font-bold border-0" asChild>
+          <div className="flex flex-col sm:flex-row gap-4">
+            <Button size="lg" className="bg-black hover:bg-gray-900 text-white font-heading font-bold border-0" asChild>
               <Link to="/contact">Book Free Consultation <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-heading" asChild>
+            <Button size="lg" variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-50 font-heading" asChild>
               <Link to="/properties">Browse Properties</Link>
             </Button>
           </div>
@@ -138,13 +130,13 @@ export default function WhyREMAXZAM() {
       </section>
 
       {/* Stats Bar */}
-      <section className="bg-red-600 py-10">
+      <section className="bg-gray-50 py-10 border-y border-gray-100">
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {STATS.map(s => (
             <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <p className="font-display font-black text-white text-3xl sm:text-4xl">{s.value}</p>
-              <p className="text-white/80 font-body text-xs mt-1">{s.label}</p>
-              <p className="text-white/50 font-body text-[10px] uppercase tracking-wider mt-0.5">{s.sub}</p>
+              <p className="font-display font-black text-gray-900 text-3xl sm:text-4xl">{s.value}</p>
+              <p className="text-gray-700 font-body text-xs mt-1">{s.label}</p>
+              <p className="text-gray-400 font-body text-[10px] uppercase tracking-wider mt-0.5">{s.sub}</p>
             </motion.div>
           ))}
         </div>
@@ -167,13 +159,13 @@ export default function WhyREMAXZAM() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="border border-gray-100 rounded-2xl p-6 hover:border-red-200 hover:shadow-md transition-all"
+                className="border border-gray-100 rounded-2xl p-6 hover:border-gray-300 hover:shadow-md transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center">
-                    <c.icon className="w-5 h-5 text-red-600" />
+                  <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
+                    <c.icon className="w-5 h-5 text-gray-900" />
                   </div>
-                  <span className="text-xs font-heading font-bold text-red-600 bg-red-50 px-2 py-1 rounded-full">{c.badge}</span>
+                  <span className="text-xs font-heading font-bold text-gray-900 bg-gray-100 px-2 py-1 rounded-full">{c.badge}</span>
                 </div>
                 <h3 className="font-heading font-bold text-gray-900 mb-2 text-sm leading-snug">{c.title}</h3>
                 <p className="text-gray-500 font-body text-xs leading-relaxed">{c.desc}</p>
@@ -190,7 +182,7 @@ export default function WhyREMAXZAM() {
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4">
             {AWARDS.map(a => (
               <div key={a} className="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2.5 shadow-sm">
-                <CheckCircle className="w-4 h-4 text-red-600 shrink-0" />
+                <CheckCircle className="w-4 h-4 text-gray-900 shrink-0" />
                 <span className="text-gray-700 font-body text-xs font-medium">{a}</span>
               </div>
             ))}
@@ -260,7 +252,7 @@ export default function WhyREMAXZAM() {
                   </div>
                   <div className="text-right">
                     <p className="text-xs font-body text-gray-500">{t.property}</p>
-                    <p className="text-xs font-heading font-bold text-red-600">{t.yield}</p>
+                    <p className="text-xs font-heading font-bold text-gray-900">{t.yield}</p>
                   </div>
                 </div>
               </motion.div>
@@ -270,17 +262,16 @@ export default function WhyREMAXZAM() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,rgba(220,38,38,0.12),transparent_60%)]" />
-        <div className="relative max-w-2xl mx-auto px-6 text-center">
-          <Phone className="w-8 h-8 text-red-500 mx-auto mb-5" />
-          <h2 className="text-3xl sm:text-4xl font-display font-black text-white mb-4">
+      <section className="py-20 bg-gray-50 border-t border-gray-100">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <Phone className="w-8 h-8 text-gray-400 mx-auto mb-5" />
+          <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 mb-4">
             Ready to Invest With Confidence?
           </h2>
-          <p className="text-white/60 font-body text-sm leading-relaxed mb-8">
+          <p className="text-gray-500 font-body text-sm leading-relaxed mb-8">
             Book a free 30-minute strategy call with one of our senior advisors. Real numbers, honest advice, no obligation.
           </p>
-          <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white font-heading font-bold border-0 px-10" asChild>
+          <Button size="lg" className="bg-black hover:bg-gray-900 text-white font-heading font-bold border-0 px-10" asChild>
             <Link to="/contact">Book Free Consultation <ArrowRight className="w-4 h-4 ml-1" /></Link>
           </Button>
         </div>

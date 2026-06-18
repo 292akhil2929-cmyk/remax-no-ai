@@ -33,13 +33,11 @@ export default function Blog() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero */}
-      <section className="bg-black text-white py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 bg-white/10 text-white/80 text-xs font-bold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-            <BookOpen className="w-3.5 h-3.5" /> Dubai Real Estate Blog
-          </div>
-          <h1 className="font-display text-4xl md:text-5xl font-black mb-4">Market Updates &amp; Investment Insights</h1>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+      <section className="py-16 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Dubai Real Estate Blog</p>
+          <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Market Updates &amp; Investment Insights</h1>
+          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             Expert analysis, area spotlights, and investment guides to help international investors navigate Dubai's property market with confidence.
           </p>
         </div>
