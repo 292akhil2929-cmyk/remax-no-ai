@@ -1,9 +1,8 @@
-import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
-import { ArrowRight, TrendingUp, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, TrendingUp, Sparkles } from 'lucide-react';
 import PropertyCard from '@/components/PropertyCard';
 import LeadCaptureForm from '@/components/LeadCaptureForm';
 import MarketTicker from '@/components/MarketTicker';
@@ -60,36 +59,6 @@ export default function InvestorHome() {
     ? publicFeatured
     : publicRecent;
 
-  // Mobile carousel controls
-  const scrollRef = useRef(null);
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
-
-  const updateScrollButtons = () => {
-    const el = scrollRef.current;
-    if (!el) return;
-    setCanScrollLeft(el.scrollLeft > 4);
-    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
-  };
-
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    updateScrollButtons();
-    el.addEventListener('scroll', updateScrollButtons, { passive: true });
-    window.addEventListener('resize', updateScrollButtons);
-    return () => {
-      el.removeEventListener('scroll', updateScrollButtons);
-      window.removeEventListener('resize', updateScrollButtons);
-    };
-  }, [properties]);
-
-  const scroll = (dir) => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollBy({ left: el.clientWidth * 0.85 * dir, behavior: 'smooth' });
-  };
-
   return (
     <>
       <MarketTicker />
@@ -119,52 +88,13 @@ export default function InvestorHome() {
               Could not load properties. Please refresh the page.
             </div>
           ) : properties.length > 0 ? (
-            <>
-              {/* Mobile: horizontal scroll carousel */}
-              <div className="sm:hidden relative">
-                <div
-                  ref={scrollRef}
-                  className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth pb-2"
-                >
-                  {properties.map((p, idx) => (
-                    <motion.div
-                      key={p.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: idx * 0.07 }}
-                      className="shrink-0 w-[85vw] snap-start"
-                    >
-                      <PropertyCard property={p} />
-                    </motion.div>
-                  ))}
-                </div>
-                {canScrollLeft && (
-                  <button
-                    onClick={() => scroll(-1)}
-                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-9 h-9 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-700 hover:text-black transition-colors z-10"
-                  >
-                    <ChevronLeft className="w-4 h-4" />
-                  </button>
-                )}
-                {canScrollRight && (
-                  <button
-                    onClick={() => scroll(1)}
-                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-9 h-9 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-700 hover:text-black transition-colors z-10"
-                  >
-                    <ChevronRight className="w-4 h-4" />
-                  </button>
-                )}
-              </div>
-              {/* Desktop: grid */}
-              <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-                {properties.map((p, idx) => (
-                  <motion.div key={p.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.07 }}>
-                    <PropertyCard property={p} />
-                  </motion.div>
-                ))}
-              </div>
-            </>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+              {properties.map((p, idx) => (
+                <motion.div key={p.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.07 }}>
+                  <PropertyCard property={p} />
+                </motion.div>
+              ))}
+            </div>
           ) : (
             <div className="text-center py-12 text-gray-400 font-body text-sm">
               No properties available right now. Check back soon.

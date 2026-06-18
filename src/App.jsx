@@ -30,7 +30,6 @@ import Landlords from './pages/Landlords';
 import Dashboard from './pages/Dashboard';
 import AdminContent from './pages/AdminContent';
 import ThemePreview from './pages/ThemePreview';
-import BannerVideoGallery from './pages/BannerVideoGallery';
 import ReadyListings from './pages/ReadyListings';
 import Dugasta from './pages/Dugasta';
 import HighROI from './pages/HighROI';
@@ -169,7 +168,6 @@ const AuthenticatedApp = () => {
           <Route path="/admin/team" element={<AdminTeam />} />
         </Route>
         <Route path="/theme-preview" element={<ThemePreview />} />
-        <Route path="/video-gallery" element={<BannerVideoGallery />} />
         <Route path="/dugasta" element={<Dugasta />} />
         <Route path="/high-roi" element={<HighROI />} />
         <Route path="/developers" element={<Developers />} />

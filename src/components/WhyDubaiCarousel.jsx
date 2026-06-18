@@ -24,10 +24,9 @@ function BlogCard({ post = {}, wide = false, delay = 0 }) {
       className={`h-full ${wide ? 'lg:col-span-2' : ''}`}
     >
       <Link
-        to={`/blog/${post.slug || post.id}`}
-        className="group block relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-full h-[240px] sm:h-auto sm:aspect-[16/10] lg:aspect-auto lg:h-full"
+        to={`/blog/${post.id}`}
+        className="group block relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full"
       >
-        {/* Full Container Background Image wrapper to bypass aspect constraints on wide mobile items */}
         <div className={`w-full h-full relative ${wide ? 'lg:aspect-[16/7]' : 'lg:aspect-[16/10]'}`}>
           <img
             src={post.image_url || `https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80`}
@@ -75,12 +74,12 @@ export default function BlogCarousel() {
     staleTime: 5 * 60 * 1000,
   });
 
-  // Mobile carousel controls
+  // Mobile carousel
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const updateScrollButtons = () => {
+  const updateButtons = () => {
     const el = scrollRef.current;
     if (!el) return;
     setCanScrollLeft(el.scrollLeft > 4);
@@ -90,12 +89,12 @@ export default function BlogCarousel() {
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
-    updateScrollButtons();
-    el.addEventListener('scroll', updateScrollButtons, { passive: true });
-    window.addEventListener('resize', updateScrollButtons);
+    updateButtons();
+    el.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', updateButtons);
     return () => {
-      el.removeEventListener('scroll', updateScrollButtons);
-      window.removeEventListener('resize', updateScrollButtons);
+      el.removeEventListener('scroll', updateButtons);
+      window.removeEventListener('resize', updateButtons);
     };
   }, [posts]);
 
@@ -151,35 +150,29 @@ export default function BlogCarousel() {
             <div className="sm:hidden relative">
               <div
                 ref={scrollRef}
-                className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth pb-2"
+                className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth"
               >
                 {grid.map(
                   (item, idx) =>
                     item.post && (
-                      <div key={item.post.id || idx} className="shrink-0 w-[85vw] snap-start">
+                      <div key={item.post.id || idx} className="shrink-0 w-[85vw] snap-start overflow-hidden">
                         <BlogCard post={item.post} wide={false} delay={item.delay} />
                       </div>
                     )
                 )}
               </div>
               {canScrollLeft && (
-                <button
-                  onClick={() => scroll(-1)}
-                  className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-9 h-9 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-700 hover:text-black transition-colors z-10"
-                >
+                <button onClick={() => scroll(-1)} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-9 h-9 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-700 hover:text-black transition-colors z-10">
                   <ChevronLeft className="w-4 h-4" />
                 </button>
               )}
               {canScrollRight && (
-                <button
-                  onClick={() => scroll(1)}
-                  className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-9 h-9 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-700 hover:text-black transition-colors z-10"
-                >
+                <button onClick={() => scroll(1)} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-9 h-9 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-700 hover:text-black transition-colors z-10">
                   <ChevronRight className="w-4 h-4" />
                 </button>
               )}
             </div>
-            {/* Desktop: 4-column grid */}
+            {/* Desktop: staggered 4-column grid */}
             <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {grid.map(
                 (item, idx) =>
