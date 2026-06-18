@@ -25,6 +25,7 @@ export default function Blog() {
   const { data: posts = [], isLoading } = useQuery({
     queryKey: ['blog-posts'],
     queryFn: () => base44.entities.BlogPost.filter({ published: true }, '-created_date'),
+    select: (data) => Array.isArray(data) ? data : [],
   });
 
   const featured = posts[0];

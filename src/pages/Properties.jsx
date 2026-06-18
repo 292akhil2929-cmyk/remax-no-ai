@@ -88,13 +88,13 @@ export default function Properties() {
     ])
       .then(([dbProperties, pfResponse]) => {
         const pfListings = pfResponse.data?.listings || [];
-        const publicDbProperties = dbProperties.filter((p) => !p.isPocketListing);
+        const publicDbProperties = (Array.isArray(dbProperties) ? dbProperties : []).filter((p) => !p.isPocketListing);
         setProperties([...publicDbProperties, ...pfListings]);
         setLoading(false);
       })
       .catch(() => {
         base44.entities.Property.list("-created_date", 200).then((data) => {
-          const publicData = data.filter((p) => !p.isPocketListing);
+          const publicData = (Array.isArray(data) ? data : []).filter((p) => !p.isPocketListing);
           setProperties(publicData);
           setLoading(false);
         });

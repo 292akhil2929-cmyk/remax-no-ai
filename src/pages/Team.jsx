@@ -35,6 +35,7 @@ export default function Team() {
   const { data: agents = [], isLoading } = useQuery({
     queryKey: ['agents'],
     queryFn: () => base44.entities.Agent.list('sort_order'),
+    select: (data) => Array.isArray(data) ? data : [],
   });
 
   const activeAgents = agents.filter(a => a.active !== false);

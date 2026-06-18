@@ -149,6 +149,7 @@ export default function Insights() {
   const { data: posts = [], isLoading } = useQuery({
     queryKey: ['blog-posts'],
     queryFn: () => base44.entities.BlogPost.filter({ published: true }, '-created_date', 20),
+    select: (data) => Array.isArray(data) ? data : [],
   });
 
   return (

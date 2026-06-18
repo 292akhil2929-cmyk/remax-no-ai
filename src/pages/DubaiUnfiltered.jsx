@@ -123,6 +123,7 @@ export default function DubaiUnfiltered() {
   const { data: dbEpisodes = [], isLoading: episodesLoading } = useQuery({
     queryKey: ['podcast-episodes'],
     queryFn: () => base44.entities.PodcastEpisode.list('-episodeNumber'),
+    select: (data) => Array.isArray(data) ? data : [],
   });
 
   // Normalise DB episodes to match existing episode shape
