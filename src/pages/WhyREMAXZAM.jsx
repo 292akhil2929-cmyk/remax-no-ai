@@ -113,7 +113,7 @@ export default function WhyREMAXZAM() {
       {/* Hero */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Trust &amp; Credentials</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Trust &amp; Credentials</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Why Investors Choose RE/MAX ZAM Dubai</h1>
           <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             15 years. AED 2 billion in transactions. 1,200+ investors across 40 countries. Here is exactly why international investors trust us with their most significant financial decisions.
@@ -134,7 +134,7 @@ export default function WhyREMAXZAM() {
         <div className="max-w-5xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center">
           {STATS.map(s => (
             <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-              <p className="font-display font-black text-gray-900 text-3xl sm:text-4xl">{s.value}</p>
+              <p className="font-display font-black text-[#C9A84C] text-3xl sm:text-4xl">{s.value}</p>
               <p className="text-gray-700 font-body text-xs mt-1">{s.label}</p>
               <p className="text-gray-400 font-body text-[10px] uppercase tracking-wider mt-0.5">{s.sub}</p>
             </motion.div>
@@ -146,7 +146,7 @@ export default function WhyREMAXZAM() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6 sm:px-10">
           <div className="text-center mb-14">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Why We're Different</p>
+            <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">Why We're Different</p>
             <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 leading-tight">
               What Sets RE/MAX ZAM Apart
             </h2>
@@ -162,10 +162,10 @@ export default function WhyREMAXZAM() {
                 className="border border-gray-100 rounded-2xl p-6 hover:border-gray-300 hover:shadow-md transition-all"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center">
-                    <c.icon className="w-5 h-5 text-gray-900" />
+                  <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center">
+                    <c.icon className="w-5 h-5 text-[#C9A84C]" />
                   </div>
-                  <span className="text-xs font-heading font-bold text-gray-900 bg-gray-100 px-2 py-1 rounded-full">{c.badge}</span>
+                  <span className="text-xs font-heading font-bold text-[#C9A84C] bg-[#C9A84C]/10 px-2 py-1 rounded-full">{c.badge}</span>
                 </div>
                 <h3 className="font-heading font-bold text-gray-900 mb-2 text-sm leading-snug">{c.title}</h3>
                 <p className="text-gray-500 font-body text-xs leading-relaxed">{c.desc}</p>
@@ -178,7 +178,7 @@ export default function WhyREMAXZAM() {
       {/* Awards & Accreditations */}
       <section className="py-16 bg-gray-50 border-y border-gray-100">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-8">Awards & Accreditations</p>
+          <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-8">Awards & Accreditations</p>
           <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4">
             {AWARDS.map(a => (
               <div key={a} className="flex items-center gap-2 bg-white border border-gray-200 rounded-full px-4 py-2.5 shadow-sm">
@@ -194,7 +194,7 @@ export default function WhyREMAXZAM() {
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6 sm:px-10">
           <div className="text-center mb-14">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">How It Works</p>
+            <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">How It Works</p>
             <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900">
               Our Investment Process
             </h2>
@@ -209,8 +209,8 @@ export default function WhyREMAXZAM() {
                 transition={{ delay: i * 0.07 }}
                 className="flex gap-6 items-start"
               >
-                <div className="w-14 h-14 rounded-2xl bg-black flex items-center justify-center shrink-0">
-                  <span className="font-display font-black text-white text-sm">{p.step}</span>
+                <div className="w-14 h-14 rounded-2xl bg-[#C9A84C] flex items-center justify-center shrink-0">
+                  <span className="font-display font-black text-black text-sm">{p.step}</span>
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-gray-900 mb-1">{p.title}</h3>
@@ -226,7 +226,7 @@ export default function WhyREMAXZAM() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 sm:px-10">
           <div className="text-center mb-14">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Client Stories</p>
+            <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">Client Stories</p>
             <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900">
               What Our Investors Say
             </h2>

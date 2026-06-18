@@ -255,7 +255,7 @@ export default function Developers() {
       {/* HERO */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Developer Intelligence</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Developer Intelligence</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Top 10 Dubai Developer Profiles</h1>
           <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             Who built your property matters more than most people realise. Here are the developers we trust, their projects currently selling, and what you can expect from each one.
@@ -310,7 +310,7 @@ export default function Developers() {
                       { label: 'Payment Plan', value: dev.paymentPlan },
                     ].map(s => (
                       <div key={s.label} className="bg-gray-50 rounded-xl p-3 text-center">
-                        <p className="font-display font-black text-gray-900 text-sm leading-tight">{s.value}</p>
+                        <p className="font-display font-black text-[#C9A84C] text-sm leading-tight">{s.value}</p>
                         <p className="text-gray-400 font-body text-[9px] uppercase tracking-wider mt-0.5">{s.label}</p>
                       </div>
                     ))}
@@ -320,7 +320,7 @@ export default function Developers() {
                   <div className="mb-5">
                     <div className="flex items-center gap-2 mb-3">
                       <Building2 className="w-3.5 h-3.5 text-gray-400" />
-                      <p className="text-gray-400 font-heading font-bold text-[10px] uppercase tracking-widest">Current &amp; Upcoming Projects</p>
+                      <p className="text-[#C9A84C] font-heading font-bold text-[10px] uppercase tracking-widest">Current &amp; Upcoming Projects</p>
                     </div>
                     <div className="flex flex-wrap gap-2">
                       {dev.currentProjects.map(proj => (

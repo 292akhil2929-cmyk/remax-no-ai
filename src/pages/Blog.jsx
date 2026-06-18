@@ -35,7 +35,7 @@ export default function Blog() {
       {/* Hero */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Dubai Real Estate Blog</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Dubai Real Estate Blog</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Market Updates &amp; Investment Insights</h1>
           <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             Expert analysis, area spotlights, and investment guides to help international investors navigate Dubai's property market with confidence.

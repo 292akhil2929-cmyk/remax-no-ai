@@ -68,8 +68,8 @@ function SectionHeader({ icon: Icon, title, description }) {
   return (
     <div className="border-b border-gray-100 pb-3 mb-5">
       <div className="flex items-center gap-2.5 mb-1">
-        <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center">
-          <Icon className="w-4 h-4 text-gray-900" />
+        <div className="w-8 h-8 rounded-lg bg-[#C9A84C]/10 flex items-center justify-center">
+          <Icon className="w-4 h-4 text-[#C9A84C]" />
         </div>
         <h2 className="text-lg font-heading font-bold text-gray-900">{title}</h2>
       </div>
@@ -212,7 +212,7 @@ export default function Apply() {
       {/* Hero */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Careers at RE/MAX ZAM</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Careers at RE/MAX ZAM</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">
             Build Your Career With Dubai's Most Trusted Brand
           </h1>

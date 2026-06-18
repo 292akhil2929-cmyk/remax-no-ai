@@ -116,7 +116,7 @@ export default function AboutUs() {
       {/* Hero */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Our Profile</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Our Profile</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4 max-w-2xl">
             Dubai Real Estate Advisory, Built on Data &amp; Trust
           </h1>
@@ -134,7 +134,7 @@ export default function AboutUs() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
-              <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest mb-3 uppercase">Our Mission</p>
+              <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest mb-3 uppercase">Our Mission</p>
               <h2 className="text-3xl font-display font-bold text-gray-900 mb-5">Built on Integrity, Driven by Data, Focused on Your Returns</h2>
               <p className="text-sm text-gray-500 font-body leading-relaxed mb-4">
                 REMAX ZAM was founded with one goal: to bring institutional-grade investment thinking to individual property buyers. Too many international investors enter the Dubai market without access to real data, independent analysis, or advisors who prioritise their interests over commission.
@@ -154,7 +154,7 @@ export default function AboutUs() {
               { icon: TrendingUp, title: 'Track Record', desc: 'Over AED 2 billion in successfully closed transactions since 2010' }].
               map(({ icon: Icon, title, desc }) =>
               <div key={title} className="bg-white border border-gray-100 rounded-lg p-5">
-                  <Icon className="w-6 h-6 text-gray-700 mb-3" />
+                  <Icon className="w-6 h-6 text-[#C9A84C] mb-3" />
                   <h4 className="font-heading font-bold text-gray-900 text-sm mb-1">{title}</h4>
                   <p className="text-xs text-gray-500 font-body leading-relaxed">{desc}</p>
                 </div>
@@ -168,7 +168,7 @@ export default function AboutUs() {
       <section className="py-16 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest mb-3 uppercase">The Team</p>
+            <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest mb-3 uppercase">The Team</p>
             <h2 className="text-3xl font-display font-bold text-gray-900 mb-3">Meet Your Investment Advisors</h2>
             <p className="text-sm text-gray-500 font-body max-w-lg mx-auto">A specialist team built on deep Dubai market knowledge, multilingual capability, and a client-first approach.</p>
           </div>
@@ -266,7 +266,7 @@ export default function AboutUs() {
       <section className="py-16 bg-white border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest mb-3 uppercase">What We Do</p>
+            <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest mb-3 uppercase">What We Do</p>
             <h2 className="text-3xl font-display font-bold text-gray-900 mb-3">Our Investment Services</h2>
             <p className="text-sm text-gray-500 font-body max-w-lg mx-auto">
               From first-time off-plan purchases to multi-asset portfolio management — REMAX ZAM provides the full spectrum of Dubai real estate investment services under one roof.
@@ -277,8 +277,8 @@ export default function AboutUs() {
             {services.map((s, i) => (
               <div key={s.title} className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
                 <div className={i % 2 === 1 ? 'lg:order-2' : ''}>
-                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-gray-100 mb-4">
-                    <s.icon className="w-6 h-6 text-gray-900" />
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-lg bg-[#C9A84C]/10 mb-4">
+                    <s.icon className="w-6 h-6 text-[#C9A84C]" />
                   </div>
                   <p className="text-xs font-heading font-bold text-gray-700 tracking-widest mb-2 uppercase">{s.tagline}</p>
                   <h3 className="text-2xl font-display font-bold text-gray-900 mb-4">{s.title}</h3>

@@ -46,7 +46,7 @@ export default function Team() {
       {/* Hero */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Our People</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Our People</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4 max-w-2xl">
             Meet the REMAX ZAM Team
           </h1>
@@ -159,7 +159,7 @@ export default function Team() {
       <section className="py-16 bg-gray-50 border-t border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest mb-3 uppercase">Join the Team</p>
+            <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest mb-3 uppercase">Join the Team</p>
             <h2 className="text-3xl font-display font-bold text-gray-900 mb-3">Why Top Agents Choose REMAX ZAM</h2>
             <p className="text-sm text-gray-500 font-body max-w-xl mx-auto">
               We are actively recruiting experienced and ambitious real estate professionals. Build your business with the world's #1 real estate brand.
@@ -168,8 +168,8 @@ export default function Team() {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {perks.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="bg-white border border-gray-100 rounded-lg p-6 text-center hover:border-gray-300 transition-colors">
-                <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-4">
-                  <Icon className="w-5 h-5 text-gray-900" />
+                <div className="w-12 h-12 rounded-full bg-[#C9A84C]/10 flex items-center justify-center mx-auto mb-4">
+                  <Icon className="w-5 h-5 text-[#C9A84C]" />
                 </div>
                 <h4 className="font-heading font-bold text-gray-900 mb-2">{title}</h4>
                 <p className="text-xs text-gray-500 font-body leading-relaxed">{desc}</p>

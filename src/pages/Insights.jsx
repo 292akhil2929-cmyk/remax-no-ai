@@ -157,7 +157,7 @@ export default function Insights() {
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">RE/MAX ZAM — Knowledge Hub</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">RE/MAX ZAM — Knowledge Hub</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">
             Dubai Real Estate Market Insights 2025
           </h1>
@@ -168,7 +168,7 @@ export default function Insights() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
             {MARKET_STATS.map(s => (
               <div key={s.label} className="bg-gray-50 border border-gray-100 rounded-xl p-4">
-                <p className="text-xl lg:text-2xl font-heading font-black text-gray-900 mb-0.5">{s.value}</p>
+                <p className="text-xl lg:text-2xl font-heading font-black text-[#C9A84C] mb-0.5">{s.value}</p>
                 <p className="text-xs font-heading font-semibold mb-1 text-gray-500">{s.delta}</p>
                 <p className="text-xs text-gray-400 font-body leading-tight">{s.label}</p>
               </div>
@@ -223,7 +223,7 @@ export default function Insights() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
-              <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest uppercase mb-2">Deep-Dive Guides</p>
+              <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest uppercase mb-2">Deep-Dive Guides</p>
               <h2 className="text-2xl lg:text-3xl font-display font-bold text-gray-900">Essential Reading for Dubai Investors</h2>
               <p className="text-sm text-gray-500 font-body mt-2 max-w-xl">Comprehensive research reports on the topics that matter most — updated for 2025 market conditions.</p>
             </div>
@@ -250,7 +250,7 @@ export default function Insights() {
       {/* ── Market Snapshot Table ────────────────────────── */}
       <section className="py-16 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest uppercase mb-2">Data Intelligence</p>
+          <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest uppercase mb-2">Data Intelligence</p>
           <h2 className="text-2xl font-display font-bold text-gray-900 mb-8">Dubai Community Yield Snapshot — 2026</h2>
           <div className="overflow-x-auto rounded-xl border border-gray-100">
             <table className="w-full text-sm font-body bg-white">
@@ -290,7 +290,7 @@ export default function Insights() {
       {/* ── FAQ — high GEO / voice search value ─────────── */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-semibold text-gray-400 tracking-widest uppercase mb-2 text-center">Investor FAQs</p>
+          <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest uppercase mb-2 text-center">Investor FAQs</p>
           <h2 className="text-2xl lg:text-3xl font-display font-bold text-gray-900 mb-3 text-center">Frequently Asked Questions</h2>
           <p className="text-sm text-gray-500 font-body text-center mb-10">The most common questions international investors ask before buying property in Dubai.</p>
 

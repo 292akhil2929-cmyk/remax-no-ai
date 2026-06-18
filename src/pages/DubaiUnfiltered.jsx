@@ -151,7 +151,7 @@ export default function DubaiUnfiltered() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left — copy */}
           <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9 }}>
-            <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Dubai Real Estate Unfiltered</p>
+            <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Dubai Real Estate Unfiltered</p>
             <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Real conversations. No scripts.</h1>
             <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
               Real conversations with Dubai's top developers and industry experts — breaking down market realities, opportunities, and investment strategies. No scripts. No sales pitches. Just the truth.
@@ -213,7 +213,7 @@ export default function DubaiUnfiltered() {
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Why This Exists</p>
+              <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">Why This Exists</p>
               <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight mb-6">
                 In a Market Full of Noise,<br />
                 <span className="text-gray-900">Investors Deserve Clarity</span>
@@ -252,8 +252,8 @@ export default function DubaiUnfiltered() {
                   transition={{ delay: i * 0.08 }}
                   className="bg-gray-50 rounded-2xl p-5 border border-gray-100"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center mb-4">
-                    <Icon className="w-5 h-5 text-gray-900" />
+                  <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center mb-4">
+                    <Icon className="w-5 h-5 text-[#C9A84C]" />
                   </div>
                   <h4 className="font-heading font-bold text-gray-900 text-sm mb-2">{title}</h4>
                   <p className="text-gray-500 font-body text-xs leading-relaxed">{desc}</p>
@@ -268,7 +268,7 @@ export default function DubaiUnfiltered() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">All Episodes</p>
+            <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">All Episodes</p>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <h2 className="text-4xl font-display font-black text-gray-900 leading-tight">
                 Every Episode,<br />Every Conversation
@@ -355,7 +355,7 @@ export default function DubaiUnfiltered() {
       <section className="py-20 bg-white border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Stay Updated</p>
+            <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Stay Updated</p>
             <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 mb-4">
               New Episodes Drop Every Month
             </h2>

@@ -20,7 +20,7 @@ export default function Contact() {
     <div className="min-h-screen">
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Get in Touch</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Get in Touch</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">
             Let's Talk About Your Dubai Investment
           </h1>
@@ -36,8 +36,8 @@ export default function Contact() {
             <div className="lg:col-span-2 space-y-8">
               {contactInfo.map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-lg bg-gray-100 flex items-center justify-center shrink-0">
-                    <Icon className="w-5 h-5 text-gray-900" />
+                  <div className="w-10 h-10 rounded-lg bg-[#C9A84C]/10 flex items-center justify-center shrink-0">
+                    <Icon className="w-5 h-5 text-[#C9A84C]" />
                   </div>
                   <div>
                     <p className="text-sm font-heading font-bold text-gray-900">{label}</p>

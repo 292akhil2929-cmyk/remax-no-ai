@@ -247,7 +247,7 @@ export default function AreaGuides() {
       {/* Hero */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Location Intelligence</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Location Intelligence</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Dubai Area Investment Guides</h1>
           <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             In-depth analysis of Dubai's top residential communities — comparing rental yields, price appreciation, tenant demand, and lifestyle credentials to help international investors choose the right location for their strategy.
@@ -262,7 +262,7 @@ export default function AreaGuides() {
 
             {/* Sidebar */}
             <div className="lg:w-64 flex-shrink-0">
-              <p className="text-xs font-heading font-semibold text-gray-400 uppercase tracking-widest mb-3">Select Area</p>
+              <p className="text-xs font-heading font-semibold text-[#C9A84C] uppercase tracking-widest mb-3">Select Area</p>
               <div className="space-y-1">
                 {areas.map(a => (
                   <button
@@ -352,7 +352,7 @@ export default function AreaGuides() {
 
               {/* Expert Note */}
               <div className="bg-gray-50 border-l-4 border-black rounded-r-lg p-5 mb-8">
-                <p className="text-xs font-heading font-semibold text-gray-400 uppercase tracking-widest mb-2">REMAX ZAM Expert Insight</p>
+                <p className="text-xs font-heading font-semibold text-[#C9A84C] uppercase tracking-widest mb-2">REMAX ZAM Expert Insight</p>
                 <p className="text-sm text-gray-500 font-body leading-relaxed">{area.seoNote}</p>
               </div>
 

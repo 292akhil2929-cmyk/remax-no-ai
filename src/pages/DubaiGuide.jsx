@@ -296,7 +296,7 @@ export default function DubaiGuide() {
       {/* Hero */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">The Definitive Resource</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">The Definitive Resource</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Dubai Real Estate Complete Guide 2026</h1>
           <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             Everything you need to know — buying process, renting process, all fees, tenant rights, landlord rights, mortgages, and 12 of the most important FAQs. Straight facts, no jargon.
@@ -347,8 +347,8 @@ export default function DubaiGuide() {
             <div className="space-y-8">
               {BUYING_STEPS.map((s, i) => (
                 <motion.div key={s.step} initial={{ opacity: 0, x: -15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.06 }} className="flex gap-6">
-                  <div className="w-14 h-14 rounded-2xl bg-black flex items-center justify-center shrink-0">
-                    <span className="font-display font-black text-white text-sm">{s.step}</span>
+                  <div className="w-14 h-14 rounded-2xl bg-[#C9A84C] flex items-center justify-center shrink-0">
+                    <span className="font-display font-black text-black text-sm">{s.step}</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="font-heading font-bold text-gray-900 mb-2">{s.title}</h3>
@@ -385,8 +385,8 @@ export default function DubaiGuide() {
             <div className="space-y-8">
               {RENTING_STEPS.map((s, i) => (
                 <motion.div key={s.step} initial={{ opacity: 0, x: -15 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.06 }} className="flex gap-6">
-                  <div className="w-14 h-14 rounded-2xl bg-black flex items-center justify-center shrink-0">
-                    <span className="font-display font-black text-white text-sm">{s.step}</span>
+                  <div className="w-14 h-14 rounded-2xl bg-[#C9A84C] flex items-center justify-center shrink-0">
+                    <span className="font-display font-black text-black text-sm">{s.step}</span>
                   </div>
                   <div className="flex-1">
                     <h3 className="font-heading font-bold text-gray-900 mb-2">{s.title}</h3>
@@ -437,8 +437,8 @@ export default function DubaiGuide() {
               {TENANT_RIGHTS.map((r, i) => (
                 <motion.div key={r.title} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="border border-gray-100 rounded-2xl p-6">
                   <div className="flex items-start gap-4">
-                    <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center shrink-0">
-                      <r.icon className="w-5 h-5 text-gray-900" />
+                    <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center shrink-0">
+                      <r.icon className="w-5 h-5 text-[#C9A84C]" />
                     </div>
                     <div>
                       <h3 className="font-heading font-bold text-gray-900 mb-2">{r.title}</h3>
@@ -480,8 +480,8 @@ export default function DubaiGuide() {
             <div className="grid sm:grid-cols-2 gap-5">
               {LANDLORD_RIGHTS.map((r, i) => (
                 <motion.div key={r.title} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="border border-gray-100 rounded-2xl p-6 hover:border-gray-200 hover:shadow-sm transition-all">
-                  <div className="w-8 h-8 rounded-lg bg-gray-100 flex items-center justify-center mb-4">
-                    <CheckCircle className="w-4 h-4 text-gray-700" />
+                  <div className="w-8 h-8 rounded-lg bg-[#C9A84C]/10 flex items-center justify-center mb-4">
+                    <CheckCircle className="w-4 h-4 text-[#C9A84C]" />
                   </div>
                   <h3 className="font-heading font-bold text-gray-900 text-sm mb-2">{r.title}</h3>
                   <p className="text-gray-500 font-body text-xs leading-relaxed">{r.body}</p>
@@ -509,7 +509,7 @@ export default function DubaiGuide() {
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
               {MORTGAGE_DATA.map((m, i) => (
                 <motion.div key={m.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
-                  <p className="font-display font-black text-gray-900 text-2xl">{m.value}</p>
+                  <p className="font-display font-black text-[#C9A84C] text-2xl">{m.value}</p>
                   <p className="text-gray-700 font-heading font-bold text-sm mt-1">{m.label}</p>
                   <p className="text-gray-400 font-body text-xs mt-1">{m.note}</p>
                 </motion.div>
@@ -527,8 +527,8 @@ export default function DubaiGuide() {
                 { step: '05', title: 'Transfer with Mortgage', desc: "The bank issues a manager's cheque for the loan amount, which is combined with your equity cheque at the Trustee Office for the full purchase price to the seller." },
               ].map(s => (
                 <div key={s.step} className="flex gap-5 items-start">
-                  <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center shrink-0">
-                    <span className="font-display font-black text-white text-xs">{s.step}</span>
+                  <div className="w-10 h-10 rounded-xl bg-[#C9A84C] flex items-center justify-center shrink-0">
+                    <span className="font-display font-black text-black text-xs">{s.step}</span>
                   </div>
                   <div>
                     <p className="font-heading font-bold text-gray-900 text-sm">{s.title}</p>

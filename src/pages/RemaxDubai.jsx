@@ -123,7 +123,7 @@ export default function RemaxDubai() {
       {/* HERO */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">The World's #1 Real Estate Brand — Now in Dubai</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">The World's #1 Real Estate Brand — Now in Dubai</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">RE/MAX Dubai — Buy With the Brand the World Trusts</h1>
           <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
             RE/MAX has been the world's #1 real estate brand for 50+ years. 145,000 agents. 120 countries. 8,500+ offices. And in Dubai — one trusted franchise you should know: RE/MAX ZAM.
@@ -144,7 +144,7 @@ export default function RemaxDubai() {
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
           {GLOBAL_STATS.map((s, i) => (
             <motion.div key={s.label} initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.07 }}>
-              <p className="font-display font-black text-gray-900 text-3xl sm:text-4xl">{s.value}</p>
+              <p className="font-display font-black text-[#C9A84C] text-3xl sm:text-4xl">{s.value}</p>
               <p className="text-gray-700 font-body text-xs mt-1.5 leading-snug">{s.label}</p>
               <p className="text-gray-400 font-body text-[10px] uppercase tracking-wider mt-1">{s.sub}</p>
             </motion.div>
@@ -157,7 +157,7 @@ export default function RemaxDubai() {
         <div className="max-w-5xl mx-auto px-6 sm:px-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-4">The RE/MAX Story</p>
+              <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-4">The RE/MAX Story</p>
               <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl leading-tight mb-6">
                 50 Years of Being the World's Most Trusted Name in Real Estate
               </h2>
@@ -215,7 +215,7 @@ export default function RemaxDubai() {
       <section className="py-20 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6 sm:px-10">
           <div className="text-center mb-14">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Why the Brand Matters</p>
+            <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">Why the Brand Matters</p>
             <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl leading-tight">
               6 Reasons International Investors<br />Choose RE/MAX Over Anything Else
             </h2>
@@ -230,8 +230,8 @@ export default function RemaxDubai() {
                 transition={{ delay: i * 0.06 }}
                 className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all"
               >
-                <div className="w-10 h-10 rounded-xl bg-gray-100 flex items-center justify-center mb-4">
-                  <item.icon className="w-5 h-5 text-gray-900" />
+                <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center mb-4">
+                  <item.icon className="w-5 h-5 text-[#C9A84C]" />
                 </div>
                 <h3 className="font-heading font-bold text-gray-900 text-sm leading-snug mb-3">{item.title}</h3>
                 <p className="text-gray-500 font-body text-xs leading-relaxed">{item.desc}</p>
@@ -245,7 +245,7 @@ export default function RemaxDubai() {
       <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-6 sm:px-10">
           <div className="text-center mb-14">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">A Brand You Already Know</p>
+            <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">A Brand You Already Know</p>
             <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl leading-tight">
               Wherever You're From — You Know RE/MAX.<br />
               <span className="text-gray-700">In Dubai, That's RE/MAX ZAM.</span>
@@ -278,7 +278,7 @@ export default function RemaxDubai() {
         <div className="max-w-5xl mx-auto px-6 sm:px-10">
           <div className="grid lg:grid-cols-2 gap-16 items-start">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-4">RE/MAX ZAM — Dubai's RE/MAX</p>
+              <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-4">RE/MAX ZAM — Dubai's RE/MAX</p>
               <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl leading-tight mb-6">
                 Global Brand Trust.<br />Local Dubai Expertise.
               </h2>
@@ -321,7 +321,7 @@ export default function RemaxDubai() {
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-6 sm:px-10">
           <div className="text-center mb-14">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Common Questions</p>
+            <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">Common Questions</p>
             <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl">
               RE/MAX Dubai — FAQs
             </h2>
@@ -347,7 +347,7 @@ export default function RemaxDubai() {
       {/* Final CTA */}
       <section className="py-20 bg-gray-50 border-t border-gray-100">
         <div className="max-w-3xl mx-auto px-6 text-center">
-          <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-4">The World's #1 Real Estate Brand</p>
+          <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-4">The World's #1 Real Estate Brand</p>
           <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl lg:text-5xl leading-tight mb-5">
             Buy Dubai Property<br />Through a Brand You Can Trust
           </h2>
