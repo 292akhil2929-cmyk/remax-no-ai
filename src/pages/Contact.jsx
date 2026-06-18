@@ -46,7 +46,7 @@ export default function Contact() {
                 </div>
               ))}
             </div>
-            <div className="lg:col-span-3 bg-white border border-gray-100 rounded-lg p-6 lg:p-8">
+            <div className="lg:col-span-3 bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-lg p-6 lg:p-8">
               <h3 className="font-heading font-bold text-gray-900 text-lg mb-6">Request a Consultation</h3>
               <LeadCaptureForm source="Contact Page" />
             </div>

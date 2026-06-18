@@ -76,7 +76,7 @@ function EpisodeCard({ episode, onPlay, index }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.07 }}
-      className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all cursor-pointer"
+      className="group bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-2xl overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all cursor-pointer"
       onClick={() => onPlay(episode)}
     >
       <div className="relative aspect-video overflow-hidden bg-gray-900">
@@ -214,6 +214,7 @@ export default function DubaiUnfiltered() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">Why This Exists</p>
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight mb-6">
                 In a Market Full of Noise,<br />
                 <span className="text-gray-900">Investors Deserve Clarity</span>
@@ -250,7 +251,7 @@ export default function DubaiUnfiltered() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08 }}
-                  className="bg-gray-50 rounded-2xl p-5 border border-gray-100"
+                  className="bg-gray-50 rounded-2xl p-5 border border-gray-100 border-l-4 border-l-[#C9A84C]"
                 >
                   <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center mb-4">
                     <Icon className="w-5 h-5 text-[#C9A84C]" />
@@ -269,6 +270,7 @@ export default function DubaiUnfiltered() {
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
             <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">All Episodes</p>
+            <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
               <h2 className="text-4xl font-display font-black text-gray-900 leading-tight">
                 Every Episode,<br />Every Conversation
@@ -304,7 +306,7 @@ export default function DubaiUnfiltered() {
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="group bg-white border border-gray-100 rounded-2xl overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all cursor-pointer mb-6"
+            className="group bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-2xl overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all cursor-pointer mb-6"
             onClick={() => setActiveEpisode(featured)}
           >
             <div className="grid grid-cols-1 lg:grid-cols-[480px_1fr] gap-0">
@@ -356,6 +358,7 @@ export default function DubaiUnfiltered() {
         <div className="max-w-3xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
             <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Stay Updated</p>
+            <div className="w-8 h-0.5 bg-[#C9A84C] mb-4 mx-auto" />
             <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 mb-4">
               New Episodes Drop Every Month
             </h2>
@@ -373,7 +376,7 @@ export default function DubaiUnfiltered() {
               </a>
               <Link
                 to="/contact"
-                className="inline-flex items-center justify-center gap-2 border border-gray-200 hover:border-black text-gray-900 font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors"
+                className="inline-flex items-center justify-center gap-2 border border-[#C9A84C] hover:border-black text-[#C9A84C] hover:text-black font-heading font-bold text-sm px-8 py-4 rounded-xl transition-colors"
               >
                 Speak to an Advisor <ArrowRight className="w-4 h-4" />
               </Link>

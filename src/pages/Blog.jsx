@@ -61,7 +61,7 @@ export default function Blog() {
             {/* Featured Post */}
             {featured && (
               <Link to={`/blog/${featured.id}`} className="group block mb-16">
-                <div className="grid md:grid-cols-2 gap-8 bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 hover:shadow-xl transition-shadow">
+                <div className="grid md:grid-cols-2 gap-8 bg-white rounded-3xl overflow-hidden shadow-lg border border-gray-100 border-l-4 border-l-[#C9A84C] hover:shadow-xl transition-shadow">
                   {featured.image_url ? (
                     <img src={featured.image_url} alt={featured.title} className="w-full h-72 md:h-full object-cover" />
                   ) : (
@@ -93,7 +93,7 @@ export default function Blog() {
             {rest.length > 0 && (
               <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {rest.map(post => (
-                  <Link key={post.id} to={`/blog/${post.id}`} className="group bg-white rounded-2xl overflow-hidden border border-gray-100 hover:shadow-lg transition-shadow flex flex-col">
+                  <Link key={post.id} to={`/blog/${post.id}`} className="group bg-white rounded-2xl overflow-hidden border border-gray-100 border-l-4 border-l-[#C9A84C] hover:shadow-lg transition-shadow flex flex-col">
                     {post.image_url ? (
                       <img src={post.image_url} alt={post.title} className="w-full h-44 object-cover" />
                     ) : (

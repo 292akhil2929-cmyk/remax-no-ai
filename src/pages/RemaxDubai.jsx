@@ -126,13 +126,13 @@ export default function RemaxDubai() {
           <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">The World's #1 Real Estate Brand — Now in Dubai</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">RE/MAX Dubai — Buy With the Brand the World Trusts</h1>
           <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
-            RE/MAX has been the world's #1 real estate brand for 50+ years. 145,000 agents. 120 countries. 8,500+ offices. And in Dubai — one trusted franchise you should know: RE/MAX ZAM.
+            RE/MAX has been the world's #1 real estate brand for <span className="text-[#C9A84C] font-bold">50+ years</span>. <span className="text-[#C9A84C] font-bold">145,000</span> agents. <span className="text-[#C9A84C] font-bold">120</span> countries. <span className="text-[#C9A84C] font-bold">8,500+</span> offices. And in Dubai — one trusted franchise you should know: RE/MAX ZAM.
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <Button size="lg" className="bg-black hover:bg-gray-900 text-white font-heading font-bold border-0" asChild>
               <Link to="/contact">Talk to RE/MAX ZAM Dubai <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-50 font-heading" asChild>
+            <Button size="lg" variant="outline" className="border-[#C9A84C] text-[#C9A84C] hover:bg-gray-50 font-heading" asChild>
               <Link to="/properties">Browse Dubai Properties</Link>
             </Button>
           </div>
@@ -158,6 +158,7 @@ export default function RemaxDubai() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-4">The RE/MAX Story</p>
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl leading-tight mb-6">
                 50 Years of Being the World's Most Trusted Name in Real Estate
               </h2>
@@ -178,7 +179,7 @@ export default function RemaxDubai() {
                   'REMAX.com — one of the world\'s most visited property websites',
                 ].map(fact => (
                   <div key={fact} className="flex items-start gap-3">
-                    <CheckCircle className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" />
+                    <CheckCircle className="w-4 h-4 text-[#C9A84C] shrink-0 mt-0.5" />
                     <p className="text-gray-600 font-body text-sm">{fact}</p>
                   </div>
                 ))}
@@ -216,6 +217,7 @@ export default function RemaxDubai() {
         <div className="max-w-6xl mx-auto px-6 sm:px-10">
           <div className="text-center mb-14">
             <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">Why the Brand Matters</p>
+            <div className="w-8 h-0.5 bg-[#C9A84C] mb-4 mx-auto" />
             <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl leading-tight">
               6 Reasons International Investors<br />Choose RE/MAX Over Anything Else
             </h2>
@@ -228,7 +230,7 @@ export default function RemaxDubai() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="bg-white rounded-2xl p-6 border border-gray-100 hover:border-gray-300 hover:shadow-md transition-all"
+                className="bg-white rounded-2xl p-6 border border-gray-100 border-l-4 border-l-[#C9A84C] hover:border-gray-300 hover:shadow-md transition-all"
               >
                 <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center mb-4">
                   <item.icon className="w-5 h-5 text-[#C9A84C]" />
@@ -322,6 +324,7 @@ export default function RemaxDubai() {
         <div className="max-w-3xl mx-auto px-6 sm:px-10">
           <div className="text-center mb-14">
             <p className="text-[#C9A84C] font-body text-xs tracking-[0.2em] uppercase mb-3">Common Questions</p>
+            <div className="w-8 h-0.5 bg-[#C9A84C] mb-4 mx-auto" />
             <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl">
               RE/MAX Dubai — FAQs
             </h2>
@@ -334,7 +337,7 @@ export default function RemaxDubai() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.05 }}
-                className="border border-gray-100 rounded-2xl p-6"
+                className="border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-2xl p-6"
               >
                 <h3 className="font-heading font-bold text-gray-900 text-sm mb-3">{faq.q}</h3>
                 <p className="text-gray-500 font-body text-sm leading-relaxed">{faq.a}</p>
@@ -358,7 +361,7 @@ export default function RemaxDubai() {
             <Button size="lg" className="bg-black text-white hover:bg-gray-900 font-heading font-bold border-0" asChild>
               <Link to="/contact">Book Free Consultation <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-100 font-heading" asChild>
+            <Button size="lg" variant="outline" className="border-[#C9A84C] text-[#C9A84C] hover:bg-gray-100 font-heading" asChild>
               <Link to="/properties">Browse Properties</Link>
             </Button>
           </div>

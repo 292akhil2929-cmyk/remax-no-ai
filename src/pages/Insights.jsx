@@ -114,7 +114,7 @@ function ArticleCard({ article, isLarge = false }) {
   const colorClass = CATEGORY_COLORS[article.category] || 'bg-gray-100 text-gray-700 border-gray-200';
 
   return (
-    <article className={`group bg-white border border-gray-100 rounded-xl overflow-hidden hover:border-gray-200 hover:shadow-md transition-all duration-300 flex flex-col ${isLarge ? 'lg:flex-row' : ''}`}>
+    <article className={`group bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-xl overflow-hidden hover:border-gray-200 hover:shadow-md transition-all duration-300 flex flex-col ${isLarge ? 'lg:flex-row' : ''}`}>
       {/* Icon banner */}
       <div className={`${isLarge ? 'lg:w-48 lg:flex-shrink-0' : ''} bg-gray-50 flex items-center justify-center p-8`}>
         {Icon && <Icon className="w-10 h-10 text-gray-300" />}
@@ -224,6 +224,7 @@ export default function Insights() {
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-10">
             <div>
               <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest uppercase mb-2">Deep-Dive Guides</p>
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="text-2xl lg:text-3xl font-display font-bold text-gray-900">Essential Reading for Dubai Investors</h2>
               <p className="text-sm text-gray-500 font-body mt-2 max-w-xl">Comprehensive research reports on the topics that matter most — updated for 2025 market conditions.</p>
             </div>
@@ -251,6 +252,7 @@ export default function Insights() {
       <section className="py-16 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest uppercase mb-2">Data Intelligence</p>
+          <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
           <h2 className="text-2xl font-display font-bold text-gray-900 mb-8">Dubai Community Yield Snapshot — 2026</h2>
           <div className="overflow-x-auto rounded-xl border border-gray-100">
             <table className="w-full text-sm font-body bg-white">
@@ -291,12 +293,13 @@ export default function Insights() {
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest uppercase mb-2 text-center">Investor FAQs</p>
+          <div className="w-8 h-0.5 bg-[#C9A84C] mb-4 mx-auto" />
           <h2 className="text-2xl lg:text-3xl font-display font-bold text-gray-900 mb-3 text-center">Frequently Asked Questions</h2>
           <p className="text-sm text-gray-500 font-body text-center mb-10">The most common questions international investors ask before buying property in Dubai.</p>
 
           <div className="space-y-4">
             {FAQ_ITEMS.map(({ q, a }) => (
-              <div key={q} className="bg-white border border-gray-100 rounded-xl p-6 hover:border-gray-200 transition-colors">
+              <div key={q} className="bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-xl p-6 hover:border-gray-200 transition-colors">
                 <h3 className="font-heading font-bold text-gray-900 mb-3 flex items-start gap-2">
                   <span className="text-gray-400 font-heading text-lg leading-none mt-0.5">Q.</span>
                   {q}

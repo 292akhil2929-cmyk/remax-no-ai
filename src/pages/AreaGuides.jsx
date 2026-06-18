@@ -300,7 +300,7 @@ export default function AreaGuides() {
                   { icon: TrendingUp, label: 'Avg. Rental Yield', value: area.avgYield },
                   { icon: Users, label: 'Investor Profile', value: area.investorProfile },
                 ].map(({ icon: Icon, label, value }) => (
-                  <div key={label} className="bg-white border border-gray-100 rounded-lg p-4">
+                  <div key={label} className="bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-lg p-4">
                     <Icon className="w-4 h-4 text-gray-400 mb-2" />
                     <p className="text-xs text-gray-500 font-body mb-1">{label}</p>
                     <p className="text-sm font-heading font-bold text-gray-900">{value}</p>
@@ -325,7 +325,7 @@ export default function AreaGuides() {
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {area.highlights.map(h => (
                     <li key={h} className="flex items-start gap-2 text-sm font-body text-gray-500">
-                      <Star className="w-4 h-4 text-gray-400 flex-shrink-0 mt-0.5" />
+                      <Star className="w-4 h-4 text-[#C9A84C] flex-shrink-0 mt-0.5" />
                       {h}
                     </li>
                   ))}
@@ -343,7 +343,7 @@ export default function AreaGuides() {
               </div>
 
               {/* Best For */}
-              <div className="bg-gray-50 border border-gray-200 rounded-lg p-5 mb-8">
+              <div className="bg-gray-50 border border-gray-200 border-l-4 border-l-[#C9A84C] rounded-lg p-5 mb-8">
                 <h3 className="font-heading font-bold text-gray-900 mb-2 flex items-center gap-2">
                   <TrendingUp className="w-4 h-4 text-gray-400" /> Best For
                 </h3>
@@ -363,7 +363,7 @@ export default function AreaGuides() {
                     View {area.name} Properties <ArrowRight className="w-4 h-4 ml-1" />
                   </Link>
                 </Button>
-                <Button variant="outline" className="font-heading border-gray-200 text-gray-700 hover:bg-gray-50" asChild>
+                <Button variant="outline" className="font-heading border-[#C9A84C] text-[#C9A84C] hover:bg-gray-50" asChild>
                   <Link to="/contact">Get Investment Advice</Link>
                 </Button>
               </div>

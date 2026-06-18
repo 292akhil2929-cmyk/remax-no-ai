@@ -135,6 +135,7 @@ export default function AboutUs() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
               <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest mb-3 uppercase">Our Mission</p>
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="text-3xl font-display font-bold text-gray-900 mb-5">Built on Integrity, Driven by Data, Focused on Your Returns</h2>
               <p className="text-sm text-gray-500 font-body leading-relaxed mb-4">
                 REMAX ZAM was founded with one goal: to bring institutional-grade investment thinking to individual property buyers. Too many international investors enter the Dubai market without access to real data, independent analysis, or advisors who prioritise their interests over commission.
@@ -153,7 +154,7 @@ export default function AboutUs() {
               { icon: Users, title: 'Expert Team', desc: 'Multilingual team of 20+ advisors speaking 12 languages' },
               { icon: TrendingUp, title: 'Track Record', desc: 'Over AED 2 billion in successfully closed transactions since 2010' }].
               map(({ icon: Icon, title, desc }) =>
-              <div key={title} className="bg-white border border-gray-100 rounded-lg p-5">
+              <div key={title} className="bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-lg p-5">
                   <Icon className="w-6 h-6 text-[#C9A84C] mb-3" />
                   <h4 className="font-heading font-bold text-gray-900 text-sm mb-1">{title}</h4>
                   <p className="text-xs text-gray-500 font-body leading-relaxed">{desc}</p>
@@ -169,6 +170,7 @@ export default function AboutUs() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest mb-3 uppercase">The Team</p>
+            <div className="w-8 h-0.5 bg-[#C9A84C] mb-4 mx-auto" />
             <h2 className="text-3xl font-display font-bold text-gray-900 mb-3">Meet Your Investment Advisors</h2>
             <p className="text-sm text-gray-500 font-body max-w-lg mx-auto">A specialist team built on deep Dubai market knowledge, multilingual capability, and a client-first approach.</p>
           </div>
@@ -230,19 +232,19 @@ export default function AboutUs() {
                       <div className="grid grid-cols-3 gap-2 pt-3 border-t border-gray-100">
                         {m.phone &&
                     <a href={`tel:${m.phone}`} onClick={() => trackLeadEvent('phone', { source: 'AboutUs' })} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-gray-100 hover:bg-gray-100 transition-colors group">
-                            <Phone className="w-4 h-4 text-gray-500 group-hover:text-black" />
+                            <Phone className="w-4 h-4 text-[#C9A84C] group-hover:text-black" />
                             <span className="text-[9px] font-body text-gray-500">Call</span>
                           </a>
                     }
                         {m.whatsapp &&
                     <a href={`https://wa.me/${m.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={() => trackLeadEvent('whatsapp', { source: 'AboutUs' })} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-gray-100 hover:bg-gray-100 transition-colors group">
-                            <MessageCircle className="w-4 h-4 text-gray-500 group-hover:text-black" />
+                            <MessageCircle className="w-4 h-4 text-[#C9A84C] group-hover:text-black" />
                             <span className="text-[9px] font-body text-gray-500">WhatsApp</span>
                           </a>
                     }
                         {m.email &&
                     <a href={`mailto:${m.email}`} onClick={() => trackLeadEvent('email', { source: 'AboutUs' })} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-gray-100 hover:bg-gray-100 transition-colors group">
-                            <Mail className="w-4 h-4 text-gray-500 group-hover:text-black" />
+                            <Mail className="w-4 h-4 text-[#C9A84C] group-hover:text-black" />
                             <span className="text-[9px] font-body text-gray-500">Email</span>
                           </a>
                     }
@@ -267,6 +269,7 @@ export default function AboutUs() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest mb-3 uppercase">What We Do</p>
+            <div className="w-8 h-0.5 bg-[#C9A84C] mb-4 mx-auto" />
             <h2 className="text-3xl font-display font-bold text-gray-900 mb-3">Our Investment Services</h2>
             <p className="text-sm text-gray-500 font-body max-w-lg mx-auto">
               From first-time off-plan purchases to multi-asset portfolio management — REMAX ZAM provides the full spectrum of Dubai real estate investment services under one roof.
@@ -287,12 +290,12 @@ export default function AboutUs() {
                     <Link to={s.link}>{s.cta} <ArrowRight className="w-4 h-4 ml-1" /></Link>
                   </Button>
                 </div>
-                <div className={`bg-white border border-gray-100 rounded-lg p-6 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
+                <div className={`bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-lg p-6 ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
                   <h4 className="font-heading font-bold text-gray-900 mb-4 text-sm">What's Included</h4>
                   <ul className="space-y-3">
                     {s.features.map(f => (
                       <li key={f} className="flex items-start gap-3 text-sm font-body text-gray-500">
-                        <CheckCircle2 className="w-4 h-4 text-gray-900 flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="w-4 h-4 text-[#C9A84C] flex-shrink-0 mt-0.5" />
                         {f}
                       </li>
                     ))}

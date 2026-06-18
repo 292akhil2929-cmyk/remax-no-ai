@@ -189,7 +189,7 @@ export default function Apply() {
       <div className="min-h-screen bg-white flex items-center justify-center px-4">
         <div className="text-center max-w-md">
           <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-8 h-8 text-gray-900" />
+            <CheckCircle className="w-8 h-8 text-[#C9A84C]" />
           </div>
           <h1 className="text-2xl lg:text-3xl font-display font-bold text-gray-900 mb-3">Application Submitted!</h1>
           <p className="text-gray-500 font-body text-sm leading-relaxed mb-6">
@@ -227,7 +227,7 @@ export default function Apply() {
         <div className="max-w-3xl mx-auto">
           <form id="career-application-form" onSubmit={handleSubmit} className="space-y-8" noValidate>
             {/* ── SECTION A: Personal & Contact ── */}
-            <div className="bg-white border border-gray-100 rounded-xl p-6 lg:p-8 shadow-sm">
+            <div className="bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-xl p-6 lg:p-8 shadow-sm">
               <SectionHeader
                 icon={User}
                 title="Personal & Contact Information"
@@ -341,7 +341,7 @@ export default function Apply() {
             </div>
 
             {/* ── SECTION B: Professional Status & Timeline ── */}
-            <div className="bg-white border border-gray-100 rounded-xl p-6 lg:p-8 shadow-sm">
+            <div className="bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-xl p-6 lg:p-8 shadow-sm">
               <SectionHeader
                 icon={Briefcase}
                 title="Professional Status & Timeline"
@@ -390,7 +390,7 @@ export default function Apply() {
             </div>
 
             {/* ── SECTION C: Real Estate Experience ── */}
-            <div className="bg-white border border-gray-100 rounded-xl p-6 lg:p-8 shadow-sm">
+            <div className="bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-xl p-6 lg:p-8 shadow-sm">
               <SectionHeader
                 icon={Building2}
                 title="Real Estate Experience Profile"

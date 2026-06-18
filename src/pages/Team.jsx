@@ -12,7 +12,7 @@ const perks = [
   { icon: TrendingUp, title: 'Uncapped Commission', desc: 'You pick your commission — 50, 65, or 80 percent — your business, your way. No desk fees for your first months.' },
   { icon: Users, title: 'Ready-Made Lead Pipeline', desc: 'Access to REMAX ZAM\'s international marketing funnel, CRM database of qualified leads, and developer co-marketing budgets.' },
   { icon: Award, title: 'RERA & Training Support', desc: 'We cover your training, provide hands-on mentorship, and guide you through your first transactions — regardless of your background.' },
-  { icon: Star, title: 'RE/MAX Global Network', desc: 'Join the world\'s most recognised real estate brand with access to 146,000+ agents across 110+ countries and 8,700+ offices globally.' },
+  { icon: Star, title: 'RE/MAX Global Network', desc: <>Join the world&apos;s most recognised real estate brand with access to <span className="text-[#C9A84C] font-bold">146,000+</span> agents across <span className="text-[#C9A84C] font-bold">110+</span> countries and <span className="text-[#C9A84C] font-bold">8,700+</span> offices globally.</> },
 ];
 
 const FOUNDER_SCHEMA = {
@@ -78,7 +78,7 @@ export default function Team() {
                         className="w-full h-72 md:h-full object-cover object-top"
                         onError={e => { e.target.src = FALLBACK; }}
                       />
-                      <span className="absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-white bg-black">
+                      <span className="absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-black bg-[#C9A84C]">
                         {ceo.role}
                       </span>
                     </div>
@@ -118,7 +118,7 @@ export default function Team() {
                         className="w-full h-64 object-cover object-top"
                         onError={e => { e.target.src = FALLBACK; }}
                       />
-                      <span className="absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-white bg-gray-700">
+                      <span className="absolute top-3 left-3 text-[10px] font-heading font-bold px-2.5 py-1 rounded text-black bg-[#C9A84C]">
                         {agent.role}
                       </span>
                     </div>
@@ -129,19 +129,19 @@ export default function Team() {
                       <div className="grid grid-cols-3 gap-2 pt-3 border-t border-gray-100">
                         {agent.phone && (
                           <a href={`tel:${agent.phone}`} onClick={() => trackLeadEvent('phone', { source: 'Team' })} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-gray-100 hover:bg-gray-100 transition-colors group">
-                            <Phone className="w-4 h-4 text-gray-500 group-hover:text-black" />
+                            <Phone className="w-4 h-4 text-[#C9A84C] group-hover:text-black" />
                             <span className="text-[9px] font-body text-gray-500">Call</span>
                           </a>
                         )}
                         {agent.whatsapp && (
                           <a href={`https://wa.me/${agent.whatsapp}`} target="_blank" rel="noopener noreferrer" onClick={() => trackLeadEvent('whatsapp', { source: 'Team' })} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-gray-100 hover:bg-gray-100 transition-colors group">
-                            <MessageCircle className="w-4 h-4 text-gray-500 group-hover:text-black" />
+                            <MessageCircle className="w-4 h-4 text-[#C9A84C] group-hover:text-black" />
                             <span className="text-[9px] font-body text-gray-500">WhatsApp</span>
                           </a>
                         )}
                         {agent.email && (
                           <a href={`mailto:${agent.email}`} onClick={() => trackLeadEvent('email', { source: 'Team' })} className="flex flex-col items-center gap-1 p-2 rounded-lg bg-gray-100 hover:bg-gray-100 transition-colors group">
-                            <Mail className="w-4 h-4 text-gray-500 group-hover:text-black" />
+                            <Mail className="w-4 h-4 text-[#C9A84C] group-hover:text-black" />
                             <span className="text-[9px] font-body text-gray-500">Email</span>
                           </a>
                         )}
@@ -160,6 +160,7 @@ export default function Team() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <p className="text-xs font-heading font-semibold text-[#C9A84C] tracking-widest mb-3 uppercase">Join the Team</p>
+            <div className="w-8 h-0.5 bg-[#C9A84C] mb-4 mx-auto" />
             <h2 className="text-3xl font-display font-bold text-gray-900 mb-3">Why Top Agents Choose REMAX ZAM</h2>
             <p className="text-sm text-gray-500 font-body max-w-xl mx-auto">
               We are actively recruiting experienced and ambitious real estate professionals. Build your business with the world's #1 real estate brand.
@@ -167,7 +168,7 @@ export default function Team() {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
             {perks.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="bg-white border border-gray-100 rounded-lg p-6 text-center hover:border-gray-300 transition-colors">
+              <div key={title} className="bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-lg p-6 text-center hover:border-gray-300 transition-colors">
                 <div className="w-12 h-12 rounded-full bg-[#C9A84C]/10 flex items-center justify-center mx-auto mb-4">
                   <Icon className="w-5 h-5 text-[#C9A84C]" />
                 </div>

@@ -225,7 +225,7 @@ const FAQS = [
 function FAQItem({ faq }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="border border-gray-100 rounded-2xl overflow-hidden">
+    <div className="border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-2xl overflow-hidden">
       <button
         onClick={() => setOpen(!open)}
         className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-gray-50 transition-colors"
@@ -305,7 +305,7 @@ export default function DubaiGuide() {
             <Button size="lg" className="bg-black text-white hover:bg-gray-900 font-heading font-bold border-0" asChild>
               <Link to="/contact">Speak to an Expert <ArrowRight className="w-4 h-4 ml-1" /></Link>
             </Button>
-            <Button size="lg" variant="outline" className="border-gray-200 text-gray-700 hover:bg-gray-50 font-heading" asChild>
+            <Button size="lg" variant="outline" className="border-[#C9A84C] text-[#C9A84C] hover:bg-gray-50 font-heading" asChild>
               <Link to="/properties">Browse Properties</Link>
             </Button>
           </div>
@@ -322,7 +322,7 @@ export default function DubaiGuide() {
                 onClick={() => setActiveTab(tab.id)}
                 className={`flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-heading font-bold transition-all whitespace-nowrap ${
                   activeTab === tab.id
-                    ? 'bg-black text-white'
+                    ? 'bg-[#C9A84C] text-black'
                     : 'text-gray-500 hover:bg-gray-100 hover:text-gray-800'
                 }`}
               >
@@ -341,6 +341,7 @@ export default function DubaiGuide() {
         {activeTab === 'buying' && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <div className="mb-10">
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">How to Buy Property in Dubai</h2>
               <p className="text-gray-500 font-body text-sm leading-relaxed max-w-2xl">A step-by-step walkthrough of the complete property buying process in Dubai — from budget setting to receiving your Title Deed. This applies to both cash and mortgage purchases.</p>
             </div>
@@ -356,7 +357,7 @@ export default function DubaiGuide() {
                     <div className="bg-gray-50 rounded-xl p-4 space-y-2">
                       {s.tips.map(tip => (
                         <div key={tip} className="flex items-start gap-2">
-                          <CheckCircle className="w-3.5 h-3.5 text-gray-400 shrink-0 mt-0.5" />
+                          <CheckCircle className="w-3.5 h-3.5 text-[#C9A84C] shrink-0 mt-0.5" />
                           <p className="text-xs font-body text-gray-600">{tip}</p>
                         </div>
                       ))}
@@ -379,6 +380,7 @@ export default function DubaiGuide() {
         {activeTab === 'renting' && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <div className="mb-10">
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">How to Rent Property in Dubai</h2>
               <p className="text-gray-500 font-body text-sm leading-relaxed max-w-2xl">The complete renting process in Dubai from search to move-in, including what to pay, what to sign, and how to protect yourself legally.</p>
             </div>
@@ -394,7 +396,7 @@ export default function DubaiGuide() {
                     <div className="bg-gray-50 rounded-xl p-4 space-y-2">
                       {s.tips.map(tip => (
                         <div key={tip} className="flex items-start gap-2">
-                          <CheckCircle className="w-3.5 h-3.5 text-gray-500 shrink-0 mt-0.5" />
+                          <CheckCircle className="w-3.5 h-3.5 text-[#C9A84C] shrink-0 mt-0.5" />
                           <p className="text-xs font-body text-gray-600">{tip}</p>
                         </div>
                       ))}
@@ -410,6 +412,7 @@ export default function DubaiGuide() {
         {activeTab === 'fees' && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <div className="mb-10">
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">All Dubai Property Fees & Costs</h2>
               <p className="text-gray-500 font-body text-sm leading-relaxed max-w-2xl">A complete breakdown of every cost involved in buying, renting, and owning property in Dubai. No hidden surprises — this is the full picture.</p>
             </div>
@@ -430,12 +433,13 @@ export default function DubaiGuide() {
         {activeTab === 'tenant-rights' && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <div className="mb-10">
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">Dubai Tenant Rights — Know Your Protections</h2>
               <p className="text-gray-500 font-body text-sm leading-relaxed max-w-2xl">Dubai has robust tenant protection laws under RERA (Real Estate Regulatory Agency). Here are the six most important rights every Dubai tenant must know — and how to enforce them.</p>
             </div>
             <div className="space-y-6">
               {TENANT_RIGHTS.map((r, i) => (
-                <motion.div key={r.title} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="border border-gray-100 rounded-2xl p-6">
+                <motion.div key={r.title} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-2xl p-6">
                   <div className="flex items-start gap-4">
                     <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center shrink-0">
                       <r.icon className="w-5 h-5 text-[#C9A84C]" />
@@ -474,14 +478,15 @@ export default function DubaiGuide() {
         {activeTab === 'landlord-rights' && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <div className="mb-10">
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">Dubai Landlord Rights — What Property Owners Can Do</h2>
               <p className="text-gray-500 font-body text-sm leading-relaxed max-w-2xl">Dubai law provides landlords with clearly defined rights to protect their investment. Here is what you are entitled to as a property owner renting in Dubai.</p>
             </div>
             <div className="grid sm:grid-cols-2 gap-5">
               {LANDLORD_RIGHTS.map((r, i) => (
-                <motion.div key={r.title} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="border border-gray-100 rounded-2xl p-6 hover:border-gray-200 hover:shadow-sm transition-all">
+                <motion.div key={r.title} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.06 }} className="border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-2xl p-6 hover:border-gray-200 hover:shadow-sm transition-all">
                   <div className="w-8 h-8 rounded-lg bg-[#C9A84C]/10 flex items-center justify-center mb-4">
-                    <CheckCircle className="w-4 h-4 text-[#C9A84C]" />
+                    <CheckCircle className="w-4 h-4 text-[#C9A84C] shrink-0" />
                   </div>
                   <h3 className="font-heading font-bold text-gray-900 text-sm mb-2">{r.title}</h3>
                   <p className="text-gray-500 font-body text-xs leading-relaxed">{r.body}</p>
@@ -502,13 +507,14 @@ export default function DubaiGuide() {
         {activeTab === 'mortgage' && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <div className="mb-10">
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">Dubai Mortgage Guide for Expats & International Investors</h2>
               <p className="text-gray-500 font-body text-sm leading-relaxed max-w-2xl">Yes, foreigners can get mortgages in Dubai. Here are the key parameters, the process, and what banks typically look for in 2026.</p>
             </div>
             {/* Key Numbers */}
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
               {MORTGAGE_DATA.map((m, i) => (
-                <motion.div key={m.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-gray-50 rounded-2xl p-5 border border-gray-100">
+                <motion.div key={m.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }} className="bg-gray-50 rounded-2xl p-5 border border-gray-100 border-l-4 border-l-[#C9A84C]">
                   <p className="font-display font-black text-[#C9A84C] text-2xl">{m.value}</p>
                   <p className="text-gray-700 font-heading font-bold text-sm mt-1">{m.label}</p>
                   <p className="text-gray-400 font-body text-xs mt-1">{m.note}</p>
@@ -563,6 +569,7 @@ export default function DubaiGuide() {
         {activeTab === 'faq' && (
           <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }}>
             <div className="mb-10">
+              <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">Dubai Real Estate — Frequently Asked Questions</h2>
               <p className="text-gray-500 font-body text-sm leading-relaxed max-w-2xl">The 12 questions our advisors are asked most often by international investors and residents. Clear, direct answers — no jargon.</p>
             </div>
