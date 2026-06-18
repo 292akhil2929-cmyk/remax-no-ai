@@ -1,8 +1,9 @@
+import { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
-import { ArrowRight, TrendingUp, Sparkles } from 'lucide-react';
+import { ArrowRight, TrendingUp, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 import PropertyCard from '@/components/PropertyCard';
 import LeadCaptureForm from '@/components/LeadCaptureForm';
 import MarketTicker from '@/components/MarketTicker';
@@ -59,16 +60,46 @@ export default function InvestorHome() {
     ? publicFeatured
     : publicRecent;
 
+  // Mobile carousel controls
+  const scrollRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateScrollButtons = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    updateScrollButtons();
+    el.addEventListener('scroll', updateScrollButtons, { passive: true });
+    window.addEventListener('resize', updateScrollButtons);
+    return () => {
+      el.removeEventListener('scroll', updateScrollButtons);
+      window.removeEventListener('resize', updateScrollButtons);
+    };
+  }, [properties]);
+
+  const scroll = (dir) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: el.clientWidth * 0.85 * dir, behavior: 'smooth' });
+  };
+
   return (
     <>
       <MarketTicker />
 
       {/* ── FEATURED PROPERTIES ── */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-end justify-between mb-12">
             <div>
-              <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-display font-black text-gray-900 leading-tight">
                 Dubai's Most Attractive<br />Investment Opportunities
               </h2>
             </div>
@@ -78,9 +109,9 @@ export default function InvestorHome() {
           </motion.div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="flex sm:grid sm:grid-cols-3 gap-5 overflow-x-auto scrollbar-none sm:overflow-visible">
               {[1, 2, 3].map(i => (
-                <div key={i} className="aspect-[4/3] bg-gray-100 rounded-2xl animate-pulse" />
+                <div key={i} className="aspect-[4/3] bg-gray-100 rounded-2xl animate-pulse shrink-0 w-[85vw] sm:w-auto" />
               ))}
             </div>
           ) : isError ? (
@@ -88,13 +119,52 @@ export default function InvestorHome() {
               Could not load properties. Please refresh the page.
             </div>
           ) : properties.length > 0 ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {properties.map((p, idx) => (
-                <motion.div key={p.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.07 }}>
-                  <PropertyCard property={p} />
-                </motion.div>
-              ))}
-            </div>
+            <>
+              {/* Mobile: horizontal scroll carousel */}
+              <div className="sm:hidden relative">
+                <div
+                  ref={scrollRef}
+                  className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth pb-2"
+                >
+                  {properties.map((p, idx) => (
+                    <motion.div
+                      key={p.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.07 }}
+                      className="shrink-0 w-[85vw] snap-start"
+                    >
+                      <PropertyCard property={p} />
+                    </motion.div>
+                  ))}
+                </div>
+                {canScrollLeft && (
+                  <button
+                    onClick={() => scroll(-1)}
+                    className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-9 h-9 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-700 hover:text-black transition-colors z-10"
+                  >
+                    <ChevronLeft className="w-4 h-4" />
+                  </button>
+                )}
+                {canScrollRight && (
+                  <button
+                    onClick={() => scroll(1)}
+                    className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-9 h-9 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-700 hover:text-black transition-colors z-10"
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+              {/* Desktop: grid */}
+              <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+                {properties.map((p, idx) => (
+                  <motion.div key={p.id} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.07 }}>
+                    <PropertyCard property={p} />
+                  </motion.div>
+                ))}
+              </div>
+            </>
           ) : (
             <div className="text-center py-12 text-gray-400 font-body text-sm">
               No properties available right now. Check back soon.
@@ -113,12 +183,12 @@ export default function InvestorHome() {
       <BlogCarousel />
 
       {/* ── COMMUNITY GUIDE ── */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-end justify-between mb-12">
             <div>
-              <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-display font-black text-gray-900 leading-tight">
                 Dubai's Highest<br />Yield Communities
               </h2>
             </div>
@@ -157,7 +227,7 @@ export default function InvestorHome() {
       <div className="bg-white px-3 sm:px-4 lg:px-5 pb-3 sm:pb-4 lg:pb-5 box-border">
       
       {/* ── INNER CANVAS: Matches Hero border radius and dark theme ── */}
-      <section className="relative w-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl py-16 sm:py-24 lg:py-32">
+      <section className="relative w-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl py-12 sm:py-16 lg:py-20">
         
         {/* Background image with dark overlay */}
         <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/landscape.png')" }} />
@@ -178,7 +248,7 @@ export default function InvestorHome() {
               className="max-w-xl"
             >
 
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.1] tracking-tight mb-6">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white leading-[1.1] tracking-tight mb-6">
                 Build Your <br className="hidden sm:block" />
                 <span className="text-amber-500">Dubai Portfolio</span>
               </h2>

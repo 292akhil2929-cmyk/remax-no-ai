@@ -40,6 +40,28 @@ const HERO_CONTENT = {
 
 const DEFAULT = HERO_CONTENT.investor;
 
+// Audience-specific KPI data for the bottom stats strip
+const AUDIENCE_KPIS = {
+  investor: [
+    { label: "Tax-Free Yield", value: "6-9%" },
+    { label: "Capital Gains Tax", value: "0%" },
+    { label: "Global RE/MAX Agents", value: "150k+" },
+    { label: "Transactions 2025", value: "AED 917B+" },
+  ],
+  seller: [
+    { value: '145K+', label: 'RE/MAX agents promoting your property' },
+    { value: '1,200+', label: 'Active buyers in our database' },
+    { value: '94%', label: 'Listings sold within agreed timeframe' },
+    { value: '4.9★', label: 'Average seller satisfaction rating' },
+  ],
+  agent: [
+    { value: '110+', label: 'Countries' },
+    { value: '145K+', label: 'Global agents' },
+    { value: '#1', label: 'Global RE brand' },
+    { value: '50+', label: 'Years operating' },
+  ],
+};
+
 // Audience Options integrated from AudienceSelector
 const AUDIENCE_OPTIONS = [
   { id: 'investor', label: 'Invest' },
@@ -455,12 +477,7 @@ export default function HeroSection() {
 
           <div className="px-6 py-6 sm:px-10 sm:py-8 h-full">
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center h-full">
-              {[
-                { label: "Tax-Free Yield", value: "6-9%" },
-                { label: "Capital Gains Tax", value: "0%" },
-                { label: "Global RE/MAX Agents", value: "150k+" },
-                { label: "Transactions 2025", value: "AED 917B+" },
-              ].map((s, idx) => (
+              {(AUDIENCE_KPIS[audience] || AUDIENCE_KPIS.investor).map((s, idx) => (
                 <div key={s.label} className="flex flex-col justify-center">
                   <span className="font-display font-black text-2xl sm:text-3xl lg:text-4xl tracking-tight mb-1">
                     <AnimatedCounter value={s.value} />
