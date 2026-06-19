@@ -40,6 +40,28 @@ const HERO_CONTENT = {
 
 const DEFAULT = HERO_CONTENT.investor;
 
+// Audience-specific KPI data for the bottom stats strip
+const AUDIENCE_KPIS = {
+  investor: [
+    { label: "Tax-Free Yield", value: "6-9%" },
+    { label: "Capital Gains Tax", value: "0%" },
+    { label: "Global RE/MAX Agents", value: "150k+" },
+    { label: "Transactions 2025", value: "AED 917B+" },
+  ],
+  seller: [
+    { value: '145K+', label: 'RE/MAX agents' },
+    { value: '1,200+', label: 'Active buyers in our database' },
+    { value: '94%', label: 'Listings sold' },
+    { value: '4.9★', label: 'Average seller satisfaction' },
+  ],
+  agent: [
+    { value: '110+', label: 'Countries' },
+    { value: '145K+', label: 'Global agents' },
+    { value: '#1', label: 'Global RE brand' },
+    { value: '50+', label: 'Years operating' },
+  ],
+};
+
 // Audience Options integrated from AudienceSelector
 const AUDIENCE_OPTIONS = [
   { id: 'investor', label: 'Invest' },
@@ -172,26 +194,27 @@ export default function HeroSection() {
 
   return (
     <div
-      style={{ height: "calc(var(--vh, 1vh) * 93)" }}
-      className="bg-white p-3 sm:p-4 lg:p-5 flex flex-col box-border overflow-hidden relative"
+      style={{ minHeight: "calc(var(--vh, 1vh) * 93)" }}
+      className="bg-white p-3 sm:p-4 lg:p-5 flex flex-col box-border relative"
     >
-      <section className="relative w-full h-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden bg-zinc-900">
+      <section className="relative w-full flex-1 rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden bg-zinc-900">
         
         {/* Top Right Watch Video Toggle Button */}
-        <div className="absolute top-6 sm:top-8 right-6 sm:right-8 z-50">
+        <div className="absolute top-4 right-4 sm:top-8 sm:right-8 z-40">
           <button
             onClick={() => setIsVideoPlaying(!isVideoPlaying)}
-            className="group flex items-center gap-2.5 px-5 py-2.5 bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/20 rounded-full text-white font-heading text-[10px] sm:text-xs font-bold uppercase tracking-widest transition-all shadow-xl"
+            className="group flex items-center justify-center w-9 h-9 sm:w-auto sm:h-auto sm:gap-2.5 sm:px-5 sm:py-2.5 bg-black/40 hover:bg-black/60 backdrop-blur-md border border-white/20 rounded-full text-white transition-all shadow-xl"
+            aria-label={isVideoPlaying ? 'Close video' : 'Watch video'}
           >
             {isVideoPlaying ? (
               <>
-                <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" /> 
-                Close Video
+                <X className="w-4 h-4 group-hover:rotate-90 transition-transform duration-300" />
+                <span className="hidden sm:inline font-heading text-[10px] sm:text-xs font-bold uppercase tracking-widest">Close Video</span>
               </>
             ) : (
               <>
-                <Play className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" /> 
-                Watch Video
+                <Play className="w-4 h-4 group-hover:scale-110 transition-transform duration-300" />
+                <span className="hidden sm:inline font-heading text-[10px] sm:text-xs font-bold uppercase tracking-widest">Watch Video</span>
               </>
             )}
           </button>
@@ -238,7 +261,7 @@ export default function HeroSection() {
         <motion.div 
           animate={{ opacity: isVideoPlaying ? 0 : 1 }}
           transition={{ duration: 0.5 }}
-          className={`relative z-20 w-full h-full flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pb-24 md:pb-32 ${isVideoPlaying ? 'pointer-events-none' : ''}`}
+          className={`relative z-20 w-full flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 md:py-20 ${isVideoPlaying ? 'pointer-events-none' : ''}`}
         >
           {/* ── SEAMLESS AUDIENCE SELECTOR PILL ── */}
           <motion.div 
@@ -416,65 +439,58 @@ export default function HeroSection() {
           </AnimatePresence>
         </motion.div>
 
-        {/* ── BOTTOM STATS CUTOUT - Fades out when video plays ── */}
-        <motion.div 
-          animate={{ opacity: isVideoPlaying ? 0 : 1, y: isVideoPlaying ? 20 : 0 }}
-          transition={{ duration: 0.5 }}
-          className={`absolute bottom-0 right-0 w-full lg:w-[85%] xl:w-[75%] bg-white rounded-none lg:rounded-tl-[3rem] z-20 ${isVideoPlaying ? 'pointer-events-none' : ''}`}
-        >
-          
-          {/* SVG Seamless Reverse Curve (Bottom-Left Desktop Cutout) */}
-          <svg 
-            className="hidden lg:block absolute bottom-0 right-full w-10 h-10 sm:w-12 sm:h-12 text-white pointer-events-none translate-x-[1px]" 
-            viewBox="0 0 100 100" 
-            fill="currentColor"
-            preserveAspectRatio="none"
-          >
-            <path d="M 100 100 L 0 100 A 100 100 0 0 0 100 0 Z" />
-          </svg>
-
-          {/* SVG Seamless Reverse Curve (Top-Left Mobile Cutout) */}
-          <svg 
-            className="block lg:hidden absolute bottom-full left-0 w-8 h-8 sm:w-10 sm:h-10 text-white pointer-events-none translate-y-[1px]" 
-            viewBox="0 0 100 100" 
-            fill="currentColor"
-            preserveAspectRatio="none"
-          >
-            <path d="M 0 100 L 100 100 A 100 100 0 0 1 0 0 Z" />
-          </svg>
-
-          {/* SVG Seamless Reverse Curve (Top-Right All Screens) */}
-          <svg 
-            className="absolute bottom-full right-0 w-8 h-8 sm:w-10 sm:h-10 lg:w-12 lg:h-12 text-white pointer-events-none translate-y-[1px]" 
-            viewBox="0 0 100 100" 
-            fill="currentColor"
-            preserveAspectRatio="none"
-          >
-            <path d="M 100 100 L 0 100 A 100 100 0 0 0 100 0 Z" />
-          </svg>
-
-          <div className="px-6 py-6 sm:px-10 sm:py-8 h-full">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center h-full">
-              {[
-                { label: "Tax-Free Yield", value: "6-9%" },
-                { label: "Capital Gains Tax", value: "0%" },
-                { label: "Global RE/MAX Agents", value: "150k+" },
-                { label: "Transactions 2025", value: "AED 917B+" },
-              ].map((s, idx) => (
-                <div key={s.label} className="flex flex-col justify-center">
-                  <span className="font-display font-black text-2xl sm:text-3xl lg:text-4xl tracking-tight mb-1">
-                    <AnimatedCounter value={s.value} />
-                  </span>
-                  <span className="text-gray-500 font-body text-[11px] sm:text-xs font-medium">
-                    {s.label}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </motion.div>
-
       </section>
+
+      {/* ── KPI STATS — below hero on mobile, overlaid on desktop ── */}
+      <motion.div
+        animate={{ opacity: isVideoPlaying ? 0 : 1, y: isVideoPlaying ? 20 : 0 }}
+        transition={{ duration: 0.5 }}
+        className={`relative md:absolute md:bottom-3 lg:bottom-4 right-0 w-full lg:w-[85%] xl:w-[75%] bg-white rounded-t-2xl md:rounded-none lg:rounded-tl-[3rem] z-20 ${isVideoPlaying ? 'pointer-events-none' : ''}`}
+      >
+
+        {/* SVG Seamless Reverse Curve — md+ only */}
+        <svg
+          className="hidden md:block lg:hidden absolute bottom-0 right-full w-10 h-10 text-white pointer-events-none translate-x-[1px]"
+          viewBox="0 0 100 100"
+          fill="currentColor"
+          preserveAspectRatio="none"
+        >
+          <path d="M 100 100 L 0 100 A 100 100 0 0 0 100 0 Z" />
+        </svg>
+        <svg
+          className="hidden lg:block absolute bottom-0 right-full w-12 h-12 text-white pointer-events-none translate-x-[1px]"
+          viewBox="0 0 100 100"
+          fill="currentColor"
+          preserveAspectRatio="none"
+        >
+          <path d="M 100 100 L 0 100 A 100 100 0 0 0 100 0 Z" />
+        </svg>
+
+        <svg
+          className="hidden md:block absolute bottom-full right-0 w-10 h-10 lg:w-12 lg:h-12 text-white pointer-events-none translate-y-[1px]"
+          viewBox="0 0 100 100"
+          fill="currentColor"
+          preserveAspectRatio="none"
+        >
+          <path d="M 100 100 L 0 100 A 100 100 0 0 0 100 0 Z" />
+        </svg>
+
+        <div className="px-6 py-6 sm:px-10 sm:py-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center">
+            {(AUDIENCE_KPIS[audience] || AUDIENCE_KPIS.investor).map((s, idx) => (
+              <div key={s.label} className="flex flex-col justify-center">
+                <span className="font-display font-black text-2xl sm:text-3xl lg:text-4xl tracking-tight mb-1">
+                  <AnimatedCounter value={s.value} />
+                </span>
+                <span className="text-gray-500 font-body text-[11px] sm:text-xs font-medium">
+                  {s.label}
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+
     </div>
   );
 }

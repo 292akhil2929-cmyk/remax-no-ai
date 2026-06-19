@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Globe, BadgeCheck, Zap, BookOpen, TrendingUp, Headphones, Users, Award, CheckCircle, ArrowRight } from 'lucide-react';
+import { Globe, BadgeCheck, Zap, BookOpen, TrendingUp, Headphones, ArrowRight } from 'lucide-react';
 
 const BENEFITS = [
   {
@@ -66,38 +66,11 @@ const TIERS = [
   },
 ];
 
-const PROOF = [
-  { value: '110+', label: 'Countries' },
-  { value: '145K+', label: 'Global agents' },
-  { value: '#1', label: 'Global RE brand' },
-  { value: '50+', label: 'Years operating' },
-];
-
 export default function AgentHome() {
   return (
     <>
-      {/* ── PROOF BAR ── */}
-      <section className="bg-black border-b border-white/10 py-5">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="flex items-center justify-between gap-8">
-            <div className="flex items-center gap-8 sm:gap-16 overflow-x-auto scrollbar-none">
-              {PROOF.map((p, idx) => (
-                <motion.div key={p.value} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: idx * 0.07 }} viewport={{ once: true }} className="shrink-0 text-center">
-                  <p className="text-2xl font-display font-black text-white">{p.value}</p>
-                  <p className="text-white/40 font-body text-xs mt-0.5">{p.label}</p>
-                </motion.div>
-              ))}
-            </div>
-            <div className="hidden lg:block text-right shrink-0">
-              <p className="text-white/30 text-xs font-body">The world's most recognised</p>
-              <p className="text-white/60 text-xs font-heading font-bold">real estate brand</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* ── BENEFITS GRID ── */}
-      <section className="py-24 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
             <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">What You Get</p>
@@ -128,7 +101,7 @@ export default function AgentHome() {
       </section>
 
       {/* ── COMMISSION TIERS ── */}
-      <section className="py-20 bg-gray-50 border-y border-gray-100">
+      <section className="py-12 sm:py-16 bg-gray-50 border-y border-gray-100">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
             <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Clear Progression</p>

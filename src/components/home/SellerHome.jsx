@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { PhoneCall, ClipboardList, Search, BadgeCheck, Globe, Users, TrendingUp, Star } from 'lucide-react';
+import { PhoneCall, ClipboardList, Search, BadgeCheck, Star } from 'lucide-react';
 import SellerLeadForm from '@/components/SellerLeadForm';
 
 const STEPS = [
@@ -33,13 +33,6 @@ const STEPS = [
   },
 ];
 
-const STATS = [
-  { value: '145K+', label: 'RE/MAX agents promoting your property' },
-  { value: '1,200+', label: 'Active buyers in our database' },
-  { value: '94%', label: 'Listings sold within agreed timeframe' },
-  { value: '4.9★', label: 'Average seller satisfaction rating' },
-];
-
 const TESTIMONIALS = [
   {
     name: 'Sarah M.',
@@ -64,22 +57,8 @@ const TESTIMONIALS = [
 export default function SellerHome() {
   return (
     <>
-      {/* ── TRUST BAR ── */}
-      <section className="bg-black border-b border-white/10 py-5">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {STATS.map((s, idx) => (
-              <motion.div key={s.value} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: idx * 0.07 }} className="text-center">
-                <p className="text-2xl sm:text-3xl font-display font-black text-white">{s.value}</p>
-                <p className="text-white/40 font-body text-xs mt-1">{s.label}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── HOW IT WORKS ── */}
-      <section className="py-24 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
             <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Simple. Transparent. Effective.</p>
@@ -125,7 +104,7 @@ export default function SellerHome() {
       </section>
 
       {/* ── SELLER TESTIMONIALS ── */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
             <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Seller Stories</p>

@@ -1,7 +1,8 @@
+import { useState, useRef, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, BookOpen, Calendar } from 'lucide-react';
+import { ArrowRight, BookOpen, Calendar, ChevronLeft, ChevronRight } from 'lucide-react';
 import { base44 } from '@/api/base44Client';
 import { format } from 'date-fns';
 
@@ -23,10 +24,9 @@ function BlogCard({ post = {}, wide = false, delay = 0 }) {
       className={`h-full ${wide ? 'lg:col-span-2' : ''}`}
     >
       <Link
-        to={`/blog/${post.slug || post.id}`}
-        className="group block relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-full h-[240px] sm:h-auto sm:aspect-[16/10] lg:aspect-auto lg:h-full"
+        to={`/blog/${post.id}`}
+        className="group block relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 w-full aspect-[4/3] sm:aspect-[16/10] lg:aspect-auto lg:h-full"
       >
-        {/* Full Container Background Image wrapper to bypass aspect constraints on wide mobile items */}
         <div className={`w-full h-full relative ${wide ? 'lg:aspect-[16/7]' : 'lg:aspect-[16/10]'}`}>
           <img
             src={post.image_url || `https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&q=80`}
@@ -74,6 +74,36 @@ export default function BlogCarousel() {
     staleTime: 5 * 60 * 1000,
   });
 
+  // Mobile carousel
+  const scrollRef = useRef(null);
+  const [canScrollLeft, setCanScrollLeft] = useState(false);
+  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const updateButtons = () => {
+    const el = scrollRef.current;
+    if (!el) return;
+    setCanScrollLeft(el.scrollLeft > 4);
+    setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 4);
+  };
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    updateButtons();
+    el.addEventListener('scroll', updateButtons, { passive: true });
+    window.addEventListener('resize', updateButtons);
+    return () => {
+      el.removeEventListener('scroll', updateButtons);
+      window.removeEventListener('resize', updateButtons);
+    };
+  }, [posts]);
+
+  const scroll = (dir) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    el.scrollBy({ left: el.clientWidth * 0.85 * dir, behavior: 'smooth' });
+  };
+
   const blogs = posts.slice(0, 6);
   const grid = [
     { post: blogs[0], wide: true, delay: 0 },
@@ -85,12 +115,12 @@ export default function BlogCarousel() {
   ];
 
   return (
-    <div className="bg-white py-16 sm:py-24 lg:py-32 box-border">
+    <div className="bg-white py-12 sm:py-16 box-border">
       <div className="max-w-7xl mx-auto px-6 sm:px-12 lg:px-16 xl:px-20">
 
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-end justify-between mb-12">
           <div>
-            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-display font-black text-gray-900 leading-tight">
               Recent Articles & News
             </h2>
           </div>
@@ -99,9 +129,9 @@ export default function BlogCarousel() {
           </Link>
         </motion.div>
 
-        {/* ── COHESIVE GRID CANVAS ── */}
+        {/* ── BLOG DISPLAY ── */}
         {isLoading ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="flex sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5 overflow-x-auto scrollbar-none sm:overflow-visible">
             <SkeletonCard wide />
             <SkeletonCard />
             <SkeletonCard />
@@ -115,19 +145,48 @@ export default function BlogCarousel() {
             <p className="text-gray-400 font-body text-sm">Fresh insights are being written — check back soon.</p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {grid.map(
-              (item, idx) =>
-                item.post && (
-                  <BlogCard
-                    key={item.post.id || idx}
-                    post={item.post}
-                    wide={item.wide}
-                    delay={item.delay}
-                  />
-                )
-            )}
-          </div>
+          <>
+            {/* Mobile: horizontal scroll carousel */}
+            <div className="sm:hidden relative">
+              <div
+                ref={scrollRef}
+                className="flex gap-4 overflow-x-auto scrollbar-none snap-x snap-mandatory scroll-smooth"
+              >
+                {grid.map(
+                  (item, idx) =>
+                    item.post && (
+                      <div key={item.post.id || idx} className="shrink-0 w-[85vw] snap-start overflow-hidden">
+                        <BlogCard post={item.post} wide={false} delay={item.delay} />
+                      </div>
+                    )
+                )}
+              </div>
+              {canScrollLeft && (
+                <button onClick={() => scroll(-1)} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 w-9 h-9 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-700 hover:text-black transition-colors z-10">
+                  <ChevronLeft className="w-4 h-4" />
+                </button>
+              )}
+              {canScrollRight && (
+                <button onClick={() => scroll(1)} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 w-9 h-9 rounded-full bg-white shadow-lg border border-gray-100 flex items-center justify-center text-gray-700 hover:text-black transition-colors z-10">
+                  <ChevronRight className="w-4 h-4" />
+                </button>
+              )}
+            </div>
+            {/* Desktop: staggered 4-column grid */}
+            <div className="hidden sm:grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              {grid.map(
+                (item, idx) =>
+                  item.post && (
+                    <BlogCard
+                      key={item.post.id || idx}
+                      post={item.post}
+                      wide={item.wide}
+                      delay={item.delay}
+                    />
+                  )
+              )}
+            </div>
+          </>
         )}
       </div>
     </div>

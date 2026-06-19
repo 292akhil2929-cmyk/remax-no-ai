@@ -64,11 +64,11 @@ export default function InvestorHome() {
       <MarketTicker />
 
       {/* ── FEATURED PROPERTIES ── */}
-      <section className="py-20 bg-white">
+      <section className="py-12 sm:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-end justify-between mb-12">
             <div>
-              <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-display font-black text-gray-900 leading-tight">
                 Dubai's Most Attractive<br />Investment Opportunities
               </h2>
             </div>
@@ -78,9 +78,9 @@ export default function InvestorHome() {
           </motion.div>
 
           {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            <div className="flex sm:grid sm:grid-cols-3 gap-5 overflow-x-auto scrollbar-none sm:overflow-visible">
               {[1, 2, 3].map(i => (
-                <div key={i} className="aspect-[4/3] bg-gray-100 rounded-2xl animate-pulse" />
+                <div key={i} className="aspect-[4/3] bg-gray-100 rounded-2xl animate-pulse shrink-0 w-[85vw] sm:w-auto" />
               ))}
             </div>
           ) : isError ? (
@@ -113,12 +113,12 @@ export default function InvestorHome() {
       <BlogCarousel />
 
       {/* ── COMMUNITY GUIDE ── */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-12 sm:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
 
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="flex items-end justify-between mb-12">
             <div>
-              <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-display font-black text-gray-900 leading-tight">
                 Dubai's Highest<br />Yield Communities
               </h2>
             </div>
@@ -157,7 +157,7 @@ export default function InvestorHome() {
       <div className="bg-white px-3 sm:px-4 lg:px-5 pb-3 sm:pb-4 lg:pb-5 box-border">
       
       {/* ── INNER CANVAS: Matches Hero border radius and dark theme ── */}
-      <section className="relative w-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl py-16 sm:py-24 lg:py-32">
+      <section className="relative w-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl py-12 sm:py-16 lg:py-20">
         
         {/* Background image with dark overlay */}
         <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/landscape.png')" }} />
@@ -178,7 +178,7 @@ export default function InvestorHome() {
               className="max-w-xl"
             >
 
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.1] tracking-tight mb-6">
+              <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-display font-bold text-white leading-[1.1] tracking-tight mb-6">
                 Build Your <br className="hidden sm:block" />
                 <span className="text-amber-500">Dubai Portfolio</span>
               </h2>
