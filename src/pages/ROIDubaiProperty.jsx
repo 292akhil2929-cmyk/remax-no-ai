@@ -44,16 +44,93 @@ const PAGE_SCHEMA = {
   ],
 };
 
-// ─── AREA DATA ────────────────────────────────────────────────────────────────
+// ─── AREA DATA (aligned with AreaGuides map) ──────────────────────────────────
 
 const AREAS = [
-  { id: 'jvc',         name: 'JVC',           yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 350000,  priceMax: 3000000,  priceDefault: 900000,  appreciation: 7  },
-  { id: 'marina',      name: 'Dubai Marina',  yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 700000,  priceMax: 8000000,  priceDefault: 1500000, appreciation: 8  },
-  { id: 'business-bay',name: 'Business Bay',  yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 600000,  priceMax: 6000000,  priceDefault: 1200000, appreciation: 9  },
-  { id: 'downtown',    name: 'Downtown',      yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 1200000, priceMax: 10000000, priceDefault: 2000000, appreciation: 10 },
-  { id: 'hills',       name: 'Dubai Hills',   yieldMin: 5,  yieldMax: 6,  yieldDefault: 5.5, priceMin: 1500000, priceMax: 12000000, priceDefault: 3500000, appreciation: 14 },
-  { id: 'palm',        name: 'Palm Jumeirah', yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 1500000, priceMax: 15000000, priceDefault: 5000000, appreciation: 12 },
+  {
+    id: 'jvc',
+    name: 'Jumeirah Village Circle (JVC)',
+    short: 'JVC',
+    tag: 'Best Value · High Yield',
+    yieldMin: 8,  yieldMax: 10, yieldDefault: 9,
+    priceMin: 350000,  priceMax: 5000000,  priceDefault: 900000,
+    appreciation: 7,
+  },
+  {
+    id: 'marina',
+    name: 'Dubai Marina',
+    short: 'Marina',
+    tag: 'Waterfront · Expat Demand',
+    yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,
+    priceMin: 700000,  priceMax: 20000000, priceDefault: 1500000,
+    appreciation: 8,
+  },
+  {
+    id: 'business-bay',
+    name: 'Business Bay',
+    short: 'Business Bay',
+    tag: 'Business Hub · Growth Zone',
+    yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,
+    priceMin: 600000,  priceMax: 15000000, priceDefault: 1200000,
+    appreciation: 9,
+  },
+  {
+    id: 'downtown',
+    name: 'Downtown Dubai',
+    short: 'Downtown',
+    tag: 'Central · Capital Growth',
+    yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,
+    priceMin: 1200000, priceMax: 50000000, priceDefault: 2000000,
+    appreciation: 10,
+  },
+  {
+    id: 'hills',
+    name: 'Dubai Hills Estate',
+    short: 'Dubai Hills',
+    tag: 'Family Living · Green Community',
+    yieldMin: 5,  yieldMax: 6,  yieldDefault: 5.5,
+    priceMin: 1500000, priceMax: 40000000, priceDefault: 3500000,
+    appreciation: 14,
+  },
+  {
+    id: 'palm',
+    name: 'Palm Jumeirah',
+    short: 'Palm Jumeirah',
+    tag: 'Luxury · Trophy Asset',
+    yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,
+    priceMin: 1500000, priceMax: 200000000, priceDefault: 5000000,
+    appreciation: 12,
+  },
 ];
+
+// ─── SLIDER ───────────────────────────────────────────────────────────────────
+
+function Slider({ label, value, min, max, step, onChange, displayValue, sub }) {
+  const pct = ((value - min) / (max - min)) * 100;
+  return (
+    <div className="space-y-2">
+      <div className="flex items-center justify-between">
+        <span className="text-sm font-body text-gray-500">{label}</span>
+        <div className="text-right">
+          <span className="text-sm font-heading font-bold text-gray-900">{displayValue}</span>
+          {sub && <span className="text-[10px] text-gray-400 font-body ml-1">{sub}</span>}
+        </div>
+      </div>
+      <div className="relative">
+        <input
+          type="range" min={min} max={max} step={step} value={value}
+          onChange={e => onChange(Number(e.target.value))}
+          className="w-full h-1.5 rounded-full cursor-pointer accent-[#C9A84C] appearance-none bg-gray-200"
+          style={{ background: `linear-gradient(to right, #C9A84C ${pct}%, #e5e7eb ${pct}%)` }}
+        />
+      </div>
+      <div className="flex justify-between text-[10px] text-gray-400 font-body">
+        <span>{typeof min === 'number' && min >= 1000 ? 'AED ' + (min/1000000 >= 1 ? (min/1000000)+'M' : (min/1000)+'K') : min + (label.includes('Yield') ? '%' : ' yr')}</span>
+        <span>{typeof max === 'number' && max >= 1000 ? 'AED ' + (max/1000000 >= 1 ? (max/1000000)+'M' : (max/1000)+'K') : max + (label.includes('Yield') ? '%' : ' yrs')}</span>
+      </div>
+    </div>
+  );
+}
 
 // ─── ROI CALCULATOR ───────────────────────────────────────────────────────────
 
@@ -82,132 +159,131 @@ function ROICalculator() {
     return { annualRent, totalRent, futureValue, capitalGain, totalReturn, totalROI, annualisedROI };
   }, [price, yieldPct, holdYears, area.appreciation]);
 
-  const fmtAED = (n) => 'AED ' + Math.round(n).toLocaleString();
+  const fmtAED = (n) => {
+    const r = Math.round(n);
+    if (r >= 1_000_000) return 'AED ' + (r / 1_000_000).toFixed(r % 1_000_000 === 0 ? 0 : 2) + 'M';
+    if (r >= 1_000) return 'AED ' + (r / 1_000).toFixed(0) + 'K';
+    return 'AED ' + r.toLocaleString();
+  };
+  const fmtAEDFull = (n) => 'AED ' + Math.round(n).toLocaleString();
 
   return (
-    <div id="calculator" className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+    <div id="calculator" className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+
       {/* Header */}
-      <div className="bg-black px-6 py-4">
-        <p className="font-heading font-bold text-white text-base">Calculate My Returns</p>
-        <p className="text-xs text-white/50 font-body mt-0.5">Select a Dubai area — yields auto-fill from real market data</p>
+      <div className="bg-[#141E30] px-6 py-5">
+        <p className="font-heading font-bold text-white text-base tracking-tight">Investment Return Calculator</p>
+        <p className="text-xs text-white/50 font-body mt-0.5">Select an area — yields & prices auto-fill from live market data</p>
       </div>
 
-      <div className="p-6 space-y-5">
-        {/* Area Selector */}
-        <div>
-          <p className="text-xs font-heading font-semibold text-gray-500 mb-2 uppercase tracking-wide">Choose Area</p>
-          <div className="grid grid-cols-3 gap-1.5">
-            {AREAS.map(a => (
-              <button
-                key={a.id}
-                onClick={() => setAreaId(a.id)}
-                className={`px-2 py-2 rounded-lg text-[11px] font-heading font-bold transition-colors text-center leading-tight ${
-                  areaId === a.id
-                    ? 'bg-[#C9A84C] text-black'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                }`}
-              >
-                {a.name}
-              </button>
-            ))}
-          </div>
-          <p className="text-[10px] text-gray-400 font-body mt-1.5">
-            Yield range for {area.name}: <span className="text-[#C9A84C] font-semibold">{area.yieldMin}–{area.yieldMax}%</span> · Appreciation: <span className="text-[#C9A84C] font-semibold">{area.appreciation}% p.a.</span>
-          </p>
-        </div>
+      <div className="p-6 space-y-6">
 
-        {/* Price slider */}
-        <div>
-          <div className="flex justify-between mb-1.5">
-            <label className="text-xs font-body text-gray-500">Purchase Price</label>
-            <span className="text-xs font-heading font-bold text-gray-900">{fmtAED(price)}</span>
+        {/* ── Area Dropdown ── */}
+        <div className="space-y-2">
+          <label className="text-xs font-heading font-semibold text-gray-400 uppercase tracking-widest">Dubai Area</label>
+          <div className="relative">
+            <select
+              value={areaId}
+              onChange={e => setAreaId(e.target.value)}
+              className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 pr-10 text-sm font-heading font-bold text-gray-900 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/40 focus:border-[#C9A84C] transition-colors"
+            >
+              {AREAS.map(a => (
+                <option key={a.id} value={a.id}>{a.name}</option>
+              ))}
+            </select>
+            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2">
+              <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
           </div>
-          <input
-            type="range" min={area.priceMin} max={area.priceMax} step={5000}
-            value={price} onChange={e => setPrice(Number(e.target.value))}
-            className="w-full h-1.5 rounded-full cursor-pointer accent-[#C9A84C]"
-          />
-          <div className="flex justify-between text-[10px] text-gray-400 font-body mt-1">
-            <span>{fmtAED(area.priceMin)}</span><span>{fmtAED(area.priceMax)}</span>
+          {/* Area badge row */}
+          <div className="flex flex-wrap gap-2 pt-0.5">
+            <span className="inline-flex items-center gap-1 text-[11px] font-body bg-[#C9A84C]/10 text-[#C9A84C] font-semibold px-2.5 py-1 rounded-full">
+              Yield {area.yieldMin}–{area.yieldMax}%
+            </span>
+            <span className="inline-flex items-center gap-1 text-[11px] font-body bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">
+              {area.appreciation}% appreciation p.a.
+            </span>
+            <span className="inline-flex items-center gap-1 text-[11px] font-body bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full">
+              {area.tag}
+            </span>
           </div>
         </div>
 
-        {/* Yield slider */}
-        <div>
-          <div className="flex justify-between mb-1.5">
-            <label className="text-xs font-body text-gray-500">Rental Yield</label>
-            <span className="text-xs font-heading font-bold text-[#C9A84C]">{yieldPct.toFixed(1)}%</span>
-          </div>
-          <input
-            type="range" min={area.yieldMin} max={area.yieldMax} step={0.1}
-            value={yieldPct} onChange={e => setYieldPct(Number(e.target.value))}
-            className="w-full h-1.5 rounded-full cursor-pointer accent-[#C9A84C]"
-          />
-          <div className="flex justify-between text-[10px] text-gray-400 font-body mt-1">
-            <span>{area.yieldMin}%</span><span>{area.yieldMax}%</span>
-          </div>
-        </div>
+        {/* ── Divider ── */}
+        <div className="border-t border-gray-100" />
 
-        {/* Hold years slider */}
-        <div>
-          <div className="flex justify-between mb-1.5">
-            <label className="text-xs font-body text-gray-500">Holding Period</label>
-            <span className="text-xs font-heading font-bold text-gray-900">{holdYears} years</span>
-          </div>
-          <input
-            type="range" min={1} max={10} step={1}
-            value={holdYears} onChange={e => setHoldYears(Number(e.target.value))}
-            className="w-full h-1.5 rounded-full cursor-pointer accent-[#C9A84C]"
-          />
-          <div className="flex justify-between text-[10px] text-gray-400 font-body mt-1">
-            <span>1 yr</span><span>10 yrs</span>
-          </div>
-        </div>
+        {/* ── Sliders ── */}
+        <Slider
+          label="Purchase Price"
+          value={price} min={area.priceMin} max={area.priceMax} step={5000}
+          onChange={setPrice}
+          displayValue={fmtAED(price)}
+        />
 
-        {/* Results */}
-        <div className="bg-black rounded-xl p-5 space-y-3">
-          <div className="flex items-end justify-between">
+        <Slider
+          label="Rental Yield"
+          value={yieldPct} min={area.yieldMin} max={area.yieldMax} step={0.1}
+          onChange={setYieldPct}
+          displayValue={yieldPct.toFixed(1) + '%'}
+          sub="per year"
+        />
+
+        <Slider
+          label="Holding Period"
+          value={holdYears} min={1} max={10} step={1}
+          onChange={setHoldYears}
+          displayValue={holdYears + ' year' + (holdYears > 1 ? 's' : '')}
+        />
+
+        {/* ── Results panel ── */}
+        <div className="bg-[#141E30] rounded-2xl overflow-hidden">
+          {/* Big ROI number */}
+          <div className="px-5 pt-5 pb-4 flex items-end justify-between">
             <div>
-              <p className="text-xs text-white/50 font-body">Total ROI over {holdYears} yr{holdYears > 1 ? 's' : ''}</p>
-              <p className="text-4xl font-display font-black text-[#C9A84C]">{results.totalROI.toFixed(1)}%</p>
-              <p className="text-[10px] text-white/40 font-body">{results.annualisedROI.toFixed(1)}% annualised</p>
+              <p className="text-[11px] text-white/40 font-body uppercase tracking-wider mb-1">Total ROI · {holdYears} yr{holdYears > 1 ? 's' : ''}</p>
+              <p className="text-5xl font-display font-black text-[#C9A84C] leading-none">{results.totalROI.toFixed(1)}<span className="text-2xl">%</span></p>
+              <p className="text-xs text-white/40 font-body mt-1">{results.annualisedROI.toFixed(1)}% annualised</p>
             </div>
             <div className="text-right">
-              <p className="text-xs text-white/50 font-body">Total Return</p>
-              <p className="text-lg font-heading font-black text-white">{fmtAED(results.totalReturn)}</p>
+              <p className="text-[11px] text-white/40 font-body uppercase tracking-wider mb-1">Total Return</p>
+              <p className="text-xl font-heading font-black text-white leading-tight">{fmtAEDFull(results.totalReturn)}</p>
             </div>
           </div>
-          <div className="border-t border-white/10 pt-3 grid grid-cols-2 gap-2 text-xs">
-            <div>
-              <p className="text-white/40 font-body">Annual Rent</p>
-              <p className="font-heading font-bold text-white">{fmtAED(results.annualRent)}</p>
-            </div>
-            <div>
-              <p className="text-white/40 font-body">Total Rental</p>
-              <p className="font-heading font-bold text-white">{fmtAED(results.totalRent)}</p>
-            </div>
-            <div>
-              <p className="text-white/40 font-body">Capital Gain</p>
-              <p className="font-heading font-bold text-[#C9A84C]">{fmtAED(results.capitalGain)}</p>
-            </div>
-            <div>
-              <p className="text-white/40 font-body">Exit Value</p>
-              <p className="font-heading font-bold text-white">{fmtAED(results.futureValue)}</p>
-            </div>
+
+          {/* Breakdown grid */}
+          <div className="border-t border-white/10 grid grid-cols-2 divide-x divide-white/10">
+            {[
+              { label: 'Annual Rent', value: fmtAEDFull(results.annualRent), gold: false },
+              { label: 'Total Rental Income', value: fmtAEDFull(results.totalRent), gold: false },
+              { label: 'Capital Gain', value: fmtAEDFull(results.capitalGain), gold: true },
+              { label: 'Exit Value', value: fmtAEDFull(results.futureValue), gold: false },
+            ].map((item, i) => (
+              <div key={item.label} className={`px-4 py-3 ${i >= 2 ? 'border-t border-white/10' : ''}`}>
+                <p className="text-[10px] text-white/40 font-body mb-0.5">{item.label}</p>
+                <p className={`text-xs font-heading font-bold ${item.gold ? 'text-[#C9A84C]' : 'text-white'}`}>{item.value}</p>
+              </div>
+            ))}
           </div>
         </div>
 
-        <p className="text-[10px] text-gray-400 font-body">Projections illustrative only. Appreciation based on {area.name} historical averages. Past performance does not guarantee future results.</p>
+        <p className="text-[10px] text-gray-400 font-body leading-relaxed">
+          Projections are illustrative. Appreciation estimates based on {area.name} historical averages. Past performance does not guarantee future results.
+        </p>
 
         {showForm ? (
           <CampaignLeadForm source="ROI Calculator — /10-net-roi-dubai-property" ctaLabel="Get My Personalised Plan" />
         ) : (
-          <>
-            <p className="text-xs font-body text-gray-600">Want real units matching this profile with exact payment plans?</p>
-            <button onClick={() => setShowForm(true)} className="w-full h-11 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm rounded-xl transition-colors">
-              Get My Personalised Plan
+          <div className="space-y-2">
+            <p className="text-xs font-body text-gray-500">Want real units in {area.short} with exact payment plans?</p>
+            <button
+              onClick={() => setShowForm(true)}
+              className="w-full h-12 bg-[#C9A84C] hover:bg-[#b8963e] text-black font-heading font-bold text-sm rounded-xl transition-colors"
+            >
+              Get My Personalised Plan →
             </button>
-          </>
+          </div>
         )}
       </div>
     </div>
