@@ -2,7 +2,7 @@
  * Landing page: /10-net-roi-dubai-property
  * Campaign: Dubai Wealth Engine — 10% Net ROI
  */
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowDown, Shield, Percent, TrendingUp, RefreshCw } from 'lucide-react';
@@ -44,90 +44,267 @@ const PAGE_SCHEMA = {
   ],
 };
 
-// ─── AREA DATA (aligned with AreaGuides map) ──────────────────────────────────
+// ─── AREA DATA — 100 Dubai communities ────────────────────────────────────────
 
 const AREAS = [
-  {
-    id: 'jvc',
-    name: 'Jumeirah Village Circle (JVC)',
-    short: 'JVC',
-    tag: 'Best Value · High Yield',
-    yieldMin: 8,  yieldMax: 10, yieldDefault: 9,
-    priceMin: 350000,  priceMax: 5000000,  priceDefault: 900000,
-    appreciation: 7,
-  },
-  {
-    id: 'marina',
-    name: 'Dubai Marina',
-    short: 'Marina',
-    tag: 'Waterfront · Expat Demand',
-    yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,
-    priceMin: 700000,  priceMax: 20000000, priceDefault: 1500000,
-    appreciation: 8,
-  },
-  {
-    id: 'business-bay',
-    name: 'Business Bay',
-    short: 'Business Bay',
-    tag: 'Business Hub · Growth Zone',
-    yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,
-    priceMin: 600000,  priceMax: 15000000, priceDefault: 1200000,
-    appreciation: 9,
-  },
-  {
-    id: 'downtown',
-    name: 'Downtown Dubai',
-    short: 'Downtown',
-    tag: 'Central · Capital Growth',
-    yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,
-    priceMin: 1200000, priceMax: 50000000, priceDefault: 2000000,
-    appreciation: 10,
-  },
-  {
-    id: 'hills',
-    name: 'Dubai Hills Estate',
-    short: 'Dubai Hills',
-    tag: 'Family Living · Green Community',
-    yieldMin: 5,  yieldMax: 6,  yieldDefault: 5.5,
-    priceMin: 1500000, priceMax: 40000000, priceDefault: 3500000,
-    appreciation: 14,
-  },
-  {
-    id: 'palm',
-    name: 'Palm Jumeirah',
-    short: 'Palm Jumeirah',
-    tag: 'Luxury · Trophy Asset',
-    yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,
-    priceMin: 1500000, priceMax: 200000000, priceDefault: 5000000,
-    appreciation: 12,
-  },
+  // ── Iconic / Ultra-Premium ──────────────────────────────────────────────────
+  { id: 'palm-jumeirah',        name: 'Palm Jumeirah',                  tag: 'Luxury · Trophy Asset',          yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 1500000,  priceMax: 200000000, priceDefault: 5000000,  appreciation: 12 },
+  { id: 'downtown-dubai',       name: 'Downtown Dubai',                 tag: 'Central · Capital Growth',       yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 1200000,  priceMax: 50000000,  priceDefault: 2000000,  appreciation: 10 },
+  { id: 'emirates-hills',       name: 'Emirates Hills',                 tag: 'Ultra-Luxury · Villas',          yieldMin: 4,  yieldMax: 6,  yieldDefault: 5,   priceMin: 10000000, priceMax: 200000000, priceDefault: 25000000, appreciation: 13 },
+  { id: 'difc',                 name: 'DIFC',                           tag: 'Financial Hub · Corporate',      yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 900000,   priceMax: 20000000,  priceDefault: 2500000,  appreciation: 9  },
+  { id: 'city-walk',            name: 'City Walk',                      tag: 'Urban · Lifestyle',              yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 1200000,  priceMax: 15000000,  priceDefault: 2200000,  appreciation: 9  },
+  { id: 'bluewaters-island',    name: 'Bluewaters Island',              tag: 'Waterfront · Tourism',           yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 2000000,  priceMax: 30000000,  priceDefault: 4000000,  appreciation: 10 },
+  // ── Marina & JBR ───────────────────────────────────────────────────────────
+  { id: 'dubai-marina',         name: 'Dubai Marina',                   tag: 'Waterfront · Expat Demand',      yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 700000,   priceMax: 20000000,  priceDefault: 1500000,  appreciation: 8  },
+  { id: 'jbr',                  name: 'Jumeirah Beach Residence (JBR)', tag: 'Beachfront · Tourism',           yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1000000,  priceMax: 15000000,  priceDefault: 2000000,  appreciation: 9  },
+  { id: 'jlt',                  name: 'Jumeirah Lake Towers (JLT)',     tag: 'Affordable · Metro Access',      yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 500000,   priceMax: 8000000,   priceDefault: 900000,   appreciation: 7  },
+  // ── Business Bay / Downtown adjacent ───────────────────────────────────────
+  { id: 'business-bay',         name: 'Business Bay',                   tag: 'Business Hub · Growth Zone',     yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 600000,   priceMax: 15000000,  priceDefault: 1200000,  appreciation: 9  },
+  { id: 'al-habtoor-city',      name: 'Al Habtoor City',                tag: 'Mixed-Use · Branded',            yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 800000,   priceMax: 10000000,  priceDefault: 1500000,  appreciation: 8  },
+  // ── Palm & Waterfront ──────────────────────────────────────────────────────
+  { id: 'palm-jebel-ali',       name: 'Palm Jebel Ali',                 tag: 'New Launch · Mega Project',      yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 2000000,  priceMax: 50000000,  priceDefault: 6000000,  appreciation: 15 },
+  { id: 'dubai-harbour',        name: 'Dubai Harbour',                  tag: 'Marina · Superyacht',            yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1500000,  priceMax: 25000000,  priceDefault: 3000000,  appreciation: 11 },
+  { id: 'maritime-city',        name: 'Dubai Maritime City',            tag: 'Waterfront · Emerging',          yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 800000,   priceMax: 10000000,  priceDefault: 1800000,  appreciation: 12 },
+  // ── Jumeirah ───────────────────────────────────────────────────────────────
+  { id: 'jumeirah-1',           name: 'Jumeirah 1',                     tag: 'Established · Villas',           yieldMin: 4,  yieldMax: 6,  yieldDefault: 5,   priceMin: 3000000,  priceMax: 30000000,  priceDefault: 7000000,  appreciation: 8  },
+  { id: 'jumeirah-2',           name: 'Jumeirah 2',                     tag: 'Beachside · Villas',             yieldMin: 4,  yieldMax: 6,  yieldDefault: 5,   priceMin: 4000000,  priceMax: 40000000,  priceDefault: 9000000,  appreciation: 8  },
+  { id: 'jumeirah-3',           name: 'Jumeirah 3',                     tag: 'Spacious · Family',              yieldMin: 4,  yieldMax: 6,  yieldDefault: 5,   priceMin: 3500000,  priceMax: 35000000,  priceDefault: 8000000,  appreciation: 8  },
+  { id: 'la-mer',               name: 'La Mer',                         tag: 'Beach · Lifestyle',              yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 1000000,  priceMax: 12000000,  priceDefault: 2500000,  appreciation: 9  },
+  { id: 'pearl-jumeirah',       name: 'Pearl Jumeirah',                 tag: 'Exclusive · Waterfront',         yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 5000000,  priceMax: 80000000,  priceDefault: 15000000, appreciation: 11 },
+  // ── Dubai Hills & MBR City ─────────────────────────────────────────────────
+  { id: 'dubai-hills-estate',   name: 'Dubai Hills Estate',             tag: 'Family Living · Green',          yieldMin: 5,  yieldMax: 6,  yieldDefault: 5.5, priceMin: 1500000,  priceMax: 40000000,  priceDefault: 3500000,  appreciation: 14 },
+  { id: 'mbr-city',             name: 'Mohammed Bin Rashid City',       tag: 'Master Plan · Capital Growth',   yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 1000000,  priceMax: 30000000,  priceDefault: 2500000,  appreciation: 12 },
+  { id: 'district-one',         name: 'District One (MBR City)',        tag: 'Crystal Lagoon · Villas',        yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 5000000,  priceMax: 80000000,  priceDefault: 12000000, appreciation: 13 },
+  { id: 'sobha-hartland',       name: 'Sobha Hartland',                 tag: 'Green · Premium Apartments',     yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 800000,   priceMax: 15000000,  priceDefault: 1800000,  appreciation: 11 },
+  { id: 'meydan',               name: 'Meydan',                         tag: 'Racecourse · Luxury',            yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 800000,   priceMax: 20000000,  priceDefault: 2000000,  appreciation: 10 },
+  // ── Arabian Ranches & Golf Communities ─────────────────────────────────────
+  { id: 'arabian-ranches',      name: 'Arabian Ranches',                tag: 'Villas · Golf · Family',         yieldMin: 4,  yieldMax: 6,  yieldDefault: 5,   priceMin: 2500000,  priceMax: 20000000,  priceDefault: 4500000,  appreciation: 10 },
+  { id: 'arabian-ranches-2',    name: 'Arabian Ranches 2',              tag: 'Newer Villas · Community',       yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 2000000,  priceMax: 15000000,  priceDefault: 3500000,  appreciation: 11 },
+  { id: 'arabian-ranches-3',    name: 'Arabian Ranches 3',              tag: 'Latest Phase · Off-Plan',        yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 1800000,  priceMax: 12000000,  priceDefault: 3000000,  appreciation: 12 },
+  { id: 'jumeirah-golf-estates',name: 'Jumeirah Golf Estates',          tag: 'Golf · Villas',                  yieldMin: 4,  yieldMax: 6,  yieldDefault: 5,   priceMin: 3000000,  priceMax: 30000000,  priceDefault: 6000000,  appreciation: 11 },
+  { id: 'the-villa',            name: 'The Villa',                      tag: 'Spacious Villas · Value',        yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 2000000,  priceMax: 15000000,  priceDefault: 4000000,  appreciation: 9  },
+  // ── High-Yield Communities ─────────────────────────────────────────────────
+  { id: 'jvc',                  name: 'Jumeirah Village Circle (JVC)',   tag: 'Best Value · High Yield',        yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 350000,   priceMax: 5000000,   priceDefault: 900000,   appreciation: 7  },
+  { id: 'jvt',                  name: 'Jumeirah Village Triangle (JVT)', tag: 'Affordable · Quiet',             yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 400000,   priceMax: 4000000,   priceDefault: 900000,   appreciation: 7  },
+  { id: 'discovery-gardens',    name: 'Discovery Gardens',              tag: 'Budget · Metro Access',          yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 300000,   priceMax: 2000000,   priceDefault: 600000,   appreciation: 6  },
+  { id: 'international-city',   name: 'International City',             tag: 'Ultra Budget · High Yield',      yieldMin: 9,  yieldMax: 12, yieldDefault: 10,  priceMin: 200000,   priceMax: 1500000,   priceDefault: 450000,   appreciation: 5  },
+  { id: 'dso',                  name: 'Dubai Silicon Oasis (DSO)',       tag: 'Tech Hub · Affordable',          yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 350000,   priceMax: 3000000,   priceDefault: 700000,   appreciation: 7  },
+  { id: 'dubai-south',          name: 'Dubai South / Expo City',        tag: 'New District · High Upside',     yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 400000,   priceMax: 5000000,   priceDefault: 900000,   appreciation: 14 },
+  { id: 'arjan',                name: 'Arjan (Dubailand)',               tag: 'Up-and-Coming · Affordable',     yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 400000,   priceMax: 4000000,   priceDefault: 800000,   appreciation: 8  },
+  { id: 'motor-city',           name: 'Motor City',                     tag: 'Established · Quiet',            yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 500000,   priceMax: 4000000,   priceDefault: 900000,   appreciation: 7  },
+  { id: 'sport-city',           name: 'Dubai Sports City',              tag: 'Value · Sports Facilities',      yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 350000,   priceMax: 4000000,   priceDefault: 750000,   appreciation: 7  },
+  { id: 'production-city',      name: 'Dubai Production City (IMPZ)',   tag: 'Affordable · Quiet',             yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 300000,   priceMax: 3000000,   priceDefault: 650000,   appreciation: 6  },
+  { id: 'remraam',              name: 'Remraam',                        tag: 'Family · Affordable',            yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 400000,   priceMax: 2500000,   priceDefault: 800000,   appreciation: 6  },
+  { id: 'green-community',      name: 'Green Community (DIP)',          tag: 'Villas · Greenery',              yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1500000,  priceMax: 10000000,  priceDefault: 3000000,  appreciation: 7  },
+  // ── Al Barsha ──────────────────────────────────────────────────────────────
+  { id: 'al-barsha-1',          name: 'Al Barsha 1',                    tag: 'Established · Mall of Emirates', yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 600000,   priceMax: 8000000,   priceDefault: 1200000,  appreciation: 7  },
+  { id: 'al-barsha-south',      name: 'Al Barsha South',                tag: 'Affordable Villas',              yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 800000,   priceMax: 6000000,   priceDefault: 1500000,  appreciation: 7  },
+  // ── Mirdif & Rashidiya ─────────────────────────────────────────────────────
+  { id: 'mirdif',               name: 'Mirdif',                         tag: 'Family Villas · Old Dubai',      yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1000000,  priceMax: 8000000,   priceDefault: 2000000,  appreciation: 6  },
+  { id: 'al-rashidiya',         name: 'Al Rashidiya',                   tag: 'Established · Affordable',       yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 800000,   priceMax: 5000000,   priceDefault: 1500000,  appreciation: 6  },
+  // ── Creek & Festival City ──────────────────────────────────────────────────
+  { id: 'festival-city',        name: 'Dubai Festival City',            tag: 'Waterfront · Mall Access',       yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 800000,   priceMax: 10000000,  priceDefault: 1800000,  appreciation: 8  },
+  { id: 'dubai-creek-harbour',  name: 'Dubai Creek Harbour',            tag: 'Emerging Waterfront · EMAAR',    yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 800000,   priceMax: 15000000,  priceDefault: 2000000,  appreciation: 13 },
+  { id: 'al-jaddaf',            name: 'Al Jaddaf',                      tag: 'Creek Views · Healthcare City',  yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 600000,   priceMax: 5000000,   priceDefault: 1200000,  appreciation: 9  },
+  // ── Old Dubai ──────────────────────────────────────────────────────────────
+  { id: 'deira',                name: 'Deira',                          tag: 'Traditional · High Rental',      yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 300000,   priceMax: 5000000,   priceDefault: 700000,   appreciation: 6  },
+  { id: 'bur-dubai',            name: 'Bur Dubai',                      tag: 'Central · Commercial',           yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 400000,   priceMax: 5000000,   priceDefault: 900000,   appreciation: 7  },
+  { id: 'al-mankhool',          name: 'Al Mankhool (Bur Dubai)',        tag: 'Apartments · High Demand',       yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 400000,   priceMax: 4000000,   priceDefault: 800000,   appreciation: 6  },
+  { id: 'karama',               name: 'Al Karama',                      tag: 'Budget · Metro',                 yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 350000,   priceMax: 3000000,   priceDefault: 700000,   appreciation: 6  },
+  { id: 'al-quoz',              name: 'Al Quoz',                        tag: 'Mixed Use · Value',              yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 400000,   priceMax: 5000000,   priceDefault: 900000,   appreciation: 7  },
+  // ── Oud Metha / Healthcare ─────────────────────────────────────────────────
+  { id: 'oud-metha',            name: 'Oud Metha',                      tag: 'Healthcare City · Central',      yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 500000,   priceMax: 5000000,   priceDefault: 1000000,  appreciation: 7  },
+  { id: 'umm-hurair',           name: 'Umm Hurair',                     tag: 'Affordable · Central',           yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 400000,   priceMax: 4000000,   priceDefault: 800000,   appreciation: 6  },
+  // ── Dubailand Mega Communities ─────────────────────────────────────────────
+  { id: 'townsquare',           name: 'Town Square Dubai',              tag: 'Affordable · Master-Planned',    yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 500000,   priceMax: 5000000,   priceDefault: 1000000,  appreciation: 8  },
+  { id: 'dubailand',            name: 'Dubailand',                      tag: 'Large Community · Value',        yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 400000,   priceMax: 6000000,   priceDefault: 900000,   appreciation: 8  },
+  { id: 'living-legends',       name: 'Living Legends',                 tag: 'Villas · Golf Views',            yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1200000,  priceMax: 8000000,   priceDefault: 2200000,  appreciation: 7  },
+  { id: 'global-village-area',  name: 'Global Village Area',            tag: 'Tourism · Retail',               yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 500000,   priceMax: 5000000,   priceDefault: 1000000,  appreciation: 8  },
+  // ── Springs, Meadows, Lakes ────────────────────────────────────────────────
+  { id: 'the-springs',          name: 'The Springs',                    tag: 'Villas · Lakes · Family',        yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 1500000,  priceMax: 8000000,   priceDefault: 2800000,  appreciation: 8  },
+  { id: 'the-meadows',          name: 'The Meadows',                    tag: 'Villa Community · Premium',      yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 2500000,  priceMax: 15000000,  priceDefault: 5000000,  appreciation: 9  },
+  { id: 'the-lakes',            name: 'The Lakes',                      tag: 'Waterfront Villas · EMAAR',      yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 3000000,  priceMax: 20000000,  priceDefault: 6000000,  appreciation: 9  },
+  { id: 'the-views',            name: 'The Views',                      tag: 'Golf Views · Apartments',        yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 800000,   priceMax: 8000000,   priceDefault: 1800000,  appreciation: 8  },
+  { id: 'the-greens',           name: 'The Greens',                     tag: 'Metro · Green · Mid-Market',     yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 600000,   priceMax: 5000000,   priceDefault: 1100000,  appreciation: 7  },
+  // ── DAMAC Hills & Akoya ────────────────────────────────────────────────────
+  { id: 'damac-hills',          name: 'DAMAC Hills',                    tag: 'Golf · Community · DAMAC',       yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 800000,   priceMax: 15000000,  priceDefault: 2500000,  appreciation: 9  },
+  { id: 'damac-hills-2',        name: 'DAMAC Hills 2 (Akoya)',          tag: 'Affordable · Golf Community',    yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 500000,   priceMax: 6000000,   priceDefault: 1100000,  appreciation: 10 },
+  { id: 'damac-lagoons',        name: 'DAMAC Lagoons',                  tag: 'Crystal Lagoons · New',          yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1200000,  priceMax: 10000000,  priceDefault: 2500000,  appreciation: 12 },
+  // ── Silicon Oasis Surrounds ────────────────────────────────────────────────
+  { id: 'nad-al-sheba',         name: 'Nad Al Sheba',                   tag: 'Villas · Emerging',              yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 2000000,  priceMax: 20000000,  priceDefault: 4500000,  appreciation: 11 },
+  { id: 'al-warsan',            name: 'Al Warsan',                      tag: 'Budget · Near DSO',              yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 250000,   priceMax: 2000000,   priceDefault: 500000,   appreciation: 5  },
+  // ── Jumeirah Beach Park Surrounds ──────────────────────────────────────────
+  { id: 'umm-suqeim',           name: 'Umm Suqeim',                     tag: 'Beach · Villas · Lifestyle',     yieldMin: 4,  yieldMax: 6,  yieldDefault: 5,   priceMin: 4000000,  priceMax: 40000000,  priceDefault: 10000000, appreciation: 9  },
+  { id: 'al-wasl',              name: 'Al Wasl',                        tag: 'Villas · Central Jumeirah',      yieldMin: 4,  yieldMax: 6,  yieldDefault: 5,   priceMin: 5000000,  priceMax: 50000000,  priceDefault: 12000000, appreciation: 9  },
+  // ── Port Rashid / Dubai Island ─────────────────────────────────────────────
+  { id: 'dubai-islands',        name: 'Dubai Islands',                  tag: 'Mega Waterfront · Future',       yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1500000,  priceMax: 30000000,  priceDefault: 4000000,  appreciation: 15 },
+  // ── Tilal Al Ghaf & New Communities ───────────────────────────────────────
+  { id: 'tilal-al-ghaf',        name: 'Tilal Al Ghaf',                  tag: 'Lagoon · New Community',         yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 2000000,  priceMax: 25000000,  priceDefault: 5000000,  appreciation: 13 },
+  { id: 'mudon',                name: 'Mudon',                          tag: 'Family Villas · DAMAC',          yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1500000,  priceMax: 10000000,  priceDefault: 3000000,  appreciation: 9  },
+  { id: 'villanova',            name: 'Villanova',                      tag: 'Townhouses · Dubai Properties',  yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1000000,  priceMax: 8000000,   priceDefault: 2200000,  appreciation: 9  },
+  { id: 'serena',               name: 'Serena (Dubailand)',              tag: 'Townhouses · Value',             yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 900000,   priceMax: 6000000,   priceDefault: 1800000,  appreciation: 8  },
+  { id: 'reem',                 name: 'Reem Community',                  tag: 'EMAAR · Affordable Villas',      yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1200000,  priceMax: 8000000,   priceDefault: 2500000,  appreciation: 8  },
+  // ── Canal & Waterway ───────────────────────────────────────────────────────
+  { id: 'al-furjan',            name: 'Al Furjan',                      tag: 'Metro · Affordable · Growing',   yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 600000,   priceMax: 6000000,   priceDefault: 1200000,  appreciation: 8  },
+  { id: 'dubai-gate',           name: 'Dubai Gate (JLT)',               tag: 'High Yield · Metro',             yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 400000,   priceMax: 4000000,   priceDefault: 800000,   appreciation: 7  },
+  // ── Silicon & Academic City ────────────────────────────────────────────────
+  { id: 'academic-city',        name: 'Dubai Academic City',            tag: 'Education Hub · Niche',          yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 300000,   priceMax: 3000000,   priceDefault: 650000,   appreciation: 6  },
+  { id: 'al-khail-heights',     name: 'Al Khail Heights',               tag: 'Affordable · Growth',            yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 350000,   priceMax: 3500000,   priceDefault: 750000,   appreciation: 7  },
+  // ── Ras Al Khor & Nad Al Hamar ────────────────────────────────────────────
+  { id: 'ras-al-khor',          name: 'Ras Al Khor Industrial',         tag: 'Industrial · Warehouse',         yieldMin: 7,  yieldMax: 10, yieldDefault: 8,   priceMin: 500000,   priceMax: 5000000,   priceDefault: 1200000,  appreciation: 6  },
+  { id: 'nad-al-hamar',         name: 'Nad Al Hamar',                   tag: 'Villas · Emerging',              yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1500000,  priceMax: 12000000,  priceDefault: 3000000,  appreciation: 8  },
+  // ── Sustainable City & Eco ─────────────────────────────────────────────────
+  { id: 'sustainable-city',     name: 'The Sustainable City',           tag: 'Eco · Zero Energy · Unique',     yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 1000000,  priceMax: 7000000,   priceDefault: 2000000,  appreciation: 8  },
+  // ── Expo City & South ──────────────────────────────────────────────────────
+  { id: 'expo-valley',          name: 'Expo Valley',                    tag: 'Nature · Emaar · New',           yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 2500000,  priceMax: 15000000,  priceDefault: 4500000,  appreciation: 13 },
+  { id: 'emaar-south',          name: 'Emaar South',                    tag: 'Airport Proximity · Golf',       yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 600000,   priceMax: 6000000,   priceDefault: 1200000,  appreciation: 11 },
+  // ── Deira Islands ──────────────────────────────────────────────────────────
+  { id: 'deira-islands',        name: 'Deira Islands',                  tag: 'Waterfront · Budget Entry',      yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 500000,   priceMax: 6000000,   priceDefault: 1100000,  appreciation: 10 },
+  // ── Yas & Saadiyat (Abu Dhabi border) ─────────────────────────────────────
+  { id: 'dubai-investment-park',name: 'Dubai Investment Park (DIP)',     tag: 'Industrial · Affordable',        yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 400000,   priceMax: 4000000,   priceDefault: 900000,   appreciation: 7  },
+  // ── Jumeirah Park & Heights ────────────────────────────────────────────────
+  { id: 'jumeirah-park',        name: 'Jumeirah Park',                  tag: 'Nakheel Villas · Family',        yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 3000000,  priceMax: 15000000,  priceDefault: 5500000,  appreciation: 9  },
+  { id: 'jumeirah-heights',     name: 'Jumeirah Heights',               tag: 'Canal · Mid-Luxury',             yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1200000,  priceMax: 10000000,  priceDefault: 2500000,  appreciation: 8  },
+  { id: 'jumeirah-islands',     name: 'Jumeirah Islands',               tag: 'Island Villas · Nakheel',        yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 4000000,  priceMax: 25000000,  priceDefault: 8000000,  appreciation: 10 },
+  // ── Culture Village & Al Jadaf ─────────────────────────────────────────────
+  { id: 'culture-village',      name: 'Culture Village (Al Jadaf)',     tag: 'Waterfront · Arts',              yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 600000,   priceMax: 6000000,   priceDefault: 1300000,  appreciation: 9  },
+  // ── Jebel Ali ──────────────────────────────────────────────────────────────
+  { id: 'jebel-ali',            name: 'Jebel Ali Village',              tag: 'Villas · Quiet · South Dubai',   yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1500000,  priceMax: 10000000,  priceDefault: 3000000,  appreciation: 8  },
+  // ── Park Heights & Collective ──────────────────────────────────────────────
+  { id: 'park-heights',         name: 'Park Heights (Dubai Hills)',      tag: 'EMAAR · Apartments · Views',     yieldMin: 5,  yieldMax: 7,  yieldDefault: 6,   priceMin: 800000,   priceMax: 10000000,  priceDefault: 1800000,  appreciation: 13 },
+  { id: 'collective',           name: 'Collective (Dubai Hills)',        tag: 'Co-living · Young Professionals',yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 500000,   priceMax: 4000000,   priceDefault: 900000,   appreciation: 12 },
+  // ── Wadi Al Safa / Falcon City ─────────────────────────────────────────────
+  { id: 'falcon-city',          name: 'Falcon City of Wonders',         tag: 'Thematic · Budget Villas',       yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1000000,  priceMax: 7000000,   priceDefault: 2000000,  appreciation: 7  },
+  // ── Sobha One ──────────────────────────────────────────────────────────────
+  { id: 'sobha-one',            name: 'Sobha One (Ras Al Khor)',        tag: 'Creek Views · Premium',          yieldMin: 6,  yieldMax: 8,  yieldDefault: 7,   priceMin: 1000000,  priceMax: 12000000,  priceDefault: 2500000,  appreciation: 11 },
+  // ── Binghatti & Ellington Pockets ─────────────────────────────────────────
+  { id: 'science-park',         name: 'Dubai Science Park',             tag: 'Tech · Niche · Growing',         yieldMin: 8,  yieldMax: 10, yieldDefault: 9,   priceMin: 400000,   priceMax: 4000000,   priceDefault: 850000,   appreciation: 8  },
+  { id: 'trade-centre',         name: 'World Trade Centre Residences',  tag: 'Central · Corporate',            yieldMin: 7,  yieldMax: 9,  yieldDefault: 8,   priceMin: 700000,   priceMax: 8000000,   priceDefault: 1500000,  appreciation: 8  },
+  { id: 'satwa',                name: 'Al Satwa',                       tag: 'Budget · Central · Redevelopment',yieldMin: 8, yieldMax: 10, yieldDefault: 9,   priceMin: 400000,   priceMax: 4000000,   priceDefault: 850000,   appreciation: 9  },
+  { id: 'al-safa',              name: 'Al Safa',                        tag: 'Central Park · Villas',          yieldMin: 4,  yieldMax: 6,  yieldDefault: 5,   priceMin: 5000000,  priceMax: 40000000,  priceDefault: 12000000, appreciation: 9  },
 ];
+
+// ─── HELPERS ──────────────────────────────────────────────────────────────────
+
+function shortAED(n) {
+  if (n >= 1_000_000) return 'AED ' + (n / 1_000_000).toFixed(n % 1_000_000 === 0 ? 0 : 1) + 'M';
+  if (n >= 1_000)     return 'AED ' + (n / 1_000).toFixed(0) + 'K';
+  return 'AED ' + n;
+}
 
 // ─── SLIDER ───────────────────────────────────────────────────────────────────
 
-function Slider({ label, value, min, max, step, onChange, displayValue, sub }) {
-  const pct = ((value - min) / (max - min)) * 100;
+function Slider({ label, value, min, max, step, onChange, displayValue, minLabel, maxLabel }) {
+  const pct = Math.min(100, Math.max(0, ((value - min) / (max - min)) * 100));
   return (
     <div className="space-y-2">
       <div className="flex items-center justify-between">
-        <span className="text-sm font-body text-gray-500">{label}</span>
-        <div className="text-right">
-          <span className="text-sm font-heading font-bold text-gray-900">{displayValue}</span>
-          {sub && <span className="text-[10px] text-gray-400 font-body ml-1">{sub}</span>}
-        </div>
+        <span className="text-xs font-heading font-semibold text-gray-400 uppercase tracking-wider">{label}</span>
+        <span className="text-sm font-heading font-bold text-gray-900">{displayValue}</span>
       </div>
-      <div className="relative">
-        <input
-          type="range" min={min} max={max} step={step} value={value}
-          onChange={e => onChange(Number(e.target.value))}
-          className="w-full h-1.5 rounded-full cursor-pointer accent-[#C9A84C] appearance-none bg-gray-200"
-          style={{ background: `linear-gradient(to right, #C9A84C ${pct}%, #e5e7eb ${pct}%)` }}
-        />
-      </div>
+      <input
+        type="range" min={min} max={max} step={step} value={value}
+        onChange={e => onChange(Number(e.target.value))}
+        className="w-full h-1.5 rounded-full cursor-pointer appearance-none"
+        style={{ background: `linear-gradient(to right, #C9A84C ${pct}%, #e5e7eb ${pct}%)`, accentColor: '#C9A84C' }}
+      />
       <div className="flex justify-between text-[10px] text-gray-400 font-body">
-        <span>{typeof min === 'number' && min >= 1000 ? 'AED ' + (min/1000000 >= 1 ? (min/1000000)+'M' : (min/1000)+'K') : min + (label.includes('Yield') ? '%' : ' yr')}</span>
-        <span>{typeof max === 'number' && max >= 1000 ? 'AED ' + (max/1000000 >= 1 ? (max/1000000)+'M' : (max/1000)+'K') : max + (label.includes('Yield') ? '%' : ' yrs')}</span>
+        <span>{minLabel}</span><span>{maxLabel}</span>
       </div>
+    </div>
+  );
+}
+
+// ─── SEARCHABLE AREA COMBOBOX ─────────────────────────────────────────────────
+
+function AreaCombobox({ value, onChange }) {
+  const [open, setOpen]     = useState(false);
+  const [query, setQuery]   = useState('');
+  const ref                 = useRef(null);
+  const inputRef            = useRef(null);
+  const selected            = AREAS.find(a => a.id === value);
+
+  // Close on outside click
+  useEffect(() => {
+    function handler(e) { if (ref.current && !ref.current.contains(e.target)) setOpen(false); }
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, []);
+
+  const filtered = query.trim()
+    ? AREAS.filter(a => a.name.toLowerCase().includes(query.toLowerCase()) || a.tag.toLowerCase().includes(query.toLowerCase()))
+    : AREAS;
+
+  function select(id) {
+    onChange(id);
+    setQuery('');
+    setOpen(false);
+  }
+
+  return (
+    <div ref={ref} className="relative">
+      {/* Trigger / Search input */}
+      <div
+        className={`flex items-center gap-2 bg-gray-50 border rounded-xl px-4 py-3 cursor-text transition-all ${open ? 'border-[#C9A84C] ring-2 ring-[#C9A84C]/20' : 'border-gray-200 hover:border-gray-300'}`}
+        onClick={() => { setOpen(true); setTimeout(() => inputRef.current?.focus(), 0); }}
+      >
+        <svg className="w-4 h-4 text-gray-400 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        {open ? (
+          <input
+            ref={inputRef}
+            value={query}
+            onChange={e => setQuery(e.target.value)}
+            placeholder="Search Dubai areas…"
+            className="flex-1 bg-transparent text-sm font-body text-gray-900 placeholder:text-gray-400 outline-none"
+          />
+        ) : (
+          <span className="flex-1 text-sm font-heading font-bold text-gray-900 truncate">{selected?.name || 'Select area…'}</span>
+        )}
+        <svg className={`w-4 h-4 text-gray-400 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7"/>
+        </svg>
+      </div>
+
+      {/* Dropdown list */}
+      {open && (
+        <div className="absolute z-50 mt-1.5 w-full bg-white border border-gray-200 rounded-xl shadow-2xl overflow-hidden">
+          {/* Count */}
+          <div className="px-3 py-2 border-b border-gray-100 bg-gray-50">
+            <span className="text-[10px] font-body text-gray-400">{filtered.length} area{filtered.length !== 1 ? 's' : ''}</span>
+          </div>
+
+          <ul className="max-h-60 overflow-y-auto">
+            {filtered.length === 0 ? (
+              <li className="px-4 py-3 text-sm text-gray-400 font-body">No areas found</li>
+            ) : filtered.map(a => (
+              <li
+                key={a.id}
+                onClick={() => select(a.id)}
+                className={`group flex items-center justify-between px-4 py-2.5 cursor-pointer transition-colors
+                  ${a.id === value
+                    ? 'bg-[#C9A84C] text-black'
+                    : 'hover:bg-[#C9A84C]/10 hover:text-[#8a6f2e]'
+                  }`}
+              >
+                <div className="min-w-0">
+                  <p className={`text-sm font-heading font-semibold truncate ${a.id === value ? 'text-black' : 'text-gray-900 group-hover:text-[#7a6020]'}`}>
+                    {a.name}
+                  </p>
+                  <p className={`text-[10px] font-body truncate ${a.id === value ? 'text-black/60' : 'text-gray-400 group-hover:text-[#9a7e35]'}`}>
+                    {a.tag}
+                  </p>
+                </div>
+                <span className={`ml-3 shrink-0 text-xs font-heading font-bold px-2 py-0.5 rounded-full
+                  ${a.id === value ? 'bg-black/20 text-black' : 'bg-[#C9A84C]/15 text-[#C9A84C] group-hover:bg-[#C9A84C]/30'}`}>
+                  {a.yieldMin}–{a.yieldMax}%
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }
@@ -135,37 +312,32 @@ function Slider({ label, value, min, max, step, onChange, displayValue, sub }) {
 // ─── ROI CALCULATOR ───────────────────────────────────────────────────────────
 
 function ROICalculator() {
-  const [areaId, setAreaId] = useState('jvc');
-  const area = AREAS.find(a => a.id === areaId);
-
-  const [price, setPrice] = useState(area.priceDefault);
-  const [yieldPct, setYieldPct] = useState(area.yieldDefault);
+  const [areaId, setAreaId]     = useState('jvc');
+  const [price, setPrice]       = useState(900000);
+  const [yieldPct, setYieldPct] = useState(9);
   const [holdYears, setHoldYears] = useState(5);
   const [showForm, setShowForm] = useState(false);
 
+  const area = AREAS.find(a => a.id === areaId);
+
+  // Auto-reset sliders when area changes
   useEffect(() => {
     setPrice(area.priceDefault);
     setYieldPct(area.yieldDefault);
-  }, [areaId, area.priceDefault, area.yieldDefault]);
+  }, [areaId]);
 
   const results = useMemo(() => {
-    const annualRent = price * (yieldPct / 100);
-    const totalRent = annualRent * holdYears;
-    const futureValue = price * Math.pow(1 + area.appreciation / 100, holdYears);
-    const capitalGain = futureValue - price;
-    const totalReturn = totalRent + capitalGain;
-    const totalROI = (totalReturn / price) * 100;
-    const annualisedROI = (Math.pow(1 + totalROI / 100, 1 / holdYears) - 1) * 100;
+    const annualRent     = price * (yieldPct / 100);
+    const totalRent      = annualRent * holdYears;
+    const futureValue    = price * Math.pow(1 + area.appreciation / 100, holdYears);
+    const capitalGain    = futureValue - price;
+    const totalReturn    = totalRent + capitalGain;
+    const totalROI       = (totalReturn / price) * 100;
+    const annualisedROI  = (Math.pow(1 + totalROI / 100, 1 / holdYears) - 1) * 100;
     return { annualRent, totalRent, futureValue, capitalGain, totalReturn, totalROI, annualisedROI };
   }, [price, yieldPct, holdYears, area.appreciation]);
 
-  const fmtAED = (n) => {
-    const r = Math.round(n);
-    if (r >= 1_000_000) return 'AED ' + (r / 1_000_000).toFixed(r % 1_000_000 === 0 ? 0 : 2) + 'M';
-    if (r >= 1_000) return 'AED ' + (r / 1_000).toFixed(0) + 'K';
-    return 'AED ' + r.toLocaleString();
-  };
-  const fmtAEDFull = (n) => 'AED ' + Math.round(n).toLocaleString();
+  const full = (n) => 'AED ' + Math.round(n).toLocaleString();
 
   return (
     <div id="calculator" className="bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
@@ -173,45 +345,31 @@ function ROICalculator() {
       {/* Header */}
       <div className="bg-[#141E30] px-6 py-5">
         <p className="font-heading font-bold text-white text-base tracking-tight">Investment Return Calculator</p>
-        <p className="text-xs text-white/50 font-body mt-0.5">Select an area — yields & prices auto-fill from live market data</p>
+        <p className="text-xs text-white/50 font-body mt-0.5">
+          Select any of Dubai's {AREAS.length}+ communities — yields auto-fill from market data
+        </p>
       </div>
 
-      <div className="p-6 space-y-6">
+      <div className="p-6 space-y-5">
 
-        {/* ── Area Dropdown ── */}
+        {/* ── Searchable Area Combobox ── */}
         <div className="space-y-2">
-          <label className="text-xs font-heading font-semibold text-gray-400 uppercase tracking-widest">Dubai Area</label>
-          <div className="relative">
-            <select
-              value={areaId}
-              onChange={e => setAreaId(e.target.value)}
-              className="w-full appearance-none bg-gray-50 border border-gray-200 rounded-xl px-4 py-3 pr-10 text-sm font-heading font-bold text-gray-900 cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#C9A84C]/40 focus:border-[#C9A84C] transition-colors"
-            >
-              {AREAS.map(a => (
-                <option key={a.id} value={a.id}>{a.name}</option>
-              ))}
-            </select>
-            <div className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2">
-              <svg className="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-              </svg>
-            </div>
-          </div>
-          {/* Area badge row */}
-          <div className="flex flex-wrap gap-2 pt-0.5">
-            <span className="inline-flex items-center gap-1 text-[11px] font-body bg-[#C9A84C]/10 text-[#C9A84C] font-semibold px-2.5 py-1 rounded-full">
+          <label className="text-xs font-heading font-semibold text-gray-400 uppercase tracking-widest">Dubai Area / Community</label>
+          <AreaCombobox value={areaId} onChange={setAreaId} />
+          {/* Area tag badges */}
+          <div className="flex flex-wrap gap-1.5 pt-0.5">
+            <span className="text-[11px] font-semibold bg-[#C9A84C]/10 text-[#C9A84C] px-2.5 py-1 rounded-full font-body">
               Yield {area.yieldMin}–{area.yieldMax}%
             </span>
-            <span className="inline-flex items-center gap-1 text-[11px] font-body bg-gray-100 text-gray-600 px-2.5 py-1 rounded-full">
+            <span className="text-[11px] bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full font-body">
               {area.appreciation}% appreciation p.a.
             </span>
-            <span className="inline-flex items-center gap-1 text-[11px] font-body bg-gray-100 text-gray-500 px-2.5 py-1 rounded-full">
+            <span className="text-[11px] bg-gray-100 text-gray-400 px-2.5 py-1 rounded-full font-body">
               {area.tag}
             </span>
           </div>
         </div>
 
-        {/* ── Divider ── */}
         <div className="border-t border-gray-100" />
 
         {/* ── Sliders ── */}
@@ -219,7 +377,9 @@ function ROICalculator() {
           label="Purchase Price"
           value={price} min={area.priceMin} max={area.priceMax} step={5000}
           onChange={setPrice}
-          displayValue={fmtAED(price)}
+          displayValue={shortAED(price)}
+          minLabel={shortAED(area.priceMin)}
+          maxLabel={shortAED(area.priceMax)}
         />
 
         <Slider
@@ -227,38 +387,44 @@ function ROICalculator() {
           value={yieldPct} min={area.yieldMin} max={area.yieldMax} step={0.1}
           onChange={setYieldPct}
           displayValue={yieldPct.toFixed(1) + '%'}
-          sub="per year"
+          minLabel={area.yieldMin + '%'}
+          maxLabel={area.yieldMax + '%'}
         />
 
         <Slider
           label="Holding Period"
           value={holdYears} min={1} max={10} step={1}
           onChange={setHoldYears}
-          displayValue={holdYears + ' year' + (holdYears > 1 ? 's' : '')}
+          displayValue={holdYears + ' yr' + (holdYears > 1 ? 's' : '')}
+          minLabel="1 yr"
+          maxLabel="10 yrs"
         />
 
-        {/* ── Results panel ── */}
+        {/* ── Results ── */}
         <div className="bg-[#141E30] rounded-2xl overflow-hidden">
-          {/* Big ROI number */}
           <div className="px-5 pt-5 pb-4 flex items-end justify-between">
             <div>
-              <p className="text-[11px] text-white/40 font-body uppercase tracking-wider mb-1">Total ROI · {holdYears} yr{holdYears > 1 ? 's' : ''}</p>
-              <p className="text-5xl font-display font-black text-[#C9A84C] leading-none">{results.totalROI.toFixed(1)}<span className="text-2xl">%</span></p>
-              <p className="text-xs text-white/40 font-body mt-1">{results.annualisedROI.toFixed(1)}% annualised</p>
+              <p className="text-[10px] text-white/40 font-body uppercase tracking-wider mb-1">
+                Total ROI · {holdYears} yr{holdYears > 1 ? 's' : ''}
+              </p>
+              <p className="text-5xl font-display font-black text-[#C9A84C] leading-none">
+                {results.totalROI.toFixed(1)}<span className="text-2xl">%</span>
+              </p>
+              <p className="text-[11px] text-white/40 font-body mt-1">
+                {results.annualisedROI.toFixed(1)}% annualised
+              </p>
             </div>
             <div className="text-right">
-              <p className="text-[11px] text-white/40 font-body uppercase tracking-wider mb-1">Total Return</p>
-              <p className="text-xl font-heading font-black text-white leading-tight">{fmtAEDFull(results.totalReturn)}</p>
+              <p className="text-[10px] text-white/40 font-body uppercase tracking-wider mb-1">Total Return</p>
+              <p className="text-lg font-heading font-black text-white">{full(results.totalReturn)}</p>
             </div>
           </div>
-
-          {/* Breakdown grid */}
           <div className="border-t border-white/10 grid grid-cols-2 divide-x divide-white/10">
             {[
-              { label: 'Annual Rent', value: fmtAEDFull(results.annualRent), gold: false },
-              { label: 'Total Rental Income', value: fmtAEDFull(results.totalRent), gold: false },
-              { label: 'Capital Gain', value: fmtAEDFull(results.capitalGain), gold: true },
-              { label: 'Exit Value', value: fmtAEDFull(results.futureValue), gold: false },
+              { label: 'Annual Rent',   value: full(results.annualRent),   gold: false },
+              { label: 'Total Rental',  value: full(results.totalRent),    gold: false },
+              { label: 'Capital Gain',  value: full(results.capitalGain),  gold: true  },
+              { label: 'Exit Value',    value: full(results.futureValue),   gold: false },
             ].map((item, i) => (
               <div key={item.label} className={`px-4 py-3 ${i >= 2 ? 'border-t border-white/10' : ''}`}>
                 <p className="text-[10px] text-white/40 font-body mb-0.5">{item.label}</p>
@@ -269,14 +435,16 @@ function ROICalculator() {
         </div>
 
         <p className="text-[10px] text-gray-400 font-body leading-relaxed">
-          Projections are illustrative. Appreciation estimates based on {area.name} historical averages. Past performance does not guarantee future results.
+          Illustrative projections only. Appreciation based on {area.name} historical averages. Past performance is not a guarantee of future results.
         </p>
 
         {showForm ? (
           <CampaignLeadForm source="ROI Calculator — /10-net-roi-dubai-property" ctaLabel="Get My Personalised Plan" />
         ) : (
           <div className="space-y-2">
-            <p className="text-xs font-body text-gray-500">Want real units in {area.short} with exact payment plans?</p>
+            <p className="text-xs font-body text-gray-500">
+              Want real units in {area.name} with exact payment plans?
+            </p>
             <button
               onClick={() => setShowForm(true)}
               className="w-full h-12 bg-[#C9A84C] hover:bg-[#b8963e] text-black font-heading font-bold text-sm rounded-xl transition-colors"
