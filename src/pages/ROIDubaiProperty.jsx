@@ -123,7 +123,7 @@ function ROICalculator() {
             <span className="text-xs font-heading font-bold text-gray-900">{fmtAED(price)}</span>
           </div>
           <input
-            type="range" min={area.priceMin} max={area.priceMax} step={50000}
+            type="range" min={area.priceMin} max={area.priceMax} step={5000}
             value={price} onChange={e => setPrice(Number(e.target.value))}
             className="w-full h-1.5 rounded-full cursor-pointer accent-[#C9A84C]"
           />
@@ -139,7 +139,7 @@ function ROICalculator() {
             <span className="text-xs font-heading font-bold text-[#C9A84C]">{yieldPct.toFixed(1)}%</span>
           </div>
           <input
-            type="range" min={area.yieldMin} max={area.yieldMax} step={0.5}
+            type="range" min={area.yieldMin} max={area.yieldMax} step={0.1}
             value={yieldPct} onChange={e => setYieldPct(Number(e.target.value))}
             className="w-full h-1.5 rounded-full cursor-pointer accent-[#C9A84C]"
           />
@@ -327,6 +327,21 @@ export default function ROIDubaiProperty() {
           </div>
         </div>
       </section>
+
+      {/* ── CITY IMAGE BREAK ── */}
+      <div className="relative h-56 sm:h-72 overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=1400&q=80&auto=format&fit=crop"
+          alt="Dubai skyline at night"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+          <div className="text-center px-4">
+            <p className="text-white/70 font-body text-sm uppercase tracking-[0.2em] mb-2">Dubai</p>
+            <p className="text-white font-display font-black text-2xl sm:text-4xl">The world's most investor-friendly city</p>
+          </div>
+        </div>
+      </div>
 
       {/* ── COMPARISON ── */}
       <section className="py-20 bg-white">

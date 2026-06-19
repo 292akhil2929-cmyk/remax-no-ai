@@ -116,17 +116,31 @@ export default function AboutUs() {
     <div className="min-h-screen">
       {/* Hero */}
       <section className="py-16 bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Our Profile</p>
-          <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4 max-w-2xl">
-            Dubai Real Estate Advisory, Built on Data &amp; Trust
-          </h1>
-          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
-            REMAX ZAM takes a consultative, data-backed approach to real estate — acting as true advisors to investors and sellers, while building a clear growth pathway for our agents.
-          </p>
-          <Button size="lg" className="bg-black hover:bg-gray-900 text-white font-heading font-bold border-0" asChild>
-            <Link to="/contact">Talk to Our Team <ArrowRight className="w-4 h-4 ml-1" /></Link>
-          </Button>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Our Profile</p>
+            <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4 max-w-2xl">
+              Dubai Real Estate Advisory, Built on Data &amp; Trust
+            </h1>
+            <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
+              REMAX ZAM takes a consultative, data-backed approach to real estate — acting as true advisors to investors and sellers, while building a clear growth pathway for our agents.
+            </p>
+            <Button size="lg" className="bg-black hover:bg-gray-900 text-white font-heading font-bold border-0" asChild>
+              <Link to="/contact">Talk to Our Team <ArrowRight className="w-4 h-4 ml-1" /></Link>
+            </Button>
+          </div>
+          <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl hidden lg:block">
+            <img
+              src="https://images.unsplash.com/photo-1546412414-e1885259563a?w=900&q=80&auto=format&fit=crop"
+              alt="Burj Al Arab Dubai — RE/MAX ZAM"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+            <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm rounded-xl px-4 py-2">
+              <p className="text-white text-xs font-heading font-bold">Dubai, UAE</p>
+              <p className="text-[#C9A84C] text-[10px] font-body">Trusted advisors since 2010</p>
+            </div>
+          </div>
         </div>
       </section>
 

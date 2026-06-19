@@ -112,19 +112,32 @@ export default function WhyREMAXZAM() {
     <div className="min-h-screen bg-white">
       {/* Hero */}
       <section className="py-16 bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Trust &amp; Credentials</p>
-          <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Why Investors Choose RE/MAX ZAM Dubai</h1>
-          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
-            <span className="text-[#C9A84C] font-bold">15 years</span>. <span className="text-[#C9A84C] font-bold">AED 2 billion</span> in transactions. <span className="text-[#C9A84C] font-bold">1,200+</span> investors across <span className="text-[#C9A84C] font-bold">40</span> countries. Here is exactly why international investors trust us with their most significant financial decisions.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4">
-            <Button size="lg" className="bg-black hover:bg-gray-900 text-white font-heading font-bold border-0" asChild>
-              <Link to="/contact">Book Free Consultation <ArrowRight className="w-4 h-4 ml-1" /></Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-[#C9A84C] text-[#C9A84C] hover:bg-gray-50 font-heading" asChild>
-              <Link to="/properties">Browse Properties</Link>
-            </Button>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Trust &amp; Credentials</p>
+            <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Why Investors Choose RE/MAX ZAM Dubai</h1>
+            <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
+              <span className="text-[#C9A84C] font-bold">15 years</span>. <span className="text-[#C9A84C] font-bold">AED 2 billion</span> in transactions. <span className="text-[#C9A84C] font-bold">1,200+</span> investors across <span className="text-[#C9A84C] font-bold">40</span> countries. Here is exactly why international investors trust us with their most significant financial decisions.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <Button size="lg" className="bg-black hover:bg-gray-900 text-white font-heading font-bold border-0" asChild>
+                <Link to="/contact">Book Free Consultation <ArrowRight className="w-4 h-4 ml-1" /></Link>
+              </Button>
+              <Button size="lg" variant="outline" className="border-[#C9A84C] text-[#C9A84C] hover:bg-gray-50 font-heading" asChild>
+                <Link to="/properties">Browse Properties</Link>
+              </Button>
+            </div>
+          </div>
+          <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl hidden lg:block">
+            <img
+              src="https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=900&q=80&auto=format&fit=crop"
+              alt="Dubai Marina — RE/MAX ZAM"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute bottom-4 left-4 bg-black/70 backdrop-blur-sm rounded-xl px-4 py-2">
+              <p className="text-white text-xs font-heading font-bold">Dubai Marina</p>
+              <p className="text-[#C9A84C] text-[10px] font-body">Our primary investment corridor</p>
+            </div>
           </div>
         </div>
       </section>
