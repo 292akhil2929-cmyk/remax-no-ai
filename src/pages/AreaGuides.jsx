@@ -1,6 +1,6 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, TrendingUp, Users, Landmark, Star, ArrowRight, Calculator, Home, DollarSign, Clock } from 'lucide-react';
+import { MapPin, TrendingUp, Users, Landmark, Star, ArrowRight } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import CommunityMap from '../components/CommunityMap';
@@ -30,7 +30,6 @@ The Palm offers a unique combination of beachfront living, world-class amenities
     bestFor: 'Investors seeking a globally recognised trophy asset with premium rental income from high-net-worth tenants, tourists, and corporate relocations.',
     propertyTypes: ['Signature Villas', 'Beachfront Apartments', 'Sky-high Penthouses', 'Garden Homes'],
     seoNote: "Properties on Palm Jumeirah represent the top 5% of Dubai's luxury market. Historically, well-positioned frond villas and Atlantis-facing apartments have delivered 12–18% total return over 3-year hold periods.",
-    calc: { priceMin: 1500000, priceMax: 15000000, priceDefault: 5000000, yieldMin: 5, yieldMax: 7, yieldDefault: 6, appreciation: 12 },
     mapCenter: [25.1088, 55.1360],
     radiusM: 1400,
     propertyPins: [
@@ -68,7 +67,6 @@ For international investors, Downtown offers the security of buying within a mas
     bestFor: 'First-time international investors seeking a recognised address, reliable rental income from corporate and tourist tenants, and strong liquidity on exit.',
     propertyTypes: ['High-Rise Apartments', 'Serviced Residences', 'Duplex Penthouses', 'Podium Townhouses'],
     seoNote: "Downtown Dubai has delivered consistent capital appreciation, with prices rising approximately 40% between 2020 and 2024. EMAAR's brand premium provides strong resale liquidity for investors looking to exit within 3–5 years.",
-    calc: { priceMin: 1200000, priceMax: 10000000, priceDefault: 2000000, yieldMin: 5, yieldMax: 7, yieldDefault: 6, appreciation: 10 },
     mapCenter: [25.19408, 55.2781],
     radiusM: 900,
     propertyPins: [
@@ -107,7 +105,6 @@ For yield-focused investors, Dubai Marina is arguably the most reliable sub-mark
     bestFor: 'Yield-first investors targeting consistent rental income from a large, established tenant pool. Ideal for holiday home operators and corporate rental strategies.',
     propertyTypes: ['Marina-View Apartments', 'Waterfront Penthouses', 'JBR Beachfront Residences', 'Studio & 1BHK Units'],
     seoNote: 'Dubai Marina studios and one-bedroom apartments consistently achieve occupancy rates above 88%, with short-term rentals via platforms like Airbnb generating up to 30% premium over long-term leases.',
-    calc: { priceMin: 700000, priceMax: 8000000, priceDefault: 1500000, yieldMin: 6, yieldMax: 8, yieldDefault: 7, appreciation: 8 },
     mapCenter: [25.08525, 55.14646],
     radiusM: 900,
     propertyPins: [
@@ -145,7 +142,6 @@ For investors, Business Bay offers a compelling value proposition — near-Downt
     bestFor: 'Value investors seeking near-Downtown yields at a price discount, or investors building a portfolio of 2–3 units across different price points.',
     propertyTypes: ['Canal-View Apartments', 'Studio & 1BHK Investments', 'Hotel Apartments', 'Penthouse Units'],
     seoNote: 'Business Bay has outperformed the broader Dubai market on price growth since 2022, supported by the completion of the Dubai Canal, new hotel openings, and growing demand from young professionals priced out of Downtown.',
-    calc: { priceMin: 600000, priceMax: 6000000, priceDefault: 1200000, yieldMin: 6, yieldMax: 8, yieldDefault: 7, appreciation: 9 },
     mapCenter: [25.184242, 55.272430],
     radiusM: 850,
     propertyPins: [
@@ -183,7 +179,6 @@ The community's long-term appeal is underpinned by scarcity of land in central D
     bestFor: 'Families relocating to Dubai seeking a long-term home purchase, or investors targeting the premium family villa rental market from multinational corporate tenants.',
     propertyTypes: ['Golf-View Villas', 'Park-Facing Townhouses', 'Luxury Apartments', 'Estate Mansions'],
     seoNote: 'Dubai Hills Estate villas are among the most sought-after assets for families relocating under the UAE Golden Visa programme, with 3–4 bedroom units commanding AED 180,000–300,000 per annum in rental income.',
-    calc: { priceMin: 1500000, priceMax: 12000000, priceDefault: 3500000, yieldMin: 5, yieldMax: 6, yieldDefault: 5.5, appreciation: 14 },
     mapCenter: [25.069872, 55.17251],
     radiusM: 1600,
     propertyPins: [
@@ -221,7 +216,6 @@ Developed by Nakheel, JVC benefits from a central location between Sheikh Mohamm
     bestFor: 'Investors seeking maximum rental yield, entry-level price points, and the ability to build a diversified portfolio of 2–5 units within a single community.',
     propertyTypes: ['Studio Apartments', '1 & 2 BHK Apartments', 'Townhouses', 'Off-Plan Units'],
     seoNote: 'JVC is the single most transacted community in Dubai by volume, making it the most liquid investment option for buy-and-hold investors who want the flexibility to exit within a 3–5 year window at strong returns.',
-    calc: { priceMin: 350000, priceMax: 3000000, priceDefault: 900000, yieldMin: 8, yieldMax: 10, yieldDefault: 9, appreciation: 7 },
     mapCenter: [25.06374091435815, 55.207477096634754],
     radiusM: 1200,
     propertyPins: [
@@ -247,31 +241,6 @@ export default function AreaGuides() {
 
   const [selected, setSelected] = useState(areas[0].id);
   const area = areas.find(a => a.id === selected);
-
-  // Calculator state — resets to area defaults when area changes
-  const [calcPrice, setCalcPrice] = useState(area.calc.priceDefault);
-  const [calcYield, setCalcYield] = useState(area.calc.yieldDefault);
-  const [holdYears, setHoldYears] = useState(5);
-
-  useEffect(() => {
-    setCalcPrice(area.calc.priceDefault);
-    setCalcYield(area.calc.yieldDefault);
-    setHoldYears(5);
-  }, [selected, area.calc.priceDefault, area.calc.yieldDefault]);
-
-  const calcResults = useMemo(() => {
-    const annualRent = calcPrice * (calcYield / 100);
-    const totalRent = annualRent * holdYears;
-    const futureValue = calcPrice * Math.pow(1 + area.calc.appreciation / 100, holdYears);
-    const capitalGain = futureValue - calcPrice;
-    const totalReturn = totalRent + capitalGain;
-    const totalROI = (totalReturn / calcPrice) * 100;
-    const annualisedROI = (Math.pow(1 + totalROI / 100, 1 / holdYears) - 1) * 100;
-    return { annualRent, totalRent, futureValue, capitalGain, totalReturn, totalROI, annualisedROI };
-  }, [calcPrice, calcYield, holdYears, area.calc.appreciation]);
-
-  const fmt = (n) => Math.round(n).toLocaleString();
-  const fmtAED = (n) => 'AED ' + fmt(n);
 
   return (
     <div className="min-h-screen">
@@ -349,131 +318,6 @@ export default function AreaGuides() {
 
               {/* Map */}
               <CommunityMap area={area} />
-
-              {/* Integrated ROI Calculator */}
-              <div className="mb-8 border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-xl overflow-hidden">
-                {/* Header */}
-                <div className="bg-gray-50 border-b border-gray-100 px-6 py-4 flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-lg bg-[#C9A84C]/10 flex items-center justify-center">
-                    <Calculator className="w-4 h-4 text-[#C9A84C]" />
-                  </div>
-                  <div>
-                    <p className="font-heading font-bold text-gray-900 text-sm">{area.name} — Investment Return Calculator</p>
-                    <p className="text-xs text-gray-500 font-body">Pre-filled with {area.name} historical averages · {area.avgYield} yield · {area.calc.appreciation}% p.a. appreciation</p>
-                  </div>
-                </div>
-
-                <div className="p-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {/* Sliders */}
-                  <div className="space-y-5">
-                    {/* Price */}
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <Home className="w-3.5 h-3.5 text-[#C9A84C]" />
-                        <label className="text-xs font-heading font-semibold text-gray-700">Purchase Price</label>
-                        <span className="ml-auto text-xs font-heading font-bold text-gray-900">{fmtAED(calcPrice)}</span>
-                      </div>
-                      <input
-                        type="range"
-                        min={area.calc.priceMin} max={area.calc.priceMax} step={50000}
-                        value={calcPrice}
-                        onChange={e => setCalcPrice(Number(e.target.value))}
-                        className="w-full h-1.5 rounded-full cursor-pointer accent-[#C9A84C]"
-                      />
-                      <div className="flex justify-between text-[10px] text-gray-400 font-body mt-1">
-                        <span>{fmtAED(area.calc.priceMin)}</span>
-                        <span>{fmtAED(area.calc.priceMax)}</span>
-                      </div>
-                    </div>
-
-                    {/* Yield */}
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <DollarSign className="w-3.5 h-3.5 text-[#C9A84C]" />
-                        <label className="text-xs font-heading font-semibold text-gray-700">Rental Yield</label>
-                        <span className="ml-auto text-xs font-heading font-bold text-gray-900">{calcYield.toFixed(1)}%</span>
-                      </div>
-                      <input
-                        type="range"
-                        min={area.calc.yieldMin} max={area.calc.yieldMax} step={0.5}
-                        value={calcYield}
-                        onChange={e => setCalcYield(Number(e.target.value))}
-                        className="w-full h-1.5 rounded-full cursor-pointer accent-[#C9A84C]"
-                      />
-                      <div className="flex justify-between text-[10px] text-gray-400 font-body mt-1">
-                        <span>{area.calc.yieldMin}% (low)</span>
-                        <span>{area.calc.yieldMax}% (high)</span>
-                      </div>
-                    </div>
-
-                    {/* Hold Period */}
-                    <div>
-                      <div className="flex items-center gap-2 mb-1">
-                        <Clock className="w-3.5 h-3.5 text-[#C9A84C]" />
-                        <label className="text-xs font-heading font-semibold text-gray-700">Holding Period</label>
-                        <span className="ml-auto text-xs font-heading font-bold text-gray-900">{holdYears} years</span>
-                      </div>
-                      <input
-                        type="range"
-                        min={1} max={10} step={1}
-                        value={holdYears}
-                        onChange={e => setHoldYears(Number(e.target.value))}
-                        className="w-full h-1.5 rounded-full cursor-pointer accent-[#C9A84C]"
-                      />
-                      <div className="flex justify-between text-[10px] text-gray-400 font-body mt-1">
-                        <span>1 yr</span><span>10 yrs</span>
-                      </div>
-                    </div>
-
-                    <p className="text-[10px] text-gray-400 font-body pt-1">
-                      Capital appreciation fixed at <span className="text-[#C9A84C] font-semibold">{area.calc.appreciation}%</span> p.a. — based on {area.name} historical data. Projections are illustrative only.
-                    </p>
-                  </div>
-
-                  {/* Results */}
-                  <div className="flex flex-col gap-3">
-                    {/* Big ROI */}
-                    <div className="bg-black rounded-xl p-5 text-center">
-                      <p className="text-xs text-white/60 font-body mb-1">Total Return over {holdYears} year{holdYears > 1 ? 's' : ''}</p>
-                      <p className="text-4xl font-display font-black text-[#C9A84C]">{calcResults.totalROI.toFixed(1)}%</p>
-                      <p className="text-xs text-white/50 font-body mt-1">{calcResults.annualisedROI.toFixed(1)}% annualised</p>
-                    </div>
-
-                    {/* Breakdown */}
-                    <div className="grid grid-cols-2 gap-2">
-                      <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
-                        <p className="text-[10px] text-gray-500 font-body">Annual Rent</p>
-                        <p className="text-sm font-heading font-bold text-gray-900">{fmtAED(calcResults.annualRent)}</p>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
-                        <p className="text-[10px] text-gray-500 font-body">Total Rental Income</p>
-                        <p className="text-sm font-heading font-bold text-gray-900">{fmtAED(calcResults.totalRent)}</p>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
-                        <p className="text-[10px] text-gray-500 font-body">Capital Gain</p>
-                        <p className="text-sm font-heading font-bold text-[#C9A84C]">{fmtAED(calcResults.capitalGain)}</p>
-                      </div>
-                      <div className="bg-gray-50 rounded-lg p-3 border border-gray-100">
-                        <p className="text-[10px] text-gray-500 font-body">Property Value at Exit</p>
-                        <p className="text-sm font-heading font-bold text-gray-900">{fmtAED(calcResults.futureValue)}</p>
-                      </div>
-                    </div>
-
-                    {/* Total */}
-                    <div className="bg-[#C9A84C]/8 border border-[#C9A84C]/30 rounded-lg p-4 flex items-center justify-between">
-                      <div>
-                        <p className="text-xs text-gray-600 font-body">Total Return (Rent + Capital)</p>
-                        <p className="text-[10px] text-gray-400 font-body">on {fmtAED(calcPrice)} investment</p>
-                      </div>
-                      <p className="text-xl font-display font-black text-gray-900">{fmtAED(calcResults.totalReturn)}</p>
-                    </div>
-
-                    <Button className="w-full bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm" asChild>
-                      <Link to="/contact">Get a Personalised Plan for {area.name}</Link>
-                    </Button>
-                  </div>
-                </div>
-              </div>
 
               {/* Highlights */}
               <div className="mb-8">
