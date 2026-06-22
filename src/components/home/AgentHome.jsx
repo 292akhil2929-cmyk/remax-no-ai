@@ -92,7 +92,7 @@ export default function AgentHome() {
                 <div className="w-10 h-10 rounded-lg bg-gray-900 group-hover:bg-white/10 flex items-center justify-center mb-5 transition-colors">
                   <Icon className="w-5 h-5 text-white" />
                 </div>
-                <h3 className="text-base font-heading font-semibold tracking-tight text-gray-900 group-hover:text-white mb-2 transition-colors">{title}</h3>
+                <h3 className="text-base font-heading font-bold tracking-tight text-gray-900 group-hover:text-white mb-2 transition-colors">{title}</h3>
                 <p className="text-sm text-gray-500 group-hover:text-gray-400 font-body leading-relaxed transition-colors">{desc}</p>
               </motion.div>
             ))}
@@ -127,7 +127,7 @@ export default function AgentHome() {
                 {tier.highlight && (
                   <span className="inline-block text-xs font-heading font-bold bg-white text-black px-3 py-1 rounded-full mb-5">Most Popular</span>
                 )}
-                <h3 className={`text-lg font-heading font-semibold tracking-tight mb-1 ${tier.textColor}`}>{tier.title}</h3>
+                <h3 className={`text-lg font-display font-black tracking-tight mb-1 ${tier.textColor}`}>{tier.title}</h3>
                 <p className={`text-xs font-body mb-6 ${tier.subColor}`}>{tier.who}</p>
                 <div className={`text-4xl font-display font-black mb-1 ${tier.textColor}`}>{tier.split}</div>
                 <p className={`text-xs font-body mb-7 ${tier.subColor}`}>Commission Split</p>
@@ -145,49 +145,53 @@ export default function AgentHome() {
       </section>
 
       {/* ── AGENT CTA ── */}
-      <section id="agent-apply" className="py-12 sm:py-16 bg-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(50,100,200,0.08),transparent_60%)]" />
-        <div className="relative max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-px bg-white/30" />
-                <span className="text-white/40 font-body text-xs tracking-[0.2em] uppercase">Join RE/MAX ZAM</span>
-              </div>
-              <h2 className="text-4xl sm:text-5xl font-display font-black text-white leading-tight mb-5">
-                Ready to Build Your<br />Career in Dubai?
-              </h2>
-              <p className="text-gray-400 font-body text-sm leading-relaxed mb-8">
-                Whether you're an experienced agent ready to scale, or brand new and hungry to start — we have a clear path, real support, and the brand to match.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  'RERA-licensed brokerage with full compliance support',
-                  'No desk fees for qualifying associates',
-                  'Direct access to exclusive off-plan developer inventory',
-                  'Weekly deal-sharing sessions & ongoing training',
-                ].map(item => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-gray-300 font-body">
-                    <span className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-white text-xs shrink-0 mt-0.5">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+      <div className="bg-white px-3 sm:px-4 lg:px-5 pb-3 sm:pb-4 lg:pb-5 box-border">
+        <section id="agent-apply" className="relative w-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl py-16 sm:py-24 lg:py-32">
+          <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/landscape.png')" }} />
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.15),transparent_50%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black" />
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl p-8 text-center">
-              <h3 className="text-lg font-heading font-semibold tracking-tight text-white mb-2">Apply to Join Our Team</h3>
-              <p className="text-xs text-gray-500 font-body mb-7">We'll be in touch within 48 hours.</p>
-              <Link to="/apply">
-                <button className="w-full bg-white text-black hover:bg-gray-100 font-heading font-bold text-sm py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2">
-                  Apply to Join <ArrowRight className="w-4 h-4" />
-                </button>
-              </Link>
-            </motion.div>
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }} className="max-w-xl">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.1] tracking-tight mb-6">
+                  Ready to Build Your<br className="hidden sm:block" />
+                  <span className="text-amber-500">Career in Dubai?</span>
+                </h2>
+                <p className="text-white/80 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-lg">
+                  Whether you're an experienced agent ready to scale, or brand new and hungry to start — we have a clear path, real support, and the brand to match.
+                </p>
+                <ul className="space-y-5">
+                  {[
+                    'RERA-licensed brokerage with full compliance support',
+                    'No desk fees for qualifying associates',
+                    'Direct access to exclusive off-plan developer inventory',
+                    'Weekly deal-sharing sessions & ongoing training',
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-4 text-sm sm:text-base text-white/90 font-body font-medium">
+                      <span className="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 text-[10px] shrink-0 mt-0.5 shadow-[0_0_10px_rgba(245,158,11,0.2)]">✓</span>
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }} className="w-full max-w-md mx-auto lg:ml-auto lg:mr-0">
+                <div className="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 lg:p-10 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                  <h3 className="text-xl sm:text-2xl font-heading font-bold tracking-tight text-white mb-2">Apply to Join Our Team</h3>
+                  <p className="text-xs sm:text-sm text-white/50 font-body mb-8">We'll be in touch within 48 hours.</p>
+                  <Link to="/apply">
+                    <button className="w-full bg-white text-black hover:bg-gray-100 font-heading font-bold text-sm py-3.5 rounded-xl transition-colors flex items-center justify-center gap-2">
+                      Apply to Join <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </Link>
+                </div>
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 }

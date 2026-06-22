@@ -63,8 +63,7 @@ const getAppParams = () => {
         fromUrl: getAppParamValue("from_url", { defaultValue: typeof window !== 'undefined' ? window.location.href : '' }),
         functionsVersion: getAppParamValue("functions_version", { defaultValue: import.meta.env.VITE_BASE44_FUNCTIONS_VERSION }),
         
-        // FIX: Default to the current browser origin so localhost stays on localhost!
-        appBaseUrl: getAppParamValue("app_base_url", { defaultValue: currentOrigin || import.meta.env.VITE_BASE44_APP_BASE_URL }),
+        appBaseUrl: getAppParamValue("app_base_url", { defaultValue: import.meta.env.VITE_BASE44_APP_BASE_URL }),
     }
 }
 

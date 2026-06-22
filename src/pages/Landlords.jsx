@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import { CheckCircle, TrendingUp, Users, Shield, Globe, Award, DollarSign, Clock, BarChart3, Building2, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { CheckCircle, TrendingUp, Users, Shield, Globe, Award, DollarSign, Clock, BarChart3, Star } from 'lucide-react';
 import usePageSEO from '@/lib/usePageSEO';
-import { Button } from '@/components/ui/button';
 import SellerLeadForm from '../components/SellerLeadForm';
 
 const reasons = [
@@ -59,19 +59,16 @@ const testimonials = [
     name: 'Ahmed Al Rashidi',
     property: 'Villa, Palm Jumeirah',
     quote: 'REMAX ZAM sold my villa in just 3 weeks at above asking price. The exposure they generated was incredible — I had 12 serious enquiries in the first 5 days.',
-    rating: 5,
   },
   {
     name: 'Sarah Mitchell',
     property: 'Apartment, Downtown Dubai',
     quote: 'As an overseas investor, I needed a trustworthy team. They managed the entire sale remotely, kept me updated at every step, and achieved a great result.',
-    rating: 5,
   },
   {
     name: 'Rajesh Patel',
     property: 'Penthouse, Business Bay',
     quote: 'Professional, fast, and honest. They gave me a realistic valuation and delivered on their promises. My portfolio management is now entirely with them.',
-    rating: 5,
   },
 ];
 
@@ -91,146 +88,187 @@ export default function Landlords() {
   });
 
   return (
-    <div className="bg-background">
-      {/* Hero */}
+    <div className="bg-white">
+
+      {/* ── HERO ── */}
       <section className="relative min-h-[70vh] flex items-center justify-center overflow-hidden">
-        <div
-          className="absolute inset-0 bg-cover bg-center"
-          style={{ backgroundImage: "url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80')" }}
-        />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/90 to-primary/60" />
-        <div className="relative z-10 max-w-4xl mx-auto px-4 text-center text-white">
-          <div className="inline-block bg-accent/90 text-white text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full mb-6">
-            For Landlords &amp; Sellers
-          </div>
-          <h1 className="font-display text-4xl md:text-6xl font-bold mb-6 leading-tight">
-            Sell or Rent Your Dubai<br />Property with Confidence
-          </h1>
-          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
-            Join hundreds of landlords who trust REMAX ZAM to market their properties to a global audience and achieve the best possible results.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-semibold px-8" asChild>
-              <a href="#list-with-us">List Your Property</a>
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-white hover:bg-white/10 px-8" asChild>
-              <Link to="/contact">Get Free Valuation</Link>
-            </Button>
-          </div>
+        <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: "url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=80')" }} />
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center text-white">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <p className="text-white/50 font-body text-xs tracking-[0.2em] uppercase mb-4">For Landlords &amp; Sellers</p>
+            <h1 className="font-display text-4xl md:text-6xl font-black mb-6 leading-[1.1] tracking-tight">
+              Sell or Rent Your Dubai<br />Property with Confidence
+            </h1>
+            <p className="text-white/70 font-body text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
+              Join hundreds of landlords who trust RE/MAX ZAM to market their properties to a global audience and achieve the best possible results.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#list-with-us" className="inline-flex items-center justify-center px-8 py-3.5 bg-white text-black font-heading font-bold text-sm rounded-xl hover:bg-gray-100 transition-colors">
+                List Your Property
+              </a>
+              <Link to="/contact" className="inline-flex items-center justify-center px-8 py-3.5 border border-white/30 text-white font-heading font-bold text-sm rounded-xl hover:bg-white/10 transition-colors">
+                Get Free Valuation
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Stats */}
-      <section className="bg-primary text-white py-12">
-        <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <div className="font-display text-3xl md:text-4xl font-bold text-accent mb-1">{s.value}</div>
-              <div className="text-white/70 text-sm">{s.label}</div>
-            </div>
+      {/* ── STATS BAR ── */}
+      <section className="bg-black py-10">
+        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          {stats.map((s, idx) => (
+            <motion.div key={s.label} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: idx * 0.07 }}>
+              <p className="font-display text-3xl md:text-4xl font-black text-white mb-1">{s.value}</p>
+              <p className="text-white/40 font-body text-xs">{s.label}</p>
+            </motion.div>
           ))}
         </div>
       </section>
 
-      {/* Why List With Us */}
-      <section className="py-20 px-4 max-w-7xl mx-auto">
-        <div className="text-center mb-14">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Why Landlords Choose REMAX ZAM
-          </h2>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            We don&apos;t just list your property — we work tirelessly to get you the best outcome, faster.
-          </p>
-        </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {reasons.map((r) => (
-            <div key={r.title} className="bg-card border border-border rounded-xl p-6 hover:shadow-lg transition-shadow">
-              <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
-                <r.icon className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="font-heading font-bold text-foreground mb-2">{r.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed">{r.description}</p>
-            </div>
-          ))}
-        </div>
-      </section>
+      {/* ── WHY LIST WITH US ── */}
+      <section className="py-24 bg-white">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
+            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Why Choose Us</p>
+            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight max-w-xl">
+              Why Landlords Choose<br />RE/MAX ZAM
+            </h2>
+          </motion.div>
 
-      {/* How It Works */}
-      <section className="py-20 bg-muted/40">
-        <div className="max-w-5xl mx-auto px-4">
-          <div className="text-center mb-14">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">How It Works</h2>
-            <p className="text-muted-foreground text-lg">From listing to completion — a seamless, stress-free experience.</p>
-          </div>
-          <div className="space-y-6">
-            {steps.map((s) => (
-              <div key={s.step} className="flex gap-6 items-start bg-background rounded-xl p-6 border border-border shadow-sm">
-                <div className="w-14 h-14 flex-shrink-0 bg-accent/10 rounded-xl flex items-center justify-center">
-                  <span className="font-display font-bold text-accent text-lg">{s.step}</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-100">
+            {reasons.map(({ icon: Icon, title, description }, idx) => (
+              <motion.div
+                key={title}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.06 }}
+                className="bg-white p-8 group hover:bg-black transition-colors duration-300"
+              >
+                <div className="w-10 h-10 rounded-lg bg-gray-900 group-hover:bg-white/10 flex items-center justify-center mb-5 transition-colors">
+                  <Icon className="w-5 h-5 text-white" />
                 </div>
-                <div>
-                  <h3 className="font-heading font-bold text-foreground text-lg mb-1">{s.title}</h3>
-                  <p className="text-muted-foreground">{s.description}</p>
-                </div>
-              </div>
+                <h3 className="text-base font-heading font-bold tracking-tight text-gray-900 group-hover:text-white mb-2 transition-colors">{title}</h3>
+                <p className="text-sm text-gray-500 group-hover:text-gray-400 font-body leading-relaxed transition-colors">{description}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="py-20 px-4 max-w-6xl mx-auto">
-        <div className="text-center mb-14">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-foreground mb-4">
-            What Our Landlords Say
-          </h2>
-        </div>
-        <div className="grid md:grid-cols-3 gap-8">
-          {testimonials.map((t) => (
-            <div key={t.name} className="bg-card border border-border rounded-xl p-6 shadow-sm">
-              <div className="flex gap-1 mb-4">
-                {Array.from({ length: t.rating }).map((_, i) => (
-                  <Star key={i} className="w-4 h-4 fill-accent text-accent" />
-                ))}
-              </div>
-              <p className="text-foreground italic mb-4">&quot;{t.quote}&quot;</p>
-              <div>
-                <div className="font-semibold text-foreground">{t.name}</div>
-                <div className="text-muted-foreground text-sm flex items-center gap-1">
-                  <Building2 className="w-3 h-3" /> {t.property}
+      {/* ── HOW IT WORKS ── */}
+      <section className="py-20 bg-gray-50">
+        <div className="max-w-5xl mx-auto px-6 sm:px-10">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-14">
+            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Simple. Transparent. Effective.</p>
+            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">How It Works</h2>
+          </motion.div>
+          <div className="space-y-4">
+            {steps.map((s, idx) => (
+              <motion.div
+                key={s.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08 }}
+                className="flex gap-6 items-start bg-white rounded-2xl p-6 border border-gray-100 shadow-sm"
+              >
+                <div className="w-12 h-12 flex-shrink-0 bg-gray-900 rounded-xl flex items-center justify-center">
+                  <span className="font-display font-black text-white text-sm">{s.step}</span>
                 </div>
-              </div>
-            </div>
-          ))}
+                <div>
+                  <h3 className="font-heading font-bold text-gray-900 text-lg mb-1">{s.title}</h3>
+                  <p className="text-gray-500 font-body text-sm leading-relaxed">{s.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
-      {/* CTA / Lead Form */}
-      <section id="list-with-us" className="py-20 bg-primary">
-        <div className="max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-          <div className="text-white">
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              Ready to List Your Property?
-            </h2>
-            <p className="text-white/80 text-lg mb-6">
-              Get a free, no-obligation market valuation and find out how much your property could achieve today.
-            </p>
-            <ul className="space-y-3">
-              {['Free market valuation within 24 hours', 'No upfront fees — success-based commission', 'Full marketing campaign included', 'Dedicated agent from listing to completion'].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-white/90">
-                  <CheckCircle className="w-5 h-5 text-accent flex-shrink-0" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="bg-background rounded-2xl p-6 shadow-2xl">
-            <h3 className="font-heading font-bold text-foreground text-xl mb-1">Get Your Free Valuation</h3>
-            <p className="text-muted-foreground text-sm mb-4">Fill in your details and we&apos;ll be in touch within 24 hours.</p>
-            <SellerLeadForm source="Landlords Page" />
+      {/* ── TESTIMONIALS ── */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
+            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Seller Stories</p>
+            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900">What Our Landlords Say</h2>
+          </motion.div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {testimonials.map((t, idx) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="bg-white rounded-2xl p-8 border border-gray-100 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex gap-0.5 mb-5">
+                    {[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-gray-300 text-gray-300" />)}
+                  </div>
+                  <p className="text-gray-700 font-body text-sm leading-relaxed mb-6">"{t.quote}"</p>
+                </div>
+                <div className="flex items-center justify-between pt-5 border-t border-gray-100">
+                  <div>
+                    <p className="text-sm font-heading font-bold tracking-tight text-gray-900">{t.name}</p>
+                    <p className="text-xs text-gray-400 font-body">{t.property}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* ── CTA / LEAD FORM ── */}
+      <div className="bg-white px-3 sm:px-4 lg:px-5 pb-3 sm:pb-4 lg:pb-5 box-border">
+        <section id="list-with-us" className="relative w-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl py-16 sm:py-24 lg:py-32">
+          <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/landscape.png')" }} />
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black" />
+
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+              <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }} className="max-w-xl">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.1] tracking-tight mb-6">
+                  Ready to List<br className="hidden sm:block" />
+                  Your Property?
+                </h2>
+                <p className="text-white/80 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-lg">
+                  Get a free, no-obligation market valuation and find out how much your property could achieve today.
+                </p>
+                <ul className="space-y-5">
+                  {[
+                    'Free market valuation within 24 hours',
+                    'No upfront fees — success-based commission',
+                    'Full marketing campaign included',
+                    'Dedicated agent from listing to completion',
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-4 text-sm sm:text-base text-white/90 font-body font-medium">
+                      <span className="w-6 h-6 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white text-[10px] shrink-0 mt-0.5">✓</span>
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }} className="w-full max-w-md mx-auto lg:ml-auto lg:mr-0">
+                <div className="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 lg:p-10 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                  <h3 className="text-xl sm:text-2xl font-heading font-bold tracking-tight text-white mb-2">Get Your Free Valuation</h3>
+                  <p className="text-xs sm:text-sm text-white/50 font-body mb-8">Fill in your details and we'll be in touch within 24 hours.</p>
+                  <SellerLeadForm source="Landlords Page" />
+                </div>
+              </motion.div>
+
+            </div>
+          </div>
+        </section>
+      </div>
+
     </div>
   );
 }

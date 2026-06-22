@@ -9,7 +9,7 @@ import { Users, Home, Globe, TrendingUp, ArrowRight, CheckCircle2 } from 'lucide
 import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import {
-  CampaignHeader, CampaignFooter, WhatsAppFloat, TrustStrip,
+  WhatsAppFloat, TrustStrip,
   FounderStrip, RedCTABand, CampaignLeadForm, FaqAccordion, WA_BASE
 } from '@/components/campaign/CampaignShared';
 import usePageSEO from '@/lib/usePageSEO';
@@ -60,13 +60,13 @@ function EligibilityChecker() {
 
   return (
     <div className="bg-white rounded-2xl shadow-xl border border-gray-100 p-7">
-      <p className="font-heading font-bold text-[#0E1B3A] text-lg mb-5">Check My Eligibility</p>
+      <p className="font-heading font-bold text-gray-900 text-lg mb-5">Check My Eligibility</p>
 
       <div className="space-y-4 mb-6">
         <div>
           <label className="text-xs font-body text-gray-500 block mb-1.5">What's your property investment budget?</label>
           <Select value={budget} onValueChange={setBudget}>
-            <SelectTrigger className="h-11 bg-[#F4F6FA] border-gray-200">
+            <SelectTrigger className="h-11 bg-gray-50 border-gray-200">
               <SelectValue placeholder="Select budget" />
             </SelectTrigger>
             <SelectContent>
@@ -79,7 +79,7 @@ function EligibilityChecker() {
         <div>
           <label className="text-xs font-body text-gray-500 block mb-1.5">Are you buying one property or combining several?</label>
           <Select value={purchase} onValueChange={setPurchase}>
-            <SelectTrigger className="h-11 bg-[#F4F6FA] border-gray-200">
+            <SelectTrigger className="h-11 bg-gray-50 border-gray-200">
               <SelectValue placeholder="Select option" />
             </SelectTrigger>
             <SelectContent>
@@ -91,7 +91,7 @@ function EligibilityChecker() {
         <div>
           <label className="text-xs font-body text-gray-500 block mb-1.5">Ready, off-plan or mortgaged?</label>
           <Select value={propertyStatus} onValueChange={setPropertyStatus}>
-            <SelectTrigger className="h-11 bg-[#F4F6FA] border-gray-200">
+            <SelectTrigger className="h-11 bg-gray-50 border-gray-200">
               <SelectValue placeholder="Select status" />
             </SelectTrigger>
             <SelectContent>
@@ -104,7 +104,7 @@ function EligibilityChecker() {
       </div>
 
       {!result && (
-        <Button onClick={check} disabled={!budget} className="w-full h-11 bg-[#C49A3A] hover:bg-[#a8832f] text-white font-heading font-bold text-sm rounded-xl">
+        <Button onClick={check} disabled={!budget} className="w-full h-11 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm rounded-xl">
           Check My Eligibility
         </Button>
       )}
@@ -119,14 +119,14 @@ function EligibilityChecker() {
         </div>
       )}
       {result === 'close' && (
-        <div className="bg-[#C49A3A]/10 border border-[#C49A3A]/30 rounded-xl p-5 mb-4">
-          <p className="font-heading font-bold text-[#0E1B3A] text-sm mb-1">You're close.</p>
+        <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 mb-4">
+          <p className="font-heading font-bold text-gray-900 text-sm mb-1">You're close.</p>
           <p className="text-gray-600 font-body text-xs leading-relaxed">We can show you how to structure your investment to reach the AED 2M threshold, including flexible payment plans.</p>
         </div>
       )}
 
       {result && !showForm && (
-        <Button onClick={() => setShowForm(true)} className="w-full h-11 bg-[#DC1C2E] hover:bg-[#b81626] text-white font-heading font-bold text-sm rounded-xl">
+        <Button onClick={() => setShowForm(true)} className="w-full h-11 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm rounded-xl">
           Get My Eligibility Report <ArrowRight className="w-4 h-4 ml-1" />
         </Button>
       )}
@@ -168,25 +168,24 @@ export default function GoldenVisaProperty() {
 
   return (
     <div className="min-h-screen bg-white font-body">
-      <CampaignHeader ctaLabel="Check My Eligibility" ctaHref="#eligibility" />
       <WhatsAppFloat />
 
       {/* ── HERO ── */}
-      <section className="pt-28 pb-16 bg-white">
+      <section className="pt-12 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.7 }}>
-            <p className="text-xs font-body tracking-[0.25em] uppercase text-[#C49A3A] mb-4">10-YEAR UAE RESIDENCY</p>
-            <h1 className="font-display font-black text-[#0E1B3A] text-4xl sm:text-5xl leading-tight mb-5">
-              AED 2M in Dubai property. <span className="text-[#C49A3A]">10 years of UAE residency</span> for your whole family.
+            <p className="text-xs font-body tracking-[0.25em] uppercase text-gray-400 mb-4">10-YEAR UAE RESIDENCY</p>
+            <h1 className="font-display font-black text-gray-900 text-4xl sm:text-5xl leading-tight mb-5">
+              AED 2M in Dubai property. <span className="text-gray-900">10 years of UAE residency</span> for your whole family.
             </h1>
             <p className="text-gray-600 font-body text-lg leading-relaxed mb-8">
               Turn a property investment into a renewable 10-year Golden Visa — for you, your spouse, your children and your domestic staff. Check if you qualify in 60 seconds.
             </p>
             <div className="flex flex-col sm:flex-row gap-3">
-              <a href="#eligibility" className="inline-flex items-center justify-center gap-2 bg-[#C49A3A] hover:bg-[#a8832f] text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
+              <a href="#eligibility" className="inline-flex items-center justify-center gap-2 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
                 Check My Eligibility
               </a>
-              <a href="#lead-form" className="inline-flex items-center justify-center gap-2 border border-[#0E1B3A]/20 hover:border-[#0E1B3A]/40 text-[#0E1B3A] font-heading font-semibold text-sm px-7 py-3.5 rounded-xl transition-colors">
+              <a href="#lead-form" className="inline-flex items-center justify-center gap-2 border border-gray-200 hover:border-gray-400 text-gray-900 font-heading font-bold text-sm px-7 py-3.5 rounded-xl transition-colors">
                 Book a Free Consultation
               </a>
             </div>
@@ -201,10 +200,10 @@ export default function GoldenVisaProperty() {
       <TrustStrip />
 
       {/* ── HOW IT WORKS ── */}
-      <section className="py-20 bg-[#F4F6FA]">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="text-center mb-12">
-            <h2 className="font-display font-black text-[#0E1B3A] text-3xl sm:text-4xl mb-3">How it works</h2>
+            <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">How it works</h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
@@ -213,8 +212,8 @@ export default function GoldenVisaProperty() {
               { step: '03', title: '10-year residency', desc: 'A renewable 10-year visa covering your spouse, children and domestic staff. No local sponsor required.' },
             ].map(s => (
               <div key={s.step} className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm">
-                <p className="font-display font-black text-[#C49A3A] text-4xl mb-4">{s.step}</p>
-                <h3 className="font-heading font-bold text-[#0E1B3A] text-base mb-3">{s.title}</h3>
+                <p className="font-display font-black text-gray-900 text-4xl mb-4">{s.step}</p>
+                <h3 className="font-heading font-bold text-gray-900 text-base mb-3">{s.title}</h3>
                 <p className="font-body text-gray-500 text-sm leading-relaxed">{s.desc}</p>
               </div>
             ))}
@@ -225,9 +224,9 @@ export default function GoldenVisaProperty() {
       {/* ── 2025 UPDATE ── */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-5 lg:px-10">
-          <div className="bg-gradient-to-r from-[#C49A3A]/10 to-[#0E1B3A]/5 border border-[#C49A3A]/30 rounded-2xl p-8 md:p-12">
-            <p className="text-xs font-body tracking-[0.2em] uppercase text-[#C49A3A] mb-3">2025–26 Update</p>
-            <h2 className="font-display font-black text-[#0E1B3A] text-2xl sm:text-3xl mb-4">It just got easier.</h2>
+          <div className="bg-gray-50 border border-gray-200 rounded-2xl p-8 md:p-12">
+            <p className="text-xs font-body tracking-[0.2em] uppercase text-gray-400 mb-3">2025–26 Update</p>
+            <h2 className="font-display font-black text-gray-900 text-2xl sm:text-3xl mb-4">It just got easier.</h2>
             <p className="font-body text-gray-600 text-base leading-relaxed">
               The old AED 1M minimum down-payment has been removed, and the full DLD-registered value of a mortgaged property now counts toward the AED 2M threshold. That means the Golden Visa is now reachable on flexible Dugasta payment plans — not only with cash up front.
             </p>
@@ -236,18 +235,18 @@ export default function GoldenVisaProperty() {
       </section>
 
       {/* ── BENEFITS ── */}
-      <section className="py-20 bg-[#F4F6FA]">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="text-center mb-12">
-            <h2 className="font-display font-black text-[#0E1B3A] text-3xl sm:text-4xl mb-3">Why a Golden Visa changes everything</h2>
+            <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">Why a Golden Visa changes everything</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {BENEFIT_CARDS.map(({ icon: Icon, title, desc }) => (
               <div key={title} className="bg-white rounded-2xl p-7 border border-gray-100 shadow-sm">
-                <div className="w-11 h-11 rounded-xl bg-[#C49A3A]/10 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-[#C49A3A]" />
+                <div className="w-11 h-11 rounded-xl bg-gray-100 flex items-center justify-center mb-4">
+                  <Icon className="w-5 h-5 text-gray-900" />
                 </div>
-                <h3 className="font-heading font-bold text-[#0E1B3A] text-sm mb-2">{title}</h3>
+                <h3 className="font-heading font-bold text-gray-900 text-sm mb-2">{title}</h3>
                 <p className="font-body text-gray-500 text-xs leading-relaxed">{desc}</p>
               </div>
             ))}
@@ -256,13 +255,13 @@ export default function GoldenVisaProperty() {
       </section>
 
       {/* ── FOUNDER ── */}
-      <section className="py-16 bg-[#0E1B3A]">
+      <section className="py-16 bg-black">
         <div className="max-w-4xl mx-auto px-5 lg:px-10 text-center">
           <blockquote className="font-body text-white/70 text-lg leading-relaxed italic mb-6">
             "I built my own Dubai portfolio — the income and the residency. I'll show you exactly how to do the same."
           </blockquote>
-          <p className="font-heading font-bold text-[#C49A3A] text-sm mb-8">— Faisal Contractor, Owner, RE/MAX ZAM</p>
-          <Link to="/my-dubai-passive-income" className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-semibold text-sm px-7 py-3 rounded-xl transition-colors">
+          <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX ZAM</p>
+          <Link to="/my-dubai-passive-income" className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-bold text-sm px-7 py-3 rounded-xl transition-colors">
             See how the founder invests <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
@@ -271,7 +270,7 @@ export default function GoldenVisaProperty() {
       {/* ── FAQ ── */}
       <section className="py-20 bg-white">
         <div className="max-w-3xl mx-auto px-5 lg:px-10">
-          <h2 className="font-display font-black text-[#0E1B3A] text-3xl mb-8 text-center">Frequently Asked Questions</h2>
+          <h2 className="font-display font-black text-gray-900 text-3xl mb-8 text-center">Frequently Asked Questions</h2>
           {FAQS.map(f => <FaqAccordion key={f.q} {...f} />)}
         </div>
       </section>
@@ -283,7 +282,6 @@ export default function GoldenVisaProperty() {
         </div>
       </RedCTABand>
 
-      <CampaignFooter />
     </div>
   );
 }

@@ -28,8 +28,6 @@ import { useMutation } from "@tanstack/react-query";
 import { base44 } from "@/api/base44Client";
 import { trackLeadEvent } from "@/lib/analytics";
 import {
-  CampaignHeader,
-  CampaignFooter,
   WhatsAppFloat,
   TrustStrip,
   FounderStrip,
@@ -143,12 +141,12 @@ function GuideCapture({ dark = false, source = "Guide Download" }) {
 
   const base = dark
     ? "bg-white/10 border-white/20 text-white placeholder:text-white/40 h-11"
-    : "bg-white border-gray-200 text-[#0E1B3A] placeholder:text-gray-400 h-11";
+    : "bg-white border-gray-200 text-gray-900 placeholder:text-gray-400 h-11";
 
   if (submitted) {
     return (
       <div
-        className={`text-center py-8 ${dark ? "text-white" : "text-[#0E1B3A]"}`}
+        className={`text-center py-8 ${dark ? "text-white" : "text-gray-900"}`}
       >
         <CheckCircle2 className="w-12 h-12 text-emerald-500 mx-auto mb-3" />
         <p className="font-heading font-bold text-lg mb-1">Guide on its way!</p>
@@ -210,7 +208,7 @@ function GuideCapture({ dark = false, source = "Guide Download" }) {
       <Button
         type="submit"
         disabled={mutation.isPending}
-        className={`w-full h-12 font-heading font-bold text-sm rounded-xl transition-colors ${dark ? "bg-white text-[#DC1C2E] hover:bg-gray-100" : "bg-[#DC1C2E] hover:bg-[#b81626] text-white"}`}
+        className={`w-full h-12 font-heading font-bold text-sm rounded-xl transition-colors ${dark ? "bg-white text-black hover:bg-gray-100" : "bg-black hover:bg-gray-900 text-white"}`}
       >
         {mutation.isPending ? "Sending…" : "Download the Free Guide"}{" "}
         <ArrowRight className="w-4 h-4 ml-1" />
@@ -322,21 +320,20 @@ export default function DubaiPropertyInvestment() {
 
   return (
     <div className="min-h-screen bg-white font-body">
-      <CampaignHeader ctaLabel="Book a Consultation" ctaHref="#lead-form" />
       <WhatsAppFloat />
 
       {/* ── HERO ── */}
-      <section className="pt-28 pb-16 bg-white">
+      <section className="pt-12 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <p className="text-xs font-body tracking-[0.25em] uppercase text-[#DC1C2E] mb-4">
+            <p className="text-xs font-body tracking-[0.25em] uppercase text-gray-400 mb-4">
               THE DUBAI WEALTH ENGINE
             </p>
-            <h1 className="font-display font-black text-[#0E1B3A] text-4xl sm:text-5xl leading-tight mb-5">
+            <h1 className="font-display font-black text-gray-900 text-4xl sm:text-5xl leading-tight mb-5">
               Build passive income and lasting wealth with Dubai property.
             </h1>
             <p className="text-gray-600 font-body text-lg leading-relaxed mb-8">
@@ -346,7 +343,7 @@ export default function DubaiPropertyInvestment() {
             </p>
             <a
               href="#lead-form"
-              className="inline-flex items-center gap-2 border border-[#0E1B3A]/20 hover:border-[#0E1B3A]/40 text-[#0E1B3A] font-heading font-semibold text-sm px-7 py-3.5 rounded-xl transition-colors"
+              className="inline-flex items-center gap-2 border border-gray-200 hover:border-gray-400 text-gray-900 font-heading font-semibold text-sm px-7 py-3.5 rounded-xl transition-colors"
             >
               Book a Free Consultation
             </a>
@@ -357,8 +354,8 @@ export default function DubaiPropertyInvestment() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
           >
-            <div className="bg-[#F4F6FA] rounded-2xl border border-gray-100 shadow-sm p-8">
-              <div className="bg-[#0E1B3A] text-white rounded-xl p-5 mb-5 text-center">
+            <div className="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm p-8">
+              <div className="bg-black text-white rounded-xl p-5 mb-5 text-center">
                 <p className="font-heading font-bold text-xs tracking-[0.2em] uppercase text-white/60 mb-1">
                   FREE DOWNLOAD
                 </p>
@@ -378,10 +375,10 @@ export default function DubaiPropertyInvestment() {
       <TrustStrip />
 
       {/* ── OUTCOMES ── */}
-      <section className="py-20 bg-[#F4F6FA]">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="text-center mb-12">
-            <h2 className="font-display font-black text-[#0E1B3A] text-3xl sm:text-4xl mb-3">
+            <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">
               What investors are really buying
             </h2>
           </div>
@@ -391,10 +388,10 @@ export default function DubaiPropertyInvestment() {
                 key={title}
                 className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm text-center"
               >
-                <div className="w-11 h-11 rounded-xl bg-[#DC1C2E]/8 flex items-center justify-center mb-4 mx-auto">
-                  <Icon className="w-5 h-5 text-[#DC1C2E]" />
+                <div className="w-11 h-11 rounded-xl bg-gray-100 flex items-center justify-center mb-4 mx-auto">
+                  <Icon className="w-5 h-5 text-gray-900" />
                 </div>
-                <h3 className="font-heading font-bold text-[#0E1B3A] text-sm mb-2">
+                <h3 className="font-heading font-bold text-gray-900 text-sm mb-2">
                   {title}
                 </h3>
                 <p className="font-body text-gray-500 text-xs leading-relaxed">
@@ -410,7 +407,7 @@ export default function DubaiPropertyInvestment() {
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="text-center mb-12">
-            <h2 className="font-display font-black text-[#0E1B3A] text-3xl sm:text-4xl mb-3">
+            <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">
               Why Dubai, why now
             </h2>
           </div>
@@ -418,9 +415,9 @@ export default function DubaiPropertyInvestment() {
             {STATS.map((s) => (
               <div
                 key={s.stat}
-                className="bg-[#F4F6FA] rounded-2xl p-7 border border-gray-100 text-center"
+                className="bg-gray-50 rounded-2xl p-7 border border-gray-100 text-center"
               >
-                <p className="font-display font-black text-[#DC1C2E] text-4xl mb-2">
+                <p className="font-display font-black text-gray-900 text-4xl mb-2">
                   {s.stat}
                 </p>
                 <p className="font-body text-gray-500 text-sm leading-relaxed">
@@ -433,10 +430,10 @@ export default function DubaiPropertyInvestment() {
       </section>
 
       {/* ── SMART MONEY ── */}
-      <section className="py-20 bg-[#F4F6FA]">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-5 lg:px-10">
           <div className="text-center mb-12">
-            <h2 className="font-display font-black text-[#0E1B3A] text-3xl sm:text-4xl mb-3">
+            <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-3">
               Where the smart money goes
             </h2>
           </div>
@@ -446,7 +443,7 @@ export default function DubaiPropertyInvestment() {
                 key={c.title}
                 className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm"
               >
-                <h3 className="font-heading font-bold text-[#0E1B3A] text-base mb-3">
+                <h3 className="font-heading font-bold text-gray-900 text-base mb-3">
                   {c.title}
                 </h3>
                 <p className="font-body text-gray-500 text-sm leading-relaxed">
@@ -459,18 +456,18 @@ export default function DubaiPropertyInvestment() {
       </section>
 
       {/* ── FOUNDER ── */}
-      <section className="py-16 bg-[#0E1B3A]">
+      <section className="py-16 bg-black">
         <div className="max-w-4xl mx-auto px-5 lg:px-10 text-center">
           <blockquote className="font-body text-white/70 text-lg leading-relaxed italic mb-6">
             "I don't just advise on Dubai property — I live off the passive
             income mine generates. RE/MAX ZAM invests in what it recommends."
           </blockquote>
-          <p className="font-heading font-bold text-[#C49A3A] text-sm mb-8">
+          <p className="font-heading font-bold text-white/50 text-sm mb-8">
             — Faisal Contractor, Owner, RE/MAX ZAM
           </p>
           <Link
             to="/my-dubai-passive-income"
-            className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-semibold text-sm px-7 py-3 rounded-xl transition-colors"
+            className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-bold text-sm px-7 py-3 rounded-xl transition-colors"
           >
             See how the founder invests <ArrowRight className="w-4 h-4" />
           </Link>
@@ -481,13 +478,13 @@ export default function DubaiPropertyInvestment() {
       <section id="lead-form" className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-5 lg:px-10 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <h2 className="font-display font-black text-[#0E1B3A] text-3xl sm:text-4xl mb-6">
+            <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl mb-6">
               What's inside the guide
             </h2>
             <ul className="space-y-3 mb-8">
               {GUIDE_BULLETS.map((b) => (
                 <li key={b} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-4 h-4 text-[#DC1C2E] shrink-0 mt-0.5" />
+                  <CheckCircle2 className="w-4 h-4 text-gray-900 shrink-0 mt-0.5" />
                   <span className="font-body text-gray-600 text-sm leading-relaxed">
                     {b}
                   </span>
@@ -495,8 +492,8 @@ export default function DubaiPropertyInvestment() {
               ))}
             </ul>
           </div>
-          <div className="bg-[#F4F6FA] rounded-2xl border border-gray-100 shadow-sm p-8">
-            <p className="font-heading font-bold text-[#0E1B3A] text-lg mb-5">
+          <div className="bg-gray-50 rounded-2xl border border-gray-100 shadow-sm p-8">
+            <p className="font-heading font-bold text-gray-900 text-lg mb-5">
               Download the Free Guide
             </p>
             <GuideCapture source="Mid-Page Guide Download — /dubai-property-investment" />
@@ -505,9 +502,9 @@ export default function DubaiPropertyInvestment() {
       </section>
 
       {/* ── FAQ ── */}
-      <section className="py-20 bg-[#F4F6FA]">
+      <section className="py-20 bg-gray-50">
         <div className="max-w-3xl mx-auto px-5 lg:px-10">
-          <h2 className="font-display font-black text-[#0E1B3A] text-3xl mb-8 text-center">
+          <h2 className="font-display font-black text-gray-900 text-3xl mb-8 text-center">
             Frequently Asked Questions
           </h2>
           {FAQS.map((f) => (
@@ -534,7 +531,6 @@ export default function DubaiPropertyInvestment() {
         </div>
       </RedCTABand>
 
-      <CampaignFooter />
     </div>
   );
 }

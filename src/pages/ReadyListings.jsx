@@ -32,7 +32,7 @@ export default function ReadyListings() {
     base44.entities.Property.list('-created_date', 200)
       .then((data) => {
         // Only show properties where isPocketListing is true
-        const pocketListings = data.filter((p) => p.isPocketListing);
+        const pocketListings = (Array.isArray(data) ? data : []).filter((p) => p.isPocketListing);
         setProperties(pocketListings);
         setLoading(false);
       })
