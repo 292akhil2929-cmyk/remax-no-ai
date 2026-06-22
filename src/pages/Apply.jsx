@@ -97,8 +97,8 @@ function FieldGroup({ label, children, required, error }) {
 
 export default function Apply() {
   usePageSEO({
-    title: 'Join RE/MAX ZAM | Property Agent Careers in Dubai',
-    description: 'Looking to build a real estate career in Dubai? Join RE/MAX ZAM and access best-in-class training, leads, and the world\'s most trusted property brand.',
+    title: 'Join RE/MAX Zam | Property Agent Careers in Dubai',
+    description: 'Looking to build a real estate career in Dubai? Join RE/MAX Zam and access best-in-class training, leads, and the world\'s most trusted property brand.',
     canonical: 'https://remaxzam.ae/join',
   });
 
@@ -193,7 +193,7 @@ export default function Apply() {
           </div>
           <h1 className="text-2xl lg:text-3xl font-display font-bold text-gray-900 mb-3">Application Submitted!</h1>
           <p className="text-gray-500 font-body text-sm leading-relaxed mb-6">
-            Thank you for your interest in joining REMAX ZAM Dubai. Our recruitment team will review your
+            Thank you for your interest in joining RE/MAX Zam Dubai. Our recruitment team will review your
             profile and reach out within 48 hours.
           </p>
           <Button onClick={() => { setSubmitted(false); setForm(EMPTY_FORM); }} variant="outline">
@@ -212,7 +212,7 @@ export default function Apply() {
       {/* Hero */}
       <section className="py-16 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Careers at RE/MAX ZAM</p>
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Careers at RE/MAX Zam</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">
             Build Your Career With Dubai's Most Trusted Brand
           </h1>
@@ -451,7 +451,7 @@ export default function Apply() {
             {/* Submit */}
             <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
               <p className="text-xs text-gray-500 font-body">
-                By submitting, you agree to our privacy policy and consent to REMAX ZAM contacting you regarding this application.
+                By submitting, you agree to our privacy policy and consent to RE/MAX Zam contacting you regarding this application.
               </p>
               <Button type="submit" disabled={createLead.isPending}
                 className="bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm px-8 py-2.5 border-0 whitespace-nowrap">

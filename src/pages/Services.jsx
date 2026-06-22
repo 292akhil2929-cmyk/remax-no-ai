@@ -78,7 +78,7 @@ const services = [
     icon: Users,
     title: 'Agent & Broker Partnership Programme',
     tagline: 'Partner with Dubai\'s leading investment brokerage',
-    desc: 'International agents and brokers can refer their clients to REMAX ZAM for Dubai real estate transactions. We offer competitive co-brokerage fees, full client management, and dedicated support — allowing you to offer Dubai as an investment destination without needing a UAE presence.',
+    desc: 'International agents and brokers can refer their clients to RE/MAX Zam for Dubai real estate transactions. We offer competitive co-brokerage fees, full client management, and dedicated support — allowing you to offer Dubai as an investment destination without needing a UAE presence.',
     features: [
       'Competitive referral and co-brokerage commission structure',
       'Dedicated client management from enquiry to handover',
@@ -92,8 +92,8 @@ const services = [
 
 export default function Services() {
   usePageSEO({
-    title: 'Our Services | Buy, Sell, Invest & Golden Visa | RE/MAX ZAM Dubai',
-    description: 'From property acquisition to portfolio management and Golden Visa advisory — RE/MAX ZAM provides end-to-end real estate services in Dubai.',
+    title: 'Our Services | Buy, Sell, Invest & Golden Visa | RE/MAX Zam Dubai',
+    description: 'From property acquisition to portfolio management and Golden Visa advisory — RE/MAX Zam provides end-to-end real estate services in Dubai.',
     canonical: 'https://remaxzam.ae/services',
   });
 
@@ -105,7 +105,7 @@ export default function Services() {
           <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">What We Do</p>
           <h1 className="text-3xl lg:text-5xl font-display font-bold text-foreground mb-4">Our Investment Services</h1>
           <p className="text-base text-muted-foreground font-body max-w-2xl leading-relaxed">
-            From first-time off-plan purchases to multi-asset portfolio management — REMAX ZAM provides the full spectrum of Dubai real estate investment services under one roof.
+            From first-time off-plan purchases to multi-asset portfolio management — RE/MAX Zam provides the full spectrum of Dubai real estate investment services under one roof.
           </p>
         </div>
       </section>

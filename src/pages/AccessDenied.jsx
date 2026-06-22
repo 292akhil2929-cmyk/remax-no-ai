@@ -19,7 +19,7 @@ export default function AccessDenied() {
         </div>
 
         <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-3">
-          REMAX ZAM — Admin Portal
+          RE/MAX ZAM — Admin Portal
         </p>
         <h1 className="text-3xl font-display font-black text-white mb-3">Access Denied</h1>
         <p className="text-white/50 font-body text-sm leading-relaxed mb-8">

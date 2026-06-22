@@ -44,9 +44,9 @@ const PAGE_SCHEMA = {
       "@type": "WebPage",
       "@id": "https://remaxzam.ae/dubai-property-investment",
       url: "https://remaxzam.ae/dubai-property-investment",
-      name: "Dubai Property Investment | Passive Income, Golden Visa & Growth | RE/MAX ZAM",
+      name: "Dubai Property Investment | Passive Income, Golden Visa & Growth | RE/MAX Zam",
       description:
-        "Build tax-free passive income, capital growth and 10-year residency with Dubai property. Download the free investor guide from RE/MAX ZAM — advisors who invest themselves.",
+        "Build tax-free passive income, capital growth and 10-year residency with Dubai property. Download the free investor guide from RE/MAX Zam — advisors who invest themselves.",
       breadcrumb: {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -309,9 +309,9 @@ const FAQS = [
 export default function DubaiPropertyInvestment() {
   usePageSEO({
     title:
-      "Dubai Property Investment | Passive Income, Golden Visa & Growth | RE/MAX ZAM",
+      "Dubai Property Investment | Passive Income, Golden Visa & Growth | RE/MAX Zam",
     description:
-      "Build tax-free passive income, capital growth and 10-year residency with Dubai property. Download the free investor guide from RE/MAX ZAM — advisors who invest themselves.",
+      "Build tax-free passive income, capital growth and 10-year residency with Dubai property. Download the free investor guide from RE/MAX Zam — advisors who invest themselves.",
     canonical: "https://remaxzam.ae/dubai-property-investment",
     keywords:
       "dubai property investment, invest in dubai real estate, passive income dubai property, dubai property for foreigners, buy property dubai 2025, dubai investment guide",
@@ -460,10 +460,10 @@ export default function DubaiPropertyInvestment() {
         <div className="max-w-4xl mx-auto px-5 lg:px-10 text-center">
           <blockquote className="font-body text-white/70 text-lg leading-relaxed italic mb-6">
             "I don't just advise on Dubai property — I live off the passive
-            income mine generates. RE/MAX ZAM invests in what it recommends."
+            income mine generates. RE/MAX Zam invests in what it recommends."
           </blockquote>
           <p className="font-heading font-bold text-white/50 text-sm mb-8">
-            — Faisal Contractor, Owner, RE/MAX ZAM
+            — Faisal Contractor, Owner, RE/MAX Zam
           </p>
           <Link
             to="/my-dubai-passive-income"

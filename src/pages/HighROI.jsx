@@ -157,7 +157,7 @@ export default function HighROI() {
                 Dugasta Projects:<br />9–11% Yields
               </h2>
               <p className="text-gray-400 font-body text-sm leading-relaxed mb-6">
-                RE/MAX ZAM is the exclusive sales partner for Dugasta in Dubai. Their 1% monthly payment plan and Dubailand locations consistently produce the highest rental yields we see across our entire portfolio.
+                RE/MAX Zam is the exclusive sales partner for Dugasta in Dubai. Their 1% monthly payment plan and Dubailand locations consistently produce the highest rental yields we see across our entire portfolio.
               </p>
               <ul className="space-y-3 mb-8">
                 {['Get access to units before they go public', '1% per month is genuinely the most accessible plan in Dubai', 'Yields of 9 to 11% backed by a legally binding contract', 'No agency fees when you buy Dugasta through us'].map(item => (

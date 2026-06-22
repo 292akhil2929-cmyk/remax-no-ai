@@ -21,7 +21,7 @@ const PAGE_SCHEMA = {
       '@type': 'WebPage',
       '@id': 'https://remaxzam.ae/10-net-roi-dubai-property',
       url: 'https://remaxzam.ae/10-net-roi-dubai-property',
-      name: '10% Net ROI Dubai Property | Tax-Free Rental Returns | RE/MAX ZAM',
+      name: '10% Net ROI Dubai Property | Tax-Free Rental Returns | RE/MAX Zam',
       description: 'Earn up to 10% net rental ROI from Dubai property — tax-free, with 0% service charges and flexible payment plans. Calculate your returns and get a personalised plan.',
       breadcrumb: {
         '@type': 'BreadcrumbList',
@@ -510,7 +510,7 @@ const PROTECTION_CARDS = [
 
 export default function ROIDubaiProperty() {
   usePageSEO({
-    title: '10% Net ROI Dubai Property | Tax-Free Rental Returns | RE/MAX ZAM',
+    title: '10% Net ROI Dubai Property | Tax-Free Rental Returns | RE/MAX Zam',
     description: 'Earn up to 10% net rental ROI from Dubai property — tax-free, with 0% service charges and flexible payment plans. Calculate your returns and get a personalised plan.',
     canonical: 'https://remaxzam.ae/10-net-roi-dubai-property',
     keywords: 'dubai property 10% roi, high rental yield dubai, dubai investment property returns, tax-free property dubai, dubai rental yield 2026, 10 percent roi dubai',
@@ -631,7 +631,7 @@ export default function ROIDubaiProperty() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { name: 'James T.', location: 'London, UK', quote: 'My Dubai studio generates more net income per year than my London flat - and I pay zero tax on it. RE/MAX ZAM walked me through every step.', stars: 5 },
+              { name: 'James T.', location: 'London, UK', quote: 'My Dubai studio generates more net income per year than my London flat - and I pay zero tax on it. RE/MAX Zam walked me through every step.', stars: 5 },
               { name: 'Priya S.', location: 'Singapore', quote: 'I was sceptical about investing abroad, but the ROI calculator made it real. My first unit is contracted at 8.5% net for 5 years.', stars: 5 },
               { name: 'Marcus B.', location: 'Frankfurt, Germany', quote: 'I now earn passive income from three Dubai units. The team handled everything remotely - I have not visited once and the income arrives monthly.', stars: 5 },
             ].map(t => (

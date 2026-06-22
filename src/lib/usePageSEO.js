@@ -14,7 +14,7 @@
  *
  * Usage:
  *   usePageSEO({
- *     title:       'Page Title | RE/MAX ZAM',
+ *     title:       'Page Title | RE/MAX Zam',
  *     description: 'Meta description (≤160 chars)',
  *     canonical:   'https://remaxzam.ae/page-slug',
  *     ogImage:     'https://…/image.jpg',   // optional — falls back to default
@@ -27,7 +27,7 @@
 import { useEffect, useRef } from 'react';
 
 const DEFAULT_OG_IMAGE = 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/e55db5afd_generated_image.png';
-const DEFAULT_OG_IMAGE_ALT = 'RE/MAX ZAM Dubai — Dubai Real Estate Investment';
+const DEFAULT_OG_IMAGE_ALT = 'RE/MAX Zam Dubai — Dubai Real Estate Investment';
 const SITE_NAME = 'RE/MAX ZAM Dubai';
 const DEFAULT_TITLE = 'Dubai Property Investment | RE/MAX Zam Real Estate';
 const DEFAULT_DESCRIPTION = 'Invest in Dubai off-plan, ready apartments and luxury villas with RE/MAX Zam. Backed by the RE/MAX global network and senior advisors. Explore high-ROI opportunities.';

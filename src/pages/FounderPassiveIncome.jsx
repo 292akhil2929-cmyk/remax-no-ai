@@ -18,8 +18,8 @@ const PAGE_SCHEMA = {
       '@type': 'WebPage',
       '@id': 'https://remaxzam.ae/my-dubai-passive-income',
       url: 'https://remaxzam.ae/my-dubai-passive-income',
-      name: 'How I Earn Passive Income From Dubai Real Estate | Founder Story | RE/MAX ZAM',
-      description: 'The owner of RE/MAX ZAM shares how he earns passive, tax-free income from his own Dubai property portfolio — and how you can invest in the same strategy.',
+      name: 'How I Earn Passive Income From Dubai Real Estate | Founder Story | RE/MAX Zam',
+      description: 'The owner of RE/MAX Zam shares how he earns passive, tax-free income from his own Dubai property portfolio — and how you can invest in the same strategy.',
       breadcrumb: {
         '@type': 'BreadcrumbList',
         itemListElement: [
@@ -34,12 +34,12 @@ const PAGE_SCHEMA = {
       name: 'Faisal Contractor',
       jobTitle: 'Owner',
       worksFor: { '@type': 'RealEstateAgent', name: 'RE/MAX ZAM Dubai', url: 'https://remaxzam.ae' },
-      description: 'Owner of RE/MAX ZAM Dubai and personal investor in Dubai property, earning passive income from Dugasta and other high-yield communities.',
+      description: 'Owner of RE/MAX Zam Dubai and personal investor in Dubai property, earning passive income from Dugasta and other high-yield communities.',
     },
     {
       '@type': 'FAQPage',
       mainEntity: [
-        { '@type': 'Question', name: 'Does the founder of RE/MAX ZAM own Dubai property?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — Faisal Contractor invests in the same projects he recommends, including Dugasta communities. His income comes from the same strategy he shares with clients.' } },
+        { '@type': 'Question', name: 'Does the founder of RE/MAX Zam own Dubai property?', acceptedAnswer: { '@type': 'Answer', text: 'Yes — Faisal Contractor invests in the same projects he recommends, including Dugasta communities. His income comes from the same strategy he shares with clients.' } },
         { '@type': 'Question', name: 'Is this financial advice?', acceptedAnswer: { '@type': 'Answer', text: 'No. The founder shares his own experience and the team models transparent projections. Clients make their own decisions with full information.' } },
         { '@type': 'Question', name: 'What happens on a consultation call?', acceptedAnswer: { '@type': 'Answer', text: 'The team learns your goals, models your returns and visa eligibility, and shows you matching properties. About 20 minutes.' } },
       ],
@@ -66,8 +66,8 @@ const FAQS = [
 
 export default function FounderPassiveIncome() {
   usePageSEO({
-    title: 'How I Earn Passive Income From Dubai Real Estate | Founder Story | RE/MAX ZAM',
-    description: 'The owner of RE/MAX ZAM shares how he earns passive, tax-free income from his own Dubai property portfolio — and how you can invest in the same strategy.',
+    title: 'How I Earn Passive Income From Dubai Real Estate | Founder Story | RE/MAX Zam',
+    description: 'The owner of RE/MAX Zam shares how he earns passive, tax-free income from his own Dubai property portfolio — and how you can invest in the same strategy.',
     canonical: 'https://remaxzam.ae/my-dubai-passive-income',
     keywords: 'passive income dubai real estate, how to earn passive income dubai, dubai rental income investment, dubai property founder investor, tax free rental income dubai',
     schema: PAGE_SCHEMA,
@@ -166,7 +166,7 @@ export default function FounderPassiveIncome() {
           <p className="font-body text-white/70 text-lg leading-relaxed mb-8">
             "Most brokers sell you whatever pays them the most. I recommend what I own. When I find a project worth my own money — like Dugasta's high-yield communities — I bring my clients in alongside me. Same projects, same strategy, same upside."
           </p>
-          <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX ZAM</p>
+          <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX Zam</p>
           <Link to="/dugasta-faq" className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-bold text-sm px-7 py-3 rounded-xl transition-colors">
             See why I chose these projects <ArrowRight className="w-4 h-4" />
           </Link>

@@ -43,7 +43,7 @@ export default function Login() {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-[#c9a84c]/10 border border-[#c9a84c]/20 mb-4">
             <ShieldCheck className="w-8 h-8 text-[#c9a84c]" />
           </div>
-          <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-1">REMAX ZAM — Admin Portal</p>
+          <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-1">RE/MAX ZAM — Admin Portal</p>
           <h1 className="text-2xl font-display font-black text-white">Welcome Back</h1>
           <p className="text-white/50 font-body text-sm mt-1">Sign in to access the CRM dashboard</p>
         </div>

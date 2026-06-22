@@ -83,7 +83,7 @@ const services = [
     icon: Users,
     title: 'Agent & Broker Partnership Programme',
     tagline: 'Partner with Dubai\'s leading investment brokerage',
-    desc: 'International agents and brokers can refer their clients to REMAX ZAM for Dubai real estate transactions. We offer competitive co-brokerage fees, full client management, and dedicated support — allowing you to offer Dubai as an investment destination without needing a UAE presence.',
+    desc: 'International agents and brokers can refer their clients to RE/MAX Zam for Dubai real estate transactions. We offer competitive co-brokerage fees, full client management, and dedicated support — allowing you to offer Dubai as an investment destination without needing a UAE presence.',
     features: [
       'Competitive referral and co-brokerage commission structure',
       'Dedicated client management from enquiry to handover',
@@ -123,7 +123,7 @@ export default function AboutUs() {
               Dubai Real Estate Advisory, Built on Data &amp; Trust
             </h1>
             <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
-              REMAX ZAM takes a consultative, data-backed approach to real estate — acting as true advisors to investors and sellers, while building a clear growth pathway for our agents.
+              RE/MAX Zam takes a consultative, data-backed approach to real estate — acting as true advisors to investors and sellers, while building a clear growth pathway for our agents.
             </p>
             <Button size="lg" className="bg-black hover:bg-gray-900 text-white font-heading font-bold border-0" asChild>
               <Link to="/contact">Talk to Our Team <ArrowRight className="w-4 h-4 ml-1" /></Link>
@@ -132,7 +132,7 @@ export default function AboutUs() {
           <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-xl hidden lg:block">
             <img
               src="https://images.unsplash.com/photo-1546412414-e1885259563a?w=900&q=80&auto=format&fit=crop"
-              alt="Burj Al Arab Dubai — RE/MAX ZAM"
+              alt="Burj Al Arab Dubai — RE/MAX Zam"
               className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
@@ -153,7 +153,7 @@ export default function AboutUs() {
               <div className="w-8 h-0.5 bg-[#C9A84C] mb-4" />
               <h2 className="text-3xl font-display font-bold text-gray-900 mb-5">Built on Integrity, Driven by Data, Focused on Your Returns</h2>
               <p className="text-sm text-gray-500 font-body leading-relaxed mb-4">
-                REMAX ZAM was founded with one goal: to bring institutional-grade investment thinking to individual property buyers. Too many international investors enter the Dubai market without access to real data, independent analysis, or advisors who prioritise their interests over commission.
+                RE/MAX Zam was founded with one goal: to bring institutional-grade investment thinking to individual property buyers. Too many international investors enter the Dubai market without access to real data, independent analysis, or advisors who prioritise their interests over commission.
               </p>
               <p className="text-sm text-gray-500 font-body leading-relaxed mb-4">
                 We changed that. Our team of licensed RERA advisors, investment analysts, and Golden Visa specialists works exclusively on the client side — meaning we help you identify the best opportunities across all developers and communities, not just the ones with the highest referral fees.
@@ -287,7 +287,7 @@ export default function AboutUs() {
             <div className="w-8 h-0.5 bg-[#C9A84C] mb-4 mx-auto" />
             <h2 className="text-3xl font-display font-bold text-gray-900 mb-3">Our Investment Services</h2>
             <p className="text-sm text-gray-500 font-body max-w-lg mx-auto">
-              From first-time off-plan purchases to multi-asset portfolio management — REMAX ZAM provides the full spectrum of Dubai real estate investment services under one roof.
+              From first-time off-plan purchases to multi-asset portfolio management — RE/MAX Zam provides the full spectrum of Dubai real estate investment services under one roof.
             </p>
           </div>
 

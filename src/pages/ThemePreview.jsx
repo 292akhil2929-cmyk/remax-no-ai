@@ -89,7 +89,7 @@ export default function ThemePreview() {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h1 className="text-4xl font-bold text-gray-900 mb-3">Color Theme Options</h1>
-          <p className="text-lg text-gray-600">Choose your preferred theme for REMAX ZAM</p>
+          <p className="text-lg text-gray-600">Choose your preferred theme for RE/MAX Zam</p>
         </div>
 
         <div className="space-y-8">
@@ -119,7 +119,7 @@ export default function ThemePreview() {
                       {/* Logo Box */}
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-md" style={{ backgroundColor: theme.primary }}></div>
-                        <span className="font-bold text-sm" style={{ color: theme.foreground }}>REMAX ZAM</span>
+                        <span className="font-bold text-sm" style={{ color: theme.foreground }}>RE/MAX ZAM</span>
                       </div>
                       {/* Nav Links */}
                       <div className="flex gap-6 flex-1">
@@ -237,7 +237,7 @@ export default function ThemePreview() {
         {/* Selection Instructions */}
         <div className="mt-12 bg-blue-50 border-l-4 border-blue-500 p-6 rounded-lg">
           <h3 className="font-bold text-blue-900 mb-2">RE/MAX Brand Themes</h3>
-          <p className="text-sm text-blue-800 mb-3">All themes below are based on your RE/MAX ZAM brand colors (Navy Blue & Red):</p>
+          <p className="text-sm text-blue-800 mb-3">All themes below are based on your RE/MAX Zam brand colors (Navy Blue & Red):</p>
           <ul className="text-sm text-blue-800 space-y-1">
             <li>✓ <strong>RE/MAX Brand Bold</strong> - Direct brand match. Bold and commanding. Recommended.</li>
             <li>✓ <strong>RE/MAX Premium Dark</strong> - Gray background option for softer luxury feel</li>

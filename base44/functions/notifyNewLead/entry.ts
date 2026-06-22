@@ -74,7 +74,7 @@ Deno.serve(async (req) => {
     const emailBody = `
 <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f9f9f9; padding: 20px;">
   <div style="background: #1a3a5c; padding: 20px 24px; border-radius: 8px 8px 0 0;">
-    <h2 style="color: #ffffff; margin: 0; font-size: 18px;">New Lead Received — REMAX ZAM</h2>
+    <h2 style="color: #ffffff; margin: 0; font-size: 18px;">New Lead Received — RE/MAX Zam</h2>
   </div>
   <div style="background: #ffffff; padding: 24px; border-radius: 0 0 8px 8px; border: 1px solid #e5e7eb;">
     <table style="width: 100%; border-collapse: collapse;">
@@ -132,7 +132,7 @@ Deno.serve(async (req) => {
 
     await base44.asServiceRole.integrations.Core.SendEmail({
       to: SALES_TEAM_EMAIL,
-      from_name: 'REMAX ZAM Leads',
+      from_name: 'RE/MAX ZAM Leads',
       subject,
       body: emailBody,
     });

@@ -11,7 +11,7 @@ const TOPICS = [
   'Why international investors are choosing Dubai over London and Singapore in 2025',
   'Best communities for first-time property investors in Dubai under AED 1M',
   'Dubai off-plan vs ready property — which delivers better returns this quarter',
-  'How to maximise rental yield in Dubai: property management tips from REMAX ZAM',
+  'How to maximise rental yield in Dubai: property management tips from RE/MAX Zam',
   'Dubai real estate market news — top transactions and new project launches this week',
   'Dubai Hills Estate vs JVC vs Business Bay: investment comparison for 2025',
   'Sobha, DAMAC, Emaar — comparing Dubai\'s top developer payment plans right now',
@@ -105,7 +105,7 @@ Deno.serve(async (req) => {
     const today = new Date().toLocaleDateString('en-AE', { day: 'numeric', month: 'long', year: 'numeric' });
 
     const post = await base44.asServiceRole.integrations.Core.InvokeLLM({
-      prompt: `You are a senior Dubai real estate investment analyst and content writer for REMAX ZAM, a leading Dubai property brokerage.
+      prompt: `You are a senior Dubai real estate investment analyst and content writer for RE/MAX Zam, a leading Dubai property brokerage.
 
 Write a high-quality, SEO-optimised blog post on this topic: "${topic}"
 
@@ -117,8 +117,8 @@ Requirements:
 - Include real data points, percentages, and specifics where relevant
 - Write for Google and GEO (AI search engines) — use natural question phrases
 - The post should be genuinely useful and informative
-- Naturally mention REMAX ZAM as the expert source 1-2 times maximum
-- End with a clear call to action to contact REMAX ZAM for personalised advice
+- Naturally mention RE/MAX Zam as the expert source 1-2 times maximum
+- End with a clear call to action to contact RE/MAX Zam for personalised advice
 
 Return JSON with:
 {

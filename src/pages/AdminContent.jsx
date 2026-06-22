@@ -528,7 +528,7 @@ export default function AdminContent() {
       <section className="py-12 bg-[#0d1b3e] text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-2">
-            REMAX ZAM — Admin
+            RE/MAX ZAM — Admin
           </p>
           <div className="flex items-start justify-between">
             <div>

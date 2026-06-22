@@ -152,7 +152,7 @@ export default function AdminTeam() {
       <section className="py-10 bg-[#0d1b3e] text-white">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           <div>
-            <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-1">REMAX ZAM — Admin</p>
+            <p className="text-[#c9a84c] font-heading font-semibold text-xs tracking-widest uppercase mb-1">RE/MAX ZAM — Admin</p>
             <h1 className="text-2xl font-display font-black text-white">Team Management</h1>
             <p className="text-white/60 font-body text-sm mt-1">Add, edit, or remove agents. Changes appear live on public pages.</p>
           </div>

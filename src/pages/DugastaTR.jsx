@@ -89,16 +89,16 @@ const PROJECTS = [
     paymentPlan: 'Aylık %1 Teslim Sonrası',
     roi: '%8 - %10',
     area: '700 sqft\'den başlayan',
-    tag: 'Yalnızca RE/MAX ZAM\'dan',
+    tag: 'Yalnızca RE/MAX Zam\'dan',
     image: 'https://media.base44.com/images/public/6a16b586e769393fe031b9fd/889d50666_generated_image.png',
     highlights: [
-      'Halka açılmadan önce yalnızca RE/MAX ZAM aracılığıyla sunuluyor',
+      'Halka açılmadan önce yalnızca RE/MAX Zam aracılığıyla sunuluyor',
       'Ayda sadece %1 ile Dubai\'deki en erişilebilir planlardan biri',
       'Akıllı ev özellikleri ve boydan boya yüksek kalite işçilik',
       'Dubailand güçlü ve tutarlı kira talebi görüyor',
       'Teslim tarihine kadar güçlü sermaye değer artışı bekleniyor',
     ],
-    description: "Weybridge Gardens 3 şu anda yalnızca RE/MAX ZAM aracılığıyla edinilebilir. Aylık %1\'lik ödeme planı, piyasadaki en erişilebilir yapılardan biridir ve Dubai'ye ilk kez yatırım yapanlar için harika bir başlangıç noktasıdır.",
+    description: "Weybridge Gardens 3 şu anda yalnızca RE/MAX Zam aracılığıyla edinilebilir. Aylık %1\'lik ödeme planı, piyasadaki en erişilebilir yapılardan biridir ve Dubai'ye ilk kez yatırım yapanlar için harika bir başlangıç noktasıdır.",
   },
 ];
 
@@ -250,7 +250,7 @@ export default function DugastaTR() {
             <motion.div className="lg:col-span-3" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.9 }}>
               <div className="inline-flex items-center gap-2 bg-amber-500/20 border border-amber-500/40 rounded-full px-4 py-1.5 mb-7">
                 <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                <span className="text-amber-400 font-heading font-bold text-[10px] tracking-[0.25em] uppercase">RE/MAX ZAM Dubai Aracılığıyla Sunuluyor</span>
+                <span className="text-amber-400 font-heading font-bold text-[10px] tracking-[0.25em] uppercase">RE/MAX Zam Dubai Aracılığıyla Sunuluyor</span>
               </div>
 
               <h1 className="font-display font-black text-white leading-[0.95] mb-6">
@@ -531,13 +531,13 @@ export default function DugastaTR() {
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <div className="inline-flex items-center gap-2 bg-black rounded-full px-3 py-1 mb-4">
                 <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
-                <span className="text-white font-heading font-bold text-[10px] tracking-[0.2em] uppercase">Neden RE/MAX ZAM'dan Satın Almalı</span>
+                <span className="text-white font-heading font-bold text-[10px] tracking-[0.2em] uppercase">Neden RE/MAX Zam'dan Satın Almalı</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 leading-tight mb-5">
-                RE/MAX ZAM Aracılığıyla<br />Dugasta Mülkü Nasıl Satın Alınır
+                RE/MAX Zam Aracılığıyla<br />Dugasta Mülkü Nasıl Satın Alınır
               </h2>
               <p className="text-gray-600 font-body text-sm leading-relaxed mb-3">
-                RE/MAX ZAM, Dubai'de Dugasta'nın yetkili satış acentesidir. Danışmanlarımız düzinelerce yatırımcıya 10 on 10 satın alma sürecinde rehberlik etti — ilk soruşturmadan DLD tescili ve teslimatına kadar.
+                RE/MAX Zam, Dubai'de Dugasta'nın yetkili satış acentesidir. Danışmanlarımız düzinelerce yatırımcıya 10 on 10 satın alma sürecinde rehberlik etti — ilk soruşturmadan DLD tescili ve teslimatına kadar.
               </p>
               <p className="text-gray-600 font-body text-sm leading-relaxed mb-6">
                 Komisyonumuzu geliştirici ödediği için <strong className="text-gray-900">sizin ödeyeceğiniz herhangi bir acente ücreti bulunmuyor.</strong> Sıfır maliyet karşılığında tam profesyonel rehberlik alıyorsunuz.

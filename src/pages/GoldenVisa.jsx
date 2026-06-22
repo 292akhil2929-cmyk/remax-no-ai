@@ -16,7 +16,7 @@ const faqs = [
   { q: 'Can I sponsor my family on the Golden Visa?', a: 'Yes. The UAE Golden Visa allows you to sponsor your spouse, children (up to 25 years old, or any age if disabled), and domestic helpers regardless of nationality. There is no minimum salary requirement for Golden Visa holders to sponsor family members.' },
   { q: 'Do I need to actually live in Dubai to keep the Golden Visa?', a: 'No. Regular UAE residence visas lapse after 180 days outside the country, but the Golden Visa is different. You can live anywhere in the world and your visa remains valid, as long as you renew it on time.' },
   { q: 'Can I buy multiple properties to reach the AED 2M threshold?', a: 'Yes. Multiple properties can be combined to reach the AED 2 million minimum, provided they are all completed and title deeds are issued. Off-plan units under construction require a letter from the developer confirming the purchase value.' },
-  { q: 'What are the total costs involved beyond the property price?', a: 'You should budget for a 4% DLD transfer fee, an AED 580 title deed issuance fee, and roughly AED 5,000 to 10,000 in visa processing fees. When you purchase through RE/MAX ZAM, we handle the full visa application as part of our service at no extra cost.' },
+  { q: 'What are the total costs involved beyond the property price?', a: 'You should budget for a 4% DLD transfer fee, an AED 580 title deed issuance fee, and roughly AED 5,000 to 10,000 in visa processing fees. When you purchase through RE/MAX Zam, we handle the full visa application as part of our service at no extra cost.' },
   { q: 'Does the Golden Visa allow me to work in the UAE?', a: 'Yes. The UAE 10-year Golden Visa grants full residency rights including the right to work in the UAE without requiring a separate work permit or local employer sponsorship. You can also open a UAE bank account, register a business, and access UAE government services.' },
 ];
 
@@ -87,7 +87,7 @@ export default function GoldenVisa() {
           <div className="text-center mb-12">
             <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">The Process</p>
             <h2 className="text-3xl font-display font-black text-gray-900 mb-3">How to Get Your UAE Golden Visa — Step by Step</h2>
-            <p className="text-sm text-gray-500 font-body">RE/MAX ZAM manages every step of this process on your behalf. From start to finish it typically takes 4 to 8 weeks after your property purchase completes.</p>
+            <p className="text-sm text-gray-500 font-body">RE/MAX Zam manages every step of this process on your behalf. From start to finish it typically takes 4 to 8 weeks after your property purchase completes.</p>
           </div>
           <div className="space-y-6">
             {steps.map(s => (

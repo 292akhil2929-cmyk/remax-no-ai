@@ -517,13 +517,13 @@ export default function Dugasta() {
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <div className="inline-flex items-center gap-2 bg-black rounded-full px-3 py-1 mb-4">
                 <Star className="w-3 h-3 text-gray-400 fill-gray-400" />
-                <span className="text-white font-heading font-bold text-[10px] tracking-[0.2em] uppercase">Why Buy Through RE/MAX ZAM</span>
+                <span className="text-white font-heading font-bold text-[10px] tracking-[0.2em] uppercase">Why Buy Through RE/MAX Zam</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 leading-tight mb-5">
-                How to Buy a Dugasta<br />Property Through RE/MAX ZAM
+                How to Buy a Dugasta<br />Property Through RE/MAX Zam
               </h2>
               <p className="text-gray-600 font-body text-sm leading-relaxed mb-3">
-                RE/MAX ZAM is an authorised selling agent for Dugasta in Dubai. Our advisors have walked dozens of investors through the 10 on 10 purchase process, from first enquiry all the way to DLD registration and handover.
+                RE/MAX Zam is an authorised selling agent for Dugasta in Dubai. Our advisors have walked dozens of investors through the 10 on 10 purchase process, from first enquiry all the way to DLD registration and handover.
               </p>
               <p className="text-gray-600 font-body text-sm leading-relaxed mb-6">
                 Because the developer pays our commission, <strong className="text-gray-900">there is absolutely no agency fee for you to pay.</strong> You get full professional guidance at zero cost.

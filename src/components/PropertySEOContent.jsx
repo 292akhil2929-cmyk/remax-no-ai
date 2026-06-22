@@ -98,7 +98,7 @@ export default function PropertySEOContent() {
             <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">Area Guides</p>
             <h2 className="text-3xl font-display font-bold text-foreground mb-3">Best Areas to Buy Property in Dubai</h2>
             <p className="text-sm text-muted-foreground font-body leading-relaxed">
-              From iconic waterfront developments to emerging investment corridors — REMAX ZAM covers every key district across Dubai and the wider UAE.
+              From iconic waterfront developments to emerging investment corridors — RE/MAX Zam covers every key district across Dubai and the wider UAE.
             </p>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -139,7 +139,7 @@ export default function PropertySEOContent() {
         <div className="max-w-2xl mx-auto px-4">
           <h2 className="text-2xl lg:text-3xl font-display font-bold mb-3">Ready to Invest in Dubai Real Estate?</h2>
           <p className="text-white/75 font-body mb-7 text-sm leading-relaxed">
-            REMAX ZAM's expert team helps international investors identify, acquire, and maximise returns from Dubai's most lucrative property opportunities. Book a free consultation today.
+            RE/MAX Zam's expert team helps international investors identify, acquire, and maximise returns from Dubai's most lucrative property opportunities. Book a free consultation today.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>

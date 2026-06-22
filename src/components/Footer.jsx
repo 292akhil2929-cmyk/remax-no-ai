@@ -10,7 +10,7 @@ export default function Footer() {
             <div className="flex items-center gap-2 mb-4">
               <img
                 src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/196267c79_RemaxZamLogo.jpg"
-                alt="REMAX ZAM"
+                alt="RE/MAX ZAM"
                 className="h-10 w-auto object-contain"
               />
             </div>
@@ -64,7 +64,7 @@ export default function Footer() {
           </div>
         </div>
         <div className="border-t border-border mt-12 pt-8 text-center text-xs text-muted-foreground font-body">
-          © {new Date().getFullYear()} REMAX ZAM. All rights reserved. RERA Licensed.
+          © {new Date().getFullYear()} RE/MAX ZAM. All rights reserved. RERA Licensed.
         </div>
       </div>
     </footer>

@@ -123,7 +123,7 @@ export default function OffPlan() {
           <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">New Launches</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">Off-Plan Projects in Dubai</h1>
           <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
-            First-access to Dubai's most sought-after off-plan launches — handpicked by REMAX ZAM analysts for developer credibility, location fundamentals, and projected returns. Prices start from AED 900K with flexible payment plans.
+            First-access to Dubai's most sought-after off-plan launches — handpicked by RE/MAX Zam analysts for developer credibility, location fundamentals, and projected returns. Prices start from AED 900K with flexible payment plans.
           </p>
           <div className="flex flex-wrap gap-2">
             {['all', 'Available', 'Limited Units', 'Launching Soon'].map(f => (
@@ -238,7 +238,7 @@ export default function OffPlan() {
       <section className="py-14 bg-black text-white text-center">
         <div className="max-w-2xl mx-auto px-4">
           <h2 className="text-2xl lg:text-3xl font-display font-bold mb-3">Get First Access to New Launches</h2>
-          <p className="text-white/75 font-body mb-7 text-sm">Register with REMAX ZAM to receive off-plan launch alerts, exclusive pre-launch pricing, and developer EOI invitations before they hit the public market.</p>
+          <p className="text-white/75 font-body mb-7 text-sm">Register with RE/MAX Zam to receive off-plan launch alerts, exclusive pre-launch pricing, and developer EOI invitations before they hit the public market.</p>
           <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-black hover:bg-gray-100 font-heading font-bold px-6 py-3 rounded-xl transition-colors">
             Register for Launch Alerts <ArrowRight className="w-4 h-4 ml-1" />
           </Link>

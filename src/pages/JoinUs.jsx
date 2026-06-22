@@ -60,14 +60,14 @@ export default function JoinUs() {
       {/* Hero — dark navy */}
       <section className="bg-[#0d1b3e] py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto text-center">
-          <p className="text-[#c9a84c] font-heading font-semibold text-sm tracking-widest uppercase mb-3">JOIN REMAX ZAM DUBAI</p>
+          <p className="text-[#c9a84c] font-heading font-semibold text-sm tracking-widest uppercase mb-3">JOIN RE/MAX Zam DUBAI</p>
           <h1 className="text-3xl lg:text-5xl font-display font-black text-white leading-tight mb-5">
             Build Your Career Under<br />
             <span className="text-[#c9a84c]">The World's Most Trusted</span> Real Estate Brand
           </h1>
           <p className="text-white/65 font-body text-lg max-w-2xl mx-auto leading-relaxed mb-10">
             In Dubai's crowded real estate market, the agents who win are the ones backed by a name clients already trust globally. 
-            That name is RE/MAX — and REMAX ZAM brings it to Dubai.
+            That name is RE/MAX — and RE/MAX Zam brings it to Dubai.
           </p>
 
           {/* Brand stats */}
@@ -88,7 +88,7 @@ export default function JoinUs() {
           <div className="text-center mb-12">
             <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-2 uppercase">The RE/MAX Difference</p>
             <h2 className="text-2xl lg:text-4xl font-display font-bold text-foreground">
-              Why Top Dubai Agents Choose REMAX ZAM
+              Why Top Dubai Agents Choose RE/MAX Zam
             </h2>
           </div>
 
@@ -113,11 +113,11 @@ export default function JoinUs() {
 
           {/* Comparison table */}
           <div className="max-w-2xl mx-auto mb-4">
-            <h3 className="text-xl font-heading font-bold text-foreground text-center mb-6">REMAX ZAM vs. Local Brokerage</h3>
+            <h3 className="text-xl font-heading font-bold text-foreground text-center mb-6">RE/MAX Zam vs. Local Brokerage</h3>
             <div className="rounded-xl overflow-hidden border border-border">
               <div className="grid grid-cols-3 bg-[#0d1b3e] text-white text-sm font-heading font-semibold">
                 <div className="p-4 col-span-1">What You Get</div>
-                <div className="p-4 text-center text-[#c9a84c]">REMAX ZAM</div>
+                <div className="p-4 text-center text-[#c9a84c]">RE/MAX Zam</div>
                 <div className="p-4 text-center text-white/50">Local Brokerage</div>
               </div>
               {comparisons.map(({ point, remax, local }, i) => (
@@ -141,7 +141,7 @@ export default function JoinUs() {
             "When I tell a client I'm with RE/MAX, half the conversation is already done. They know the brand. 
             They trust it. In Dubai's market, that brand recognition is worth more than any commission split."
           </p>
-          <p className="text-sm font-body text-muted-foreground">— REMAX ZAM Agent, Dubai</p>
+          <p className="text-sm font-body text-muted-foreground">— RE/MAX Zam Agent, Dubai</p>
         </div>
       </section>
 
@@ -149,7 +149,7 @@ export default function JoinUs() {
       <section className="py-20 bg-[#0d1b3e]">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <p className="text-[#c9a84c] font-heading font-semibold text-sm tracking-widest uppercase mb-3">Apply Now</p>
-          <h2 className="text-2xl lg:text-3xl font-display font-bold text-white mb-4">Ready to Join REMAX ZAM Dubai?</h2>
+          <h2 className="text-2xl lg:text-3xl font-display font-bold text-white mb-4">Ready to Join RE/MAX Zam Dubai?</h2>
           <p className="text-white/60 font-body text-base mb-8 leading-relaxed">
             Complete our comprehensive application form and our recruitment team will review your profile within 48 hours.
           </p>

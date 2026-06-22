@@ -1,4 +1,4 @@
-# REMAX ZAM Color Theme Proposals
+# RE/MAX ZAM Color Theme Proposals
 
 ## Current Theme (Existing)
 - **Primary**: Navy Blue (#2D4A6F)

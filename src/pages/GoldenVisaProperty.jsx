@@ -21,7 +21,7 @@ const PAGE_SCHEMA = {
       '@type': 'WebPage',
       '@id': 'https://remaxzam.ae/dubai-golden-visa-property',
       url: 'https://remaxzam.ae/dubai-golden-visa-property',
-      name: 'Dubai Golden Visa Through Property | AED 2M 10-Year Residency | RE/MAX ZAM',
+      name: 'Dubai Golden Visa Through Property | AED 2M 10-Year Residency | RE/MAX Zam',
       description: 'Invest AED 2M in Dubai property and secure a renewable 10-year UAE Golden Visa for your family. Check your eligibility in 60 seconds and see qualifying properties.',
       breadcrumb: {
         '@type': 'BreadcrumbList',
@@ -159,7 +159,7 @@ const BENEFIT_CARDS = [
 
 export default function GoldenVisaProperty() {
   usePageSEO({
-    title: 'Dubai Golden Visa Through Property | AED 2M 10-Year Residency | RE/MAX ZAM',
+    title: 'Dubai Golden Visa Through Property | AED 2M 10-Year Residency | RE/MAX Zam',
     description: 'Invest AED 2M in Dubai property and secure a renewable 10-year UAE Golden Visa for your family. Check your eligibility in 60 seconds and see qualifying properties.',
     canonical: 'https://remaxzam.ae/dubai-golden-visa-property',
     keywords: 'dubai golden visa property, property for golden visa dubai, aed 2 million golden visa, uae residency by investment, dubai golden visa 2025, golden visa payment plan dubai',
@@ -260,7 +260,7 @@ export default function GoldenVisaProperty() {
           <blockquote className="font-body text-white/70 text-lg leading-relaxed italic mb-6">
             "I built my own Dubai portfolio — the income and the residency. I'll show you exactly how to do the same."
           </blockquote>
-          <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX ZAM</p>
+          <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX Zam</p>
           <Link to="/my-dubai-passive-income" className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-bold text-sm px-7 py-3 rounded-xl transition-colors">
             See how the founder invests <ArrowRight className="w-4 h-4" />
           </Link>

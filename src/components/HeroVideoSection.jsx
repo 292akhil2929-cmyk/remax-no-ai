@@ -26,7 +26,7 @@ export default function HeroVideoSection() {
               width="100%"
               height="100%"
               src={videoUrl}
-              title="REMAX ZAM Founder Message"
+              title="RE/MAX Zam Founder Message"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
@@ -62,7 +62,7 @@ export default function HeroVideoSection() {
         >
           <h3 className="text-2xl font-display font-bold mb-3">A Message from Our Founder</h3>
           <p className="text-base text-white/75 font-body max-w-2xl mx-auto">
-            Learn why REMAX ZAM is different, and how we're transforming real estate investing in Dubai.
+            Learn why RE/MAX Zam is different, and how we're transforming real estate investing in Dubai.
           </p>
         </motion.div>
       </div>

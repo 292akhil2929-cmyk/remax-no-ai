@@ -44,7 +44,7 @@ const NAV_GROUPS = [
     items: [
       { label: 'Our Profile', path: '/about', desc: 'Who we are and why we do things differently' },
       { label: 'RE/MAX Dubai', path: '/remax-dubai', desc: "The world's #1 real estate brand — why it matters for your Dubai investment" },
-      { label: 'Why RE/MAX ZAM', path: '/why-remax-zam', desc: 'Credentials, awards, client stories and our process' },
+      { label: 'Why RE/MAX Zam', path: '/why-remax-zam', desc: 'Credentials, awards, client stories and our process' },
       { label: 'The Team', path: '/team', desc: 'The advisors you will actually be working with' },
       { label: 'Join as an Agent', path: '/apply', desc: 'Work with one of the most active teams in Dubai' },
       { label: 'Contact', path: '/contact', desc: 'Call, message or come in. We are easy to reach.' },
@@ -127,7 +127,7 @@ export default function Navbar() {
            <Link to="/" onClick={clearAudience} className="flex items-center shrink-0">
              <img
                src="https://media.base44.com/images/public/6a16b586e769393fe031b9fd/202b99f88_RemaxZamLogo.webp"
-               alt="REMAX ZAM"
+               alt="RE/MAX ZAM"
                className="h-9 w-auto object-contain filter drop-shadow"
              />
            </Link>

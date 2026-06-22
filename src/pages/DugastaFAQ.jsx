@@ -43,7 +43,7 @@ const FAQ_GROUPS = [
     heading: 'Risk & Trust',
     faqs: [
       { q: 'Is Dugasta safe? What about off-plan risk?', a: 'Off-plan in Dubai is escrow-protected and milestone-based, and we focus on connected, high-demand communities. We will share the developer track record and delivery history so you can judge for yourself.' },
-      { q: 'Why should I trust RE/MAX ZAM on this?', a: 'Because we invest in it ourselves. Our founder personally owns and earns income from Dugasta projects — we recommend what we own.' },
+      { q: 'Why should I trust RE/MAX Zam on this?', a: 'Because we invest in it ourselves. Our founder personally owns and earns income from Dugasta projects — we recommend what we own.' },
       { q: 'What if the project is delayed?', a: 'We give you the developer delivery record up front and only recommend projects we are confident in. Escrow rules protect your staged payments.' },
     ],
   },
@@ -88,8 +88,8 @@ function FAQSchema() {
 
 export default function DugastaFAQ() {
   usePageSEO({
-    title: 'Dugasta Properties FAQ | ROI, Payment Plans, Golden Visa & Risk | RE/MAX ZAM',
-    description: 'Honest answers about Dugasta properties — up to 10% net ROI, 0% service charges, payment plans, buy-back and the Golden Visa. Trusted advice from RE/MAX ZAM.',
+    title: 'Dugasta Properties FAQ | ROI, Payment Plans, Golden Visa & Risk | RE/MAX Zam',
+    description: 'Honest answers about Dugasta properties — up to 10% net ROI, 0% service charges, payment plans, buy-back and the Golden Visa. Trusted advice from RE/MAX Zam.',
     canonical: 'https://remaxzam.ae/dugasta-faq',
     keywords: 'dugasta properties review, is dugasta safe, dugasta roi, dugasta payment plan, dugasta golden visa, dugasta dubai review 2025',
   });
@@ -149,7 +149,7 @@ export default function DugastaFAQ() {
           <blockquote className="font-body text-white/70 text-lg leading-relaxed italic mb-6">
             "I recommend Dugasta because I invest in it myself. Ask me anything."
           </blockquote>
-          <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX ZAM</p>
+          <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX Zam</p>
           <Link to="/my-dubai-passive-income" className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-semibold text-sm px-7 py-3 rounded-xl transition-colors">
             See how the founder invests <ArrowRight className="w-4 h-4" />
           </Link>

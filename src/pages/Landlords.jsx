@@ -58,7 +58,7 @@ const testimonials = [
   {
     name: 'Ahmed Al Rashidi',
     property: 'Villa, Palm Jumeirah',
-    quote: 'REMAX ZAM sold my villa in just 3 weeks at above asking price. The exposure they generated was incredible — I had 12 serious enquiries in the first 5 days.',
+    quote: 'RE/MAX Zam sold my villa in just 3 weeks at above asking price. The exposure they generated was incredible — I had 12 serious enquiries in the first 5 days.',
   },
   {
     name: 'Sarah Mitchell',
@@ -101,7 +101,7 @@ export default function Landlords() {
               Sell or Rent Your Dubai<br />Property with Confidence
             </h1>
             <p className="text-white/70 font-body text-base md:text-lg mb-10 max-w-2xl mx-auto leading-relaxed">
-              Join hundreds of landlords who trust RE/MAX ZAM to market their properties to a global audience and achieve the best possible results.
+              Join hundreds of landlords who trust RE/MAX Zam to market their properties to a global audience and achieve the best possible results.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a href="#list-with-us" className="inline-flex items-center justify-center px-8 py-3.5 bg-white text-black font-heading font-bold text-sm rounded-xl hover:bg-gray-100 transition-colors">
@@ -133,7 +133,7 @@ export default function Landlords() {
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
             <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Why Choose Us</p>
             <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight max-w-xl">
-              Why Landlords Choose<br />RE/MAX ZAM
+              Why Landlords Choose<br />RE/MAX Zam
             </h2>
           </motion.div>
 
