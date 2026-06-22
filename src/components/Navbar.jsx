@@ -21,6 +21,7 @@ const NAV_GROUPS = [
       { label: 'Off-Plan Projects', path: '/off-plan', desc: 'Early-access launches with developer payment plans' },
       { label: 'Dubai Investment Guide', path: '/dubai-property-investment', desc: 'Passive income, tax benefits, and how to build a Dubai portfolio' },
       { label: 'Passive Income Story', path: '/my-dubai-passive-income', desc: 'How our founder earns passive income from his own Dubai portfolio' },
+      { label: 'Dugasta FAQ', path: '/dugasta-faq', desc: 'ROI, payment plans, Golden Visa and risk — honest answers' },
     ],
   },
   {

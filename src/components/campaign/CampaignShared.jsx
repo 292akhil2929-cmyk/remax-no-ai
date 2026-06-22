@@ -76,7 +76,7 @@ export function CampaignHeader({ ctaLabel = 'Book a Consultation', ctaHref = '#l
       {/* Back to main site */}
       <div className="bg-black/90 backdrop-blur-sm px-5 lg:px-10 py-1.5 flex items-center">
         <Link to="/" className="flex items-center gap-1.5 text-white/50 hover:text-white/80 text-[11px] font-body transition-colors">
-          <ArrowLeft className="w-3 h-3" /> Back to RE/MAX Zam
+          <ArrowLeft className="w-3 h-3" /> Back to RE/MAX ZAM
         </Link>
       </div>
     <header className={`transition-all duration-300 ${scrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-md'} border-b border-gray-100`}>
@@ -158,14 +158,14 @@ export function CampaignFooter() {
           </div>
         </div>
         <div>
-          <p className="font-heading font-bold text-sm mb-4">RE/MAX Zam, Dubai UAE</p>
+          <p className="font-heading font-bold text-sm mb-4">RE/MAX ZAM, Dubai UAE</p>
           <p className="text-white/40 font-body text-xs leading-relaxed mb-3">Bay View Tower, Office 1102, Dubai</p>
           <p className="text-white/40 font-body text-xs">+97145828158 · info@remaxzam.ae</p>
         </div>
       </div>
       <div className="border-t border-white/10 px-5 lg:px-10 py-5">
         <p className="text-white/25 font-body text-[10px] leading-relaxed max-w-4xl mx-auto text-center">
-          Returns shown are projected, not guaranteed, and depend on market conditions. RE/MAX Zam is a licensed Dubai real estate brokerage. This is not financial advice. RERA Licensed. © {new Date().getFullYear()} RE/MAX ZAM. All rights reserved.
+          Returns shown are projected, not guaranteed, and depend on market conditions. RE/MAX ZAM is a licensed Dubai real estate brokerage. This is not financial advice. RERA Licensed. © {new Date().getFullYear()} RE/MAX ZAM. All rights reserved.
         </p>
       </div>
     </footer>
@@ -298,7 +298,7 @@ export function FounderStrip({ linkLabel = 'See how the founder invests', linkHr
         <blockquote className="font-body text-white/70 text-lg leading-relaxed italic mb-6">
           "I don't just sell Dubai real estate — I live off the passive income mine generates. I'll show you the exact numbers."
         </blockquote>
-        <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX Zam</p>
+        <p className="font-heading font-bold text-white/50 text-sm mb-8">— Faisal Contractor, Owner, RE/MAX ZAM</p>
         <Link to={linkHref} className="inline-flex items-center gap-2 border border-white/20 hover:border-white/50 text-white font-heading font-bold text-sm px-7 py-3 rounded-xl transition-colors">
           {linkLabel} <ArrowRight className="w-4 h-4" />
         </Link>
