@@ -2,11 +2,31 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
 import { motion } from 'framer-motion';
-import { ArrowRight, TrendingUp, Sparkles } from 'lucide-react';
+import { ArrowRight, TrendingUp, Star } from 'lucide-react';
 import PropertyCard from '@/components/PropertyCard';
 import LeadCaptureForm from '@/components/LeadCaptureForm';
 import MarketTicker from '@/components/MarketTicker';
-import BlogCarousel from '@/components/WhyDubaiCarousel';
+
+const SELLER_TESTIMONIALS = [
+  {
+    name: 'Sarah M.',
+    country: 'United Kingdom',
+    text: 'Sold my Business Bay apartment 3 weeks after listing. The team handled absolutely everything — I just signed and received the funds.',
+    badge: 'Sold in 21 days',
+  },
+  {
+    name: 'Ahmed K.',
+    country: 'UAE',
+    text: 'Got AED 180K above my original asking price. Their buyer network is real — serious offers came in within the first week.',
+    badge: '+AED 180K above ask',
+  },
+  {
+    name: 'Priya R.',
+    country: 'India',
+    text: 'I needed a fast, clean sale before relocating. They delivered exactly that. Professional, transparent, and genuinely excellent.',
+    badge: 'Sold, stress-free',
+  },
+];
 
 const COMMUNITIES = [
   {
@@ -109,9 +129,6 @@ export default function InvestorHome() {
         </div>
       </section>
 
-      {/* ── LATEST BLOGS ── */}
-      <BlogCarousel />
-
       {/* ── COMMUNITY GUIDE ── */}
       <section className="py-12 sm:py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
@@ -147,6 +164,45 @@ export default function InvestorHome() {
                     <TrendingUp className="w-3 h-3 text-amber-400" />
                     <span className="text-amber-400 font-heading font-bold text-sm">{c.roi} yield</span>
                   </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── SELLER TESTIMONIALS ── */}
+      <section className="py-12 sm:py-16 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-10">
+            <h2 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl font-display font-black text-gray-900 leading-tight">
+              What Sellers Say
+            </h2>
+          </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {SELLER_TESTIMONIALS.map((t, idx) => (
+              <motion.div
+                key={t.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.08 }}
+                className="bg-gray-50 rounded-2xl p-7 flex flex-col justify-between"
+              >
+                <div>
+                  <div className="flex gap-0.5 mb-5">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 font-body text-sm leading-relaxed">"{t.text}"</p>
+                </div>
+                <div className="flex items-end justify-between mt-6 pt-5 border-t border-gray-200">
+                  <div>
+                    <p className="font-heading font-bold text-gray-900 text-sm">{t.name}</p>
+                    <p className="text-gray-400 font-body text-xs mt-0.5">{t.country}</p>
+                  </div>
+                  <span className="text-xs font-heading font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-full">{t.badge}</span>
                 </div>
               </motion.div>
             ))}
