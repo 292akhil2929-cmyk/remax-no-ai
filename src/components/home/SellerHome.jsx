@@ -1,8 +1,7 @@
 import { motion } from 'framer-motion';
-import { Star, TrendingUp, Clock, Globe, CheckCircle2, XCircle } from 'lucide-react';
+import { Star, TrendingUp, Clock, Globe, ArrowRight } from 'lucide-react';
 import SellerLeadForm from '@/components/SellerLeadForm';
 
-/* ── REAL DEAL RESULTS ── */
 const DEALS = [
   {
     type: '2BR Apartment',
@@ -33,7 +32,6 @@ const DEALS = [
   },
 ];
 
-/* ── HARD TRUTHS ── */
 const TRUTHS = [
   {
     tag: 'Pricing Strategy',
@@ -46,15 +44,15 @@ const TRUTHS = [
     tag: 'Presentation',
     num: '3 sec',
     headline: 'is how long buyers take to scroll past bad photos',
-    why: 'An agent with an iPhone, one visit, 8 blurry photos. Your property looks like every other listing. Buyers screenshot the nice ones and send to their partners. Yours isn\'t one of them.',
+    why: 'An agent with an iPhone, one visit, 8 blurry photos. Your property looks like every other listing. Buyers screenshot the nice ones. Yours isn\'t one of them.',
     fix: 'We send a professional photographer, videographer, and drone operator. Staging advice included. We write the listing copy. Your property becomes the one buyers can\'t stop looking at.',
   },
   {
     tag: 'Market Reach',
     num: '61%',
     headline: 'of our buyers come from outside the UAE',
-    why: 'Most Dubai agents only reach local buyers on Bayut and Dubizzle. The buyers who move fastest — expats relocating, foreign investors, RE/MAX referrals from 110+ countries — never even see your listing.',
-    fix: 'Day 1 your property goes live across our global RE/MAX network and gets emailed to 12,000+ pre-qualified international investors. No other Dubai brokerage can say that.',
+    why: 'Most Dubai agents only reach local buyers on Bayut and Dubizzle. The buyers who move fastest — expats relocating, foreign investors — never even see your listing.',
+    fix: 'Day 1 your property goes live across our global RE/MAX network and is emailed to 12,000+ pre-qualified international investors. No other Dubai brokerage can say that.',
   },
 ];
 
@@ -85,105 +83,111 @@ const TESTIMONIALS = [
 export default function SellerHome() {
   return (
     <>
-      {/* ── TRUTHS: SPLIT CARD LAYOUT ── */}
-      <section className="py-16 sm:py-24 bg-white">
+      {/* ── EDITORIAL DATA WALL ── */}
+      <section className="bg-[#080808] py-20 sm:py-28 overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
 
           {/* Section header */}
           <motion.div
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.55 }}
-            className="mb-14"
+            transition={{ duration: 0.5 }}
+            className="mb-16 sm:mb-20 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6"
           >
-            <p className="text-[10px] font-heading font-bold text-gray-400 tracking-[0.22em] uppercase mb-4">
-              What every Dubai seller should know
-            </p>
-            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-gray-900 leading-[1.05]">
+            <div>
+              <p className="text-[10px] font-heading font-bold text-[#C9A84C] tracking-[0.25em] uppercase mb-4">
+                What every Dubai seller should know
+              </p>
+              <h2 className="text-4xl sm:text-5xl lg:text-[56px] font-display font-black text-white leading-[1.05]">
                 What makes or breaks<br />a Dubai property sale
               </h2>
-              <p className="text-gray-400 font-body text-sm max-w-xs leading-relaxed shrink-0">
-                Three factors that determine your final sale price — and how we handle each one.
-              </p>
             </div>
+            <p className="text-white/30 font-body text-sm max-w-[200px] leading-relaxed shrink-0 sm:text-right">
+              Three factors. Every sale comes down to these.
+            </p>
           </motion.div>
 
-          {/* Split cards */}
-          <div className="space-y-5">
+          {/* Editorial rows */}
+          <div>
             {TRUTHS.map((t, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 40 }}
+                initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.12 }}
-                transition={{ duration: 0.6, delay: i * 0.08, ease: [0.215, 0.61, 0.355, 1] }}
-                className="grid grid-cols-1 lg:grid-cols-2 rounded-3xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-md transition-shadow duration-300"
+                viewport={{ once: true, amount: 0.1 }}
+                transition={{ duration: 0.65, delay: i * 0.07, ease: [0.215, 0.61, 0.355, 1] }}
               >
-                {/* LEFT: dark stat panel */}
-                <div className="relative bg-gray-950 p-9 sm:p-12 flex flex-col justify-between min-h-[300px] lg:min-h-[340px] overflow-hidden">
-                  {/* Huge watermark number */}
-                  <span
-                    aria-hidden
-                    className="absolute right-0 bottom-0 font-display font-black leading-none select-none pointer-events-none text-white/[0.04]"
-                    style={{ fontSize: 'clamp(100px, 14vw, 180px)', lineHeight: 1, transform: 'translate(10%, 20%)' }}
-                  >
-                    {t.num}
-                  </span>
+                {/* Thin top border */}
+                <div className="w-full h-px bg-white/[0.07] mb-10" />
 
-                  {/* Gold accent + tag */}
-                  <div className="flex items-center gap-3">
-                    <div className="w-[3px] h-7 rounded-full bg-[#C9A84C]" />
-                    <span className="text-[10px] font-heading font-bold tracking-[0.2em] text-[#C9A84C] uppercase">
-                      {t.tag}
-                    </span>
-                    <span className="ml-auto text-[10px] font-heading font-bold text-white/15 tracking-widest">0{i + 1}&thinsp;/&thinsp;03</span>
-                  </div>
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.8fr] gap-8 lg:gap-16 pb-14">
 
-                  {/* Main stat */}
-                  <div className="mt-8 relative z-10">
-                    <div className="font-display font-black text-white leading-none mb-4"
-                      style={{ fontSize: 'clamp(60px, 9vw, 110px)' }}>
+                  {/* LEFT: ghost stat + label */}
+                  <div className="relative">
+                    {/* Ghost watermark number */}
+                    <div
+                      aria-hidden
+                      className="absolute -top-4 -left-2 font-display font-black leading-none text-white/[0.04] select-none pointer-events-none"
+                      style={{ fontSize: 'clamp(80px, 12vw, 150px)' }}
+                    >
                       {t.num}
                     </div>
-                    <p className="text-white/45 font-body text-base sm:text-lg leading-snug max-w-[280px]">
-                      {t.headline}
-                    </p>
-                  </div>
-                </div>
 
-                {/* RIGHT: two-tone comparison panel */}
-                <div className="flex flex-col divide-y divide-gray-100">
-                  {/* Common approach — top */}
-                  <div className="flex-1 bg-gray-50 px-8 sm:px-10 py-8 sm:py-10">
-                    <div className="flex items-center gap-2.5 mb-4">
-                      <XCircle className="w-4 h-4 text-red-400 shrink-0" />
-                      <span className="text-[10px] font-heading font-bold tracking-[0.18em] text-red-400 uppercase">
-                        The common approach
-                      </span>
+                    <div className="relative z-10">
+                      <div className="flex items-center gap-2 mb-6">
+                        <div className="w-5 h-px bg-[#C9A84C]" />
+                        <span className="text-[10px] font-heading font-bold tracking-[0.2em] text-[#C9A84C] uppercase">
+                          {t.tag}
+                        </span>
+                        <span className="ml-auto text-[10px] text-white/15 font-heading font-bold tracking-widest">
+                          0{i + 1}
+                        </span>
+                      </div>
+
+                      <div
+                        className="font-display font-black text-white leading-none mb-4"
+                        style={{ fontSize: 'clamp(48px, 7vw, 88px)' }}
+                      >
+                        {t.num}
+                      </div>
+                      <p className="text-white/40 font-body text-base leading-snug max-w-[240px]">
+                        {t.headline}
+                      </p>
                     </div>
-                    <p className="text-gray-500 font-body text-sm sm:text-[15px] leading-relaxed">{t.why}</p>
                   </div>
 
-                  {/* RE/MAX Zam approach — bottom */}
-                  <div className="flex-1 bg-white px-8 sm:px-10 py-8 sm:py-10 relative overflow-hidden">
-                    {/* Soft gold glow top-right */}
-                    <div
-                      className="absolute -top-10 -right-10 w-44 h-44 rounded-full pointer-events-none opacity-25"
-                      style={{ background: 'radial-gradient(circle, #C9A84C 0%, transparent 70%)' }}
-                    />
-                    <div className="flex items-center gap-2.5 mb-4 relative z-10">
-                      <CheckCircle2 className="w-4 h-4 text-[#C9A84C] shrink-0" />
-                      <span className="text-[10px] font-heading font-bold tracking-[0.18em] text-[#C9A84C] uppercase">
-                        The RE/MAX Zam approach
-                      </span>
+                  {/* RIGHT: comparison — two columns */}
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 lg:gap-6 lg:pt-14">
+                    {/* Common approach */}
+                    <div className="border border-white/[0.08] rounded-2xl p-6 sm:p-7 hover:border-white/[0.14] transition-colors">
+                      <div className="flex items-center gap-2 mb-5">
+                        <span className="text-[9px] font-heading font-bold tracking-widest text-red-400/70 uppercase">
+                          ✕ &nbsp;Common approach
+                        </span>
+                      </div>
+                      <p className="text-white/35 font-body text-sm leading-relaxed">{t.why}</p>
                     </div>
-                    <p className="text-gray-700 font-body text-sm sm:text-[15px] leading-relaxed relative z-10">{t.fix}</p>
+
+                    {/* RE/MAX Zam approach */}
+                    <div className="border border-[#C9A84C]/20 rounded-2xl p-6 sm:p-7 bg-[#C9A84C]/[0.03] hover:border-[#C9A84C]/40 transition-colors relative overflow-hidden">
+                      <div
+                        className="absolute -top-8 -right-8 w-32 h-32 rounded-full pointer-events-none"
+                        style={{ background: 'radial-gradient(circle, rgba(201,168,76,0.15) 0%, transparent 70%)' }}
+                      />
+                      <div className="flex items-center gap-2 mb-5 relative z-10">
+                        <span className="text-[9px] font-heading font-bold tracking-widest text-[#C9A84C] uppercase">
+                          ✓ &nbsp;RE/MAX Zam approach
+                        </span>
+                      </div>
+                      <p className="text-white/70 font-body text-sm leading-relaxed relative z-10">{t.fix}</p>
+                    </div>
                   </div>
                 </div>
               </motion.div>
             ))}
+            {/* Bottom border */}
+            <div className="w-full h-px bg-white/[0.07]" />
           </div>
         </div>
       </section>
