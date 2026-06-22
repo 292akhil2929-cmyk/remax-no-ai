@@ -42,8 +42,8 @@ const PAGE_SCHEMA = {
   "@graph": [
     {
       "@type": "WebPage",
-      "@id": "https://remaxzam.com/dubai-property-investment",
-      url: "https://remaxzam.com/dubai-property-investment",
+      "@id": "https://remaxzam.ae/dubai-property-investment",
+      url: "https://remaxzam.ae/dubai-property-investment",
       name: "Dubai Property Investment | Passive Income, Golden Visa & Growth | RE/MAX ZAM",
       description:
         "Build tax-free passive income, capital growth and 10-year residency with Dubai property. Download the free investor guide from RE/MAX ZAM — advisors who invest themselves.",
@@ -54,13 +54,13 @@ const PAGE_SCHEMA = {
             "@type": "ListItem",
             position: 1,
             name: "Home",
-            item: "https://remaxzam.com",
+            item: "https://remaxzam.ae",
           },
           {
             "@type": "ListItem",
             position: 2,
             name: "Dubai Property Investment",
-            item: "https://remaxzam.com/dubai-property-investment",
+            item: "https://remaxzam.ae/dubai-property-investment",
           },
         ],
       },

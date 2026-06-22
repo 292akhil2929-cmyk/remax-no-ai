@@ -19,16 +19,16 @@ const PAGE_SCHEMA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://remaxzam.com/dubai-golden-visa-property',
-      url: 'https://remaxzam.com/dubai-golden-visa-property',
+      '@id': 'https://remaxzam.ae/dubai-golden-visa-property',
+      url: 'https://remaxzam.ae/dubai-golden-visa-property',
       name: 'Dubai Golden Visa Through Property | AED 2M 10-Year Residency | RE/MAX ZAM',
       description: 'Invest AED 2M in Dubai property and secure a renewable 10-year UAE Golden Visa for your family. Check your eligibility in 60 seconds and see qualifying properties.',
       breadcrumb: {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://remaxzam.com' },
-          { '@type': 'ListItem', position: 2, name: 'Invest', item: 'https://remaxzam.com/dubai-property-investment' },
-          { '@type': 'ListItem', position: 3, name: 'Dubai Golden Visa Through Property', item: 'https://remaxzam.com/dubai-golden-visa-property' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://remaxzam.ae' },
+          { '@type': 'ListItem', position: 2, name: 'Invest', item: 'https://remaxzam.ae/dubai-property-investment' },
+          { '@type': 'ListItem', position: 3, name: 'Dubai Golden Visa Through Property', item: 'https://remaxzam.ae/dubai-golden-visa-property' },
         ],
       },
     },

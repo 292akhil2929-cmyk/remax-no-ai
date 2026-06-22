@@ -19,16 +19,16 @@ const PAGE_SCHEMA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://remaxzam.com/10-net-roi-dubai-property',
-      url: 'https://remaxzam.com/10-net-roi-dubai-property',
+      '@id': 'https://remaxzam.ae/10-net-roi-dubai-property',
+      url: 'https://remaxzam.ae/10-net-roi-dubai-property',
       name: '10% Net ROI Dubai Property | Tax-Free Rental Returns | RE/MAX ZAM',
       description: 'Earn up to 10% net rental ROI from Dubai property — tax-free, with 0% service charges and flexible payment plans. Calculate your returns and get a personalised plan.',
       breadcrumb: {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://remaxzam.com' },
-          { '@type': 'ListItem', position: 2, name: 'Invest', item: 'https://remaxzam.com/dubai-property-investment' },
-          { '@type': 'ListItem', position: 3, name: '10% Net ROI Dubai Property', item: 'https://remaxzam.com/10-net-roi-dubai-property' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://remaxzam.ae' },
+          { '@type': 'ListItem', position: 2, name: 'Invest', item: 'https://remaxzam.ae/dubai-property-investment' },
+          { '@type': 'ListItem', position: 3, name: '10% Net ROI Dubai Property', item: 'https://remaxzam.ae/10-net-roi-dubai-property' },
         ],
       },
     },

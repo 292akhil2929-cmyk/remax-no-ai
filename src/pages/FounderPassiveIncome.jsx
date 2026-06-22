@@ -16,16 +16,16 @@ const PAGE_SCHEMA = {
   '@graph': [
     {
       '@type': 'WebPage',
-      '@id': 'https://remaxzam.com/my-dubai-passive-income',
-      url: 'https://remaxzam.com/my-dubai-passive-income',
+      '@id': 'https://remaxzam.ae/my-dubai-passive-income',
+      url: 'https://remaxzam.ae/my-dubai-passive-income',
       name: 'How I Earn Passive Income From Dubai Real Estate | Founder Story | RE/MAX ZAM',
       description: 'The owner of RE/MAX ZAM shares how he earns passive, tax-free income from his own Dubai property portfolio — and how you can invest in the same strategy.',
       breadcrumb: {
         '@type': 'BreadcrumbList',
         itemListElement: [
-          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://remaxzam.com' },
-          { '@type': 'ListItem', position: 2, name: 'Dubai Property Investment', item: 'https://remaxzam.com/dubai-property-investment' },
-          { '@type': 'ListItem', position: 3, name: 'Founder Passive Income Story', item: 'https://remaxzam.com/my-dubai-passive-income' },
+          { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://remaxzam.ae' },
+          { '@type': 'ListItem', position: 2, name: 'Dubai Property Investment', item: 'https://remaxzam.ae/dubai-property-investment' },
+          { '@type': 'ListItem', position: 3, name: 'Founder Passive Income Story', item: 'https://remaxzam.ae/my-dubai-passive-income' },
         ],
       },
     },
@@ -33,7 +33,7 @@ const PAGE_SCHEMA = {
       '@type': 'Person',
       name: 'Faisal Contractor',
       jobTitle: 'Owner',
-      worksFor: { '@type': 'RealEstateAgent', name: 'RE/MAX ZAM Dubai', url: 'https://remaxzam.com' },
+      worksFor: { '@type': 'RealEstateAgent', name: 'RE/MAX ZAM Dubai', url: 'https://remaxzam.ae' },
       description: 'Owner of RE/MAX ZAM Dubai and personal investor in Dubai property, earning passive income from Dugasta and other high-yield communities.',
     },
     {

@@ -16,7 +16,7 @@
  *   usePageSEO({
  *     title:       'Page Title | RE/MAX ZAM',
  *     description: 'Meta description (≤160 chars)',
- *     canonical:   'https://remaxzam.com/page-slug',
+ *     canonical:   'https://remaxzam.ae/page-slug',
  *     ogImage:     'https://…/image.jpg',   // optional — falls back to default
  *     ogImageAlt:  'Descriptive alt text',  // optional
  *     keywords:    'keyword, keyword',       // optional
