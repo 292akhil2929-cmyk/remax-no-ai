@@ -36,12 +36,8 @@ export default function GoldenVisa() {
           alt="UAE Golden Visa"
           className="absolute inset-0 w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-primary/92 via-primary/75 to-primary/30" />
+        <div className="absolute inset-0 bg-black/65" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/20 border border-accent/30 mb-5">
-            <Star className="w-3 h-3 text-accent" />
-            <span className="text-xs font-heading font-semibold text-white tracking-widest uppercase">UAE Residency by Investment</span>
-          </div>
           <h1 className="text-3xl lg:text-5xl font-display font-bold text-white mb-5 max-w-2xl">
             UAE 10-Year Golden Visa Through Real Estate Investment
           </h1>
@@ -49,22 +45,22 @@ export default function GoldenVisa() {
             Invest AED 2 million or more in Dubai property and you and your whole family can call the UAE home. No income tax. No sponsor. Full property ownership. A 10-year visa that renews as long as you hold the investment.
           </p>
           <div className="flex flex-col sm:flex-row gap-3">
-            <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
-              <Link to="/contact">Start My Application <ArrowRight className="w-4 h-4 ml-1" /></Link>
-            </Button>
-            <Button size="lg" variant="outline" className="border-white/50 text-white hover:bg-white/10 font-heading" asChild>
-              <Link to="/properties">View Qualifying Properties</Link>
-            </Button>
+            <Link to="/contact" className="inline-flex items-center gap-2 bg-black hover:bg-gray-900 text-white font-heading font-bold px-6 py-3 rounded-xl transition-colors">
+              Start My Application <ArrowRight className="w-4 h-4 ml-1" />
+            </Link>
+            <Link to="/properties" className="inline-flex items-center gap-2 border border-white/50 text-white hover:bg-white/10 font-heading font-bold px-6 py-3 rounded-xl transition-colors">
+              View Qualifying Properties
+            </Link>
           </div>
         </div>
       </section>
 
       {/* Key Benefits */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">Golden Visa Benefits</p>
-            <h2 className="text-3xl font-display font-bold text-foreground mb-3">What the UAE Golden Visa Gives You</h2>
+            <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">Golden Visa Benefits</p>
+            <h2 className="text-3xl font-display font-black text-gray-900 mb-3">What the UAE Golden Visa Gives You</h2>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
@@ -75,10 +71,10 @@ export default function GoldenVisa() {
               { icon: CheckCircle2, title: '0% Income Tax', desc: "Continue to benefit from the UAE's zero income tax environment on your rental income, salary, and business profits while living in or outside the UAE." },
               { icon: FileText, title: 'Emirates ID & Healthcare', desc: 'Receive a UAE Emirates ID — the national identity document — and access world-class UAE healthcare facilities and government services.' },
             ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="p-6 border border-border/50 rounded-lg hover:border-primary/30 transition-colors">
-                <Icon className="w-6 h-6 text-accent mb-3" />
-                <h3 className="font-heading font-semibold text-foreground mb-2">{title}</h3>
-                <p className="text-sm text-muted-foreground font-body leading-relaxed">{desc}</p>
+              <div key={title} className="p-6 border border-gray-100 rounded-xl hover:border-black transition-colors">
+                <Icon className="w-6 h-6 text-gray-900 mb-3" />
+                <h3 className="font-heading font-bold text-gray-900 mb-2">{title}</h3>
+                <p className="text-sm text-gray-500 font-body leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
@@ -86,20 +82,20 @@ export default function GoldenVisa() {
       </section>
 
       {/* Step by Step */}
-      <section className="py-16 bg-muted/30 border-t border-border/50">
+      <section className="py-16 bg-gray-50 border-t border-gray-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">The Process</p>
-            <h2 className="text-3xl font-display font-bold text-foreground mb-3">How to Get Your UAE Golden Visa — Step by Step</h2>
-            <p className="text-sm text-muted-foreground font-body">RE/MAX ZAM manages every step of this process on your behalf. From start to finish it typically takes 4 to 8 weeks after your property purchase completes.</p>
+            <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">The Process</p>
+            <h2 className="text-3xl font-display font-black text-gray-900 mb-3">How to Get Your UAE Golden Visa — Step by Step</h2>
+            <p className="text-sm text-gray-500 font-body">RE/MAX ZAM manages every step of this process on your behalf. From start to finish it typically takes 4 to 8 weeks after your property purchase completes.</p>
           </div>
           <div className="space-y-6">
             {steps.map(s => (
               <div key={s.step} className="flex gap-5 items-start">
-                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-primary text-white font-heading font-bold text-sm flex items-center justify-center">{s.step}</div>
+                <div className="flex-shrink-0 w-12 h-12 rounded-full bg-black text-white font-heading font-bold text-sm flex items-center justify-center">{s.step}</div>
                 <div>
-                  <h3 className="font-heading font-semibold text-foreground mb-1">{s.title}</h3>
-                  <p className="text-sm text-muted-foreground font-body leading-relaxed">{s.desc}</p>
+                  <h3 className="font-heading font-bold text-gray-900 mb-1">{s.title}</h3>
+                  <p className="text-sm text-gray-500 font-body leading-relaxed">{s.desc}</p>
                 </div>
               </div>
             ))}
@@ -108,30 +104,30 @@ export default function GoldenVisa() {
       </section>
 
       {/* CTA strip */}
-      <section className="py-12 bg-primary text-white">
+      <section className="py-12 bg-black text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-display font-bold mb-3">Properties That Qualify for the Golden Visa</h2>
           <p className="text-white/75 font-body text-sm max-w-2xl mx-auto mb-6">
             Any completed or off-plan Dubai property worth AED 2 million or more from a DLD-registered developer qualifies. Take a look at what we currently have available.
           </p>
-          <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
-            <Link to="/properties">Browse Qualifying Properties <ArrowRight className="w-4 h-4 ml-1" /></Link>
-          </Button>
+          <Link to="/properties" className="inline-flex items-center gap-2 bg-white text-black hover:bg-gray-100 font-heading font-bold px-6 py-3 rounded-xl transition-colors">
+            Browse Qualifying Properties <ArrowRight className="w-4 h-4 ml-1" />
+          </Link>
         </div>
       </section>
 
       {/* FAQs */}
-      <section className="py-16 bg-background">
+      <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-10">
-            <p className="text-xs font-heading font-semibold text-primary tracking-widest mb-3 uppercase">FAQs</p>
-            <h2 className="text-3xl font-display font-bold text-foreground mb-3">Your Golden Visa Questions Answered</h2>
+            <p className="text-xs font-heading font-bold text-gray-400 tracking-widest mb-3 uppercase">FAQs</p>
+            <h2 className="text-3xl font-display font-black text-gray-900 mb-3">Your Golden Visa Questions Answered</h2>
           </div>
           <div className="space-y-6">
             {faqs.map(({ q, a }) => (
-              <div key={q} className="border-b border-border/50 pb-6">
-                <h3 className="font-heading font-semibold text-foreground mb-2">{q}</h3>
-                <p className="text-sm text-muted-foreground font-body leading-relaxed">{a}</p>
+              <div key={q} className="border-b border-gray-100 pb-6">
+                <h3 className="font-heading font-bold text-gray-900 mb-2">{q}</h3>
+                <p className="text-sm text-gray-500 font-body leading-relaxed">{a}</p>
               </div>
             ))}
           </div>
@@ -139,13 +135,13 @@ export default function GoldenVisa() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-14 bg-primary text-white text-center">
+      <section className="py-14 bg-black text-white text-center">
         <div className="max-w-2xl mx-auto px-4">
           <h2 className="text-2xl lg:text-3xl font-display font-bold mb-3">Ready to Secure Your UAE Golden Visa?</h2>
           <p className="text-white/75 font-body mb-7 text-sm">Our Golden Visa team handles everything from finding the right property through to your visa being issued. There is no extra charge for this service.</p>
-          <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-heading font-bold border-0" asChild>
-            <Link to="/contact">Speak to a Golden Visa Specialist</Link>
-          </Button>
+          <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-black hover:bg-gray-100 font-heading font-bold px-6 py-3 rounded-xl transition-colors">
+            Speak to a Golden Visa Specialist
+          </Link>
         </div>
       </section>
     </div>

@@ -88,15 +88,13 @@ export default function Properties() {
     ])
       .then(([dbProperties, pfResponse]) => {
         const pfListings = pfResponse.data?.listings || [];
-        // Exclude pocket listings from public search
-        const publicDbProperties = dbProperties.filter((p) => !p.isPocketListing);
+        const publicDbProperties = (Array.isArray(dbProperties) ? dbProperties : []).filter((p) => !p.isPocketListing);
         setProperties([...publicDbProperties, ...pfListings]);
         setLoading(false);
       })
       .catch(() => {
-        // Fallback to database only if fetch fails
         base44.entities.Property.list("-created_date", 200).then((data) => {
-          const publicData = data.filter((p) => !p.isPocketListing);
+          const publicData = (Array.isArray(data) ? data : []).filter((p) => !p.isPocketListing);
           setProperties(publicData);
           setLoading(false);
         });
@@ -135,26 +133,26 @@ export default function Properties() {
     filtered = [...filtered].sort((a, b) => b.price_aed - a.price_aed);
 
   return (
-    <div className="min-h-screen bg-slate-50 pt-20 lg:pt-0">
+    <div className="min-h-screen bg-gray-50 pt-20 lg:pt-0">
       {/* Header */}
-      <div className="bg-[#141E30] text-white py-6 px-4">
+      <div className="bg-black text-white py-8 px-4">
         <div className="max-w-7xl mx-auto">
-          <h1 className="font-heading text-3xl lg:text-4xl font-bold mb-2">
+          <h1 className="font-display text-3xl lg:text-4xl font-black mb-1">
             Properties
           </h1>
-          <p className="text-white/60 font-body">
+          <p className="text-white/50 font-body text-sm">
             Browse our curated Dubai real estate portfolio
           </p>
         </div>
       </div>
 
       {/* Category Navigation */}
-      <div className="bg-white border-b border-border shadow-sm">
-        <div className="max-w-7xl mx-auto px-4 py-3">
+      <div className="bg-white border-b border-gray-100 shadow-sm">
+        <div className="max-w-7xl mx-auto px-4 py-4">
           <div className="flex flex-col sm:flex-row gap-6">
             {GROUPS.map((group) => (
               <div key={group.label} className="flex-1">
-                <p className="text-[10px] font-heading font-bold tracking-[0.15em] uppercase text-muted-foreground mb-3 pl-1">
+                <p className="text-[10px] font-heading font-bold tracking-[0.15em] uppercase text-gray-400 mb-3 pl-1">
                   {group.label}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -170,18 +168,14 @@ export default function Properties() {
                         }}
                         className={`flex flex-col items-start px-4 py-3 rounded-xl border-2 text-left transition-all duration-200 min-w-[130px] ${
                           isActive
-                            ? "border-[#141E30] bg-[#141E30] text-white shadow-md"
-                            : "border-border bg-slate-50 text-foreground hover:border-[#141E30]/40 hover:bg-slate-100"
+                            ? "border-black bg-black text-white shadow-md"
+                            : "border-gray-200 bg-gray-50 text-gray-900 hover:border-black/30 hover:bg-gray-100"
                         }`}
                       >
-                        <span
-                          className={`text-sm font-heading font-semibold leading-tight ${isActive ? "text-white" : "text-foreground"}`}
-                        >
+                        <span className={`text-sm font-heading font-bold leading-tight ${isActive ? "text-white" : "text-gray-900"}`}>
                           {t.label}
                         </span>
-                        <span
-                          className={`text-[11px] font-body mt-0.5 ${isActive ? "text-white/70" : "text-muted-foreground"}`}
-                        >
+                        <span className={`text-[11px] font-body mt-0.5 ${isActive ? "text-white/60" : "text-gray-400"}`}>
                           {t.sub}
                         </span>
                       </button>
@@ -195,10 +189,10 @@ export default function Properties() {
       </div>
 
       {/* Filters */}
-      <div className="bg-white border-b border-border py-3 px-4">
+      <div className="bg-white border-b border-gray-100 py-3 px-4">
         <div className="max-w-7xl mx-auto flex flex-wrap gap-3 items-center">
           <div className="relative flex-1 min-w-[200px] max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
             <Input
               placeholder="Search location, community..."
               value={search}
@@ -237,7 +231,7 @@ export default function Properties() {
             </SelectContent>
           </Select>
 
-          <span className="text-sm text-muted-foreground ml-auto">
+          <span className="text-sm text-gray-400 font-body ml-auto">
             {filtered.length} listing{filtered.length !== 1 ? "s" : ""}
           </span>
         </div>
@@ -248,13 +242,13 @@ export default function Properties() {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[...Array(6)].map((_, i) => (
-              <div key={i} className="bg-white rounded-xl h-72 animate-pulse" />
+              <div key={i} className="bg-white rounded-2xl h-72 animate-pulse" />
             ))}
           </div>
         ) : filtered.length === 0 ? (
-          <div className="text-center py-20 text-muted-foreground font-body">
+          <div className="text-center py-20 text-gray-400 font-body">
             <SlidersHorizontal className="w-10 h-10 mx-auto mb-3 opacity-30" />
-            <p className="text-lg font-medium">No listings found</p>
+            <p className="text-lg font-display font-black text-gray-900">No listings found</p>
             <p className="text-sm mt-1">Try adjusting your filters</p>
           </div>
         ) : (

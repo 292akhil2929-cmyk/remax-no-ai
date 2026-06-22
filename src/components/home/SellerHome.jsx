@@ -93,7 +93,7 @@ export default function SellerHome() {
                     <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center mb-5">
                       <Icon className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-xl sm:text-2xl font-heading font-semibold tracking-tight text-gray-900 mb-3">{s.title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-display font-black text-gray-900 mb-3">{s.title}</h3>
                     <p className="text-gray-500 font-body text-sm leading-relaxed">{s.desc}</p>
                   </div>
                 </motion.div>
@@ -129,7 +129,7 @@ export default function SellerHome() {
                 </div>
                 <div className="flex items-center justify-between pt-5 border-t border-gray-100">
                   <div>
-                    <p className="text-sm font-heading font-semibold tracking-tight text-gray-900">{t.name}</p>
+                    <p className="text-sm font-heading font-bold tracking-tight text-gray-900">{t.name}</p>
                     <p className="text-xs text-gray-400 font-body">{t.country}</p>
                   </div>
                   <span className="text-xs font-heading font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full">{t.result}</span>
@@ -141,45 +141,49 @@ export default function SellerHome() {
       </section>
 
       {/* ── SELLER CTA ── */}
-      <section id="seller-valuation" className="py-12 sm:py-16 bg-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(100,180,100,0.08),transparent_60%)]" />
-        <div className="relative max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-px bg-white/30" />
-                <span className="text-white/40 font-body text-xs tracking-[0.2em] uppercase">No Cost. No Obligation.</span>
-              </div>
-              <h2 className="text-4xl sm:text-5xl font-display font-black text-white leading-tight mb-5">
-                What Is Your<br />Property Worth?
-              </h2>
-              <p className="text-gray-400 font-body text-sm leading-relaxed mb-8">
-                Get an accurate, data-driven valuation backed by live DLD transaction records — and a clear pricing strategy to attract the best buyers.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  'Valuation based on recent comparable DLD transactions',
-                  'Pricing strategy to attract premium, qualified buyers',
-                  'Current buyer demand analysis for your specific area',
-                  'Honest advice — no pressure, just expert guidance',
-                ].map(item => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-gray-300 font-body">
-                    <span className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-white text-xs shrink-0 mt-0.5">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
+      <div className="bg-white px-3 sm:px-4 lg:px-5 pb-3 sm:pb-4 lg:pb-5 box-border">
+        <section id="seller-valuation" className="relative w-full rounded-[2rem] sm:rounded-[2.5rem] overflow-hidden shadow-2xl py-16 sm:py-24 lg:py-32">
+          <div className="absolute inset-0 bg-cover bg-center scale-105" style={{ backgroundImage: "url('/images/landscape.png')" }} />
+          <div className="absolute inset-0 bg-black/10" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.15),transparent_50%)]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/50 to-black" />
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl p-8">
-              <h3 className="text-lg font-heading font-semibold tracking-tight text-white mb-1">Request a Free Valuation</h3>
-              <p className="text-xs text-gray-500 font-body mb-7">Our consultants respond within 24 hours.</p>
-              <SellerLeadForm source="Home - Seller" />
-            </motion.div>
+          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-12 lg:px-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+              <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, ease: [0.215, 0.61, 0.355, 1] }} className="max-w-xl">
+                <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white leading-[1.1] tracking-tight mb-6">
+                  What Is Your<br className="hidden sm:block" />
+                  <span className="text-amber-500">Property Worth?</span>
+                </h2>
+                <p className="text-white/80 font-body text-sm sm:text-base leading-relaxed mb-10 max-w-lg">
+                  Get an accurate, data-driven valuation backed by live DLD transaction records — and a clear pricing strategy to attract the best buyers.
+                </p>
+                <ul className="space-y-5">
+                  {[
+                    'Valuation based on recent comparable DLD transactions',
+                    'Pricing strategy to attract premium, qualified buyers',
+                    'Current buyer demand analysis for your specific area',
+                    'Honest advice — no pressure, just expert guidance',
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex items-start gap-4 text-sm sm:text-base text-white/90 font-body font-medium">
+                      <span className="w-6 h-6 rounded-full bg-amber-500/20 border border-amber-500/30 flex items-center justify-center text-amber-400 text-[10px] shrink-0 mt-0.5 shadow-[0_0_10px_rgba(245,158,11,0.2)]">✓</span>
+                      <span className="leading-snug">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1, ease: [0.215, 0.61, 0.355, 1] }} className="w-full max-w-md mx-auto lg:ml-auto lg:mr-0">
+                <div className="bg-white/5 border border-white/10 rounded-3xl p-6 sm:p-8 lg:p-10 backdrop-blur-xl shadow-[0_20px_50px_rgba(0,0,0,0.3)]">
+                  <h3 className="text-xl sm:text-2xl font-heading font-bold tracking-tight text-white mb-2">Request a Free Valuation</h3>
+                  <p className="text-xs sm:text-sm text-white/50 font-body mb-8">Our consultants respond within 24 hours.</p>
+                  <SellerLeadForm source="Home - Seller" />
+                </div>
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   );
 }

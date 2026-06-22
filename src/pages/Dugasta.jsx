@@ -177,7 +177,7 @@ function DugastaLeadForm({ dark = true }) {
           ))}
         </SelectContent>
       </Select>
-      <Button type="submit" disabled={createLead.isPending} className="w-full h-12 bg-amber-500 hover:bg-amber-400 text-black font-heading font-bold text-sm tracking-wide">
+      <Button type="submit" disabled={createLead.isPending} className="w-full h-12 bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm tracking-wide">
         {createLead.isPending ? 'Sending...' : 'Get Full Project Details & ROI Analysis'} <ArrowRight className="w-4 h-4 ml-2" />
       </Button>
       <p className={`text-[10px] font-body text-center ${dark ? 'text-white/25' : 'text-gray-400'}`}>
@@ -194,7 +194,7 @@ function FaqItem({ q, a }) {
   return (
     <div className="border-b border-gray-100">
       <button onClick={() => setOpen(!open)} className="w-full flex items-center justify-between py-5 text-left gap-4">
-        <span className="font-heading font-semibold text-gray-900 text-sm leading-snug">{q}</span>
+        <span className="font-heading font-bold text-gray-900 text-sm leading-snug">{q}</span>
         <ChevronDown className={`w-4 h-4 text-gray-400 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
       <AnimatePresence initial={false}>
@@ -228,8 +228,6 @@ export default function Dugasta() {
       <section className="relative min-h-screen flex items-center overflow-hidden bg-[#080808]">
         <div className="absolute inset-0 bg-center bg-cover opacity-20" style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1582510003544-4d00b7f74220?w=1920&q=80)' }} />
         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/85 to-black/30" />
-        {/* Amber glow */}
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.12),transparent_60%)]" />
 
         <div className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-16 items-center">
@@ -239,7 +237,7 @@ export default function Dugasta() {
 
               <h1 className="font-display font-black text-white leading-[0.95] mb-6">
                 <span className="block text-5xl sm:text-7xl lg:text-8xl">10% Guaranteed</span>
-                <span className="block text-5xl sm:text-7xl lg:text-8xl text-amber-400">ROI. 10 Years.</span>
+                <span className="block text-5xl sm:text-7xl lg:text-8xl text-white">ROI. 10 Years.</span>
                 <span className="block text-xl sm:text-2xl text-white/35 font-body font-normal mt-4 leading-relaxed">No Service Charges &nbsp;·&nbsp; Zero Tax &nbsp;·&nbsp; Fully Managed &nbsp;·&nbsp; 100% Buyback</span>
               </h1>
 
@@ -255,8 +253,8 @@ export default function Dugasta() {
                   { value: '100%', label: 'Buyback Option', sub: 'Exit at original price' },
                 ].map(s => (
                   <div key={s.label} className="bg-white/[0.05] border border-white/10 rounded-xl p-4 text-center">
-                    <p className="text-amber-400 font-display font-black text-2xl">{s.value}</p>
-                    <p className="text-white font-heading font-semibold text-xs mt-1">{s.label}</p>
+                    <p className="text-white font-display font-black text-2xl">{s.value}</p>
+                    <p className="text-white font-heading font-bold text-xs mt-1">{s.label}</p>
                     <p className="text-white/30 font-body text-[9px] mt-0.5 leading-tight">{s.sub}</p>
                   </div>
                 ))}
@@ -326,10 +324,9 @@ export default function Dugasta() {
             </motion.div>
             <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <div className="bg-[#0a0a0a] rounded-2xl p-8 relative overflow-hidden">
-                <div className="absolute top-0 right-0 w-2/3 h-full bg-[radial-gradient(ellipse_at_top_right,_rgba(245,158,11,0.1),transparent_60%)]" />
                 <div className="relative">
                   <div className="flex items-center gap-3 mb-8">
-                    <div className="w-1 h-12 bg-amber-500 rounded-full" />
+                    <div className="w-1 h-12 bg-white/30 rounded-full" />
                     <div>
                       <p className="text-white font-heading font-bold text-sm">Tauseef Khan</p>
                       <p className="text-white/40 font-body text-xs">Founder & Chairman, Dugasta Properties</p>
@@ -380,8 +377,8 @@ export default function Dugasta() {
                 <div className="p-5 border-r border-gray-100">
                   <p className="text-gray-400 font-body text-xs uppercase tracking-wider mb-1">Metric (5 Years)</p>
                 </div>
-                <div className="p-5 bg-amber-50 border-r border-amber-100">
-                  <p className="text-amber-700 font-heading font-bold text-sm uppercase tracking-wider">Dugasta 10 on 10</p>
+                <div className="p-5 bg-gray-50 border-r border-gray-100">
+                  <p className="text-gray-900 font-heading font-bold text-sm uppercase tracking-wider">Dugasta 10 on 10</p>
                 </div>
                 <div className="p-5">
                   <p className="text-gray-400 font-heading font-semibold text-sm">Regular Dubai Apartment</p>
@@ -397,7 +394,7 @@ export default function Dugasta() {
               ].map(([metric, dugasta, regular], i) => (
                 <div key={metric} className={`grid grid-cols-3 text-sm border-t border-gray-100 ${i % 2 === 0 ? '' : 'bg-gray-50/50'}`}>
                   <div className="p-4 font-body text-gray-500 border-r border-gray-100">{metric}</div>
-                  <div className="p-4 font-heading font-semibold text-emerald-700 bg-amber-50/50 border-r border-amber-100 text-center">{dugasta}</div>
+                  <div className="p-4 font-heading font-semibold text-emerald-700 bg-gray-50/50 border-r border-gray-100 text-center">{dugasta}</div>
                   <div className="p-4 font-body text-gray-500 text-center">{regular}</div>
                 </div>
               ))}
@@ -417,7 +414,7 @@ export default function Dugasta() {
             ].map((p, i) => (
               <motion.div key={p.num} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.08 }}
                 className="bg-white rounded-2xl p-6 border border-gray-100 hover:shadow-md transition-shadow">
-                <p className="text-amber-500 font-display font-black text-4xl mb-4">{p.num}</p>
+                <p className="text-gray-900 font-display font-black text-4xl mb-4">{p.num}</p>
                 <h3 className="font-heading font-bold text-gray-900 text-sm mb-2">{p.title}</h3>
                 <p className="text-gray-500 font-body text-xs leading-relaxed">{p.desc}</p>
               </motion.div>
@@ -457,7 +454,7 @@ export default function Dugasta() {
                   <img src={PROJECTS[activeProject].image} alt={PROJECTS[activeProject].name} className="absolute inset-0 w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                   {/* Tag */}
-                  <span className="absolute top-5 left-5 bg-amber-500 text-black text-[10px] font-heading font-bold px-3 py-1.5 rounded-full shadow-lg">
+                  <span className="absolute top-5 left-5 bg-black text-white text-[10px] font-heading font-bold px-3 py-1.5 rounded-full shadow-lg">
                     {PROJECTS[activeProject].tag}
                   </span>
                   {/* Title overlay */}
@@ -519,7 +516,7 @@ export default function Dugasta() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
               <div className="inline-flex items-center gap-2 bg-black rounded-full px-3 py-1 mb-4">
-                <Star className="w-3 h-3 text-amber-400 fill-amber-400" />
+                <Star className="w-3 h-3 text-gray-400 fill-gray-400" />
                 <span className="text-white font-heading font-bold text-[10px] tracking-[0.2em] uppercase">Why Buy Through RE/MAX ZAM</span>
               </div>
               <h2 className="text-3xl sm:text-4xl font-display font-black text-gray-900 leading-tight mb-5">
@@ -572,10 +569,9 @@ export default function Dugasta() {
 
       {/* ── BOTTOM CTA ── */}
       <section className="py-24 bg-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(245,158,11,0.08),transparent_70%)]" />
         <div className="relative max-w-3xl mx-auto px-6 sm:px-10 lg:px-16 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <p className="text-amber-400 font-body text-xs tracking-[0.2em] uppercase mb-4">Start Earning 10% Guaranteed</p>
+            <p className="text-white/50 font-body text-xs tracking-[0.2em] uppercase mb-4">Start Earning 10% Guaranteed</p>
             <h2 className="text-4xl sm:text-5xl font-display font-black text-white leading-tight mb-5">
               Invest in Dubai Property.<br />Collect 10% Every Year.<br />Do Nothing Else.
             </h2>

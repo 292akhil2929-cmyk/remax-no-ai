@@ -66,28 +66,28 @@ const FILE_UPLOAD_BASE_URL = 'https://remax-zam.b-cdn.net';
 
 function SectionHeader({ icon: Icon, title, description }) {
   return (
-    <div className="border-b border-border/50 pb-3 mb-5">
+    <div className="border-b border-gray-100 pb-3 mb-5">
       <div className="flex items-center gap-2.5 mb-1">
-        <div className="w-8 h-8 rounded-lg bg-[#0d1b3e]/10 flex items-center justify-center">
-          <Icon className="w-4 h-4 text-[#0d1b3e]" />
+        <div className="w-8 h-8 rounded-lg bg-[#C9A84C]/10 flex items-center justify-center">
+          <Icon className="w-4 h-4 text-[#C9A84C]" />
         </div>
-        <h2 className="text-lg font-heading font-bold text-foreground">{title}</h2>
+        <h2 className="text-lg font-heading font-bold text-gray-900">{title}</h2>
       </div>
-      {description && <p className="text-xs text-muted-foreground font-body ml-[42px]">{description}</p>}
+      {description && <p className="text-xs text-gray-500 font-body ml-[42px]">{description}</p>}
     </div>
   );
 }
 
 function FieldError({ error }) {
   if (!error) return null;
-  return <p className="text-[11px] text-red-500 font-body mt-1">{error}</p>;
+  return <p className="text-[11px] text-gray-700 font-body mt-1">{error}</p>;
 }
 
 function FieldGroup({ label, children, required, error }) {
   return (
     <div>
-      <label className="text-xs font-heading font-medium text-foreground mb-1.5 block">
-        {label}{required && <span className="text-red-400 ml-0.5">*</span>}
+      <label className="text-xs font-heading font-medium text-gray-900 mb-1.5 block">
+        {label}{required && <span className="text-gray-500 ml-0.5">*</span>}
       </label>
       {children}
       <FieldError error={error} />
@@ -186,13 +186,13 @@ export default function Apply() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center px-4">
+      <div className="min-h-screen bg-white flex items-center justify-center px-4">
         <div className="text-center max-w-md">
-          <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mx-auto mb-6">
-            <CheckCircle className="w-8 h-8 text-emerald-500" />
+          <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mx-auto mb-6">
+            <CheckCircle className="w-8 h-8 text-[#C9A84C]" />
           </div>
-          <h1 className="text-2xl lg:text-3xl font-display font-bold text-foreground mb-3">Application Submitted!</h1>
-          <p className="text-muted-foreground font-body text-sm leading-relaxed mb-6">
+          <h1 className="text-2xl lg:text-3xl font-display font-bold text-gray-900 mb-3">Application Submitted!</h1>
+          <p className="text-gray-500 font-body text-sm leading-relaxed mb-6">
             Thank you for your interest in joining REMAX ZAM Dubai. Our recruitment team will review your
             profile and reach out within 48 hours.
           </p>
@@ -204,21 +204,20 @@ export default function Apply() {
     );
   }
 
-  const inputClass = 'bg-white border-border text-foreground placeholder:text-muted-foreground text-sm focus:ring-2 focus:ring-[#0d1b3e]/20';
-  const errorClass = 'border-red-500';
+  const inputClass = 'bg-white border-gray-200 text-gray-900 placeholder:text-gray-500 text-sm focus:ring-2 focus:ring-gray-200';
+  const errorClass = 'border-gray-400';
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white">
       {/* Hero */}
-      <section className="bg-[#0d1b3e] py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto text-center">
-          <p className="text-[#c9a84c] font-heading font-semibold text-sm tracking-widest uppercase mb-3">Careers at REMAX ZAM</p>
-          <h1 className="text-3xl lg:text-4xl font-display font-black text-white mb-4">
+      <section className="py-16 bg-white border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-xs font-heading font-bold text-[#C9A84C] tracking-widest mb-3 uppercase">Careers at RE/MAX ZAM</p>
+          <h1 className="text-3xl lg:text-5xl font-display font-black text-gray-900 mb-4">
             Build Your Career With Dubai's Most Trusted Brand
           </h1>
-          <p className="text-white/60 font-body text-base max-w-xl mx-auto leading-relaxed">
-            Complete the application below. Our recruitment team reviews every submission personally
-            and responds within 48 hours.
+          <p className="text-base text-gray-500 font-body max-w-2xl leading-relaxed mb-8">
+            Complete the application below. Our recruitment team reviews every submission personally and responds within 48 hours.
           </p>
         </div>
       </section>
@@ -228,7 +227,7 @@ export default function Apply() {
         <div className="max-w-3xl mx-auto">
           <form id="career-application-form" onSubmit={handleSubmit} className="space-y-8" noValidate>
             {/* ── SECTION A: Personal & Contact ── */}
-            <div className="bg-card border border-border/50 rounded-xl p-6 lg:p-8 shadow-sm">
+            <div className="bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-xl p-6 lg:p-8 shadow-sm">
               <SectionHeader
                 icon={User}
                 title="Personal & Contact Information"
@@ -329,7 +328,7 @@ export default function Apply() {
                       <Input placeholder="Paste photo URL..." value={form.photo_url}
                         onChange={e => set('photo_url', e.target.value)}
                         className={inputClass} />
-                      <label className="inline-flex items-center gap-1.5 text-xs text-[#0d1b3e] mt-1.5 cursor-pointer hover:underline font-medium">
+                      <label className="inline-flex items-center gap-1.5 text-xs text-gray-900 mt-1.5 cursor-pointer hover:underline font-medium">
                         {uploading.photo ? <Loader2 className="w-3 h-3 animate-spin" /> : <Upload className="w-3 h-3" />}
                         {uploading.photo ? 'Uploading...' : 'Or upload file'}
                         <input type="file" accept="image/*" className="hidden"
@@ -342,7 +341,7 @@ export default function Apply() {
             </div>
 
             {/* ── SECTION B: Professional Status & Timeline ── */}
-            <div className="bg-card border border-border/50 rounded-xl p-6 lg:p-8 shadow-sm">
+            <div className="bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-xl p-6 lg:p-8 shadow-sm">
               <SectionHeader
                 icon={Briefcase}
                 title="Professional Status & Timeline"
@@ -378,8 +377,8 @@ export default function Apply() {
                     <Input placeholder="Paste CV file URL..." value={form.cv_url}
                       onChange={e => set('cv_url', e.target.value)}
                       className={`flex-1 ${inputClass}`} />
-                    <span className="text-xs text-muted-foreground whitespace-nowrap">or</span>
-                    <label className={`inline-flex items-center gap-1.5 px-4 py-2 text-xs font-heading font-semibold cursor-pointer rounded-lg border border-border/50 hover:bg-muted/50 transition-colors ${uploading.cv ? 'pointer-events-none opacity-50' : ''}`}>
+                    <span className="text-xs text-gray-500 whitespace-nowrap">or</span>
+                    <label className={`inline-flex items-center gap-1.5 px-4 py-2 text-xs font-heading font-bold cursor-pointer rounded-lg border border-gray-100 hover:bg-gray-100 transition-colors ${uploading.cv ? 'pointer-events-none opacity-50' : ''}`}>
                       {uploading.cv ? <Loader2 className="w-3 h-3 animate-spin" /> : <Upload className="w-3 h-3" />}
                       {uploading.cv ? 'Uploading...' : 'Upload CV'}
                       <input type="file" accept=".pdf,.doc,.docx" className="hidden"
@@ -391,7 +390,7 @@ export default function Apply() {
             </div>
 
             {/* ── SECTION C: Real Estate Experience ── */}
-            <div className="bg-card border border-border/50 rounded-xl p-6 lg:p-8 shadow-sm">
+            <div className="bg-white border border-gray-100 border-l-4 border-l-[#C9A84C] rounded-xl p-6 lg:p-8 shadow-sm">
               <SectionHeader
                 icon={Building2}
                 title="Real Estate Experience Profile"
@@ -403,8 +402,8 @@ export default function Apply() {
                     {['Yes', 'No'].map(opt => (
                       <label key={opt} className={`flex items-center gap-2 px-5 py-2.5 rounded-lg border-2 text-sm font-body cursor-pointer transition-all ${
                         form.has_real_estate_experience === opt
-                          ? 'border-[#0d1b3e] bg-[#0d1b3e]/5 text-[#0d1b3e] font-semibold'
-                          : 'border-border/50 bg-white text-muted-foreground hover:border-[#0d1b3e]/30'
+                          ? 'border-black bg-gray-50 text-gray-900 font-bold'
+                          : 'border-gray-100 bg-white text-gray-500 hover:border-gray-300'
                       }`}>
                         <input type="radio" name="experience" value={opt} checked={form.has_real_estate_experience === opt}
                           onChange={e => set('has_real_estate_experience', e.target.value)}
@@ -450,12 +449,12 @@ export default function Apply() {
             </div>
 
             {/* Submit */}
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-card border border-border/50 rounded-xl p-6 shadow-sm">
-              <p className="text-xs text-muted-foreground font-body">
+            <div className="flex flex-col sm:flex-row items-center justify-between gap-4 bg-white border border-gray-100 rounded-xl p-6 shadow-sm">
+              <p className="text-xs text-gray-500 font-body">
                 By submitting, you agree to our privacy policy and consent to REMAX ZAM contacting you regarding this application.
               </p>
               <Button type="submit" disabled={createLead.isPending}
-                className="bg-[#0d1b3e] hover:bg-[#1a2d5a] text-white font-heading font-bold text-sm px-8 py-2.5 border-0 whitespace-nowrap">
+                className="bg-black hover:bg-gray-900 text-white font-heading font-bold text-sm px-8 py-2.5 border-0 whitespace-nowrap">
                 {createLead.isPending ? (
                   <><Loader2 className="w-4 h-4 animate-spin mr-2" /> Submitting...</>
                 ) : (
