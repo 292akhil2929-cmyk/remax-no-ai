@@ -63,7 +63,7 @@ export default function SellerHome() {
       {/* ─────────────────────────────────────────
           SECTION 1 — Editorial Header (pure white)
       ───────────────────────────────────────── */}
-      <section className="bg-white pt-20 pb-0">
+      <section className="bg-white pt-16 pb-10">
         <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
 
           {/* Top label */}
@@ -84,7 +84,7 @@ export default function SellerHome() {
               viewport={{ once: true }}
               transition={{ delay: 0.05 }}
               className="font-display font-black text-gray-900 leading-[1.0] tracking-tight"
-              style={{ fontSize: 'clamp(48px, 7vw, 96px)' }}
+              style={{ fontSize: 'clamp(32px, 4vw, 56px)' }}
             >
               How We Sell<br />Your Property.
             </motion.h2>
@@ -101,22 +101,6 @@ export default function SellerHome() {
             </motion.p>
           </div>
 
-          {/* Stats row */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 divide-x divide-gray-100 py-8">
-            {STATS.map((s, idx) => (
-              <motion.div
-                key={s.value}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.07 }}
-                className="px-6 first:pl-0 last:pr-0 text-center"
-              >
-                <p className="font-display font-black text-gray-900 text-3xl sm:text-4xl leading-none">{s.value}</p>
-                <p className="text-gray-400 font-body text-xs mt-1.5">{s.label}</p>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
