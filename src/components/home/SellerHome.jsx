@@ -89,16 +89,6 @@ export default function SellerHome() {
               How We Sell<br />Your Property.
             </motion.h2>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.15 }}
-              className="text-gray-400 font-body text-sm leading-relaxed max-w-xs lg:text-right lg:mb-2"
-            >
-              Four steps. Zero guesswork.<br />
-              Every detail handled by senior advisors.
-            </motion.p>
           </div>
 
         </div>
