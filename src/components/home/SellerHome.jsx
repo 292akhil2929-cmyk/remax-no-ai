@@ -238,16 +238,16 @@ export default function SellerHome() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="bg-[#F9F8F6] rounded-2xl p-7 hover:shadow-sm transition-all"
+                  className="bg-[#F9F8F6] border border-gray-200/70 rounded-2xl p-7 hover:shadow-sm transition-all"
                 >
                   {/* Stars */}
-                  <div className="flex gap-0.5 mb-5">
+                  <div className="flex gap-1 mb-5">
                     {[1,2,3,4,5].map(i => (
-                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
                   {/* Quote */}
-                  <p className="text-gray-700 font-body text-sm leading-relaxed mb-7">"{t.text}"</p>
+                  <p className="text-gray-800 font-body font-medium text-sm leading-relaxed mb-7">"{t.text}"</p>
                   {/* Author row */}
                   <div className="flex items-center gap-3">
                     {/* Empty circle placeholder */}
