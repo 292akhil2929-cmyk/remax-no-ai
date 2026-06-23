@@ -121,53 +121,46 @@ export default function SellerHome() {
       </section>
 
       {/* ─────────────────────────────────────────
-          SECTION 2 — 4 Step Cards (light gray)
+          SECTION 2 — 4 Steps, editorial full-width rows
       ───────────────────────────────────────── */}
-      <section className="bg-[#F7F6F3] py-16 sm:py-20">
+      <section className="bg-white py-4 pb-20">
         <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {STEPS.map((s, idx) => {
-              const Icon = s.icon;
-              return (
-                <motion.div
-                  key={s.step}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: idx * 0.08 }}
-                  className="group bg-white rounded-3xl p-8 sm:p-10 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
-                >
-                  {/* Large faded step number background */}
-                  <span
-                    className="absolute top-4 right-6 font-display font-black text-gray-900/[0.04] select-none pointer-events-none"
-                    style={{ fontSize: '120px', lineHeight: 1 }}
-                  >
-                    {s.step}
-                  </span>
+          {STEPS.map((s, idx) => {
+            const Icon = s.icon;
+            return (
+              <motion.div
+                key={s.step}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.07 }}
+                className="group grid grid-cols-[64px_1fr_1fr] lg:grid-cols-[80px_1fr_1.4fr_40px] items-center gap-6 lg:gap-10 py-8 border-b border-gray-100 hover:bg-gray-50 -mx-4 px-4 rounded-2xl transition-colors cursor-default"
+              >
+                {/* Step number */}
+                <span className="font-display font-black text-gray-200 group-hover:text-[#C9A84C]/30 transition-colors leading-none text-5xl lg:text-6xl">
+                  {s.step}
+                </span>
 
-                  {/* Icon */}
-                  <div className="w-11 h-11 rounded-2xl bg-gray-900 flex items-center justify-center mb-8 group-hover:bg-[#C9A84C] transition-colors duration-300">
-                    <Icon className="w-5 h-5 text-white" />
+                {/* Icon + title */}
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-gray-900 group-hover:bg-[#C9A84C] transition-colors flex items-center justify-center shrink-0">
+                    <Icon className="w-4.5 h-4.5 text-white" style={{ width: '18px', height: '18px' }} />
                   </div>
-
-                  {/* Step label */}
-                  <p className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase mb-3">
-                    Step {s.step}
-                  </p>
-
-                  {/* Title */}
-                  <h3 className="font-display font-black text-gray-900 text-xl sm:text-2xl leading-tight mb-4">
+                  <h3 className="font-display font-black text-gray-900 text-lg lg:text-xl leading-tight">
                     {s.title}
                   </h3>
+                </div>
 
-                  {/* Description */}
-                  <p className="text-gray-500 font-body text-sm leading-relaxed">
-                    {s.desc}
-                  </p>
-                </motion.div>
-              );
-            })}
-          </div>
+                {/* Description */}
+                <p className="text-gray-500 font-body text-sm leading-relaxed">
+                  {s.desc}
+                </p>
+
+                {/* Arrow — desktop only */}
+                <ArrowUpRight className="hidden lg:block w-5 h-5 text-gray-300 group-hover:text-[#C9A84C] transition-colors" />
+              </motion.div>
+            );
+          })}
         </div>
       </section>
 
@@ -189,8 +182,8 @@ export default function SellerHome() {
               {/* Main image — Dubai Marina, real photography */}
               <div className="rounded-3xl overflow-hidden aspect-[3/4]">
                 <img
-                  src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=85"
-                  alt="Dubai Marina skyline"
+                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=85"
+                  alt="Luxury Dubai property with pool"
                   className="w-full h-full object-cover"
                 />
               </div>
