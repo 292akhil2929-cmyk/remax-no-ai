@@ -123,7 +123,7 @@ export default function SellerHome() {
                   <span className="text-xs font-heading font-bold text-gray-700 tracking-wide">How We Sell</span>
                 </div>
                 <h2 className="font-display font-black text-gray-900 uppercase leading-[1.0] tracking-tight mb-6"
-                  style={{ fontSize: 'clamp(32px, 3.8vw, 52px)' }}>
+                  style={{ fontSize: 'clamp(22px, 2.6vw, 36px)' }}>
                   Sell Your<br />Property<br />
                   <span className="text-[#C9A84C]">The Right Way.</span>
                 </h2>
@@ -155,8 +155,8 @@ export default function SellerHome() {
                     <div className="flex min-h-[190px]">
                       {/* Left: icon top, title+desc bottom */}
                       <div className="flex-1 p-7 sm:p-8 flex flex-col justify-between">
-                        <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-100 group-hover:bg-[#C9A84C]/10 group-hover:border-[#C9A84C]/20 flex items-center justify-center transition-colors">
-                          <Icon style={{ width: '17px', height: '17px' }} className="text-gray-500 group-hover:text-[#C9A84C] transition-colors" />
+                        <div className="w-14 h-14 rounded-xl bg-gray-50 border border-gray-100 group-hover:bg-[#C9A84C]/10 group-hover:border-[#C9A84C]/20 flex items-center justify-center transition-colors">
+                          <Icon style={{ width: '26px', height: '26px' }} className="text-gray-500 group-hover:text-[#C9A84C] transition-colors" />
                         </div>
                         <div>
                           <p className="text-[9px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase mb-1.5">Step {s.step}</p>
