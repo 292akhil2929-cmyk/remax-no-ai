@@ -121,76 +121,54 @@ export default function SellerHome() {
       </section>
 
       {/* ─────────────────────────────────────────
-          SECTION 2 — Bento grid: featured step 01 + 3-col steps
+          SECTION 2 — Timeline with center spine (Option D)
       ───────────────────────────────────────── */}
-      <section className="bg-[#F7F6F3] py-16 sm:py-20">
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col gap-4">
+      <section className="bg-white py-16 sm:py-24">
+        <div className="max-w-3xl mx-auto px-6 sm:px-10 lg:px-0 relative">
 
-          {/* ROW 1 — Step 01: full-width featured card with photo */}
-          <motion.div
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="relative rounded-3xl overflow-hidden min-h-[280px] sm:min-h-[320px] grid grid-cols-1 lg:grid-cols-2"
-          >
-            {/* Photo half */}
-            <div className="relative min-h-[200px] lg:min-h-0">
-              <img
-                src="https://images.unsplash.com/photo-1560185008-a33f5c7b1844?w=900&q=85"
-                alt="Property valuation"
-                className="absolute inset-0 w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-gray-950/60 hidden lg:block" />
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-950/60 lg:hidden" />
-            </div>
+          {/* Vertical center spine */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 -translate-x-1/2 hidden lg:block" />
 
-            {/* Content half — dark */}
-            <div className="bg-gray-950 p-8 sm:p-10 flex flex-col justify-between relative z-10">
-              <div className="flex items-start justify-between">
-                <span className="text-[10px] font-heading font-bold tracking-[0.25em] text-[#C9A84C] uppercase">Step 01</span>
-                <span className="font-display font-black text-white/10 text-6xl leading-none select-none">01</span>
-              </div>
-              <div>
-                {(() => { const Icon = STEPS[0].icon; return (
-                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-5">
-                    <Icon className="w-4.5 h-4.5 text-white" style={{width:'18px',height:'18px'}} />
-                  </div>
-                ); })()}
-                <h3 className="font-display font-black text-white text-2xl sm:text-3xl leading-tight mb-3">
-                  {STEPS[0].title}
-                </h3>
-                <p className="text-white/50 font-body text-sm leading-relaxed max-w-xs">
-                  {STEPS[0].desc}
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* ROW 2 — Steps 02, 03, 04 in 3 columns */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-            {STEPS.slice(1).map((s, idx) => {
+          <div className="flex flex-col gap-0">
+            {STEPS.map((s, idx) => {
               const Icon = s.icon;
+              const isLeft = idx % 2 === 0;
               return (
                 <motion.div
                   key={s.step}
-                  initial={{ opacity: 0, y: 24 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: 0.1 + idx * 0.08 }}
-                  className="group bg-white rounded-3xl p-7 flex flex-col justify-between min-h-[240px] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                  transition={{ duration: 0.55, delay: idx * 0.1 }}
+                  className={`relative flex items-start gap-8 py-10 lg:py-12 ${isLeft ? 'lg:flex-row lg:pr-[calc(50%+2rem)]' : 'lg:flex-row-reverse lg:pl-[calc(50%+2rem)]'}`}
                 >
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="w-10 h-10 rounded-xl bg-gray-100 group-hover:bg-gray-900 transition-colors flex items-center justify-center">
-                      <Icon className="w-[18px] h-[18px] text-gray-600 group-hover:text-white transition-colors" />
+                  {/* Dot on the spine */}
+                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#C9A84C] border-2 border-white shadow-sm hidden lg:block" />
+
+                  {/* Content card */}
+                  <div className={`group bg-[#F7F6F3] hover:bg-white hover:shadow-lg rounded-3xl p-7 sm:p-8 transition-all duration-300 w-full border border-transparent hover:border-gray-100`}>
+                    {/* Top row: icon + step label */}
+                    <div className="flex items-center justify-between mb-5">
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-xl bg-gray-900 group-hover:bg-[#C9A84C] transition-colors flex items-center justify-center shrink-0">
+                          <Icon style={{ width: '16px', height: '16px' }} className="text-white" />
+                        </div>
+                        <span className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase">Step {s.step}</span>
+                      </div>
+                      <span className="font-display font-black text-gray-200 text-3xl leading-none select-none group-hover:text-gray-300 transition-colors">
+                        {s.step}
+                      </span>
                     </div>
-                    <span className="font-display font-black text-gray-100 group-hover:text-[#C9A84C]/20 transition-colors text-4xl leading-none select-none">
-                      {s.step}
-                    </span>
-                  </div>
-                  <div>
-                    <p className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase mb-2">Step {s.step}</p>
-                    <h3 className="font-display font-black text-gray-900 text-lg leading-tight mb-3">{s.title}</h3>
-                    <p className="text-gray-500 font-body text-sm leading-relaxed">{s.desc}</p>
+
+                    {/* Title */}
+                    <h3 className="font-display font-black text-gray-900 text-xl leading-tight mb-3">
+                      {s.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-gray-500 font-body text-sm leading-relaxed">
+                      {s.desc}
+                    </p>
                   </div>
                 </motion.div>
               );
