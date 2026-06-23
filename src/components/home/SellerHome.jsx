@@ -61,40 +61,6 @@ export default function SellerHome() {
   return (
     <>
       {/* ─────────────────────────────────────────
-          SECTION 1 — Editorial Header (pure white)
-      ───────────────────────────────────────── */}
-      <section className="bg-white pt-16 pb-10">
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
-
-          {/* Top label */}
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-[10px] font-heading font-bold tracking-[0.28em] text-[#C9A84C] uppercase mb-6"
-          >
-            Simple · Transparent · Effective
-          </motion.p>
-
-          {/* Headline + subtitle split */}
-          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 pb-14 border-b border-gray-100">
-            <motion.h2
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.05 }}
-              className="font-display font-black text-gray-900 leading-[1.0] tracking-tight"
-              style={{ fontSize: 'clamp(32px, 4vw, 56px)' }}
-            >
-              How We Sell<br />Your Property.
-            </motion.h2>
-
-          </div>
-
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────
           SECTION 2 — PlumFix style: sticky left + stacked image cards right
       ───────────────────────────────────────── */}
       <section className="bg-[#F7F6F3] py-20 sm:py-28">
