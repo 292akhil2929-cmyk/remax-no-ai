@@ -233,7 +233,7 @@ export default function SellerHome() {
                   {/* Stars */}
                   <div className="flex gap-0.5 mb-5">
                     {[1,2,3,4,5].map(i => (
-                      <span key={i} className="text-amber-400 text-lg leading-none">★</span>
+                      <span key={i} className="text-amber-400 text-2xl leading-none">★</span>
                     ))}
                   </div>
                   {/* Quote */}
