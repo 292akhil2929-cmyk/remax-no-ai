@@ -238,22 +238,24 @@ export default function SellerHome() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="flex flex-col justify-between border border-gray-100 rounded-2xl p-7 hover:border-gray-200 hover:shadow-sm transition-all"
+                  className="bg-[#F9F8F6] rounded-2xl p-7 hover:shadow-sm transition-all"
                 >
-                  <div className="flex gap-0.5 mb-4">
+                  {/* Stars */}
+                  <div className="flex gap-0.5 mb-5">
                     {[1,2,3,4,5].map(i => (
                       <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <p className="text-gray-700 font-body text-sm leading-relaxed mb-5">"{t.text}"</p>
-                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                  {/* Quote */}
+                  <p className="text-gray-700 font-body text-sm leading-relaxed mb-7">"{t.text}"</p>
+                  {/* Author row */}
+                  <div className="flex items-center gap-3">
+                    {/* Empty circle placeholder */}
+                    <div className="w-10 h-10 rounded-full bg-gray-200 shrink-0" />
                     <div>
-                      <p className="font-heading font-bold text-gray-900 text-sm">{t.name}</p>
+                      <p className="font-heading font-bold text-gray-900 text-sm leading-tight">{t.name}</p>
                       <p className="text-gray-400 font-body text-xs mt-0.5">{t.country}</p>
                     </div>
-                    <span className="text-xs font-heading font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-full whitespace-nowrap">
-                      {t.result}
-                    </span>
                   </div>
                 </motion.div>
               ))}
