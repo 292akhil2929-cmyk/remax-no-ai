@@ -241,9 +241,9 @@ export default function SellerHome() {
                   className="bg-[#F9F8F6] border border-gray-200/70 rounded-2xl p-7 hover:shadow-sm transition-all"
                 >
                   {/* Stars */}
-                  <div className="flex gap-1 mb-5">
+                  <div className="flex gap-0.5 mb-5">
                     {[1,2,3,4,5].map(i => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400 text-amber-400" />
+                      <span key={i} className="text-amber-400 text-lg leading-none">★</span>
                     ))}
                   </div>
                   {/* Quote */}
