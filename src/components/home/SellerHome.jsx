@@ -1,43 +1,34 @@
 import { motion } from 'framer-motion';
-import { PhoneCall, ClipboardList, Search, BadgeCheck, Globe, Users, TrendingUp, Star } from 'lucide-react';
+import { ArrowUpRight, Star } from 'lucide-react';
 import SellerLeadForm from '@/components/SellerLeadForm';
 
 const STEPS = [
   {
-    icon: PhoneCall,
     step: '01',
     title: 'Free Property Valuation',
     desc: "We assess your property's market value using live DLD transaction data and comparable sales. No cost, no obligation.",
-    img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80',
   },
   {
-    icon: ClipboardList,
     step: '02',
     title: 'Professional Marketing',
     desc: 'HD photography, staging advice, and your property live across 40+ portals with targeted social campaigns.',
-    img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=600&q=80',
   },
   {
-    icon: Search,
     step: '03',
     title: 'Qualified Buyer Matching',
     desc: 'We pre-qualify every buyer. You only meet serious, finance-approved purchasers — no time wasted.',
-    img: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80',
   },
   {
-    icon: BadgeCheck,
     step: '04',
     title: 'Seamless Transaction',
     desc: 'From negotiation to NOC, DLD registration to keys handover — we manage every detail of the close.',
-    img: 'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80',
   },
 ];
 
 const STATS = [
-  { value: '145K+', label: 'RE/MAX agents promoting your property' },
-  { value: '1,200+', label: 'Active buyers in our database' },
-  { value: '94%', label: 'Listings sold within agreed timeframe' },
-  { value: '4.9★', label: 'Average seller satisfaction rating' },
+  { value: '145K+', label: 'Global Agents' },
+  { value: '1,200+', label: 'Active Buyers' },
+  { value: '94%', label: 'Sold At Ask' },
 ];
 
 const TESTIMONIALS = [
@@ -64,140 +55,214 @@ const TESTIMONIALS = [
 export default function SellerHome() {
   return (
     <>
-      {/* ── TRUST BAR ── */}
-      <section className="bg-black border-b border-white/10 py-5">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {STATS.map((s, idx) => (
-              <motion.div key={s.value} initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} transition={{ delay: idx * 0.07 }} className="text-center">
-                <p className="text-2xl sm:text-3xl font-display font-black text-white">{s.value}</p>
-                <p className="text-white/40 font-body text-xs mt-1">{s.label}</p>
-              </motion.div>
-            ))}
+      {/* ── HERO SPLIT: About Us style (SK Builders) ── */}
+      <section className="bg-[#0F2318] overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-8 sm:px-12 lg:px-20 py-20 lg:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
+
+            {/* LEFT: label + body + stats */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="flex flex-col gap-8"
+            >
+              {/* Label pill */}
+              <div className="inline-flex items-center gap-2 self-start">
+                <span className="w-2 h-2 rounded-full bg-[#C9A84C]" />
+                <span className="text-[#C9A84C] text-xs font-heading font-bold tracking-[0.22em] uppercase">About Our Sell Process</span>
+              </div>
+
+              <p className="text-white/55 font-body text-sm sm:text-base leading-relaxed max-w-sm">
+                We take great pride in ensuring the complete satisfaction of our sellers — from first valuation to final handover. Only the right buyers, only the best outcome.
+              </p>
+
+              {/* Stats row */}
+              <div className="flex gap-10 pt-4 border-t border-white/10">
+                {STATS.map((s) => (
+                  <div key={s.value}>
+                    <p className="text-white font-display font-black text-3xl sm:text-4xl leading-none">{s.value}</p>
+                    <p className="text-white/40 font-body text-xs mt-1">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* CTA button */}
+              <div>
+                <a
+                  href="#seller-valuation"
+                  className="inline-flex items-center gap-3 bg-[#C9A84C] text-black font-heading font-bold text-xs tracking-[0.15em] uppercase px-6 py-3.5 rounded-full hover:bg-[#e0bc5a] transition-colors"
+                >
+                  Get Free Valuation
+                  <ArrowUpRight className="w-3.5 h-3.5" />
+                </a>
+              </div>
+            </motion.div>
+
+            {/* RIGHT: large headline + 4 steps */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="flex flex-col gap-10"
+            >
+              <h2
+                className="text-white font-display font-black leading-[1.0] tracking-tight"
+                style={{ fontSize: 'clamp(40px, 5.5vw, 80px)' }}
+              >
+                HOW WE SELL<br />YOUR PROPERTY<br />
+                <span className="text-[#C9A84C]">RIGHT.</span>
+              </h2>
+
+              {/* 4 Steps vertical list */}
+              <div className="divide-y divide-white/10">
+                {STEPS.map((s, idx) => (
+                  <motion.div
+                    key={s.step}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.08 }}
+                    className="flex gap-6 py-6 group"
+                  >
+                    <span className="text-[#C9A84C]/40 font-display font-black text-4xl leading-none w-12 shrink-0 group-hover:text-[#C9A84C] transition-colors">
+                      {s.step}
+                    </span>
+                    <div>
+                      <h3 className="text-white font-heading font-bold text-base mb-1.5">{s.title}</h3>
+                      <p className="text-white/45 font-body text-sm leading-relaxed">{s.desc}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
           </div>
         </div>
       </section>
 
-      {/* ── HOW IT WORKS ── */}
-      <section className="py-24 bg-white">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-16">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Simple. Transparent. Effective.</p>
-            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900 leading-tight">
-              How We Sell<br />Your Property
-            </h2>
+      {/* ── DREAM HOUSE style — full-width oval image ── */}
+      <section className="bg-[#0F2318] pb-0">
+        <div className="px-6 sm:px-10">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative rounded-[2.5rem] overflow-hidden aspect-[16/7] w-full"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1600&q=85"
+              alt="Dubai luxury property"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="absolute bottom-8 left-10">
+              <p className="text-white font-display font-black text-4xl sm:text-6xl lg:text-7xl tracking-tight">SELL SMARTER.</p>
+            </div>
           </motion.div>
+        </div>
+      </section>
 
-          <div className="space-y-6">
-            {STEPS.map((s, idx) => {
-              const Icon = s.icon;
-              const isEven = idx % 2 === 0;
-              return (
+      {/* ── THE PROJECT style — results section ── */}
+      <section className="bg-[#F5F5F0] py-20 sm:py-28">
+        <div className="max-w-[1600px] mx-auto px-8 sm:px-12 lg:px-20">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <div className="inline-flex items-center gap-2 mb-6">
+                <span className="w-2 h-2 rounded-full bg-[#0F2318]" />
+                <span className="text-[#0F2318] text-xs font-heading font-bold tracking-[0.22em] uppercase">Seller Stories</span>
+              </div>
+              <h2 className="font-display font-black text-[#0F2318] leading-tight mb-6" style={{ fontSize: 'clamp(36px, 4.5vw, 64px)' }}>
+                WHAT SELLERS<br />ACTUALLY SAY.
+              </h2>
+              <p className="text-gray-500 font-body text-sm leading-relaxed max-w-sm">
+                Real results from real sellers. Not estimates — actual closed transactions with verified outcomes.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-1 gap-4">
+              {TESTIMONIALS.map((t, idx) => (
                 <motion.div
-                  key={s.step}
-                  initial={{ opacity: 0, y: 30 }}
+                  key={t.name}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className={`flex flex-col ${isEven ? 'lg:flex-row' : 'lg:flex-row-reverse'} gap-0 rounded-2xl overflow-hidden bg-gray-50 border border-gray-100`}
+                  className="bg-white rounded-2xl p-6 flex gap-4 items-start border border-gray-100 hover:border-[#0F2318]/20 hover:shadow-md transition-all"
                 >
-                  {/* Image */}
-                  <div className="lg:w-2/5 aspect-[16/9] lg:aspect-auto relative overflow-hidden">
-                    <img src={s.img} alt={s.title} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-black/20" />
-                    <div className="absolute top-5 left-5">
-                      <span className="text-5xl font-display font-black text-white/20">{s.step}</span>
-                    </div>
+                  <div className="w-10 h-10 rounded-full bg-[#0F2318] flex items-center justify-center shrink-0 mt-0.5">
+                    <span className="text-white font-display font-black text-sm">{t.name[0]}</span>
                   </div>
-                  {/* Content */}
-                  <div className="lg:w-3/5 p-8 lg:p-12 flex flex-col justify-center">
-                    <div className="w-10 h-10 rounded-xl bg-black flex items-center justify-center mb-5">
-                      <Icon className="w-5 h-5 text-white" />
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-center justify-between mb-2">
+                      <div>
+                        <span className="text-sm font-heading font-bold text-gray-900">{t.name}</span>
+                        <span className="text-gray-400 font-body text-xs ml-2">{t.country}</span>
+                      </div>
+                      <span className="text-xs font-heading font-bold text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-full shrink-0">{t.result}</span>
                     </div>
-                    <h3 className="text-2xl font-display font-black text-gray-900 mb-3">{s.title}</h3>
-                    <p className="text-gray-500 font-body text-sm leading-relaxed">{s.desc}</p>
+                    <div className="flex gap-0.5 mb-2">
+                      {[1,2,3,4,5].map(i => <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />)}
+                    </div>
+                    <p className="text-gray-600 font-body text-sm leading-relaxed">"{t.text}"</p>
                   </div>
                 </motion.div>
-              );
-            })}
+              ))}
+            </div>
+
           </div>
         </div>
       </section>
 
-      {/* ── SELLER TESTIMONIALS ── */}
-      <section className="py-20 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-12">
-            <p className="text-gray-400 font-body text-xs tracking-[0.2em] uppercase mb-3">Seller Stories</p>
-            <h2 className="text-4xl sm:text-5xl font-display font-black text-gray-900">What Sellers Say</h2>
-          </motion.div>
+      {/* ── LET'S COMBINE OUR STRENGTHS style — dark CTA ── */}
+      <section id="seller-valuation" className="bg-black overflow-hidden">
+        <div className="max-w-[1600px] mx-auto px-8 sm:px-12 lg:px-20 py-20 lg:py-28">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start">
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {TESTIMONIALS.map((t, idx) => (
-              <motion.div
-                key={t.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="bg-white rounded-2xl p-8 border border-gray-100 flex flex-col justify-between"
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+            >
+              <h2
+                className="font-display font-black text-white leading-[1.0] tracking-tight mb-8"
+                style={{ fontSize: 'clamp(44px, 6vw, 90px)' }}
               >
-                <div>
-                  <div className="flex gap-0.5 mb-5">
-                    {[1,2,3,4,5].map(i => <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />)}
-                  </div>
-                  <p className="text-gray-700 font-body text-sm leading-relaxed mb-6">"{t.text}"</p>
-                </div>
-                <div className="flex items-center justify-between pt-5 border-t border-gray-100">
-                  <div>
-                    <p className="text-sm font-display font-black text-gray-900">{t.name}</p>
-                    <p className="text-xs text-gray-400 font-body">{t.country}</p>
-                  </div>
-                  <span className="text-xs font-heading font-bold text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full">{t.result}</span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SELLER CTA ── */}
-      <section id="seller-valuation" className="py-24 bg-black relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(100,180,100,0.08),transparent_60%)]" />
-        <div className="relative max-w-5xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <div className="flex items-center gap-3 mb-6">
-                <div className="w-8 h-px bg-white/30" />
-                <span className="text-white/40 font-body text-xs tracking-[0.2em] uppercase">No Cost. No Obligation.</span>
-              </div>
-              <h2 className="text-4xl sm:text-5xl font-display font-black text-white leading-tight mb-5">
-                What Is Your<br />Property Worth?
+                LET'S SELL<br />YOUR<br />PROPERTY.
               </h2>
-              <p className="text-gray-400 font-body text-sm leading-relaxed mb-8">
-                Get an accurate, data-driven valuation backed by live DLD transaction records — and a clear pricing strategy to attract the best buyers.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  'Valuation based on recent comparable DLD transactions',
-                  'Pricing strategy to attract premium, qualified buyers',
-                  'Current buyer demand analysis for your specific area',
-                  'Honest advice — no pressure, just expert guidance',
-                ].map(item => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-gray-300 font-body">
-                    <span className="w-5 h-5 rounded-full border border-white/20 flex items-center justify-center text-white text-xs shrink-0 mt-0.5">✓</span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
+              <div className="flex items-center gap-4">
+                <a
+                  href="#seller-valuation"
+                  className="w-14 h-14 rounded-full border border-[#C9A84C] flex items-center justify-center hover:bg-[#C9A84C]/10 transition-colors group"
+                >
+                  <ArrowUpRight className="w-5 h-5 text-[#C9A84C] group-hover:scale-110 transition-transform" />
+                </a>
+                <span className="text-white/40 font-body text-sm">Start with a free valuation</span>
+              </div>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}
-              className="bg-white/[0.04] border border-white/10 rounded-2xl p-8">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="bg-white/[0.04] border border-white/10 rounded-3xl p-8 sm:p-10"
+            >
               <h3 className="text-xl font-display font-black text-white mb-1">Request a Free Valuation</h3>
-              <p className="text-xs text-gray-500 font-body mb-7">Our consultants respond within 24 hours.</p>
+              <p className="text-xs text-white/35 font-body mb-8">Our consultants respond within 24 hours. No pressure.</p>
               <SellerLeadForm source="Home - Seller" />
             </motion.div>
+
           </div>
         </div>
       </section>
