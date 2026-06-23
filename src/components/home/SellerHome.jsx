@@ -14,48 +14,46 @@ const TESTIMONIALS = [
   { name: 'Priya R.', country: 'India', flag: '🇮🇳', text: 'Needed a fast clean sale before relocating. They priced it right from day one, pre-qualified every viewer, and closed in 19 days. Zero stress.', result: 'Closed in 19 days' },
 ];
 
-/* ─── TRUTH 1: Big stat card — dark editorial ─── */
+/* ─── TRUTH 1: Giant stat — clean white editorial ─── */
 function Truth1() {
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6 }}
-      className="bg-[#0c0c0c] py-16 sm:py-24 overflow-hidden"
+      className="bg-white py-16 sm:py-24 border-b border-gray-100"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
         {/* Label */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="flex items-center gap-3 mb-8">
           <div className="w-4 h-px bg-[#C9A84C]" />
           <span className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase">Pricing Strategy · 01 / 03</span>
         </div>
 
         {/* Stat row */}
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 border-b border-white/[0.08] pb-10 mb-10">
-          <div
-            className="font-display font-black text-white leading-none select-none"
-            style={{ fontSize: 'clamp(80px, 14vw, 180px)' }}
-          >
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 border-b border-gray-100 pb-10 mb-10">
+          <div className="font-display font-black text-gray-900 leading-none select-none"
+            style={{ fontSize: 'clamp(80px, 14vw, 180px)' }}>
             37%
           </div>
-          <p className="text-white/35 font-body lg:text-right max-w-xs leading-snug"
+          <p className="text-gray-400 font-body lg:text-right max-w-xs leading-snug"
             style={{ fontSize: 'clamp(16px, 2vw, 22px)' }}>
             of Dubai listings<br />never sell
           </p>
         </div>
 
-        {/* Two-column comparison with left border lines */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12">
-          <div className="border-l-2 border-red-500/25 pl-6">
-            <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-red-400/70 uppercase mb-4">✕ &nbsp;The common approach</p>
-            <p className="text-white/35 font-body text-sm leading-relaxed">
+        {/* Two-column comparison */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-16">
+          <div className="border-l-2 border-red-200 pl-6">
+            <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-red-400 uppercase mb-4">✕ &nbsp;The common approach</p>
+            <p className="text-gray-400 font-body text-sm leading-relaxed">
               The agent quoted a high price to win the listing. No offers came. 60 days later they asked for a reduction. By then the property looked stale and buyers assumed something was wrong.
             </p>
           </div>
-          <div className="border-l-2 border-[#C9A84C]/40 pl-6">
+          <div className="border-l-2 border-[#C9A84C]/50 pl-6">
             <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-[#C9A84C] uppercase mb-4">✓ &nbsp;The RE/MAX Zam approach</p>
-            <p className="text-white/65 font-body text-sm leading-relaxed">
+            <p className="text-gray-600 font-body text-sm leading-relaxed">
               We show you live DLD comparables before we even talk price. You see exactly what sold, when, and for how much. No inflation. No bait-and-switch.
             </p>
           </div>
@@ -65,7 +63,7 @@ function Truth1() {
   );
 }
 
-/* ─── TRUTH 2: Split photo / content ─── */
+/* ─── TRUTH 2: Split photo / clean white content ─── */
 function Truth2() {
   return (
     <motion.section
@@ -73,7 +71,7 @@ function Truth2() {
       whileInView={{ opacity: 1 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6 }}
-      className="bg-white overflow-hidden"
+      className="bg-white border-b border-gray-100 overflow-hidden"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
         {/* Left: content */}
@@ -83,10 +81,8 @@ function Truth2() {
             <span className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase">Presentation · 02 / 03</span>
           </div>
 
-          <div
-            className="font-display font-black text-gray-900 leading-none mb-3"
-            style={{ fontSize: 'clamp(56px, 9vw, 110px)' }}
-          >
+          <div className="font-display font-black text-gray-900 leading-none mb-3"
+            style={{ fontSize: 'clamp(56px, 9vw, 110px)' }}>
             3 sec
           </div>
           <p className="text-gray-400 font-body mb-10 leading-snug"
@@ -95,16 +91,16 @@ function Truth2() {
           </p>
 
           <div className="space-y-6">
-            <div>
+            <div className="border-l-2 border-red-200 pl-5">
               <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-red-400 uppercase mb-3">✕ &nbsp;The common approach</p>
               <p className="text-gray-400 font-body text-sm leading-relaxed">
-                An agent with an iPhone, one visit, 8 blurry photos. Your property looks like every other listing. Buyers screenshot the nice ones and send to their partners. Yours isn't one of them.
+                An agent with an iPhone, one visit, 8 blurry photos. Your property looks like every other listing. Buyers screenshot the nice ones. Yours isn't one of them.
               </p>
             </div>
-            <div className="pt-5 border-t border-gray-100">
+            <div className="border-l-2 border-[#C9A84C]/50 pl-5">
               <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-[#C9A84C] uppercase mb-3">✓ &nbsp;The RE/MAX Zam approach</p>
               <p className="text-gray-600 font-body text-sm leading-relaxed">
-                We send a professional photographer, videographer, and drone operator. Staging advice included. We write the listing copy. Your property becomes the one buyers can't stop looking at.
+                We send a professional photographer, videographer, and drone operator. Staging advice included. We write the listing copy. Your property becomes the one buyers keep coming back to.
               </p>
             </div>
           </div>
@@ -117,68 +113,65 @@ function Truth2() {
             alt="Luxury interior staging"
             className="absolute inset-0 w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-transparent lg:hidden" />
         </div>
       </div>
     </motion.section>
   );
 }
 
-/* ─── TRUTH 3: Icon feature row ─── */
+/* ─── TRUTH 3: Clean icon feature row on light gray ─── */
 function Truth3() {
   const features = [
     { icon: Globe, title: 'Global RE/MAX Network', desc: 'Day 1 live across 110+ countries and 8,700+ offices worldwide' },
-    { icon: Users, title: '12,000+ Investors', desc: 'Direct email to pre-qualified international buyers, day of listing' },
-    { icon: Map, title: 'International Pipeline', desc: 'UK, India, Saudi Arabia — the buyers who pay the most, the fastest' },
+    { icon: Users, title: '12,000+ Pre-Qualified Investors', desc: 'Direct email to international buyers ready to move now' },
+    { icon: Map, title: 'International Buyer Pipeline', desc: 'UK, India, Saudi Arabia — the buyers who pay the most, the fastest' },
   ];
 
   return (
     <motion.section
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.6 }}
-      className="bg-gray-950 py-16 sm:py-24"
+      className="bg-gray-50 py-16 sm:py-24 border-b border-gray-100"
     >
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
-        {/* Top row: stat + common approach side by side */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 mb-12 pb-12 border-b border-white/[0.07]">
+        {/* Top row: stat + common approach */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 mb-14 pb-14 border-b border-gray-200">
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-4 h-px bg-[#C9A84C]" />
               <span className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase">Market Reach · 03 / 03</span>
             </div>
-            <div
-              className="font-display font-black text-white leading-none mb-3"
-              style={{ fontSize: 'clamp(72px, 11vw, 140px)' }}
-            >
+            <div className="font-display font-black text-gray-900 leading-none mb-3"
+              style={{ fontSize: 'clamp(72px, 11vw, 140px)' }}>
               61%
             </div>
-            <p className="text-white/35 font-body leading-snug"
+            <p className="text-gray-400 font-body leading-snug"
               style={{ fontSize: 'clamp(15px, 1.8vw, 20px)' }}>
               of our buyers come from outside the UAE
             </p>
           </div>
 
-          <div className="flex flex-col justify-center">
-            <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-red-400/70 uppercase mb-4">✕ &nbsp;The common approach</p>
-            <p className="text-white/30 font-body text-sm leading-relaxed">
+          <div className="flex flex-col justify-center border-l border-gray-200 pl-10 lg:pl-16">
+            <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-red-400 uppercase mb-4">✕ &nbsp;The common approach</p>
+            <p className="text-gray-400 font-body text-sm leading-relaxed">
               Most Dubai agents only reach local buyers on Bayut and Dubizzle. The buyers who move fastest — expats relocating, foreign investors — never even see your listing.
             </p>
           </div>
         </div>
 
-        {/* Icon feature row — the fix */}
+        {/* Icon feature row */}
         <div>
           <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-[#C9A84C] uppercase mb-8">✓ &nbsp;The RE/MAX Zam approach</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
             {features.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="border border-white/[0.08] rounded-2xl p-6 hover:border-[#C9A84C]/30 transition-colors group">
+              <div key={title} className="bg-white border border-gray-100 rounded-2xl p-6 hover:border-[#C9A84C]/30 hover:shadow-sm transition-all group">
                 <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center mb-5 group-hover:bg-[#C9A84C]/20 transition-colors">
                   <Icon className="w-4 h-4 text-[#C9A84C]" />
                 </div>
-                <p className="text-white font-heading font-bold text-sm mb-2">{title}</p>
-                <p className="text-white/35 font-body text-xs leading-relaxed">{desc}</p>
+                <p className="text-gray-900 font-heading font-bold text-sm mb-2">{title}</p>
+                <p className="text-gray-400 font-body text-xs leading-relaxed">{desc}</p>
               </div>
             ))}
           </div>
