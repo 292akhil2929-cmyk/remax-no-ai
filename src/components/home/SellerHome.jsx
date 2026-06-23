@@ -149,16 +149,18 @@ export default function SellerHome() {
               </motion.div>
             </div>
 
-            {/* RIGHT — stacked cards each with icon + image */}
+            {/* RIGHT — stacked cards each with icon panel replacing image */}
             <div className="flex-1 flex flex-col gap-4">
               {STEPS.map((s, idx) => {
                 const Icon = s.icon;
-                const imgs = [
-                  'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=600&q=80',
-                  'https://images.unsplash.com/photo-1486325212027-8081e485255e?w=600&q=80',
-                  'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?w=600&q=80',
-                  'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=600&q=80',
+                // Unique soft bg + accent per card so they feel distinct
+                const panels = [
+                  { bg: 'bg-[#F0EBE0]', iconBg: 'bg-[#C9A84C]/15', iconColor: 'text-[#C9A84C]' },
+                  { bg: 'bg-[#EAF0F0]', iconBg: 'bg-gray-900/8', iconColor: 'text-gray-700' },
+                  { bg: 'bg-[#EEF0F5]', iconBg: 'bg-[#C9A84C]/15', iconColor: 'text-[#C9A84C]' },
+                  { bg: 'bg-[#F0EDE8]', iconBg: 'bg-gray-900/8', iconColor: 'text-gray-700' },
                 ];
+                const p = panels[idx];
                 return (
                   <motion.div
                     key={s.step}
@@ -168,8 +170,8 @@ export default function SellerHome() {
                     transition={{ delay: idx * 0.1 }}
                     className="group bg-white rounded-3xl overflow-hidden border border-gray-100 hover:border-gray-200 hover:shadow-lg transition-all duration-300"
                   >
-                    <div className="flex min-h-[190px]">
-                      {/* Left: icon top, title+desc bottom */}
+                    <div className="flex min-h-[180px]">
+                      {/* Left: small icon top, title+desc bottom */}
                       <div className="flex-1 p-7 sm:p-8 flex flex-col justify-between">
                         <div className="w-10 h-10 rounded-xl bg-gray-50 border border-gray-100 group-hover:bg-[#C9A84C]/10 group-hover:border-[#C9A84C]/20 flex items-center justify-center transition-colors">
                           <Icon style={{ width: '17px', height: '17px' }} className="text-gray-500 group-hover:text-[#C9A84C] transition-colors" />
@@ -180,13 +182,18 @@ export default function SellerHome() {
                           <p className="text-gray-500 font-body text-sm leading-relaxed">{s.desc}</p>
                         </div>
                       </div>
-                      {/* Right: image */}
-                      <div className="w-44 sm:w-56 shrink-0 relative overflow-hidden">
-                        <img
-                          src={imgs[idx]}
-                          alt={s.title}
-                          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                        />
+
+                      {/* Right: tonal panel with oversized icon */}
+                      <div className={`w-40 sm:w-52 shrink-0 ${p.bg} flex items-center justify-center relative overflow-hidden transition-colors duration-300`}>
+                        {/* Decorative large step number behind */}
+                        <span className="absolute font-display font-black text-black/[0.04] select-none leading-none"
+                          style={{ fontSize: '110px' }}>
+                          {s.step}
+                        </span>
+                        {/* Big centred icon */}
+                        <div className={`relative z-10 w-16 h-16 rounded-2xl ${p.iconBg} flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                          <Icon style={{ width: '32px', height: '32px' }} className={p.iconColor} />
+                        </div>
                       </div>
                     </div>
                   </motion.div>
