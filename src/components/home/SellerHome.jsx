@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { Star, TrendingUp, Clock, Globe } from 'lucide-react';
+import { Star, TrendingUp, Clock, Globe, Users, Map } from 'lucide-react';
 import SellerLeadForm from '@/components/SellerLeadForm';
 
 const DEALS = [
@@ -8,52 +8,194 @@ const DEALS = [
   { type: '3BR Villa', area: 'Dubai Hills Estate', listed: 'AED 4,200,000', sold: 'AED 4,350,000', delta: '+AED 150K above ask', days: '19 days', buyer: 'Saudi family — RE/MAX referral' },
 ];
 
-const TRUTHS = [
-  {
-    tag: 'Pricing Strategy',
-    num: '37%',
-    headline: 'of Dubai listings never sell',
-    why: 'The agent quoted a high price to win the listing. No offers came. 60 days later they asked for a reduction. By then the property looked stale and buyers assumed something was wrong.',
-    fix: 'We show you live DLD comparables before we even talk price. You see exactly what sold, when, and for how much. No inflation. No bait-and-switch.',
-    img: 'https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1800&auto=format&fit=crop&q=80',
-    tint: 'from-black/85 via-black/55 to-black/20',
-  },
-  {
-    tag: 'Presentation',
-    num: '3 sec',
-    headline: 'is how long buyers scroll past bad photos',
-    why: "An agent with an iPhone, one visit, 8 blurry photos. Your property looks like every other listing. Buyers screenshot the nice ones and send to their partners. Yours isn't one of them.",
-    fix: 'We send a professional photographer, videographer, and drone operator. Staging advice included. We write the listing copy. Your property becomes the one buyers keep coming back to.',
-    img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1800&auto=format&fit=crop&q=80',
-    tint: 'from-black/80 via-black/50 to-black/15',
-  },
-  {
-    tag: 'Market Reach',
-    num: '61%',
-    headline: 'of our buyers come from outside the UAE',
-    why: 'Most Dubai agents only reach local buyers on Bayut and Dubizzle. The buyers who move fastest — expats relocating, foreign investors, RE/MAX referrals — never even see your listing.',
-    fix: 'Day 1 your property goes live across our global RE/MAX network and is emailed to 12,000+ pre-qualified international investors. No other Dubai brokerage can say that.',
-    img: 'https://images.unsplash.com/photo-1580674684081-7617fbf3d745?w=1800&auto=format&fit=crop&q=80',
-    tint: 'from-black/80 via-black/50 to-black/10',
-  },
-];
-
 const TESTIMONIALS = [
   { name: 'Sarah M.', country: 'UK', flag: '🇬🇧', text: "Sold my Business Bay apartment in 21 days. Handled remotely — I just signed digitally and the funds hit my account. Genuinely the easiest thing I've done in Dubai.", result: 'Sold in 21 days' },
-  { name: 'Ahmed K.', country: 'UAE', flag: '🇦🇪', text: 'Got AED 180K above my asking price. The international buyer network is real — serious offers came in the first week. My previous agent couldn\'t sell it for 4 months.', result: '+AED 180K above ask' },
+  { name: 'Ahmed K.', country: 'UAE', flag: '🇦🇪', text: "Got AED 180K above my asking price. The international buyer network is real — serious offers came in the first week. My previous agent couldn't sell it for 4 months.", result: '+AED 180K above ask' },
   { name: 'Priya R.', country: 'India', flag: '🇮🇳', text: 'Needed a fast clean sale before relocating. They priced it right from day one, pre-qualified every viewer, and closed in 19 days. Zero stress.', result: 'Closed in 19 days' },
 ];
+
+/* ─── TRUTH 1: Big stat card — dark editorial ─── */
+function Truth1() {
+  return (
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6 }}
+      className="bg-[#0c0c0c] py-16 sm:py-24 overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        {/* Label */}
+        <div className="flex items-center gap-3 mb-6">
+          <div className="w-4 h-px bg-[#C9A84C]" />
+          <span className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase">Pricing Strategy · 01 / 03</span>
+        </div>
+
+        {/* Stat row */}
+        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4 border-b border-white/[0.08] pb-10 mb-10">
+          <div
+            className="font-display font-black text-white leading-none select-none"
+            style={{ fontSize: 'clamp(80px, 14vw, 180px)' }}
+          >
+            37%
+          </div>
+          <p className="text-white/35 font-body lg:text-right max-w-xs leading-snug"
+            style={{ fontSize: 'clamp(16px, 2vw, 22px)' }}>
+            of Dubai listings<br />never sell
+          </p>
+        </div>
+
+        {/* Two-column comparison with left border lines */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-12">
+          <div className="border-l-2 border-red-500/25 pl-6">
+            <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-red-400/70 uppercase mb-4">✕ &nbsp;The common approach</p>
+            <p className="text-white/35 font-body text-sm leading-relaxed">
+              The agent quoted a high price to win the listing. No offers came. 60 days later they asked for a reduction. By then the property looked stale and buyers assumed something was wrong.
+            </p>
+          </div>
+          <div className="border-l-2 border-[#C9A84C]/40 pl-6">
+            <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-[#C9A84C] uppercase mb-4">✓ &nbsp;The RE/MAX Zam approach</p>
+            <p className="text-white/65 font-body text-sm leading-relaxed">
+              We show you live DLD comparables before we even talk price. You see exactly what sold, when, and for how much. No inflation. No bait-and-switch.
+            </p>
+          </div>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+/* ─── TRUTH 2: Split photo / content ─── */
+function Truth2() {
+  return (
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6 }}
+      className="bg-white overflow-hidden"
+    >
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
+        {/* Left: content */}
+        <div className="px-8 sm:px-12 lg:px-16 py-16 sm:py-20 flex flex-col justify-center order-2 lg:order-1">
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-4 h-px bg-[#C9A84C]" />
+            <span className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase">Presentation · 02 / 03</span>
+          </div>
+
+          <div
+            className="font-display font-black text-gray-900 leading-none mb-3"
+            style={{ fontSize: 'clamp(56px, 9vw, 110px)' }}
+          >
+            3 sec
+          </div>
+          <p className="text-gray-400 font-body mb-10 leading-snug"
+            style={{ fontSize: 'clamp(15px, 1.8vw, 20px)' }}>
+            is how long buyers take to scroll past bad photos
+          </p>
+
+          <div className="space-y-6">
+            <div>
+              <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-red-400 uppercase mb-3">✕ &nbsp;The common approach</p>
+              <p className="text-gray-400 font-body text-sm leading-relaxed">
+                An agent with an iPhone, one visit, 8 blurry photos. Your property looks like every other listing. Buyers screenshot the nice ones and send to their partners. Yours isn't one of them.
+              </p>
+            </div>
+            <div className="pt-5 border-t border-gray-100">
+              <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-[#C9A84C] uppercase mb-3">✓ &nbsp;The RE/MAX Zam approach</p>
+              <p className="text-gray-600 font-body text-sm leading-relaxed">
+                We send a professional photographer, videographer, and drone operator. Staging advice included. We write the listing copy. Your property becomes the one buyers can't stop looking at.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Right: luxury interior photo */}
+        <div className="relative min-h-[320px] order-1 lg:order-2">
+          <img
+            src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=1200&auto=format&fit=crop&q=85"
+            alt="Luxury interior staging"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-transparent lg:hidden" />
+        </div>
+      </div>
+    </motion.section>
+  );
+}
+
+/* ─── TRUTH 3: Icon feature row ─── */
+function Truth3() {
+  const features = [
+    { icon: Globe, title: 'Global RE/MAX Network', desc: 'Day 1 live across 110+ countries and 8,700+ offices worldwide' },
+    { icon: Users, title: '12,000+ Investors', desc: 'Direct email to pre-qualified international buyers, day of listing' },
+    { icon: Map, title: 'International Pipeline', desc: 'UK, India, Saudi Arabia — the buyers who pay the most, the fastest' },
+  ];
+
+  return (
+    <motion.section
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.6 }}
+      className="bg-gray-950 py-16 sm:py-24"
+    >
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
+        {/* Top row: stat + common approach side by side */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 mb-12 pb-12 border-b border-white/[0.07]">
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-4 h-px bg-[#C9A84C]" />
+              <span className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase">Market Reach · 03 / 03</span>
+            </div>
+            <div
+              className="font-display font-black text-white leading-none mb-3"
+              style={{ fontSize: 'clamp(72px, 11vw, 140px)' }}
+            >
+              61%
+            </div>
+            <p className="text-white/35 font-body leading-snug"
+              style={{ fontSize: 'clamp(15px, 1.8vw, 20px)' }}>
+              of our buyers come from outside the UAE
+            </p>
+          </div>
+
+          <div className="flex flex-col justify-center">
+            <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-red-400/70 uppercase mb-4">✕ &nbsp;The common approach</p>
+            <p className="text-white/30 font-body text-sm leading-relaxed">
+              Most Dubai agents only reach local buyers on Bayut and Dubizzle. The buyers who move fastest — expats relocating, foreign investors — never even see your listing.
+            </p>
+          </div>
+        </div>
+
+        {/* Icon feature row — the fix */}
+        <div>
+          <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-[#C9A84C] uppercase mb-8">✓ &nbsp;The RE/MAX Zam approach</p>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {features.map(({ icon: Icon, title, desc }) => (
+              <div key={title} className="border border-white/[0.08] rounded-2xl p-6 hover:border-[#C9A84C]/30 transition-colors group">
+                <div className="w-10 h-10 rounded-xl bg-[#C9A84C]/10 flex items-center justify-center mb-5 group-hover:bg-[#C9A84C]/20 transition-colors">
+                  <Icon className="w-4 h-4 text-[#C9A84C]" />
+                </div>
+                <p className="text-white font-heading font-bold text-sm mb-2">{title}</p>
+                <p className="text-white/35 font-body text-xs leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </motion.section>
+  );
+}
 
 export default function SellerHome() {
   return (
     <>
       {/* ── SECTION HEADER ── */}
-      <section className="py-16 sm:py-20 bg-white border-b border-gray-100">
+      <section className="py-14 sm:py-20 bg-white border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-16">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-            <p className="text-[10px] font-heading font-bold text-gray-400 tracking-[0.22em] uppercase mb-4">
-              What every Dubai seller should know
-            </p>
+            <p className="text-[10px] font-heading font-bold text-gray-400 tracking-[0.22em] uppercase mb-4">What every Dubai seller should know</p>
             <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-black text-gray-900 leading-[1.05] max-w-2xl">
                 What makes or breaks a Dubai property sale
@@ -66,79 +208,9 @@ export default function SellerHome() {
         </div>
       </section>
 
-      {/* ── PHOTO STRIPS ── */}
-      {TRUTHS.map((t, i) => (
-        <motion.div
-          key={i}
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.1 }}
-          transition={{ duration: 0.7 }}
-          className="relative overflow-hidden"
-          style={{ minHeight: '520px' }}
-        >
-          {/* Background photo */}
-          <img
-            src={t.img}
-            alt=""
-            aria-hidden
-            className="absolute inset-0 w-full h-full object-cover object-center scale-105"
-            style={{ filter: 'brightness(0.75)' }}
-          />
-
-          {/* Left-to-right gradient so left content is readable */}
-          <div className={`absolute inset-0 bg-gradient-to-r ${t.tint}`} />
-
-          {/* Top edge — thin separator */}
-          <div className="absolute top-0 left-0 right-0 h-px bg-white/10" />
-
-          {/* Content */}
-          <div className="relative z-10 max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-16 sm:py-20">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center min-h-[380px]">
-
-              {/* LEFT: big stat */}
-              <div className="flex flex-col justify-center">
-                <div className="flex items-center gap-3 mb-6">
-                  <span className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase">{t.tag}</span>
-                  <div className="h-px flex-1 bg-white/15 max-w-[60px]" />
-                  <span className="text-[10px] font-heading font-bold text-white/20 tracking-widest">0{i + 1}</span>
-                </div>
-
-                <div
-                  className="font-display font-black text-white leading-none mb-4 select-none"
-                  style={{ fontSize: 'clamp(72px, 12vw, 140px)', textShadow: '0 2px 40px rgba(0,0,0,0.4)' }}
-                >
-                  {t.num}
-                </div>
-
-                <p className="text-white/70 font-body leading-snug max-w-xs"
-                  style={{ fontSize: 'clamp(16px, 2.5vw, 22px)' }}>
-                  {t.headline}
-                </p>
-              </div>
-
-              {/* RIGHT: comparison — two stacked panels */}
-              <div className="flex flex-col gap-3">
-                {/* Common approach */}
-                <div className="bg-black/40 backdrop-blur-md border border-white/[0.1] rounded-2xl px-6 py-5">
-                  <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-red-400/80 uppercase mb-3">
-                    ✕ &nbsp;The common approach
-                  </p>
-                  <p className="text-white/50 font-body text-sm leading-relaxed">{t.why}</p>
-                </div>
-
-                {/* RE/MAX Zam approach */}
-                <div className="bg-[#C9A84C]/10 backdrop-blur-md border border-[#C9A84C]/30 rounded-2xl px-6 py-5">
-                  <p className="text-[9px] font-heading font-bold tracking-[0.2em] text-[#C9A84C] uppercase mb-3">
-                    ✓ &nbsp;The RE/MAX Zam approach
-                  </p>
-                  <p className="text-white/80 font-body text-sm leading-relaxed">{t.fix}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </motion.div>
-      ))}
+      <Truth1 />
+      <Truth2 />
+      <Truth3 />
 
       {/* ── REAL DEAL RESULTS ── */}
       <section className="py-14 sm:py-20 bg-gray-950">
@@ -147,7 +219,6 @@ export default function SellerHome() {
             <p className="text-[#C9A84C] text-[10px] font-heading font-bold tracking-[0.25em] uppercase mb-3">Real transactions · DLD verified</p>
             <h2 className="text-4xl sm:text-5xl font-display font-black text-white leading-[1.05]">Recent deals,<br />real numbers</h2>
           </motion.div>
-
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-10">
             {DEALS.map((d, idx) => (
               <motion.div key={idx} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: idx * 0.1 }}
@@ -181,7 +252,6 @@ export default function SellerHome() {
               </motion.div>
             ))}
           </div>
-
           <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true }} className="flex items-center gap-2 text-white/30 font-body text-xs">
             <TrendingUp className="w-3.5 h-3.5" />
             94% of our listings sell at or above asking price · Average 28 days on market
