@@ -172,58 +172,83 @@ export default function SellerHome() {
       </section>
 
       {/* ─────────────────────────────────────────
-          SECTION 3 — Testimonials (white, full-width cards)
+          SECTION 3 — Image left + Testimonials right
       ───────────────────────────────────────── */}
       <section className="bg-white py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-14 items-start">
 
-          {/* Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12 pb-10 border-b border-gray-100"
-          >
-            <h2 className="font-display font-black text-gray-900 text-4xl sm:text-5xl leading-tight">
-              What sellers<br />actually say.
-            </h2>
-            <p className="text-gray-400 font-body text-sm max-w-[200px] sm:text-right leading-relaxed">
-              Real outcomes from<br />real Dubai sellers.
-            </p>
-          </motion.div>
+            {/* LEFT — real Dubai photo, no AI */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="relative lg:sticky lg:top-24"
+            >
+              {/* Main image — Dubai Marina, real photography */}
+              <div className="rounded-3xl overflow-hidden aspect-[3/4]">
+                <img
+                  src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=800&q=85"
+                  alt="Dubai Marina skyline"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              {/* Floating stat chip — bottom left */}
+              <div className="absolute bottom-5 left-5 right-5 bg-white/90 backdrop-blur-md rounded-2xl px-5 py-4 flex items-center justify-between shadow-lg border border-white">
+                <div>
+                  <p className="font-display font-black text-gray-900 text-2xl leading-none">94%</p>
+                  <p className="text-gray-500 font-body text-xs mt-1">sold at or above asking price</p>
+                </div>
+                <div className="text-right">
+                  <p className="font-display font-black text-gray-900 text-2xl leading-none">28</p>
+                  <p className="text-gray-500 font-body text-xs mt-1">avg days on market</p>
+                </div>
+              </div>
+            </motion.div>
 
-          {/* 3-column testimonial cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-            {TESTIMONIALS.map((t, idx) => (
+            {/* RIGHT — heading + stacked testimonials */}
+            <div className="flex flex-col gap-6">
               <motion.div
-                key={t.name}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="flex flex-col justify-between border border-gray-100 rounded-3xl p-8 hover:border-gray-300 hover:shadow-md transition-all"
+                className="mb-2"
               >
-                <div>
-                  <div className="flex gap-0.5 mb-6">
+                <h2 className="font-display font-black text-gray-900 text-4xl sm:text-5xl leading-[1.05]">
+                  What sellers<br />actually say.
+                </h2>
+              </motion.div>
+
+              {TESTIMONIALS.map((t, idx) => (
+                <motion.div
+                  key={t.name}
+                  initial={{ opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="flex flex-col justify-between border border-gray-100 rounded-2xl p-7 hover:border-gray-200 hover:shadow-sm transition-all"
+                >
+                  <div className="flex gap-0.5 mb-4">
                     {[1,2,3,4,5].map(i => (
                       <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
                     ))}
                   </div>
-                  <p className="text-gray-700 font-body text-sm leading-relaxed mb-8">"{t.text}"</p>
-                </div>
-                <div className="flex items-center justify-between pt-6 border-t border-gray-100">
-                  <div>
-                    <p className="font-heading font-bold text-gray-900 text-sm">{t.name}</p>
-                    <p className="text-gray-400 font-body text-xs mt-0.5">{t.country}</p>
+                  <p className="text-gray-700 font-body text-sm leading-relaxed mb-5">"{t.text}"</p>
+                  <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+                    <div>
+                      <p className="font-heading font-bold text-gray-900 text-sm">{t.name}</p>
+                      <p className="text-gray-400 font-body text-xs mt-0.5">{t.country}</p>
+                    </div>
+                    <span className="text-xs font-heading font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-full whitespace-nowrap">
+                      {t.result}
+                    </span>
                   </div>
-                  <span className="text-xs font-heading font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-full whitespace-nowrap">
-                    {t.result}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                </motion.div>
+              ))}
+            </div>
 
+          </div>
         </div>
       </section>
 
