@@ -121,60 +121,70 @@ export default function SellerHome() {
       </section>
 
       {/* ─────────────────────────────────────────
-          SECTION 2 — Timeline with center spine (Option D)
+          SECTION 2 — Option E: sticky left label, scrolling right steps
       ───────────────────────────────────────── */}
       <section className="bg-white py-16 sm:py-24">
-        <div className="max-w-3xl mx-auto px-6 sm:px-10 lg:px-0 relative">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
+          <div className="flex flex-col lg:flex-row gap-16 lg:gap-24 items-start">
 
-          {/* Vertical center spine */}
-          <div className="absolute left-1/2 top-0 bottom-0 w-px bg-gray-100 -translate-x-1/2 hidden lg:block" />
+            {/* LEFT — sticky label column */}
+            <div className="lg:sticky lg:top-32 lg:w-64 shrink-0">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+              >
+                <p className="text-[10px] font-heading font-bold tracking-[0.25em] text-[#C9A84C] uppercase mb-4">
+                  The Process
+                </p>
+                <h2 className="font-display font-black text-gray-900 text-3xl sm:text-4xl leading-tight mb-6">
+                  How We<br />Sell Your<br />Property.
+                </h2>
+                <p className="text-gray-400 font-body text-sm leading-relaxed mb-8">
+                  Simple. Transparent.<br />Effective. Four steps,<br />every detail handled.
+                </p>
+                <div className="w-8 h-px bg-[#C9A84C]" />
+              </motion.div>
+            </div>
 
-          <div className="flex flex-col gap-0">
-            {STEPS.map((s, idx) => {
-              const Icon = s.icon;
-              const isLeft = idx % 2 === 0;
-              return (
-                <motion.div
-                  key={s.step}
-                  initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.55, delay: idx * 0.1 }}
-                  className={`relative flex items-start gap-8 py-10 lg:py-12 ${isLeft ? 'lg:flex-row lg:pr-[calc(50%+2rem)]' : 'lg:flex-row-reverse lg:pl-[calc(50%+2rem)]'}`}
-                >
-                  {/* Dot on the spine */}
-                  <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-[#C9A84C] border-2 border-white shadow-sm hidden lg:block" />
+            {/* RIGHT — scrolling steps */}
+            <div className="flex-1 flex flex-col divide-y divide-gray-100">
+              {STEPS.map((s, idx) => {
+                const Icon = s.icon;
+                return (
+                  <motion.div
+                    key={s.step}
+                    initial={{ opacity: 0, y: 24 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: idx * 0.1 }}
+                    className="group flex gap-6 sm:gap-8 py-9 hover:bg-gray-50 -mx-4 px-4 rounded-2xl transition-colors"
+                  >
+                    {/* Step number */}
+                    <span className="font-display font-black text-gray-200 group-hover:text-[#C9A84C]/25 transition-colors text-5xl leading-none w-14 shrink-0 pt-1">
+                      {s.step}
+                    </span>
 
-                  {/* Content card */}
-                  <div className={`group bg-[#F7F6F3] hover:bg-white hover:shadow-lg rounded-3xl p-7 sm:p-8 transition-all duration-300 w-full border border-transparent hover:border-gray-100`}>
-                    {/* Top row: icon + step label */}
-                    <div className="flex items-center justify-between mb-5">
-                      <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-xl bg-gray-900 group-hover:bg-[#C9A84C] transition-colors flex items-center justify-center shrink-0">
-                          <Icon style={{ width: '16px', height: '16px' }} className="text-white" />
+                    {/* Content */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-3 mb-3">
+                        <div className="w-8 h-8 rounded-lg bg-gray-900 group-hover:bg-[#C9A84C] transition-colors flex items-center justify-center shrink-0">
+                          <Icon style={{ width: '14px', height: '14px' }} className="text-white" />
                         </div>
-                        <span className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase">Step {s.step}</span>
+                        <h3 className="font-display font-black text-gray-900 text-xl leading-tight">
+                          {s.title}
+                        </h3>
                       </div>
-                      <span className="font-display font-black text-gray-200 text-3xl leading-none select-none group-hover:text-gray-300 transition-colors">
-                        {s.step}
-                      </span>
+                      <p className="text-gray-500 font-body text-sm leading-relaxed">
+                        {s.desc}
+                      </p>
                     </div>
+                  </motion.div>
+                );
+              })}
+            </div>
 
-                    {/* Title */}
-                    <h3 className="font-display font-black text-gray-900 text-xl leading-tight mb-3">
-                      {s.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-gray-500 font-body text-sm leading-relaxed">
-                      {s.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              );
-            })}
           </div>
-
         </div>
       </section>
 
