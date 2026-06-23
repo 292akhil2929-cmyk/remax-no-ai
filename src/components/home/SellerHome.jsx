@@ -121,46 +121,82 @@ export default function SellerHome() {
       </section>
 
       {/* ─────────────────────────────────────────
-          SECTION 2 — 4 Steps, editorial full-width rows
+          SECTION 2 — Bento grid: featured step 01 + 3-col steps
       ───────────────────────────────────────── */}
-      <section className="bg-white py-4 pb-20">
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
-          {STEPS.map((s, idx) => {
-            const Icon = s.icon;
-            return (
-              <motion.div
-                key={s.step}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.07 }}
-                className="group grid grid-cols-[64px_1fr_1fr] lg:grid-cols-[80px_1fr_1.4fr_40px] items-center gap-6 lg:gap-10 py-8 border-b border-gray-100 hover:bg-gray-50 -mx-4 px-4 rounded-2xl transition-colors cursor-default"
-              >
-                {/* Step number */}
-                <span className="font-display font-black text-gray-200 group-hover:text-[#C9A84C]/30 transition-colors leading-none text-5xl lg:text-6xl">
-                  {s.step}
-                </span>
+      <section className="bg-[#F7F6F3] py-16 sm:py-20">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 flex flex-col gap-4">
 
-                {/* Icon + title */}
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded-xl bg-gray-900 group-hover:bg-[#C9A84C] transition-colors flex items-center justify-center shrink-0">
-                    <Icon className="w-4.5 h-4.5 text-white" style={{ width: '18px', height: '18px' }} />
+          {/* ROW 1 — Step 01: full-width featured card with photo */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative rounded-3xl overflow-hidden min-h-[280px] sm:min-h-[320px] grid grid-cols-1 lg:grid-cols-2"
+          >
+            {/* Photo half */}
+            <div className="relative min-h-[200px] lg:min-h-0">
+              <img
+                src="https://images.unsplash.com/photo-1560185008-a33f5c7b1844?w=900&q=85"
+                alt="Property valuation"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent to-gray-950/60 hidden lg:block" />
+              <div className="absolute inset-0 bg-gradient-to-b from-transparent to-gray-950/60 lg:hidden" />
+            </div>
+
+            {/* Content half — dark */}
+            <div className="bg-gray-950 p-8 sm:p-10 flex flex-col justify-between relative z-10">
+              <div className="flex items-start justify-between">
+                <span className="text-[10px] font-heading font-bold tracking-[0.25em] text-[#C9A84C] uppercase">Step 01</span>
+                <span className="font-display font-black text-white/10 text-6xl leading-none select-none">01</span>
+              </div>
+              <div>
+                {(() => { const Icon = STEPS[0].icon; return (
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center mb-5">
+                    <Icon className="w-4.5 h-4.5 text-white" style={{width:'18px',height:'18px'}} />
                   </div>
-                  <h3 className="font-display font-black text-gray-900 text-lg lg:text-xl leading-tight">
-                    {s.title}
-                  </h3>
-                </div>
-
-                {/* Description */}
-                <p className="text-gray-500 font-body text-sm leading-relaxed">
-                  {s.desc}
+                ); })()}
+                <h3 className="font-display font-black text-white text-2xl sm:text-3xl leading-tight mb-3">
+                  {STEPS[0].title}
+                </h3>
+                <p className="text-white/50 font-body text-sm leading-relaxed max-w-xs">
+                  {STEPS[0].desc}
                 </p>
+              </div>
+            </div>
+          </motion.div>
 
-                {/* Arrow — desktop only */}
-                <ArrowUpRight className="hidden lg:block w-5 h-5 text-gray-300 group-hover:text-[#C9A84C] transition-colors" />
-              </motion.div>
-            );
-          })}
+          {/* ROW 2 — Steps 02, 03, 04 in 3 columns */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            {STEPS.slice(1).map((s, idx) => {
+              const Icon = s.icon;
+              return (
+                <motion.div
+                  key={s.step}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: 0.1 + idx * 0.08 }}
+                  className="group bg-white rounded-3xl p-7 flex flex-col justify-between min-h-[240px] hover:shadow-lg hover:-translate-y-0.5 transition-all duration-300"
+                >
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="w-10 h-10 rounded-xl bg-gray-100 group-hover:bg-gray-900 transition-colors flex items-center justify-center">
+                      <Icon className="w-[18px] h-[18px] text-gray-600 group-hover:text-white transition-colors" />
+                    </div>
+                    <span className="font-display font-black text-gray-100 group-hover:text-[#C9A84C]/20 transition-colors text-4xl leading-none select-none">
+                      {s.step}
+                    </span>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-heading font-bold tracking-[0.22em] text-[#C9A84C] uppercase mb-2">Step {s.step}</p>
+                    <h3 className="font-display font-black text-gray-900 text-lg leading-tight mb-3">{s.title}</h3>
+                    <p className="text-gray-500 font-body text-sm leading-relaxed">{s.desc}</p>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+
         </div>
       </section>
 
