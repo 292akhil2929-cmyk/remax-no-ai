@@ -172,81 +172,58 @@ export default function SellerHome() {
       </section>
 
       {/* ─────────────────────────────────────────
-          SECTION 3 — Image + Testimonials (white)
+          SECTION 3 — Testimonials (white, full-width cards)
       ───────────────────────────────────────── */}
       <section className="bg-white py-20 sm:py-28">
         <div className="max-w-6xl mx-auto px-6 sm:px-10 lg:px-16">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-10 lg:gap-16 items-start">
 
-            {/* Left — property photo */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.7 }}
-              className="relative"
-            >
-              <div className="rounded-3xl overflow-hidden aspect-[4/5]">
-                <img
-                  src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&q=85"
-                  alt="Luxury Dubai property"
-                  className="w-full h-full object-cover"
-                />
-              </div>
-              {/* Floating tag */}
-              <div className="absolute bottom-6 left-6 bg-white rounded-2xl px-5 py-4 shadow-lg">
-                <p className="font-display font-black text-gray-900 text-lg">94%</p>
-                <p className="text-gray-500 font-body text-xs mt-0.5">sold at or above asking</p>
-              </div>
-            </motion.div>
+          {/* Heading */}
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12 pb-10 border-b border-gray-100"
+          >
+            <h2 className="font-display font-black text-gray-900 text-4xl sm:text-5xl leading-tight">
+              What sellers<br />actually say.
+            </h2>
+            <p className="text-gray-400 font-body text-sm max-w-[200px] sm:text-right leading-relaxed">
+              Real outcomes from<br />real Dubai sellers.
+            </p>
+          </motion.div>
 
-            {/* Right — heading + testimonials */}
-            <div>
+          {/* 3-column testimonial cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+            {TESTIMONIALS.map((t, idx) => (
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
+                key={t.name}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                className="mb-10"
+                transition={{ delay: idx * 0.1 }}
+                className="flex flex-col justify-between border border-gray-100 rounded-3xl p-8 hover:border-gray-300 hover:shadow-md transition-all"
               >
-                <p className="text-[10px] font-heading font-bold tracking-[0.25em] text-gray-400 uppercase mb-3">
-                  From Sellers Who've Been Through It
-                </p>
-                <h2 className="font-display font-black text-gray-900 text-4xl sm:text-5xl leading-tight">
-                  What sellers<br />actually say.
-                </h2>
+                <div>
+                  <div className="flex gap-0.5 mb-6">
+                    {[1,2,3,4,5].map(i => (
+                      <Star key={i} className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />
+                    ))}
+                  </div>
+                  <p className="text-gray-700 font-body text-sm leading-relaxed mb-8">"{t.text}"</p>
+                </div>
+                <div className="flex items-center justify-between pt-6 border-t border-gray-100">
+                  <div>
+                    <p className="font-heading font-bold text-gray-900 text-sm">{t.name}</p>
+                    <p className="text-gray-400 font-body text-xs mt-0.5">{t.country}</p>
+                  </div>
+                  <span className="text-xs font-heading font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-full whitespace-nowrap">
+                    {t.result}
+                  </span>
+                </div>
               </motion.div>
-
-              <div className="space-y-4">
-                {TESTIMONIALS.map((t, idx) => (
-                  <motion.div
-                    key={t.name}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className="bg-[#F7F6F3] rounded-2xl p-6 hover:bg-gray-100 transition-colors"
-                  >
-                    <div className="flex gap-0.5 mb-3">
-                      {[1,2,3,4,5].map(i => (
-                        <Star key={i} className="w-3 h-3 fill-amber-400 text-amber-400" />
-                      ))}
-                    </div>
-                    <p className="text-gray-700 font-body text-sm leading-relaxed mb-4">"{t.text}"</p>
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <p className="font-heading font-bold text-gray-900 text-sm">{t.name}</p>
-                        <p className="text-gray-400 font-body text-xs">{t.country}</p>
-                      </div>
-                      <span className="text-xs font-heading font-bold text-emerald-700 bg-emerald-50 border border-emerald-100 px-3 py-1.5 rounded-full">
-                        {t.result}
-                      </span>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
+            ))}
           </div>
+
         </div>
       </section>
 
